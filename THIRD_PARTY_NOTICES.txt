@@ -150,3 +150,34 @@ measured datasheet.
 
 Gaussian approximation of the Airy core (sigma = 0.42 lambda N): Zhang B.,
 Zerubia J., Olivo-Marin J.-C., 2007, Applied Optics 46, 1819.
+
+--- Eyepiece app 0.4.1 (tube mechanisms from published measurements) ---
+
+Only numbers and relations are cited from these papers (user-supplied
+copies); no text, table or figure of any paper is included.
+  胡中 等, Infrared Technology (红外技术) 2026, 48(5): ion-barrier film
+    transmittance versus cathode voltage.
+  李晓峰 等, Infrared Technology 2022, 44(8): filmed/thin-filmed tubes,
+    SNR versus cathode voltage, EBI versus temperature.
+  曾进能 等, Infrared Technology 2025, 47(6): SNR versus luminance gain.
+  曾进能 等, MCP输入增强膜对像增强器主要性能的影响研究, Infrared
+    Technology 2020, 42(8): 735-741 (detection efficiency, MgO film).
+  杨武丽 等, Journal of Applied Optics (应用光学) 2022, 43(6): phosphor
+    luminous efficiencies.
+  李亚情 等, Infrared Technology 2022, 44(8): temperature drift of
+    cathode sensitivity and screen efficiency.
+  李晓峰 等, 影响超二代像增强器最高增益的因数分析, Acta Photonica Sinica
+    (光子学报) 2022, 51(3): 0304001 (sample SNR/sensitivity/EBI; dark
+    scintillations; optical feedback).
+  李晓峰 等, 超二代像增强器分辨力随输入照度变化研究, Infrared Technology
+    2022, 44(4): 377-382 (EBI/SNR samples; cathode gap 0.15 mm).
+  王子薇 等, 微光像增强器低照度分辨力分析, Optoelectronic Technology
+    (光电子技术) 2024, 44(4): 350-354 (Gen 2+/Gen III samples).
+  李晓峰 等, 超二代像增强器多碱阴极电子逸出机理研究, Infrared Technology
+    2012, 34(12): 729-733 (915 nm absorption limit).
+  李晓峰 等, 高性能超二代像增强器及发展, Infrared Technology 2021, 43(9):
+    811-816; 潘京生, 像增强器的迭代性能及其评价标准, Infrared Technology
+    2020, 42(6): 509-518 (typical EBI and noise-factor values).
+Visual acuity versus luminance: Shlaer S., 1937, J. Gen. Physiol. 21, 165;
+Hecht S., 1947 (as tabulated in vision handbooks). Tilt and scintillation:
+Fried D. L., 1965, JOSA 55, 1427; Young A. T., 1967, AJ 72, 747.
