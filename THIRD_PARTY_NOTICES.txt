@@ -130,3 +130,23 @@ Orion nebula line ratios: Esteban C., Peimbert M., Garcia-Rojas J., Ruiz
 M. T., Peimbert A., Rodriguez M., 2004, MNRAS 355, 229 (Table 2, observed
 fluxes). Numbers are cited; no text or figure of the paper is included.
 Colour temperatures: Ballesteros F. J., 2012, EPL 97, 34008.
+
+--- Eyepiece app 0.4.0 (tube, objective, atmosphere; 2026-09-27) ---
+
+ESO SkyCalc Sky Model Calculator (Noll et al. 2012, A&A 543, A92; Jones
+et al. 2013, A&A 560, A91): the airglow components flux_ael + flux_arc
+of the same Paranal requests already used for the natural sky were
+re-downloaded and split out as a float32 derivative (airglow slider).
+The target transmission uses the ESO transmission rows of that model.
+
+EBI versus temperature: Li Xiaofeng et al. (李晓峰 等), 超二代与三代像增强器
+性能比较, Infrared Technology (红外技术) 2022, 44(8), Fig. 8 (GaAs and
+Na2KSb(Cs) curves), digitized from a user-supplied screenshot. Numbers
+only; no figure or text of the paper is included.
+
+Domestic Gen III preset: the "Modeled Gen III thin-film" responsivity
+curve from a user-supplied figure, digitized; a user model, not a
+measured datasheet.
+
+Gaussian approximation of the Airy core (sigma = 0.42 lambda N): Zhang B.,
+Zerubia J., Olivo-Marin J.-C., 2007, Applied Optics 46, 1819.

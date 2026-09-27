@@ -1,8 +1,8 @@
 {
- "name": "IIT-Eyepiece-0.3.0-portable",
- "built": "2026-09-27T04:14:14.351Z",
+ "name": "IIT-Eyepiece-0.4.0-portable",
+ "built": "2026-09-27T11:19:55.802Z",
  "entry": "START.html",
- "embeddedBytes": 42745483,
+ "embeddedBytes": 42802447,
  "groups": [
   "core",
   "barnard",
@@ -14,10 +14,13 @@
  ],
  "dataSha256": {
   "data/simulator-versions.json": "d8966be55c15eaa4b59af5ddecd3d07dca67b941827061dbe956d8c77f4c34e1",
-  "data/atlas2-versions.json": "2b5a722c8135c6b1763346d93d86ec46e2309219341a41dc41b61044e974083d",
+  "data/atlas2-versions.json": "3cedb0fe858c1fd869e3014e01a5705c5d24040bcd26c33c7f3fecc9ad869064",
   "data/environment.json": "52e0e83afe75dc56805a7a777749bb464c1769982aa6d93956c680fbefb5e126",
   "data/environment/sky-lut.bin": "6ee1da80baa766ae810da26b73588cd29f20d98fbaa5984b8e96873cc789e59a",
   "data/iit-spectra.json": "248d3f7e72bd57fa0a5dba471bf13d4c04d04f543ce9583c08e7c24d6d0b840f",
+  "data/environment/airglow.json": "eb96d053e5906975285954f286d7668eb01b1c1005396c94753dc89501497e90",
+  "data/environment/airglow.bin": "cfeaff82b290465e9d17ea236b706392b429f075ad1cdd4e82ebbb2c68fad30c",
+  "data/user-figures.json": "5b8d444f895ae824280061b74bf2bf80ce7455ce22ad3ab42aad165c78bb178f",
   "data/atlas2/barnard-stars.bin": "81463b666b7a4fc9b8135bb77ab6d206b42ad2631e578171272a5198398cd5e0",
   "data/atlas2/barnard.bin": "7dd119716d0ba71786141513b4ef56851575c47d47798dbc4bcbdfe927e701ea",
   "data/atlas2/barnard.json": "c31b39c718815c80b0ecb0ff4727613fb7eb0238d85e40e37b72d47853e94f8f",
