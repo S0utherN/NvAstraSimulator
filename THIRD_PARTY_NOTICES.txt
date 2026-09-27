@@ -178,6 +178,29 @@ copies); no text, table or figure of any paper is included.
   李晓峰 等, 高性能超二代像增强器及发展, Infrared Technology 2021, 43(9):
     811-816; 潘京生, 像增强器的迭代性能及其评价标准, Infrared Technology
     2020, 42(6): 509-518 (typical EBI and noise-factor values).
+--- Eyepiece app 0.5.0 (new targets, 135-2000 mm, 80 deg southern scenes) ---
+
+Cutouts obtained through the CDS hips2fits service (Boch & Fernique;
+HiPS by CDS / survey teams); only processed derivatives are included:
+  SHASSA, Southern H-Alpha Sky Survey Atlas: Gaustad J. E., McCullough
+    P. R., Rosing W., Van Buren D., 2001, PASP 113, 1326; courtesy of
+    Swarthmore College; HiPS ov-gso/P/SHASSA and ov-gso/P/SHASSA/CONT
+    (D. Paradis, IRAP/CADE). Hα in deci-Rayleigh and the continuum image.
+  The Digitized Sky Survey II (red and blue plates of the UK Schmidt
+    SERC-ER / SERC-J surveys) was produced at the Space Telescope
+    Science Institute under U.S. Government grant NAG W-2166; the plates
+    are copyright the Anglo-Australian Observatory / Royal Observatory
+    Edinburgh (UK Schmidt Telescope). Used for the Helix detail level.
+  VPHAS+ DR4 (Drew J. E. et al. 2014, MNRAS 440, 2036): based on data
+    obtained from the ESO Science Archive Facility (ESO programme
+    177.D-3023), CC BY 4.0; Hα and r for the Carina detail levels.
+  NSNS DR0.2 as above for Rosette and the 8 deg bases.
+Gaia DR3 (Gaia Collaboration 2023, A&A 674, A1; ESA/Gaia/DPAC) and
+Hipparcos (ESA 1997) via VizieR (CDS), as above.
+Helix integrated line fluxes used for the estimated [O III] scale:
+Sánchez S. F. et al. 2026, SDSS-V LVM Helix Nebula data (arXiv:2602.10072),
+and O'Dell (1998) as cited there. Numbers only.
+
 Visual acuity versus luminance: Shlaer S., 1937, J. Gen. Physiol. 21, 165;
 Hecht S., 1947 (as tabulated in vision handbooks). Tilt and scintillation:
 Fried D. L., 1965, JOSA 55, 1427; Young A. T., 1967, AJ 72, 747.
