@@ -1,0 +1,132 @@
+Step 7 astronomical scene data (local reviewed numerical derivatives)
+
+NGC 7009: Walsh, Monreal-Ibero, Barlow, Ueta, Wesson, Zijlstra, Kimeswenger,
+Leal-Ferreira and Otsuka (2018), A&A 620 A169; CDS J/A+A/620/A169.
+https://cdsarc.cds.unistra.fr/ftp/J/A+A/620/A169/
+H-beta and [OIII]4959 are independent source maps. H-alpha and [OIII]5007
+in this simulator are explicitly assumed line-ratio derivatives.
+
+H-alpha all-sky template: D. Finkbeiner (2003), version 1.1, using WHAM,
+VTSS and SHASSA; distributed by NASA LAMBDA.
+https://lambda.gsfc.nasa.gov/product/foreground/fg_halpha_info.html
+Nominal 6 arcmin resolution is retained as source metadata. OIII is absent.
+
+Original FITS and papers are not distributed. Public accessibility does not
+establish a reviewed redistribution licence for every contributing data set.
+These derivatives remain local pending any separately authorized publication.
+
+Step 5 statistical algorithms and official test vectors
+
+NumPy 2.3.3 distributions.c: Poisson PTRS and Gamma rejection algorithm references.
+https://github.com/numpy/numpy/blob/v2.3.3/numpy/random/src/distributions/distributions.c
+
+Copyright (c) 2005-2025, NumPy Developers.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+    * Redistributions of source code must retain the above copyright
+       notice, this list of conditions and the following disclaimer.
+
+    * Redistributions in binary form must reproduce the above
+       copyright notice, this list of conditions and the following
+       disclaimer in the documentation and/or other materials provided
+       with the distribution.
+
+    * Neither the name of the NumPy Developers nor the names of any
+       contributors may be used to endorse or promote products derived
+       from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+Random123: Philox4x32-10 and known-answer vectors.
+https://github.com/DEShawResearch/random123
+
+/** @page LICENSE
+Copyright 2010-2012, D. E. Shaw Research.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+* Redistributions of source code must retain the above copyright
+  notice, this list of conditions, and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright
+  notice, this list of conditions, and the following disclaimer in the
+  documentation and/or other materials provided with the distribution.
+
+* Neither the name of D. E. Shaw Research nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+Circular field morphology references (0.2.0, local evaluation)
+------------------------------------------------------------
+DSS2 red photographic survey cutouts served through CDS hips2fits, using
+CDS/P/DSS2/red. This research made use of the hips2fits service, developed
+at CDS, Strasbourg, France. DSS material originates from the Digitized Sky
+Survey / STScI and the contributing photographic surveys. Source overview:
+https://irsa.ipac.caltech.edu/data/hips/CDS/DSS2/red/
+https://alasky.cds.unistra.fr/hips-image-services/hips2fits
+Cutouts are used for explicitly assumed morphology; not measured emission
+line maps or calibrated radiance. The raw FITS are not redistributed.
+
+Hipparcos and Tycho Catalogues, ESA 1997, ESA SP-1200; CDS catalogue I/239.
+https://cdsarc.cds.unistra.fr/ftp/I/239/ReadMe
+HIP identifiers, ICRS positions at epoch J1991.25 and V magnitude rankings
+are used in lightweight derived scene lists. Stellar spectral shape and
+flux zero point are this project's assumptions, not ESA measurements.
+
+The new wide fields reuse Finkbeiner (2003) Halpha v1.1 data distributed by
+NASA LAMBDA, incorporating WHAM/VTSS/SHASSA; earlier acknowledgements apply.
+Original masked datasets remain separately available in the simulator.
+Sources are credited; full public redistribution permission review is
+incomplete. This local delivery does not constitute a public publication.
+
+--- Eyepiece app (atlas v2, 2026-09-27) ---
+
+Northern Sky Narrowband Survey (NSNS) DR0.2 by Stefan Ziegenbalg:
+Halpha, [O III] 500.7 nm and [S II] 671.7/673.0 nm maps in Rayleighs.
+http://www.simg.de/nebulae3/dr0_2 ; doi:10.3847/2515-5172/adfec7
+Licence: Creative Commons Attribution-NonCommercial-ShareAlike 4.0.
+Cutouts obtained through the CDS hips2fits service. Derived maps are
+resampled, rescaled to W m^-2 sr^-1, clipped at zero and asinh-encoded;
+any redistribution of these derivatives must keep this attribution and
+the same licence, non-commercially.
+
+Gaia Data Release 3 (Gaia Collaboration, 2023, A&A 674, A1), CDS catalogue
+I/355, queried through VizieR TAP: positions, G and BP-RP. Johnson V and
+B-V are derived with the Gaia DR3 documentation Table 5.9 relations.
+Hipparcos (ESA 1997, CDS I/239) supplies stars brighter than V = 7.
+
+Orion nebula line ratios: Esteban C., Peimbert M., Garcia-Rojas J., Ruiz
+M. T., Peimbert A., Rodriguez M., 2004, MNRAS 355, 229 (Table 2, observed
+fluxes). Numbers are cited; no text or figure of the paper is included.
+Colour temperatures: Ballesteros F. J., 2012, EPL 97, 34008.

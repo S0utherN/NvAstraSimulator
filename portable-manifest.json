@@ -1,0 +1,42 @@
+{
+ "name": "IIT-Eyepiece-0.3.0-portable",
+ "built": "2026-09-27T04:14:14.351Z",
+ "entry": "START.html",
+ "embeddedBytes": 42745483,
+ "groups": [
+  "core",
+  "barnard",
+  "cygnus",
+  "horsehead",
+  "m27",
+  "m42",
+  "ngc7009"
+ ],
+ "dataSha256": {
+  "data/simulator-versions.json": "d8966be55c15eaa4b59af5ddecd3d07dca67b941827061dbe956d8c77f4c34e1",
+  "data/atlas2-versions.json": "2b5a722c8135c6b1763346d93d86ec46e2309219341a41dc41b61044e974083d",
+  "data/environment.json": "52e0e83afe75dc56805a7a777749bb464c1769982aa6d93956c680fbefb5e126",
+  "data/environment/sky-lut.bin": "6ee1da80baa766ae810da26b73588cd29f20d98fbaa5984b8e96873cc789e59a",
+  "data/iit-spectra.json": "248d3f7e72bd57fa0a5dba471bf13d4c04d04f543ce9583c08e7c24d6d0b840f",
+  "data/atlas2/barnard-stars.bin": "81463b666b7a4fc9b8135bb77ab6d206b42ad2631e578171272a5198398cd5e0",
+  "data/atlas2/barnard.bin": "7dd119716d0ba71786141513b4ef56851575c47d47798dbc4bcbdfe927e701ea",
+  "data/atlas2/barnard.json": "c31b39c718815c80b0ecb0ff4727613fb7eb0238d85e40e37b72d47853e94f8f",
+  "data/atlas2/cygnus-stars.bin": "2a78addcf97fa7d40cbce1e3b396df6f8a8a2465750e354c7297fbc12c63f53b",
+  "data/atlas2/cygnus.bin": "006af71f67042857ab546f650d35350557a428e6065f31aa851f13ba7cbdf19f",
+  "data/atlas2/cygnus.json": "45c6d9b5110a808554af7fb93f8b64de5839e0a28ed79b39c0ec09a8f85de420",
+  "data/atlas2/horsehead-stars.bin": "4904febb4ae05b20fd350c7de402b985af2a6ca3c2ba3cde46610fce34be20ea",
+  "data/atlas2/horsehead.bin": "dde2107117cc0d94384e9a3e30e3465b2644c83fe01885e87906fc0a201fe525",
+  "data/atlas2/horsehead.json": "c42e8221bb20eecabc23bc120146c5dfb1fa90c384ede2ab2183f903e69aa637",
+  "data/atlas2/m27-stars.bin": "5a38907efa43612283661fff2c769c69bda852635da9df82535db662baf21373",
+  "data/atlas2/m27.bin": "e02a0d410021ce67b7db7fa48172d347943c8af97fdc44ef09a399d1695e0c5d",
+  "data/atlas2/m27.json": "512c3ce94270cd4ac95021ad87a58e4fdc4de052c4cec1db94dfde62c57e34fb",
+  "data/atlas2/m42-inset.bin": "84aa36d77158d05e8d4d551f73bf05d47b7740495c36b9af4e379439735d9b2b",
+  "data/atlas2/m42-stars.bin": "29ea6b7ae86633a43d011f84458f8a8ae6d33fe0229aba20cb7aea1396483feb",
+  "data/atlas2/m42.bin": "60f4837cd02f05f575edea0e325466ab0c05713b35540f949d53b7c742a3730e",
+  "data/atlas2/m42.json": "f346f262ef48cca841d24e322ecb7cffd778e17c496a6bba492ce61708d01c64",
+  "data/atlas2/ngc7009-inset.bin": "eccecf5416ad71fdeed1bd180e763a81d82b2e6e9d34d0607667ca4ed0949106",
+  "data/atlas2/ngc7009-stars.bin": "4e36042f490915917afb98eb0c5f9231e6b495d77eb651c0756823c7a4f96061",
+  "data/atlas2/ngc7009.bin": "1884009f1db509daf7f369b5c6e1e29c6fcaee7eca2afc9b80cdebae60956260",
+  "data/atlas2/ngc7009.json": "5e4f77b8467c51d031362792598ead8686a43aeb805f2c760175a48887603217"
+ }
+}
