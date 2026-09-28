@@ -204,3 +204,12 @@ and O'Dell (1998) as cited there. Numbers only.
 Visual acuity versus luminance: Shlaer S., 1937, J. Gen. Physiol. 21, 165;
 Hecht S., 1947 (as tabulated in vision handbooks). Tilt and scintillation:
 Fried D. L., 1965, JOSA 55, 1427; Young A. T., 1967, AJ 72, 747.
+
+--- Eyepiece app 0.5.2 (M31) ---
+
+  NSNS DR0.2 as above (Hα, [O III], [S II] and the star-subtracted visual
+    continuum, HiPS simg.de/P/NSNS/DR0_2/vc), CC-BY-NC-SA 4.0, via CDS
+    hips2fits; processed derivatives only.
+  Integrated magnitudes and colour of M31 and M32: Third Reference
+    Catalogue of Bright Galaxies (RC3; de Vaucouleurs G. et al. 1991).
+    Numbers only. M32's shape in the image is a model (assumed).
