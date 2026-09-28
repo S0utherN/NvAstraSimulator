@@ -213,3 +213,13 @@ Fried D. L., 1965, JOSA 55, 1427; Young A. T., 1967, AJ 72, 747.
   Integrated magnitudes and colour of M31 and M32: Third Reference
     Catalogue of Bright Galaxies (RC3; de Vaucouleurs G. et al. 1991).
     Numbers only. M32's shape in the image is a model (assumed).
+
+--- Eyepiece app 0.5.3 (M8, M16) ---
+
+  M8: SHASSA Hα (as above) for the 8 deg base; VPHAS+ DR4 Hα and r
+    (Drew et al. 2014; ESO programme 177.D-3023; CC BY 4.0) for the
+    3.7 deg and 1 deg levels.
+  M16: NSNS DR0.2 (CC-BY-NC-SA 4.0) for the base and 3.7 deg level;
+    VPHAS+ DR4 Hα and r (CC BY 4.0) for the 1 deg core level.
+  Stars: Gaia DR3 and Hipparcos via VizieR, as above.
+  All via CDS hips2fits / VizieR TAP; processed derivatives only.
