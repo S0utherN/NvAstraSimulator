@@ -1,0 +1,647 @@
+{
+  "schemaVersion": 1,
+  "stage": 1,
+  "sources": [
+    {
+      "id": "R01",
+      "title": "Review of night vision technology (K. Chrzanowski, 2013)",
+      "category": [
+        "photocathode",
+        "phosphor",
+        "metrology"
+      ],
+      "localPath": "refs/raw/01-Review_of_night_vision_technology.pdf",
+      "url": null,
+      "sha256": "28426db3a6c30236a7dadf1c5a8ff3eb99d38bf2ec7c0a3e582142a0019bb049",
+      "pageCount": 29,
+      "review": "figure-reviewed",
+      "evidence": "PDF p5 Fig9: S-20/Gen1, S-25/Gen2 and GaAs; p8 Fig14: extended-red S-25 / GaAs; p14 Fig20: P45/P43 emission spectra.",
+      "limitation": "Fig9 and Fig20 use logarithmic ordinate; Fig14 uses linear mA/W. Fig20 electron excitation voltage and original normalization not established. Historical samples, not modern universal presets.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R02",
+      "title": "产品目录 PHOTONIS productguide / Delft Electronic Products guide (2004-09-21)",
+      "category": [
+        "photocathode",
+        "metrology"
+      ],
+      "localPath": "refs/raw/02-PHOTONIS-productguide.pdf",
+      "url": null,
+      "sha256": "e2965e0730effc7d4d35b8ef42f42e3fc5a8ff4be5edf170a220ee6ad7b57e17",
+      "pageCount": 101,
+      "review": "text-reviewed",
+      "evidence": "First-page identity checked: Delft Instruments company, version 21.09.2004; 101 PDF pages. p22 spectral S/N comparison located in text.",
+      "limitation": "Filename is not evidence of a modern Photonis product specification; spectral S/N is not QE.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R03",
+      "title": "超二代微光像增强器性能随工作时间的影响研究",
+      "category": [
+        "noise",
+        "metrology"
+      ],
+      "localPath": "refs/raw/03-_-.pdf",
+      "url": null,
+      "sha256": "7c3e7b02d185204f3b13ba1d849295474dba227322f35255ceb08930c715d2e4",
+      "pageCount": 7,
+      "review": "inventoried",
+      "evidence": "PDF opens; first-page title/abstract and page count indexed.",
+      "limitation": "Ageing/work-time dependence not included in first-release model; tables not numerically extracted.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R04",
+      "title": "基于夜天光光谱匹配的微光像增强器信噪比研究 (张琴等, 2022)",
+      "category": [
+        "noise",
+        "environment",
+        "metrology",
+        "photocathode"
+      ],
+      "localPath": "refs/raw/04-_-.pdf",
+      "url": null,
+      "sha256": "1435e0842b407856de4959c7b8ca632c70bf16abcac5016045583f38eae30c10",
+      "pageCount": 9,
+      "review": "figure-reviewed",
+      "evidence": "PDF p2 eq(1): 2856 K, 1.08e-4 lx, 0.2 mm, beta and 10 Hz text. p4 Fig6: Gen2/Gen3 response plot, axis prints mA/(W nm); p3-4 Fig5 is ground-reflected irradiance; p5 eq(4)/(5) visually checked: squared SNR ratio with explicit open-area factor.",
+      "limitation": "Do not use grass-reflected spectrum as sky radiance. Eq(1) noise amplitude/variance terminology and 10 Hz versus 0.1 s need a convention. F includes collection effects. Fig6 ordinate has an extra per-nm factor versus ordinary responsivity; keep original label and resolve before converting.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R05",
+      "title": "超二代与三代像增强器性能的比较研究 (2022)",
+      "category": [
+        "photocathode",
+        "noise",
+        "spatial",
+        "metrology"
+      ],
+      "localPath": "refs/raw/05-_-.pdf",
+      "url": null,
+      "sha256": "b4590faed3b4e8e72eccae9bc781be34dd6641a98b00f018b2b0fb04a5efd859",
+      "pageCount": 14,
+      "review": "figure-reviewed",
+      "evidence": "PDF p3-4 Fig2 measured response mA/W; Fig3 reflectance %. p6 distinguishes apparent/effective/equivalent responses; PDF p8 Fig8 EBI-temperature curve visually checked, log ordinate without displayed physical unit.",
+      "limitation": "Measured photocathode response must not have MCP film loss applied twice. Fig8 cannot establish a universal temperature law; full paper covers 14 pages.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R06",
+      "title": "三代微光像增强器微通道板防离子反馈膜的电子透射特性 (2026)",
+      "category": [
+        "noise",
+        "photocathode",
+        "spatial"
+      ],
+      "localPath": "refs/raw/06-_-.pdf",
+      "url": null,
+      "sha256": "e4befdae8092132fcb27de5f14f9f637b28c60552159edbf5e837cf15f84e79c",
+      "pageCount": 5,
+      "review": "inventoried",
+      "evidence": "Title, date and abstract reviewed; Monte Carlo electron transport plus verification is described.",
+      "limitation": "Electron film transmission is not optical QE; detailed numerical curves not audited.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R07",
+      "title": "超二代像增强器信噪比提高方法研究 (2025)",
+      "category": [
+        "noise"
+      ],
+      "localPath": "refs/raw/07-_-.pdf",
+      "url": null,
+      "sha256": "b17e4bfe79e4405cad8ffca7a62d9be65ebc467d5d268f3bc07c503eaff78931",
+      "pageCount": 8,
+      "review": "inventoried",
+      "evidence": "Title and abstract identify photocathode sensitivity, MCP open area, gain and first collision effects.",
+      "limitation": "Noise definitions and bias dependencies need later equation-level audit; no F2 value imported.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R08",
+      "title": "微光像增强器低照度分辨力分析 (2024)",
+      "category": [
+        "spatial",
+        "metrology"
+      ],
+      "localPath": "refs/raw/08-_-.pdf",
+      "url": null,
+      "sha256": "861f6b0438651c439d9ddca44a91434712d705b40a52d3a4ae964a0b11cfadbf",
+      "pageCount": 5,
+      "review": "inventoried",
+      "evidence": "First-page abstract describes illumination, contrast and night-vision compatibility test conditions.",
+      "limitation": "Resolution under a test target is not the same as MTF5; source target conditions not reconstructed.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R09",
+      "title": "微光像增强器常用荧光粉性能研究 (杨武丽等, 2022)",
+      "category": [
+        "phosphor",
+        "spatial"
+      ],
+      "localPath": "refs/raw/09-_-.pdf",
+      "url": null,
+      "sha256": "4ce04037603972202e006596084e730368484a713aed05be7aa2ce4a28a20e5f",
+      "pageCount": 10,
+      "review": "figure-reviewed",
+      "evidence": "PDF p1 material definitions; p5-6 Fig4 P22 at 365 nm; p6 Fig6 P43 at 254 nm; p7 Fig7 P45 at 254 nm and Table4; p8 Table5.",
+      "limitation": "Emission spectra are relative optical-excitation spectra despite English caption Excitation spectrum. P45 white label conflicts with x=0.3774,y=0.6159. lm/W is not radiant fraction.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R10",
+      "title": "超二代像增强器分辨力随输入照度变化研究 (2022)",
+      "category": [
+        "spatial",
+        "metrology"
+      ],
+      "localPath": "refs/raw/10-_-.pdf",
+      "url": null,
+      "sha256": "d8f117b9cfdd27b010a749f577ecdce76d5f834ba995ab228de03ad0d3fb0444",
+      "pageCount": 6,
+      "review": "inventoried",
+      "evidence": "Title/abstract and PDF page count checked; illumination-dependent resolution study.",
+      "limitation": "No data points digitized or threshold adopted.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R11",
+      "title": "影响超二代像增强器最高增益的因数分析 (2022)",
+      "category": [
+        "noise",
+        "metrology"
+      ],
+      "localPath": "refs/raw/11-_-.pdf",
+      "url": null,
+      "sha256": "a0b7009afd128a822762d5a67cdeb0e090527fdb19672012e967a142456a9c77",
+      "pageCount": 12,
+      "review": "inventoried",
+      "evidence": "First-page title/abstract indexed; photocathode/MCP/screen factors distinguished.",
+      "limitation": "Full voltage and saturation model is outside Step1; gain tables not imported.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R12",
+      "title": "超二代及三代像增强器不同响应波段的参数测量及比较",
+      "category": [
+        "photocathode",
+        "metrology"
+      ],
+      "localPath": "refs/raw/12-_-.pdf",
+      "url": null,
+      "sha256": "f238f22a03b72f0a386c1e1aa35f5df832333a51cc82a6eec4f792830c99b63a",
+      "pageCount": 7,
+      "review": "figure-reviewed",
+      "evidence": "PDF p2 Fig1: 036# super-Gen2 = 963 uA/lm and 303# Gen3 = 2240 uA/lm. Axis mA/W; cathode measurement voltages 200/400 V; later same tube-brightness gain experiment.",
+      "limitation": "036# is not automatically the user-defined ordinary Gen2. Same brightness-gain sample comparison is not an isolated QE substitution.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R13",
+      "title": "像增强器的迭代性能及其评价标准 (潘京生, 2020)",
+      "category": [
+        "photocathode",
+        "metrology",
+        "phosphor"
+      ],
+      "localPath": "refs/raw/13-_-1-.pdf",
+      "url": null,
+      "sha256": "a183255fcb21930e56969ea463a37e22e1a92b47a376b6eb6234829c79d827d2",
+      "pageCount": 10,
+      "review": "figure-reviewed",
+      "evidence": "PDF p5 / printed 513 / Fig5: Typical GaAs and Extended blue QE %, 350-950 nm linear axes.",
+      "limitation": "Paired historical ITT examples. No curve digitized; ordinary Gen3 provisional paired choice differs from R12 303# sample. p2 test discussion does not supply a full standard.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R14",
+      "title": "高性能超二代像增强器及发展 (2021; UUID filename)",
+      "category": [
+        "photocathode"
+      ],
+      "localPath": "refs/raw/14-5a0a0141-171d-410c-bb3f-ac14dc76e189.pdf",
+      "url": null,
+      "sha256": "f45f50c7ae7e6eb61c7a42eb7364f9bdd4721506d637441cd78f7b836b93189a",
+      "pageCount": 6,
+      "review": "text-reviewed",
+      "evidence": "Actual title resolved from the UUID file. PDF p2-3 discusses Fig2 Glass window / Grating window Na2KSb.",
+      "limitation": "Window enhancement is not uniquely equivalent to the requested red-extended generation; label remains pending.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R15",
+      "title": "InGaAs光电阴极研究进展及未来趋势",
+      "category": [
+        "photocathode"
+      ],
+      "localPath": "refs/raw/15-InGaAs-.pdf",
+      "url": null,
+      "sha256": "706537f48bba45e2a1c4a51c040f9cf9f761b45ddccaf576ddd81a0c5b84bc72",
+      "pageCount": 12,
+      "review": "inventoried",
+      "evidence": "Title/abstract indexed; distinct InGaAs material family.",
+      "limitation": "Do not substitute InGaAs for the four requested photocathode categories.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R16",
+      "title": "欧洲超二代像增强器技术的选择及进一步发展 (2022)",
+      "category": [
+        "photocathode",
+        "noise"
+      ],
+      "localPath": "refs/raw/16-pdf",
+      "url": null,
+      "sha256": "819ce1b23c58a998d26bf4d94e1f871b19b61fba4896f191212ea1458fdafbdf",
+      "pageCount": 15,
+      "review": "figure-reviewed",
+      "evidence": "PDF p9 / printed1257 / Fig10: Glass window and Grating window PR (mA/W), around 400-900 nm, linear axes. p4 Fig6 comparison located in text.",
+      "limitation": "Grating boosts the long-wavelength response but does not by itself identify the requested red-extension cutoff. No synthetic extension to 1100 nm.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R17",
+      "title": "MCP输入增强膜对像增强器主要性能的影响研究 (2020)",
+      "category": [
+        "noise",
+        "spatial"
+      ],
+      "localPath": "refs/raw/17-MCP-.pdf",
+      "url": null,
+      "sha256": "38efb3997b97600a836e8a34fab5a3a4228ac3a313b08b1b22573eeef4d6ea66",
+      "pageCount": 7,
+      "review": "inventoried",
+      "evidence": "Title and abstract: input dielectric improves utilization of electrons.",
+      "limitation": "Input enhancement film and Gen3 ion barrier have different functions; do not share a single film-loss coefficient.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R18",
+      "title": "多碱光电阴极的Cs-O激活技术研究 (2018)",
+      "category": [
+        "photocathode"
+      ],
+      "localPath": "refs/raw/18-Cs-O-.pdf",
+      "url": null,
+      "sha256": "95efedcb135e8194c91b8cdb849a8a710174e5337eb331cf2a8727784601a1fd",
+      "pageCount": 6,
+      "review": "inventoried",
+      "evidence": "Abstract reports activation-specific sensitivity and long-wave threshold changes.",
+      "limitation": "Different preparation/activation variants are candidate examples, not a verified ordinary/red pair.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R19",
+      "title": "超二代像增强器多碱阴极电子逸出机理研究 (2012)",
+      "category": [
+        "photocathode"
+      ],
+      "localPath": "refs/raw/19-pdf",
+      "url": null,
+      "sha256": "cff8b9a4bd36738a64976af41600a89296e4b909b4c754a355c80b1dfef734b9",
+      "pageCount": 5,
+      "review": "inventoried",
+      "evidence": "Abstract explicitly distinguishes reflection, transmission, absorption and electron escape.",
+      "limitation": "Absorptance is not QE; apparent absorption limit is not a zero-response mask for all tubes.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R20",
+      "title": "超二代像增强器分辨力提高方法 (2023)",
+      "category": [
+        "spatial"
+      ],
+      "localPath": "refs/raw/20-pdf",
+      "url": null,
+      "sha256": "1db4fd8570ca1be17cf4eeb051ec1abd2e55ed154077947306de598555cdaed6",
+      "pageCount": 7,
+      "review": "inventoried",
+      "evidence": "Abstract identifies window, proximity gap, MCP pore and screen contributions.",
+      "limitation": "Separate screen and whole-tube resolution; no screen MTF imported.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R21",
+      "title": "透射式GaAs光电阴极性能提高以及结构优化 (2024; aps.73.20231542)",
+      "category": [
+        "photocathode"
+      ],
+      "localPath": "refs/raw/21-aps.73.20231542.pdf",
+      "url": null,
+      "sha256": "9aa65afcb3603e866a2d0e13c96734623c58a089c6170a9cdb09e7addc48071e",
+      "pageCount": 8,
+      "review": "figure-reviewed",
+      "evidence": "PDF p4 Fig6 and Table1 visually checked: domestic and ITT QE/% versus nm; Table1 lists 2130 and 2330 uA/lm.",
+      "limitation": "Domestic versus ITT is not equivalent to standard versus blue-extended. Structural fitting is not a calibrated preset.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R22",
+      "title": "宽光谱吸收增强的透射式GaAs光电阴极亚波长结构设计 (2025)",
+      "category": [
+        "photocathode"
+      ],
+      "localPath": "refs/raw/22-GaAs-.pdf",
+      "url": null,
+      "sha256": "354e3d73f6cc615b22491ba00b5832ff591619096c02b99635bf6b29da6ee1e5",
+      "pageCount": 9,
+      "review": "text-reviewed",
+      "evidence": "Title/abstract explicitly describe simulated absorption enhancement using subwavelength structures.",
+      "limitation": "Absorption efficiency curves must not become QE curves.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R23",
+      "title": "负电子亲和势光电阴极50年史话 (2015)",
+      "category": [
+        "photocathode"
+      ],
+      "localPath": "refs/raw/23-50-.pdf",
+      "url": null,
+      "sha256": "053cd3b288f577c271440c4a155891cb863152f27b2e36e37828f20125f85f90",
+      "pageCount": 6,
+      "review": "inventoried",
+      "evidence": "First-page abstract identifies reflective GaAs and historical context.",
+      "limitation": "Reflective photocathode sensitivity cannot substitute transmission-mode image-intensifier response.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R24",
+      "title": "普通高压电源超二代微光像增强器亮度增益温度特性研究 (2022)",
+      "category": [
+        "noise",
+        "phosphor",
+        "metrology"
+      ],
+      "localPath": "refs/raw/24-pdf",
+      "url": null,
+      "sha256": "3d6590b5c5851ddfc13b2ff4a43a6ec0ce78c859a4734f66883682b8219655b6",
+      "pageCount": 7,
+      "review": "text-reviewed",
+      "evidence": "Title/abstract and gain-factor relation indexed; separate tube and power-supply temperature effects.",
+      "limitation": "First version fixes temperature; no universal temperature multiplier. Fig8 efficiency-voltage relation not digitized.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "R25",
+      "title": "国外微光夜视装备发展分析 (2024)",
+      "category": [
+        "metrology",
+        "photocathode"
+      ],
+      "localPath": "refs/raw/25-pdf",
+      "url": null,
+      "sha256": "78e14a8374b0e3ab3d9d45cbab4b8f42fec63482a51373bd80ebf9c61f8fe6ea",
+      "pageCount": 12,
+      "review": "inventoried",
+      "evidence": "First-page title/date/abstract and page count checked.",
+      "limitation": "Product survey is background; not an absolute-response or noise-calibration dataset.",
+      "licence": "User-supplied reference; redistribution not established; keep local."
+    },
+    {
+      "id": "U01",
+      "title": "036# / 303# response screenshot",
+      "category": [
+        "photocathode"
+      ],
+      "localPath": "refs/screenshots/01-1000008512.jpg",
+      "url": null,
+      "sha256": "f15f97593b2ce6054861601da7790d952c51798af2ad4bfe2efaa7e22024eab4",
+      "pageCount": null,
+      "review": "figure-reviewed",
+      "evidence": "Matches R12 PDF p2 Fig1; mA/W versus nm, linear.",
+      "limitation": "Screenshot not an independent dataset; prefer original PDF.",
+      "licence": "User screenshot; keep local; source attribution not a redistribution licence."
+    },
+    {
+      "id": "U02",
+      "title": "Glass window / Grating window screenshot",
+      "category": [
+        "photocathode"
+      ],
+      "localPath": "refs/screenshots/02-1000008535.jpg",
+      "url": null,
+      "sha256": "62025f306fd3e0f578766192f8dc8c101d6a76b4744d70f21e891c3aa7fab9ae",
+      "pageCount": null,
+      "review": "figure-reviewed",
+      "evidence": "mA/W versus nm, linear. Comparable graph located in R14 Fig2 and R16 Fig10.",
+      "limitation": "Exact screenshot publication/caption not identified; do not silently equate all grating-window samples or label as extended red.",
+      "licence": "User screenshot; keep local; source attribution not a redistribution licence."
+    },
+    {
+      "id": "U03",
+      "title": "EBI versus temperature screenshot",
+      "category": [
+        "noise"
+      ],
+      "localPath": "refs/screenshots/03-1000008201.jpg",
+      "url": null,
+      "sha256": "79f7deeea9d28de617eb4ddce01e33dfce4b41a8443388e63b7784e3111dde84",
+      "pageCount": null,
+      "review": "figure-reviewed",
+      "evidence": "Matches R05 Fig8; y axis logarithmic EBI, x Celsius.",
+      "limitation": "EBI unit absent in screenshot; full method needed before importing rates. No universal temperature model.",
+      "licence": "User screenshot; keep local; source attribution not a redistribution licence."
+    },
+    {
+      "id": "U04",
+      "title": "Typical GaAs / Extended blue screenshot",
+      "category": [
+        "photocathode"
+      ],
+      "localPath": "refs/screenshots/04-1000008147.jpg",
+      "url": null,
+      "sha256": "4f3ff03a916c3fee8f684df732472816c380e24ab44d0edc02ad4479ea2e9a56",
+      "pageCount": null,
+      "review": "figure-reviewed",
+      "evidence": "Matches R13 PDF p5 Fig5; QE percent vs nm.",
+      "limitation": "Use original paired plot, no blue-end hand adjustment.",
+      "licence": "User screenshot; keep local; source attribution not a redistribution licence."
+    },
+    {
+      "id": "U05",
+      "title": "Christian Buil Night Sky / C11 + LISA NIR screenshot",
+      "category": [
+        "environment"
+      ],
+      "localPath": "refs/screenshots/05-1000008733.jpg",
+      "url": null,
+      "sha256": "5f74b81d75f3c02375e95b1d62535b20ac8ee42bc4d7657ac5c32f5fe71d24e2",
+      "pageCount": null,
+      "review": "figure-reviewed",
+      "evidence": "Title gives instrument/location attribution; wavelength in angstroms; relative intensity and two y scales.",
+      "limitation": "Original data and per-curve meaning not found by targeted author-site search. Not absolute sky radiance or a calibrated SQM/NIR dataset.",
+      "licence": "User screenshot; keep local; source attribution not a redistribution licence."
+    },
+    {
+      "id": "E01",
+      "title": "AIP MUSE M42 science data",
+      "category": [
+        "scene"
+      ],
+      "localPath": null,
+      "url": "https://data.aip.de/projects/musescience.html",
+      "sha256": null,
+      "pageCount": null,
+      "review": "web-reviewed",
+      "evidence": "DOI 10.17876/data/2023_3; separate Ha/Hbeta maps; OIII5007 explicitly dereddened; 75/110 GiB cubes listed.",
+      "limitation": "Landing page only; FITS headers, licence, flux calibration, WCS and consistent extinction state unverified; no cubes downloaded.",
+      "licence": "Not yet reviewed for redistribution; metadata URL only."
+    },
+    {
+      "id": "E02",
+      "title": "ESO SkyCalc help",
+      "category": [
+        "environment"
+      ],
+      "localPath": null,
+      "url": "https://www.eso.org/observing/etc/doc/skycalc/helpskycalc.html",
+      "sha256": null,
+      "pageCount": null,
+      "review": "web-reviewed",
+      "evidence": "Official model entry located for sky radiation/transmission components.",
+      "limitation": "No LUT downloaded/generated; site assumptions, units and component convention must be checked before Step4.",
+      "licence": "Not yet reviewed for redistribution; metadata URL only."
+    },
+    {
+      "id": "E03",
+      "title": "CIE 1931 2 degree CMF dataset",
+      "category": [
+        "phosphor",
+        "metrology"
+      ],
+      "localPath": null,
+      "url": "https://cie.co.at/datatable/cie-1931-colour-matching-functions-2-degree-observer",
+      "sha256": null,
+      "pageCount": null,
+      "review": "web-reviewed",
+      "evidence": "Official dataset page opened; DOI 10.25039/CIE.DS.xvudnb9b.",
+      "limitation": "Data table not imported this stage; A illuminant and photopic sensitivity tables still need provenance and licence check.",
+      "licence": "Not yet reviewed for redistribution; metadata URL only."
+    },
+    {
+      "id": "E04",
+      "title": "ASU: Generation III based P45 White Phosphor Image Intensifiers",
+      "category": [
+        "phosphor"
+      ],
+      "localPath": null,
+      "url": "https://www.nordicsafety.se/files/pdf/1558886666_15-asu-wp-wp-white-paper.pdf",
+      "sha256": null,
+      "pageCount": null,
+      "review": "web-reviewed",
+      "evidence": "Author organization ASU; mirrored white paper, PDF p4 spectrum comparison located. Describes electron-bombarded screens and broad P45 light output.",
+      "limitation": "Primary author document on a mirror; absolute radiometric normalization, acceleration voltage, material batch and reuse rights unresolved. Does not resolve R09 sample conflict by itself.",
+      "licence": "Not yet reviewed for redistribution; metadata URL only."
+    },
+    {
+      "id": "E05",
+      "title": "Exosens ECHO manufacturer page",
+      "category": [
+        "phosphor",
+        "photocathode"
+      ],
+      "localPath": null,
+      "url": "https://www.exosens.com/products/image-intensifier-tubes-echo-and-echo",
+      "sha256": null,
+      "pageCount": null,
+      "review": "web-reviewed",
+      "evidence": "Manufacturer page identifies green P43 and white P45 options.",
+      "limitation": "Colour labels corroborate naming only; no numerical emission spectrum or output efficiency calibration obtained.",
+      "licence": "Not yet reviewed for redistribution; metadata URL only."
+    }
+  ],
+  "slots": [
+    {
+      "id": "gen2",
+      "name": "普通二代",
+      "family": "photocathode",
+      "state": "pending-mapping",
+      "sourceIds": [
+        "R01",
+        "R12",
+        "R14",
+        "R16"
+      ],
+      "curveId": null,
+      "note": "候选：R12 的 036#、R16 普通玻璃窗、R01 S-25。它们并非同一样本，尚未指定默认曲线。"
+    },
+    {
+      "id": "gen2-red",
+      "name": "红拓二代",
+      "family": "photocathode",
+      "state": "pending-mapping",
+      "sourceIds": [
+        "R01",
+        "R14",
+        "R16",
+        "R18"
+      ],
+      "curveId": null,
+      "note": "候选：R01 的 S-25 extended red、光栅窗及 Cs-O 扩展样例。红端增强与截止波长拓展需分清，尚未绑定。"
+    },
+    {
+      "id": "gen3",
+      "name": "三代",
+      "family": "photocathode",
+      "state": "awaiting-digitization",
+      "sourceIds": [
+        "R13",
+        "R12"
+      ],
+      "curveId": null,
+      "note": "采用 R13 图5 Typical GaAs 作为成对比较候选；R12 303# 保留为另一独立样本，不混用幅值。"
+    },
+    {
+      "id": "gen3-blue",
+      "name": "蓝延伸三代",
+      "family": "photocathode",
+      "state": "awaiting-digitization",
+      "sourceIds": [
+        "R13"
+      ],
+      "curveId": null,
+      "note": "R13 图5 Extended blue，原轴为 QE/%；与 Typical GaAs 成对数字化。"
+    },
+    {
+      "id": "P45",
+      "name": "P45",
+      "family": "phosphor",
+      "state": "conflict",
+      "sourceIds": [
+        "R09",
+        "R01",
+        "E04",
+        "E05"
+      ],
+      "curveId": null,
+      "note": "默认槽位保留。论文白色描述与色坐标冲突；已找到其他屏谱参考，尚未确认电子激发标定。"
+    },
+    {
+      "id": "P43",
+      "name": "P43",
+      "family": "phosphor",
+      "state": "awaiting-digitization",
+      "sourceIds": [
+        "R09",
+        "R01"
+      ],
+      "curveId": null,
+      "note": "Gd2O2S:Tb。R09 图6为254 nm光激发相对发射谱；屏谱参考与绝对效率分开审核。"
+    },
+    {
+      "id": "P22",
+      "name": "P22",
+      "family": "phosphor",
+      "state": "awaiting-digitization",
+      "sourceIds": [
+        "R09"
+      ],
+      "curveId": null,
+      "note": "ZnS:Cu,Al 黄绿色单色粉；图4为365 nm光激发相对发射谱，不是RGB三色屏。"
+    }
+  ]
+}

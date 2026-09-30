@@ -1,0 +1,176 @@
+{
+ "schemaVersion": 3,
+ "kind": "iit-field-atlas-v3",
+ "id": "m31",
+ "name": "M31 仙女座星系",
+ "size": 2048,
+ "planeStep": 0.00006828790228858367,
+ "refPixel": [
+  1023,
+  1023
+ ],
+ "centreRaDec": [
+  10.68471,
+  41.26875
+ ],
+ "resolutionArcsec": 21.128086401863037,
+ "orientation": "east-left-north-up; row 0 south; columns increase west",
+ "unit": "W/m2/sr (lines); W/m2/sr/nm at 550 nm (continuum)",
+ "status": "measured-survey (approximate calibration)",
+ "bands": [
+  {
+   "id": "ha",
+   "soft": 2.4086721928877078e-11,
+   "asinhMax": 8.648456369227565,
+   "nm": 656.28,
+   "stats": {
+    "p50R": 1.906762957572937,
+    "p99R": 8.731432914733887,
+    "maxR": 285.06694998504736
+   }
+  },
+  {
+   "id": "oiii",
+   "soft": 3.157207713344834e-11,
+   "asinhMax": 9.29724250864584,
+   "nm": 500.684,
+   "stats": {
+    "p50R": 0.005436954088509083,
+    "p99R": 3.238778829574585,
+    "maxR": 545.3949584960938
+   }
+  },
+  {
+   "id": "sii",
+   "soft": 2.3509271070022975e-11,
+   "asinhMax": 9.123752580484274,
+   "nm": 672.4,
+   "stats": {
+    "p50R": 0,
+    "p99R": 5.8195929527282715,
+    "maxR": 458.52751235818096
+   }
+  },
+  {
+   "id": "cont",
+   "soft": 1e-11,
+   "asinhMax": 12.137416345724827,
+   "nm": 550,
+   "stats": {
+    "p50R": null,
+    "p99R": null,
+    "maxR": null
+   }
+  }
+ ],
+ "binary": {
+  "path": "atlas2/m31.bin",
+  "byteLength": 37748736,
+  "sha256": "ad03c9b22b053e571ae169e8363576b1a68f4fab41599edf4b92eb14c92f4315",
+  "encoding": "uint16-le-asinh ×4 + uint8 valid"
+ },
+ "levels": [],
+ "continuum": {
+  "temperatureK": 4943,
+  "source": "NSNS DR0.2 visual continuum (star-subtracted, 440–700 nm, Rayleigh per nm) at the 550 nm photon energy; black body from the RC3 integrated colour (B−V)_T = 0.92; M32 as a de Vaucouleurs model (V_T 8.08; r_e 30″, b/a 0.8, PA 170° assumed)"
+ },
+ "stars": {
+  "path": "atlas2/m31-stars.bin",
+  "byteLength": 226080,
+  "sha256": "c4ab024de376f141dd1dd937d442f271b256d09758dfd47ce609b0bf8b01240b",
+  "encoding": "float32-le [X, Y, F550 W/m2/nm, Tcolour K]",
+  "count": 14130,
+  "hipparcos": 20,
+  "gaiaDuplicatesDropped": 20,
+  "gaiaLimitG": 15,
+  "limits": "Gaia G<15 within 2°, G<12.5 to 5.7°; Hipparcos V<7",
+  "model": "Black body at Ballesteros (2012) colour temperature from B−V (Gaia BP−RP inverted via DR3 Table 5.9), normalized to Bessell (1998) V=0 flux at 550 nm; observed (reddened) colours."
+ },
+ "template": {
+  "source": "Case B Balmer ratios (Storey & Hummer 1995); [O III] 4959/5007 = 1/2.98; low-density [S II] 6716/6731 = 1.4; continuum EW(Hβ)=1370 Å (assumed). Other lines missing.",
+  "ha": {
+   "lines": [
+    [
+     656.282,
+     1,
+     "Hα"
+    ],
+    [
+     486.133,
+     0.3496503496503497,
+     "Hβ"
+    ],
+    [
+     434.047,
+     0.16363636363636366,
+     "Hγ"
+    ],
+    [
+     410.174,
+     0.09055944055944057,
+     "Hδ"
+    ]
+   ],
+   "continuum": 1.1041431830206363
+  },
+  "oiii": {
+   "lines": [
+    [
+     500.684,
+     1,
+     "[O III] 5007"
+    ],
+    [
+     495.891,
+     0.33557046979865773,
+     "[O III] 4959"
+    ]
+   ]
+  },
+  "sii": {
+   "lines": [
+    [
+     671.644,
+     0.5833333333333334,
+     "[S II] 6716"
+    ],
+    [
+     673.082,
+     0.4166666666666667,
+     "[S II] 6731"
+    ]
+   ]
+  },
+  "missing": [
+   "[N II] 6548/6583",
+   "He I",
+   "[S III] 9069/9531",
+   "[Ar III]",
+   "[O II]",
+   "Paschen series"
+  ]
+ },
+ "largeScale": null,
+ "notes": [
+  "星系本体来自 NSNS 的“可见光连续谱”图（已去恒星，440–700 nm，单位 R/nm），按 550 nm 光子能量换成辐亮度，光谱取 4943 K 黑体（RC3 积分色指数 B−V = 0.92）。扣除全图 5% 分位的底 0.11 R/nm 后，椭圆 95′×32′ 内积分 V = 3.32（RC3 总星等 V_T = 3.44），核心面亮度约 V 16.8 mag/″²。",
+  "核心约 9 个像素（约 42″）在巡天里已饱和截平（1071 R/nm），真实核心更亮更尖。",
+  "NSNS 的 Hα/[O III]/[S II] 图在星系上残留连续谱（核球处 Hα ≈ 0.51×连续谱）：按连续谱亮度分档，取各档谱线/连续谱比值的 10% 分位作为残留并扣除（下包络，HII 区保留），饱和核心处谱线置 0。",
+  "M32 在巡天连续谱图里被当作恒星扣掉，Gaia 也没有收录：按 de Vaucouleurs 模型补回（总星等 V_T = 8.08 取 RC3；有效半径 30″、轴比 0.8、方位角 170° 为假设）。M110 在连续谱图里保留。"
+ ],
+ "missing": [
+  "M32 的形态（按模型补回）；星系核心的真实亮度（巡天饱和截平）；比 NSNS 更细的星系细节（尘埃带、星团）",
+  "[N II] 6548/6583",
+  "He I",
+  "[S III] 9069/9531",
+  "[Ar III]",
+  "[O II]",
+  "Paschen series"
+ ],
+ "sources": [
+  "NSNS DR0.2 (Stefan Ziegenbalg), Hα/[O III]/[S II] in Rayleighs, ~10″; CC-BY-NC-SA 4.0; doi:10.3847/2515-5172/adfec7; via CDS hips2fits",
+  "NSNS DR0.2 visual continuum (simg.de/P/NSNS/DR0_2/vc), same survey and licence",
+  "RC3 (de Vaucouleurs et al. 1991): M31 B_T 4.36, V_T 3.44; M32 V_T 8.08",
+  "Gaia DR3 (I/355/gaiadr3) and Hipparcos (I/239) via VizieR TAP"
+ ],
+ "licence": "NSNS: CC-BY-NC-SA 4.0 (non-commercial, attribution, share-alike). Local evaluation only; not published."
+}

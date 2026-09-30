@@ -1,0 +1,229 @@
+{
+ "schemaVersion": 3,
+ "kind": "iit-field-atlas-v3",
+ "id": "m16",
+ "name": "M16 鹰状星云",
+ "size": 1024,
+ "planeStep": 0.00013657580457716734,
+ "refPixel": [
+  511,
+  511
+ ],
+ "centreRaDec": [
+  274.7,
+  -13.817
+ ],
+ "resolutionArcsec": 42.25617280372607,
+ "orientation": "east-left-north-up; row 0 south; columns increase west",
+ "unit": "W/m2/sr (lines); W/m2/sr/nm at 550 nm (continuum)",
+ "status": "measured-survey (approximate calibration)",
+ "bands": [
+  {
+   "id": "ha",
+   "soft": 2.4086721928877078e-11,
+   "asinhMax": 13.054295379073347,
+   "nm": 656.28,
+   "stats": {
+    "p50R": 23.220608964582823,
+    "p99R": 432.20190742390884,
+    "maxR": 23354.923689497024
+   }
+  },
+  {
+   "id": "oiii",
+   "soft": 3.157207713344834e-11,
+   "asinhMax": 12.56559845259019,
+   "nm": 500.684,
+   "stats": {
+    "p50R": 0.3763628606774357,
+    "p99R": 37.96625005969798,
+    "maxR": 14326.49900976837
+   }
+  },
+  {
+   "id": "sii",
+   "soft": 2.3509271070022975e-11,
+   "asinhMax": 10.58731405007931,
+   "nm": 672.4,
+   "stats": {
+    "p50R": 5.275212489474587,
+    "p99R": 64.16512818246328,
+    "maxR": 1981.4452385525844
+   }
+  }
+ ],
+ "binary": {
+  "path": "atlas2/m16.bin",
+  "byteLength": 7340032,
+  "sha256": "faed817f9dd7c68c1f454a62827508a71935a7458800175a3374325a03f66ec8",
+  "encoding": "uint16-le-asinh ×3 + uint8 valid"
+ },
+ "levels": [
+  {
+   "id": "detail",
+   "label": "NSNS 3.7°",
+   "size": [
+    1024,
+    1024
+   ],
+   "step": 0.00006308557949287163,
+   "origin": [
+    -0.0322367311208574,
+    -0.0322367311208574
+   ],
+   "resolutionArcsec": 19.518502246624443,
+   "source": "NSNS DR0.2 (Stefan Ziegenbalg), Hα/[O III]/[S II] in Rayleighs, ~10″; CC-BY-NC-SA 4.0; doi:10.3847/2515-5172/adfec7; via CDS hips2fits",
+   "calibration": "NSNS Rayleigh calibration (WHAM)",
+   "bands": [
+    {
+     "id": "ha",
+     "soft": 2.4086721928877078e-11,
+     "asinhMax": 12.401462158244673
+    },
+    {
+     "id": "oiii",
+     "soft": 3.157207713344834e-11,
+     "asinhMax": 10.744342040410277
+    },
+    {
+     "id": "sii",
+     "soft": 2.3509271070022975e-11,
+     "asinhMax": 10.54012341380554
+    }
+   ],
+   "binary": {
+    "path": "atlas2/m16-detail.bin",
+    "byteLength": 7340032,
+    "sha256": "f265990e9b0e51e709ef9f8e761c96bcc031bef9fa5895e88e8927ebe2996cac"
+   }
+  },
+  {
+   "id": "core",
+   "label": "VPHAS+ 1°",
+   "size": [
+    1024,
+    1024
+   ],
+   "step": 0.000017044663653825605,
+   "origin": [
+    -0.008709823127104884,
+    -0.008709823127104884
+   ],
+   "resolutionArcsec": 5.273571369154896,
+   "source": "VPHAS+ DR4 Hα and r (Drew et al. 2014; ESO archive, CC BY 4.0; via CDS hips2fits)",
+   "calibration": "Hα − 0.3933·r; NSNS R = 1.280e+1 × net + -67.4",
+   "bands": [
+    {
+     "id": "ha",
+     "soft": 2.4086721928877078e-11,
+     "asinhMax": 13.077544295801852
+    },
+    null,
+    null
+   ],
+   "binary": {
+    "path": "atlas2/m16-core.bin",
+    "byteLength": 3145728,
+    "sha256": "23a331416c799a509128567734c143e29326b915472ef7451331bb0efecd94ac"
+   }
+  }
+ ],
+ "continuum": null,
+ "stars": {
+  "path": "atlas2/m16-stars.bin",
+  "byteLength": 816128,
+  "sha256": "a55ae473d960581975adde2c6f21faaa0f2a8f4e8936a5433a75bbfa7a81895e",
+  "encoding": "float32-le [X, Y, F550 W/m2/nm, Tcolour K]",
+  "count": 51008,
+  "hipparcos": 19,
+  "gaiaDuplicatesDropped": 19,
+  "gaiaLimitG": 15,
+  "limits": "Gaia G<15 within 2°, G<12.5 to 5.7°; Hipparcos V<7",
+  "model": "Black body at Ballesteros (2012) colour temperature from B−V (Gaia BP−RP inverted via DR3 Table 5.9), normalized to Bessell (1998) V=0 flux at 550 nm; observed (reddened) colours."
+ },
+ "template": {
+  "source": "Case B Balmer ratios (Storey & Hummer 1995); [O III] 4959/5007 = 1/2.98; low-density [S II] 6716/6731 = 1.4; continuum EW(Hβ)=1370 Å (assumed). Other lines missing.",
+  "ha": {
+   "lines": [
+    [
+     656.282,
+     1,
+     "Hα"
+    ],
+    [
+     486.133,
+     0.3496503496503497,
+     "Hβ"
+    ],
+    [
+     434.047,
+     0.16363636363636366,
+     "Hγ"
+    ],
+    [
+     410.174,
+     0.09055944055944057,
+     "Hδ"
+    ]
+   ],
+   "continuum": 1.1041431830206363
+  },
+  "oiii": {
+   "lines": [
+    [
+     500.684,
+     1,
+     "[O III] 5007"
+    ],
+    [
+     495.891,
+     0.33557046979865773,
+     "[O III] 4959"
+    ]
+   ]
+  },
+  "sii": {
+   "lines": [
+    [
+     671.644,
+     0.5833333333333334,
+     "[S II] 6716"
+    ],
+    [
+     673.082,
+     0.4166666666666667,
+     "[S II] 6731"
+    ]
+   ]
+  },
+  "missing": [
+   "[N II] 6548/6583",
+   "He I",
+   "[S III] 9069/9531",
+   "[Ar III]",
+   "[O II]",
+   "Paschen series"
+  ]
+ },
+ "largeScale": null,
+ "notes": [
+  "NSNS 在此处（接近其南界）比 SHASSA 系统性偏暗：在 SHASSA ≥ 60 R 的 6583 个像素上拟合 NSNS = 0.631 × SHASSA + 14.7 R（随赤纬不变）。为与 M8、船底座、1× 银心同一标度，Hα 改为 (NSNS − 14.7) / 0.631，[O III]/[S II] 同除以 0.631（假设同一透过/消光因子）。M17 因此比 0.6.0 亮约 1.6 倍。",
+  "8° 底图与 3.7° 细节层都来自 NSNS（同一巡天、不同重采样），视野中心优先用细节层。NSNS 抑制大于约 3° 的结构，8° 底图未补回。",
+  "1° 核心层为 VPHAS+ CCD（约 1″）：Hα − k·r 扣连续谱（k = 0.3933），按 NSNS 3.7° 层的 Hα 线性定标（R = 1.280e+1×净值 + -67.4，残差 33.8 R）；[O III]/[S II] 沿用 NSNS。饱和星核与溢出拖尾用平滑背景填补（5671 像素）。"
+ ],
+ "missing": [
+  "[N II] 6548/6583",
+  "He I",
+  "[S III] 9069/9531",
+  "[Ar III]",
+  "[O II]",
+  "Paschen series"
+ ],
+ "sources": [
+  "SHASSA Hα (80° palette cutout, already local) as the calibration reference for this NSNS field",
+  "NSNS DR0.2 (Stefan Ziegenbalg), Hα/[O III]/[S II] in Rayleighs, ~10″; CC-BY-NC-SA 4.0; doi:10.3847/2515-5172/adfec7; via CDS hips2fits",
+  "VPHAS+ DR4 Hα/r (Drew et al. 2014, MNRAS 440, 2036; ESO Science Archive, CC BY 4.0)",
+  "Gaia DR3 (I/355/gaiadr3) and Hipparcos (I/239) via VizieR TAP"
+ ],
+ "licence": "NSNS: CC-BY-NC-SA 4.0 (non-commercial, attribution, share-alike); VPHAS+: CC BY 4.0. Local evaluation only; not published."
+}

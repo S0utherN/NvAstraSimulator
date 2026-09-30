@@ -223,3 +223,32 @@ Fried D. L., 1965, JOSA 55, 1427; Young A. T., 1967, AJ 72, 747.
     VPHAS+ DR4 Hα and r (CC BY 4.0) for the 1 deg core level.
   Stars: Gaia DR3 and Hipparcos via VizieR, as above.
   All via CDS hips2fits / VizieR TAP; processed derivatives only.
+
+--- Eyepiece app 2026-09-30 cathode estimates and boundary samples (D53) ---
+User-supplied domestic Gen III editor screenshot, L3 Gen III acceptance-sheet
+numbers and PT7864W sheet numbers. A duplicate 800 nm label on the PT7864W
+sheet was corrected by the user to 850 nm. Two additional user test sheets
+supply numerical control-boundary fixtures only. No original images, headers,
+identity or serial fields are shipped. Source SHA256 values are recorded.
+The reconstructed full spectra are engineering estimates, not new measured
+spectra. The original R13/R16 reference-shape notices above still apply to
+the corresponding fitted spectra; redistribution rights of the user
+materials have not been independently established.
+
+--- Eyepiece app D54: qualitative noise appearance and eye contrast ---
+Thomas P. J., Allison R. S., Jennings S., Yip K., Savchenko E., Tsang I.,
+Macuda T., Hornsey R. (2004), Validation of synthetic imagery for night
+vision devices, Proc. SPIE 5442, DOI 10.1117/12.542618.
+https://percept.eecs.yorku.ca/papers/Thomas%20validation%202004.pdf
+Pattanaik S. N., Ferwerda J. A., Fairchild M. D., Greenberg D. P. (1998),
+A Multiscale Model of Adaptation and Spatial Vision.
+https://jamesferwerda.com/wp-content/uploads/2015/06/j06_pattanaik98_sig.pdf
+Scotopic spatiotemporal sensitivity differences between young and old adults
+(2010): https://pmc.ncbi.nlm.nih.gov/articles/PMC2917330/
+These works were read for model direction and limitations. No paper images,
+complete text, code or digitized device/human curves are shipped. The app's
+threshold coefficients and noise appearance implementation are original
+engineering choices, not a reproduction of the full published models.
+User-supplied local videos provide qualitative references and numerical
+encoded-video summaries only. Original videos and extracted frames are not
+distributed; source redistribution rights were not independently verified.

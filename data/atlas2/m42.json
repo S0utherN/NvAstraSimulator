@@ -1,0 +1,355 @@
+{
+ "schemaVersion": 3,
+ "kind": "iit-field-atlas-v3",
+ "id": "m42",
+ "name": "M42 猎户星云",
+ "size": 1024,
+ "planeStep": 0.00013657580457716734,
+ "refPixel": [
+  511,
+  511
+ ],
+ "centreRaDec": [
+  83.82,
+  -5.39
+ ],
+ "resolutionArcsec": 42.25617280372607,
+ "orientation": "east-left-north-up; row 0 south; columns increase west",
+ "unit": "W/m2/sr (lines); W/m2/sr/nm at 550 nm (continuum)",
+ "status": "measured-survey (approximate calibration)",
+ "bands": [
+  {
+   "id": "ha",
+   "soft": 2.4086721928877078e-11,
+   "asinhMax": 14.849236931827413,
+   "nm": 656.28,
+   "stats": {
+    "p50R": 68.1530532836914,
+    "p99R": 612.4197387695312,
+    "maxR": 140576.15625
+   }
+  },
+  {
+   "id": "oiii",
+   "soft": 3.157207713344834e-11,
+   "asinhMax": 15.989411562577805,
+   "nm": 500.684,
+   "stats": {
+    "p50R": 0.6541551947593689,
+    "p99R": 66.38565826416016,
+    "maxR": 439625.84375000006
+   }
+  },
+  {
+   "id": "sii",
+   "soft": 2.3509271070022975e-11,
+   "asinhMax": 13.925001251434043,
+   "nm": 672.4,
+   "stats": {
+    "p50R": 11.818692207336426,
+    "p99R": 113.63909149169922,
+    "maxR": 55785.484375
+   }
+  }
+ ],
+ "binary": {
+  "path": "atlas2/m42.bin",
+  "byteLength": 7340032,
+  "sha256": "0782820548482c8b1c579e613932a5934fbd41d014d93be3a8edebe5d71ce721",
+  "encoding": "uint16-le-asinh ×3 + uint8 valid"
+ },
+ "levels": [
+  {
+   "id": "detail",
+   "label": "NSNS 3.7°",
+   "size": [
+    1024,
+    1024
+   ],
+   "step": 0.00006308557949287163,
+   "origin": [
+    -0.0322367311208574,
+    -0.0322367311208574
+   ],
+   "resolutionArcsec": 19.518502246624443,
+   "source": "NSNS DR0.2 (Stefan Ziegenbalg), Hα/[O III]/[S II] in Rayleighs, ~10″; CC-BY-NC-SA 4.0; doi:10.3847/2515-5172/adfec7; via CDS hips2fits",
+   "calibration": "NSNS Rayleigh calibration (WHAM)",
+   "bands": [
+    {
+     "id": "ha",
+     "soft": 2.4086721928877078e-11,
+     "asinhMax": 14.854966482335769
+    },
+    {
+     "id": "oiii",
+     "soft": 3.157207713344834e-11,
+     "asinhMax": 15.99829393069103
+    },
+    {
+     "id": "sii",
+     "soft": 2.3509271070022975e-11,
+     "asinhMax": 13.980501554385928
+    }
+   ],
+   "binary": {
+    "path": "atlas2/m42-detail.bin",
+    "byteLength": 7340032,
+    "sha256": "60f4837cd02f05f575edea0e325466ab0c05713b35540f949d53b7c742a3730e"
+   }
+  },
+  {
+   "id": "core",
+   "label": "MUSE 核心",
+   "size": [
+    220,
+    184
+   ],
+   "step": 0.000007757018897752582,
+   "origin": [
+    -0.0008652752822961263,
+    -0.0008039462377730298
+   ],
+   "resolutionArcsec": 1,
+   "source": "Weilbacher et al. 2015 MUSE Orion mosaic (repo Step 3 derivatives), scaled to NSNS Hα",
+   "calibration": "median NSNS/MUSE ratio over 13″ cells with NSNS < 1e5 R (below the ~1.39e5 R saturation plateau)",
+   "bands": [
+    {
+     "id": "ha",
+     "soft": 2.4086721928877078e-11,
+     "asinhMax": 17.171470868821494
+    },
+    {
+     "id": "oiii",
+     "soft": 3.157207713344834e-11,
+     "asinhMax": 16.77559877730373
+    },
+    {
+     "id": "sii",
+     "soft": 2.3509271070022975e-11,
+     "asinhMax": 14.217017947852993
+    }
+   ],
+   "binary": {
+    "path": "atlas2/m42-core.bin",
+    "byteLength": 283360,
+    "sha256": "6307aec7600eb8f0a3498ddbb864d83c5089766d0d8ef0c29736aa3bbb72a6f2"
+   }
+  }
+ ],
+ "continuum": null,
+ "stars": {
+  "path": "atlas2/m42-stars.bin",
+  "byteLength": 162112,
+  "sha256": "c971f5a5a986ef7a2f94d633aaf1b7f43a8e71377f5df17fffb2a9a06d9f6038",
+  "encoding": "float32-le [X, Y, F550 W/m2/nm, Tcolour K]",
+  "count": 10132,
+  "hipparcos": 62,
+  "gaiaDuplicatesDropped": 61,
+  "gaiaLimitG": 15,
+  "limits": "Gaia G<15 within 2°, G<12.5 to 5.7°; Hipparcos V<7",
+  "model": "Black body at Ballesteros (2012) colour temperature from B−V (Gaia BP−RP inverted via DR3 Table 5.9), normalized to Bessell (1998) V=0 flux at 550 nm; observed (reddened) colours."
+ },
+ "template": {
+  "source": "Esteban et al. 2004, MNRAS 355, 229, Table 2 (observed fluxes); continuum: EW(Hβ)=1370 Å recombination, flat Fν (assumed)",
+  "ha": {
+   "lines": [
+    [
+     656.282,
+     1,
+     "Hα"
+    ],
+    [
+     486.133,
+     0.21486800658355573,
+     "Hβ"
+    ],
+    [
+     434.047,
+     0.08319689214915278,
+     "Hγ"
+    ],
+    [
+     410.174,
+     0.04346994641191916,
+     "Hδ"
+    ],
+    [
+     397.007,
+     0.0265705776941225,
+     "H7"
+    ],
+    [
+     372.603,
+     0.08620934160145423,
+     "[O II] 3726"
+    ],
+    [
+     372.882,
+     0.0416113381549714,
+     "[O II] 3729"
+    ],
+    [
+     447.109,
+     0.008684964826107321,
+     "He I 4471"
+    ],
+    [
+     587.564,
+     0.040317832755338394,
+     "He I 5876"
+    ],
+    [
+     630.03,
+     0.0022539653890614993,
+     "[O I] 6300"
+    ],
+    [
+     631.21,
+     0.005934654341837809,
+     "[S III] 6312"
+    ],
+    [
+     654.803,
+     0.04225379349465623,
+     "[N II] 6548"
+    ],
+    [
+     658.341,
+     0.13233505657474615,
+     "[N II] 6583"
+    ],
+    [
+     667.815,
+     0.013912703426285233,
+     "He I 6678"
+    ],
+    [
+     706.528,
+     0.030429607092363163,
+     "He I 7065"
+    ],
+    [
+     713.578,
+     0.06828290381218817,
+     "[Ar III] 7136"
+    ],
+    [
+     731.92,
+     0.024415451588089436,
+     "[O II] 7320"
+    ],
+    [
+     733.02,
+     0.018738638854151893,
+     "[O II] 7330"
+    ],
+    [
+     775.11,
+     0.019228537909162402,
+     "[Ar III] 7751"
+    ],
+    [
+     844.64,
+     0.0056424338528841735,
+     "O I 8446"
+    ],
+    [
+     866.502,
+     0.0053480646838647014,
+     "P13"
+    ],
+    [
+     875.047,
+     0.006822059209027894,
+     "P12"
+    ],
+    [
+     886.279,
+     0.008880494712098359,
+     "P11"
+    ],
+    [
+     901.491,
+     0.00713361781857405,
+     "P10"
+    ],
+    [
+     906.89,
+     0.22585635644023877,
+     "[S III] 9069"
+    ],
+    [
+     922.901,
+     0.015240587706971608,
+     "P9"
+    ],
+    [
+     953.06,
+     0.5829347531811208,
+     "[S III] 9531"
+    ],
+    [
+     954.597,
+     0.02014817297734002,
+     "P8"
+    ],
+    [
+     1004.94,
+     0.044939643576950676,
+     "P7"
+    ]
+   ],
+   "continuum": 0.6785208278948134
+  },
+  "oiii": {
+   "lines": [
+    [
+     500.684,
+     1,
+     "[O III] 5007"
+    ],
+    [
+     495.891,
+     0.33000123070122345,
+     "[O III] 4959"
+    ],
+    [
+     386.875,
+     0.043207659482552924,
+     "[Ne III] 3869"
+    ],
+    [
+     436.321,
+     0.002835636084159871,
+     "[O III] 4363"
+    ]
+   ]
+  },
+  "sii": {
+   "lines": [
+    [
+     671.644,
+     0.3541711344627922,
+     "[S II] 6716"
+    ],
+    [
+     673.082,
+     0.6458288655372078,
+     "[S II] 6731"
+    ]
+   ]
+  }
+ },
+ "largeScale": null,
+ "notes": [
+  "8° 底图与 3.7° 细节层都来自 NSNS（同一巡天、不同重采样），视野中心优先用细节层。NSNS 抑制大于约 3° 的结构，8° 底图未补回。",
+  "Huygens 核心用 MUSE 线图（1.6″/像素）替换，按 NSNS Hα 定标：比例因子中位数 3.712e-5，同法得到的 [O III] 因子 / Hα 因子 = 0.94。"
+ ],
+ "missing": [],
+ "sources": [
+  "NSNS DR0.2 (Stefan Ziegenbalg), Hα/[O III]/[S II] in Rayleighs, ~10″; CC-BY-NC-SA 4.0; doi:10.3847/2515-5172/adfec7; via CDS hips2fits",
+  "Weilbacher et al. 2015 MUSE Orion mosaic (repo Step 3 derivatives), scaled to NSNS Hα",
+  "Gaia DR3 (I/355/gaiadr3) and Hipparcos (I/239) via VizieR TAP"
+ ],
+ "licence": "NSNS: CC-BY-NC-SA 4.0 (non-commercial, attribution, share-alike). Local evaluation only; not published."
+}

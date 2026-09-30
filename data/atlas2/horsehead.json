@@ -1,0 +1,195 @@
+{
+ "schemaVersion": 3,
+ "kind": "iit-field-atlas-v3",
+ "id": "horsehead",
+ "name": "马头与火焰星云",
+ "size": 1024,
+ "planeStep": 0.00013657580457716734,
+ "refPixel": [
+  511,
+  511
+ ],
+ "centreRaDec": [
+  85.25,
+  -2.45
+ ],
+ "resolutionArcsec": 42.25617280372607,
+ "orientation": "east-left-north-up; row 0 south; columns increase west",
+ "unit": "W/m2/sr (lines); W/m2/sr/nm at 550 nm (continuum)",
+ "status": "measured-survey (approximate calibration)",
+ "bands": [
+  {
+   "id": "ha",
+   "soft": 2.4086721928877078e-11,
+   "asinhMax": 14.845990653762579,
+   "nm": 656.28,
+   "stats": {
+    "p50R": 67.59452819824219,
+    "p99R": 613.085205078125,
+    "maxR": 140120.546875
+   }
+  },
+  {
+   "id": "oiii",
+   "soft": 3.157207713344834e-11,
+   "asinhMax": 15.969552500758015,
+   "nm": 500.684,
+   "stats": {
+    "p50R": 0.6596068739891052,
+    "p99R": 67.50745391845703,
+    "maxR": 430981.40625
+   }
+  },
+  {
+   "id": "sii",
+   "soft": 2.3509271070022975e-11,
+   "asinhMax": 13.904387946777515,
+   "nm": 672.4,
+   "stats": {
+    "p50R": 12.256814002990723,
+    "p99R": 121.8089828491211,
+    "maxR": 54647.33203125
+   }
+  }
+ ],
+ "binary": {
+  "path": "atlas2/horsehead.bin",
+  "byteLength": 7340032,
+  "sha256": "7cad1b3407b1da344087ce3821eb8c99b91865cf413e168052238a4f6d982a25",
+  "encoding": "uint16-le-asinh ×3 + uint8 valid"
+ },
+ "levels": [
+  {
+   "id": "detail",
+   "label": "NSNS 3.7°",
+   "size": [
+    1024,
+    1024
+   ],
+   "step": 0.00006308557949287163,
+   "origin": [
+    -0.0322367311208574,
+    -0.0322367311208574
+   ],
+   "resolutionArcsec": 19.518502246624443,
+   "source": "NSNS DR0.2 (Stefan Ziegenbalg), Hα/[O III]/[S II] in Rayleighs, ~10″; CC-BY-NC-SA 4.0; doi:10.3847/2515-5172/adfec7; via CDS hips2fits",
+   "calibration": "NSNS Rayleigh calibration (WHAM)",
+   "bands": [
+    {
+     "id": "ha",
+     "soft": 2.4086721928877078e-11,
+     "asinhMax": 11.475964922376498
+    },
+    {
+     "id": "oiii",
+     "soft": 3.157207713344834e-11,
+     "asinhMax": 9.075834396580321
+    },
+    {
+     "id": "sii",
+     "soft": 2.3509271070022975e-11,
+     "asinhMax": 9.574229591646054
+    }
+   ],
+   "binary": {
+    "path": "atlas2/horsehead-detail.bin",
+    "byteLength": 7340032,
+    "sha256": "dde2107117cc0d94384e9a3e30e3465b2644c83fe01885e87906fc0a201fe525"
+   }
+  }
+ ],
+ "continuum": null,
+ "stars": {
+  "path": "atlas2/horsehead-stars.bin",
+  "byteLength": 175104,
+  "sha256": "ede97f0d9ecbeb0a58556565be592eea90cb09bff006c0121d8825657f0f9b85",
+  "encoding": "float32-le [X, Y, F550 W/m2/nm, Tcolour K]",
+  "count": 10944,
+  "hipparcos": 71,
+  "gaiaDuplicatesDropped": 68,
+  "gaiaLimitG": 15,
+  "limits": "Gaia G<15 within 2°, G<12.5 to 5.7°; Hipparcos V<7",
+  "model": "Black body at Ballesteros (2012) colour temperature from B−V (Gaia BP−RP inverted via DR3 Table 5.9), normalized to Bessell (1998) V=0 flux at 550 nm; observed (reddened) colours."
+ },
+ "template": {
+  "source": "Case B Balmer ratios (Storey & Hummer 1995); [O III] 4959/5007 = 1/2.98; low-density [S II] 6716/6731 = 1.4; continuum EW(Hβ)=1370 Å (assumed). Other lines missing.",
+  "ha": {
+   "lines": [
+    [
+     656.282,
+     1,
+     "Hα"
+    ],
+    [
+     486.133,
+     0.3496503496503497,
+     "Hβ"
+    ],
+    [
+     434.047,
+     0.16363636363636366,
+     "Hγ"
+    ],
+    [
+     410.174,
+     0.09055944055944057,
+     "Hδ"
+    ]
+   ],
+   "continuum": 1.1041431830206363
+  },
+  "oiii": {
+   "lines": [
+    [
+     500.684,
+     1,
+     "[O III] 5007"
+    ],
+    [
+     495.891,
+     0.33557046979865773,
+     "[O III] 4959"
+    ]
+   ]
+  },
+  "sii": {
+   "lines": [
+    [
+     671.644,
+     0.5833333333333334,
+     "[S II] 6716"
+    ],
+    [
+     673.082,
+     0.4166666666666667,
+     "[S II] 6731"
+    ]
+   ]
+  },
+  "missing": [
+   "[N II] 6548/6583",
+   "He I",
+   "[S III] 9069/9531",
+   "[Ar III]",
+   "[O II]",
+   "Paschen series"
+  ]
+ },
+ "largeScale": null,
+ "notes": [
+  "8° 底图与 3.7° 细节层都来自 NSNS（同一巡天、不同重采样），视野中心优先用细节层。NSNS 抑制大于约 3° 的结构，8° 底图未补回。"
+ ],
+ "missing": [
+  "[N II] 6548/6583",
+  "He I",
+  "[S III] 9069/9531",
+  "[Ar III]",
+  "[O II]",
+  "Paschen series"
+ ],
+ "sources": [
+  "NSNS DR0.2 (Stefan Ziegenbalg), Hα/[O III]/[S II] in Rayleighs, ~10″; CC-BY-NC-SA 4.0; doi:10.3847/2515-5172/adfec7; via CDS hips2fits",
+  "Gaia DR3 (I/355/gaiadr3) and Hipparcos (I/239) via VizieR TAP"
+ ],
+ "licence": "NSNS: CC-BY-NC-SA 4.0 (non-commercial, attribution, share-alike). Local evaluation only; not published."
+}

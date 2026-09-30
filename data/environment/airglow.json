@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "paranal-skycalc-airglow-v1",
+  "status": "assumed",
+  "unit": "photon/s/m2/sr/nm",
+  "referencePlane": "objective-input",
+  "grid": {
+    "startNm": 300,
+    "stepNm": 0.2,
+    "count": 4001,
+    "wavelengthConvention": "air"
+  },
+  "targetAltitudeDeg": [
+    30,
+    60,
+    85
+  ],
+  "binary": {
+    "path": "environment/airglow.bin",
+    "sha256": "cfeaff82b290465e9d17ea236b706392b429f075ad1cdd4e82ebbb2c68fad30c",
+    "byteLength": 48012,
+    "encoding": "float32-le",
+    "rows": 3
+  },
+  "components": "ESO SkyCalc flux_ael (upper-atmosphere emission lines: OH, O2, Na, OI, ...) + flux_arc (airglow residual continuum)",
+  "site": "ESO Paranal; pwv=3.5 mm; msolflux=130 sfu; season=time=0; ecl_lon=135 / ecl_lat=90 deg; standard ESO aerosols; moon_earth_dist=1",
+  "check": [
+    {
+      "altitudeDeg": 30,
+      "maxRelativeDifferenceToCommittedNatural": 5.940252255496579e-8,
+      "airglowFractionOfNaturalPhotons300to1100": 0.9710276694153527,
+      "lineFractionOfAirglow": 0.78659504512547
+    },
+    {
+      "altitudeDeg": 60,
+      "maxRelativeDifferenceToCommittedNatural": 5.7902791134855105e-8,
+      "airglowFractionOfNaturalPhotons300to1100": 0.9534851660270782,
+      "lineFractionOfAirglow": 0.782041964330491
+    },
+    {
+      "altitudeDeg": 85,
+      "maxRelativeDifferenceToCommittedNatural": 5.860951772491016e-8,
+      "airglowFractionOfNaturalPhotons300to1100": 0.9472259451890428,
+      "lineFractionOfAirglow": 0.7810593838576527
+    }
+  ],
+  "note": "Same SkyCalc request parameters as the committed natural-sky LUT; the components sum to it within float32. The app scales this part only (airglow slider); scattered starlight, zodiacal light and lower-atmosphere emission stay fixed.",
+  "source": "ESO SkyCalc (Noll et al. 2012, A&A 543, A92; Jones et al. 2013, A&A 560, A91)"
+}

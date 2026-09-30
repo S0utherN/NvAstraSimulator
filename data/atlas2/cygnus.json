@@ -1,0 +1,160 @@
+{
+ "schemaVersion": 3,
+ "kind": "iit-field-atlas-v3",
+ "id": "cygnus",
+ "name": "天鹅座广域",
+ "size": 768,
+ "planeStep": 0.0010521516297790558,
+ "refPixel": [
+  383,
+  383
+ ],
+ "centreRaDec": [
+  310,
+  42
+ ],
+ "resolutionArcsec": 325.53277808841545,
+ "orientation": "east-left-north-up; row 0 south; columns increase west",
+ "unit": "W/m2/sr (lines); W/m2/sr/nm at 550 nm (continuum)",
+ "status": "measured-survey (approximate calibration)",
+ "bands": [
+  {
+   "id": "ha",
+   "soft": 2.4086721928877078e-11,
+   "asinhMax": 10.583860739890605,
+   "nm": 656.28,
+   "stats": {
+    "p50R": 6.880811229272716,
+    "p99R": 182.4543203113869,
+    "maxR": 1974.6144946402237
+   }
+  },
+  {
+   "id": "oiii",
+   "soft": 3.157207713344834e-11,
+   "asinhMax": 11.3464205460338,
+   "nm": 500.684,
+   "stats": {
+    "p50R": 0.2955036759376526,
+    "p99R": 18.86182975769043,
+    "maxR": 4233.09326171875
+   }
+  },
+  {
+   "id": "sii",
+   "soft": 2.3509271070022975e-11,
+   "asinhMax": 9.024585697126383,
+   "nm": 672.4,
+   "stats": {
+    "p50R": 0.8741528391838074,
+    "p99R": 36.05596923828125,
+    "maxR": 415.2386474609375
+   }
+  }
+ ],
+ "binary": {
+  "path": "atlas2/cygnus.bin",
+  "byteLength": 4128768,
+  "sha256": "006af71f67042857ab546f650d35350557a428e6065f31aa851f13ba7cbdf19f",
+  "encoding": "uint16-le-asinh ×3 + uint8 valid"
+ },
+ "levels": [],
+ "continuum": null,
+ "stars": {
+  "path": "atlas2/cygnus-stars.bin",
+  "byteLength": 823648,
+  "sha256": "2a78addcf97fa7d40cbce1e3b396df6f8a8a2465750e354c7297fbc12c63f53b",
+  "encoding": "float32-le [X, Y, F550 W/m2/nm, Tcolour K]",
+  "count": 51478,
+  "hipparcos": 757,
+  "gaiaDuplicatesDropped": 751,
+  "gaiaLimitG": 10.5,
+  "limits": "Gaia G<10.5 within 21°; Hipparcos V<7",
+  "model": "Black body at Ballesteros (2012) colour temperature from B−V (Gaia BP−RP inverted via DR3 Table 5.9), normalized to Bessell (1998) V=0 flux at 550 nm; observed (reddened) colours."
+ },
+ "template": {
+  "source": "Case B Balmer ratios (Storey & Hummer 1995); [O III] 4959/5007 = 1/2.98; low-density [S II] 6716/6731 = 1.4; continuum EW(Hβ)=1370 Å (assumed). Other lines missing.",
+  "ha": {
+   "lines": [
+    [
+     656.282,
+     1,
+     "Hα"
+    ],
+    [
+     486.133,
+     0.3496503496503497,
+     "Hβ"
+    ],
+    [
+     434.047,
+     0.16363636363636366,
+     "Hγ"
+    ],
+    [
+     410.174,
+     0.09055944055944057,
+     "Hδ"
+    ]
+   ],
+   "continuum": 1.1041431830206363
+  },
+  "oiii": {
+   "lines": [
+    [
+     500.684,
+     1,
+     "[O III] 5007"
+    ],
+    [
+     495.891,
+     0.33557046979865773,
+     "[O III] 4959"
+    ]
+   ]
+  },
+  "sii": {
+   "lines": [
+    [
+     671.644,
+     0.5833333333333334,
+     "[S II] 6716"
+    ],
+    [
+     673.082,
+     0.4166666666666667,
+     "[S II] 6731"
+    ]
+   ]
+  },
+  "missing": [
+   "[N II] 6548/6583",
+   "He I",
+   "[S III] 9069/9531",
+   "[Ar III]",
+   "[O II]",
+   "Paschen series"
+  ]
+ },
+ "largeScale": {
+  "method": "NSNS + Gaussian(σ=1.5°)[Finkbeiner − NSNS]",
+  "filledFromFinkbeinerOnly": 0
+ },
+ "notes": [
+  "大于约 3° 的 Hα 结构由 Finkbeiner (2003) 全天图补回（σ=1.5° 羽化）；NSNS 覆盖以南（赤纬 < −16°）的 0 个像素只有 Finkbeiner Hα，[O III]/[S II] 在该处缺测，按 0 处理。"
+ ],
+ "missing": [
+  "[N II] 6548/6583",
+  "He I",
+  "[S III] 9069/9531",
+  "[Ar III]",
+  "[O II]",
+  "Paschen series"
+ ],
+ "sources": [
+  "NSNS DR0.2 (Stefan Ziegenbalg), Hα/[O III]/[S II] in Rayleighs, ~10″; CC-BY-NC-SA 4.0; doi:10.3847/2515-5172/adfec7; via CDS hips2fits",
+  "Finkbeiner 2003 full-sky Hα (repo 0.2.0 derivative) for scales > 3°",
+  "Gaia DR3 (I/355/gaiadr3) and Hipparcos (I/239) via VizieR TAP"
+ ],
+ "licence": "NSNS: CC-BY-NC-SA 4.0 (non-commercial, attribution, share-alike). Local evaluation only; not published."
+}

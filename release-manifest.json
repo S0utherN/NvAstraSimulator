@@ -1,0 +1,391 @@
+{
+  "schemaVersion": 1,
+  "kind": "iit-pages-release",
+  "product": {
+    "name": "NvAstraSimulator",
+    "version": "0.6.2",
+    "modelVersion": "eyepiece-d54",
+    "dataFamily": "atlas3-v1",
+    "linkVersion": 6
+  },
+  "sourceCommit": "274bd95699a5454ed6837cada53ae420230a13ac",
+  "entry": "index.html",
+  "files": {
+    ".nojekyll": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "app.html": {
+      "bytes": 493,
+      "sha256": "735863ef063cd4f8e38cc3d4402c3e17e969ff0841c3be4d830f82c40c85f372"
+    },
+    "assets/.gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    "assets/app-BvamdpJO.css": {
+      "bytes": 37545,
+      "sha256": "9c6e98676a2ead5aeb0c6f2506b2e3b6765e680e7e7ea60d76ee66202518266c"
+    },
+    "assets/app-DtMd8gZ8.js": {
+      "bytes": 542134,
+      "sha256": "9ca3a6817fada0d0d095f2689cbb1f37fceb4a64fdb94658c2af44d21ebff2cc"
+    },
+    "assets/favicon-Cr225KxK.svg": {
+      "bytes": 896,
+      "sha256": "1a62088b173d67ba6de9395aca6912ca301aa8282d3ea579f7b9a8b2f6a9af2c"
+    },
+    "assets/spectral-worker-Co9UF9jP.js": {
+      "bytes": 33253,
+      "sha256": "58ae843ed6de4c7ff3f9563485abf7cc0f01f68b1733760129eb4b95fd8d9397"
+    },
+    "data/.gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    "data/atlas2-versions.json": {
+      "bytes": 1255,
+      "sha256": "1d2da7ccf4575d7f58b4538c5a402e2320d74b2ce3c4d87e6228261411fffdc3"
+    },
+    "data/atlas2/barnard-stars.bin": {
+      "bytes": 509312,
+      "sha256": "81463b666b7a4fc9b8135bb77ab6d206b42ad2631e578171272a5198398cd5e0"
+    },
+    "data/atlas2/barnard.bin": {
+      "bytes": 4128768,
+      "sha256": "7dd119716d0ba71786141513b4ef56851575c47d47798dbc4bcbdfe927e701ea"
+    },
+    "data/atlas2/barnard.json": {
+      "bytes": 3857,
+      "sha256": "d2828f15dfd40e60c09b46e17bd373c6973957cfb4641c3b57ed07903251399b"
+    },
+    "data/atlas2/carina-core.bin": {
+      "bytes": 3145728,
+      "sha256": "6e5c455287719df96cce92dedccd9362f0468b7d3d9a8388a42453342e3c93e5"
+    },
+    "data/atlas2/carina-detail.bin": {
+      "bytes": 3145728,
+      "sha256": "a891d19c9a94b320ec74100d78dd805d22ee33601bc6bda31222cded43446c96"
+    },
+    "data/atlas2/carina-stars.bin": {
+      "bytes": 1774592,
+      "sha256": "2647388be48978ccce4093afb750b0d6f602337926da261022566734e10ff4c5"
+    },
+    "data/atlas2/carina.bin": {
+      "bytes": 7340032,
+      "sha256": "022c7525e39603d3cb1d00e3db66c0bf214e5351b6dbe967c77ef675f15da875"
+    },
+    "data/atlas2/carina.json": {
+      "bytes": 5732,
+      "sha256": "9471db2ede529c105b7c430f8575f8bc32e3fd29351c2865898439cf0c619aa1"
+    },
+    "data/atlas2/cygnus-stars.bin": {
+      "bytes": 823648,
+      "sha256": "2a78addcf97fa7d40cbce1e3b396df6f8a8a2465750e354c7297fbc12c63f53b"
+    },
+    "data/atlas2/cygnus.bin": {
+      "bytes": 4128768,
+      "sha256": "006af71f67042857ab546f650d35350557a428e6065f31aa851f13ba7cbdf19f"
+    },
+    "data/atlas2/cygnus.json": {
+      "bytes": 3791,
+      "sha256": "a7ed33874a3f9c19ba93de732f7c8199aa522006751ae868b72db508df12ae0b"
+    },
+    "data/atlas2/gum-stars.bin": {
+      "bytes": 2547568,
+      "sha256": "a54696fde24705349d03e34f418a1ba5542c8b473c02213b4b4a94f0e13b2e6f"
+    },
+    "data/atlas2/gum.bin": {
+      "bytes": 21233664,
+      "sha256": "b551de69b5f3f49c0ec875eb2cc62f356f3ec82c381f8095f93bf4ce6dd8afe7"
+    },
+    "data/atlas2/gum.json": {
+      "bytes": 4503,
+      "sha256": "ad940bb02b835ce1be68e7bc9014ccc2aa6ba6d6df0779da9a3f60334fc38290"
+    },
+    "data/atlas2/helix-detail.bin": {
+      "bytes": 11796480,
+      "sha256": "d656c5995b49f7a97c92eca1ab6ceb76e4d566cce9bb6ad4537a675d6ae20d90"
+    },
+    "data/atlas2/helix-stars.bin": {
+      "bytes": 90096,
+      "sha256": "51497fbb94529e750c27f41726f4a513084d331574eea28a33a403c319ec8875"
+    },
+    "data/atlas2/helix.bin": {
+      "bytes": 7340032,
+      "sha256": "5297584ffcfaad46ed2a949097c272042ff90e80ebe388aba3c21efc2f37dd0f"
+    },
+    "data/atlas2/helix.json": {
+      "bytes": 5681,
+      "sha256": "edbd9e9ded547cef72a3198b2339a94fa48859e727f16d720bebd6b845fb4586"
+    },
+    "data/atlas2/horsehead-detail.bin": {
+      "bytes": 7340032,
+      "sha256": "dde2107117cc0d94384e9a3e30e3465b2644c83fe01885e87906fc0a201fe525"
+    },
+    "data/atlas2/horsehead-stars.bin": {
+      "bytes": 175104,
+      "sha256": "ede97f0d9ecbeb0a58556565be592eea90cb09bff006c0121d8825657f0f9b85"
+    },
+    "data/atlas2/horsehead.bin": {
+      "bytes": 7340032,
+      "sha256": "7cad1b3407b1da344087ce3821eb8c99b91865cf413e168052238a4f6d982a25"
+    },
+    "data/atlas2/horsehead.json": {
+      "bytes": 4550,
+      "sha256": "db8539e82bfa0433453ea1535a6749541d742f254676e1f4c4ef2d579698564a"
+    },
+    "data/atlas2/m16-core.bin": {
+      "bytes": 3145728,
+      "sha256": "23a331416c799a509128567734c143e29326b915472ef7451331bb0efecd94ac"
+    },
+    "data/atlas2/m16-detail.bin": {
+      "bytes": 7340032,
+      "sha256": "f265990e9b0e51e709ef9f8e761c96bcc031bef9fa5895e88e8927ebe2996cac"
+    },
+    "data/atlas2/m16-stars.bin": {
+      "bytes": 816128,
+      "sha256": "a55ae473d960581975adde2c6f21faaa0f2a8f4e8936a5433a75bbfa7a81895e"
+    },
+    "data/atlas2/m16.bin": {
+      "bytes": 7340032,
+      "sha256": "faed817f9dd7c68c1f454a62827508a71935a7458800175a3374325a03f66ec8"
+    },
+    "data/atlas2/m16.json": {
+      "bytes": 6116,
+      "sha256": "45f267cf7b345fb295e11159b3ec58b05a94e7256e76f516e087da5a8f4f8cbe"
+    },
+    "data/atlas2/m27-detail.bin": {
+      "bytes": 7340032,
+      "sha256": "e02a0d410021ce67b7db7fa48172d347943c8af97fdc44ef09a399d1695e0c5d"
+    },
+    "data/atlas2/m27-stars.bin": {
+      "bytes": 864736,
+      "sha256": "ea14930ffaf9e3b87c1ceab7f7d7864cab67819cf88dcebc741317e2fd46e677"
+    },
+    "data/atlas2/m27.bin": {
+      "bytes": 7340032,
+      "sha256": "b5d09bbd7054e087fbf65e25b5ad2d128c5107639b549e56d7e54b5dd7d387f5"
+    },
+    "data/atlas2/m27.json": {
+      "bytes": 4535,
+      "sha256": "666a9c47e839792926d2c94364981a4b719c6a0820a125fb557996c880189619"
+    },
+    "data/atlas2/m31-stars.bin": {
+      "bytes": 226080,
+      "sha256": "c4ab024de376f141dd1dd937d442f271b256d09758dfd47ce609b0bf8b01240b"
+    },
+    "data/atlas2/m31.bin": {
+      "bytes": 37748736,
+      "sha256": "ad03c9b22b053e571ae169e8363576b1a68f4fab41599edf4b92eb14c92f4315"
+    },
+    "data/atlas2/m31.json": {
+      "bytes": 5156,
+      "sha256": "ee0c07b2eca8d38753e005b1a0a7946033e510277482ce28945cc6525ab7870f"
+    },
+    "data/atlas2/m42-core.bin": {
+      "bytes": 283360,
+      "sha256": "6307aec7600eb8f0a3498ddbb864d83c5089766d0d8ef0c29736aa3bbb72a6f2"
+    },
+    "data/atlas2/m42-detail.bin": {
+      "bytes": 7340032,
+      "sha256": "60f4837cd02f05f575edea0e325466ab0c05713b35540f949d53b7c742a3730e"
+    },
+    "data/atlas2/m42-stars.bin": {
+      "bytes": 162112,
+      "sha256": "c971f5a5a986ef7a2f94d633aaf1b7f43a8e71377f5df17fffb2a9a06d9f6038"
+    },
+    "data/atlas2/m42.bin": {
+      "bytes": 7340032,
+      "sha256": "0782820548482c8b1c579e613932a5934fbd41d014d93be3a8edebe5d71ce721"
+    },
+    "data/atlas2/m42.json": {
+      "bytes": 7344,
+      "sha256": "d5d1832fedc4ebb84af669e947a2c376d91e7ee0e4b4d84526764d42a4fbea26"
+    },
+    "data/atlas2/m8-core.bin": {
+      "bytes": 3145728,
+      "sha256": "3b5f7782e5940240a9bc1fa5b3ff588f40bccc62d8dc02507187eb18a7e04474"
+    },
+    "data/atlas2/m8-detail.bin": {
+      "bytes": 3145728,
+      "sha256": "fba9b9902a010ab2a0e843e094632c6affb1188acae8a94924b887234591a8fd"
+    },
+    "data/atlas2/m8-stars.bin": {
+      "bytes": 1251936,
+      "sha256": "ec1f247baca2ddd3091adf6d4c4804135e01ed33e331926e37063b0a37c3fd29"
+    },
+    "data/atlas2/m8.bin": {
+      "bytes": 7340032,
+      "sha256": "616c3dd0f73a01b6c457fbcfcf90f2c59cc8e6ad127f66da86e257d110c7e71c"
+    },
+    "data/atlas2/m8.json": {
+      "bytes": 5698,
+      "sha256": "fc9de484914b982e9e977377a5cb1cbe463e502148f673c40d71ec6502ee48a3"
+    },
+    "data/atlas2/palette-stars.bin": {
+      "bytes": 2209696,
+      "sha256": "2a9caaa4b006f3221a6289609087bab988816a37086b56907aa7f486ecb4857f"
+    },
+    "data/atlas2/palette.bin": {
+      "bytes": 21233664,
+      "sha256": "b1b68e2378459dd23cde5b77afbe90b768358c98ee19b847bbfaab3cdf5ccf83"
+    },
+    "data/atlas2/palette.json": {
+      "bytes": 4515,
+      "sha256": "d058f0252363bb11e3da0972adb75eaa9f32d1f891c4016a2f9448c0d7556b96"
+    },
+    "data/atlas2/rosette-detail.bin": {
+      "bytes": 7340032,
+      "sha256": "e63963426c8071ce4a9907b7884dcef65a1a7a9f6c32245fc50f0421678b105c"
+    },
+    "data/atlas2/rosette-stars.bin": {
+      "bytes": 491568,
+      "sha256": "4569a1a331439ced2b9ab087353779d0787bf79aea62cf4ea16f1cc083491a52"
+    },
+    "data/atlas2/rosette.bin": {
+      "bytes": 7340032,
+      "sha256": "26b596c548720b5ba258d5fa91481b8d81717992c73801b4cbddb7d9103405c2"
+    },
+    "data/atlas2/rosette.json": {
+      "bytes": 4553,
+      "sha256": "d8f42f098a1e3e517a3a988f83f7574b733eb3071d44d77adcb7fb631200c403"
+    },
+    "data/cathode-presets.json": {
+      "bytes": 19306,
+      "sha256": "23634be2becf9942e04cd075d305f904274b229fe63aa2e7e315ec3cf3d551f1"
+    },
+    "data/environment.json": {
+      "bytes": 25242,
+      "sha256": "52e0e83afe75dc56805a7a777749bb464c1769982aa6d93956c680fbefb5e126"
+    },
+    "data/environment/airglow.bin": {
+      "bytes": 48012,
+      "sha256": "cfeaff82b290465e9d17ea236b706392b429f075ad1cdd4e82ebbb2c68fad30c"
+    },
+    "data/environment/airglow.json": {
+      "bytes": 1845,
+      "sha256": "eb96d053e5906975285954f286d7668eb01b1c1005396c94753dc89501497e90"
+    },
+    "data/environment/sky-lut.bin": {
+      "bytes": 1824456,
+      "sha256": "6ee1da80baa766ae810da26b73588cd29f20d98fbaa5984b8e96873cc789e59a"
+    },
+    "data/extra/barnard.json": {
+      "bytes": 726141,
+      "sha256": "0037d4a39be6a508828ceec0eb832400637e37dac0a93b7bb1e5e4d7f2d5b0ad"
+    },
+    "data/extra/cygnus.json": {
+      "bytes": 752039,
+      "sha256": "ba357a53f17ecb917acead8fccfa9e2cc683f08b6af952016d4a364e04abb0ad"
+    },
+    "data/extra/ngc7009.json": {
+      "bytes": 1745720,
+      "sha256": "f6ca6d17034f38c52e06fa6f603c43cd87a2ee7e4da1dbde9663d34759d10fce"
+    },
+    "data/eyepiece/barnard-field.bin": {
+      "bytes": 884736,
+      "sha256": "f20daadfae6aeddb1a4869c7274c35c4472f5302bad3e453a3d81a94ef8d2ccf"
+    },
+    "data/eyepiece/barnard-field.json": {
+      "bytes": 157582,
+      "sha256": "db0123fed0e58fb580da63b40a563706c20bca31da0fff97c92f7ef3d153955f"
+    },
+    "data/eyepiece/cygnus-field.bin": {
+      "bytes": 884736,
+      "sha256": "68e1faa370772d542e715911aae709c8ea4b02634c4ddc4dc6554a2e8de94d63"
+    },
+    "data/eyepiece/cygnus-field.json": {
+      "bytes": 202483,
+      "sha256": "bad27fd7b2b213df3918668e8f544a8c7dd479b63ebc678e066970da6f48924d"
+    },
+    "data/eyepiece/horsehead-field.bin": {
+      "bytes": 1572864,
+      "sha256": "676172989b56eb0ea860dc905d26ab135c79ef934053a276faa73ec16f34ac91"
+    },
+    "data/eyepiece/horsehead-field.json": {
+      "bytes": 5560,
+      "sha256": "c1df824ffa87a94ce53e36872eb40e3ecca3e232b85da6218026959e61133970"
+    },
+    "data/eyepiece/m42-field.bin": {
+      "bytes": 1572864,
+      "sha256": "cb56213bcbdd18b44859d428249e3540dd8edb2ca322b19c8765df20c6362701"
+    },
+    "data/eyepiece/m42-field.json": {
+      "bytes": 5372,
+      "sha256": "2d712dc5f77c109a9dfb15696fad14868b07ce7d4bf7d8c0b8d44fa629bdffbe"
+    },
+    "data/eyepiece/ngc7009-field.bin": {
+      "bytes": 1572864,
+      "sha256": "11b01da0d343c827f5b024e8b2fd441dad48868d30c49593591586ebb7a57a59"
+    },
+    "data/eyepiece/ngc7009-field.json": {
+      "bytes": 3956,
+      "sha256": "fffc4b33b65f8ff8a06957ad4aaef761bd3b32cc961fedf5670abdcb28a77479"
+    },
+    "data/iit-audit.json": {
+      "bytes": 27661,
+      "sha256": "ce599e7558e73a435a0deb43c615c89e65860126484bdf455d19af0fbf5957b4"
+    },
+    "data/iit-spectra.json": {
+      "bytes": 110549,
+      "sha256": "248d3f7e72bd57fa0a5dba471bf13d4c04d04f543ce9583c08e7c24d6d0b840f"
+    },
+    "data/m42-scene.json": {
+      "bytes": 32026,
+      "sha256": "10a0605be2796f36a32d3a2b5aa52c8c2616725f9faeb0609f990b2492c675c1"
+    },
+    "data/m42/ha.bin": {
+      "bytes": 202400,
+      "sha256": "c2a38cc59446e28ebc7634bd11806b25ae19b1f3ed448010f1e1f602b6209a11"
+    },
+    "data/m42/hbeta.bin": {
+      "bytes": 202400,
+      "sha256": "b7fcd1c0a8c1cde1893e967ccb90efc181ec7d27c5317565d13117bcfebb4b5f"
+    },
+    "data/m42/nii6584.bin": {
+      "bytes": 202400,
+      "sha256": "6616d073a597c67ece6aaf3e9f63ef89e92e3ea3bea7c0175a4ae0357d9dc012"
+    },
+    "data/m42/oiii4959.bin": {
+      "bytes": 202400,
+      "sha256": "122564d750fea5d401d1e01efb2f0337ac0dc81b1456c8f6611de2bcb449422c"
+    },
+    "data/m42/oiii5007.bin": {
+      "bytes": 202400,
+      "sha256": "678743b8656050c2f48d36a9b30570fe08e5933053a25f4755e3f4693d141e55"
+    },
+    "data/m42/pa9.bin": {
+      "bytes": 202400,
+      "sha256": "c62d47cb4e3a7b8533eb562dae25e8dddd31fc7f2a20e6d010debacf11c85a5f"
+    },
+    "data/m42/sii6731.bin": {
+      "bytes": 202400,
+      "sha256": "6221d7e6e170aec0f091c4dd2c78754fccc5fca452920c3c314bfee055555cb0"
+    },
+    "data/README.md": {
+      "bytes": 108,
+      "sha256": "3ebf4db9a4a3b0ecf4cf7ecc50511cea97633960f6626f82f94fc1cf61b66414"
+    },
+    "data/simulator-versions.json": {
+      "bytes": 922,
+      "sha256": "d8966be55c15eaa4b59af5ddecd3d07dca67b941827061dbe956d8c77f4c34e1"
+    },
+    "data/user-figures.json": {
+      "bytes": 6938,
+      "sha256": "5b8d444f895ae824280061b74bf2bf80ce7455ce22ad3ab42aad165c78bb178f"
+    },
+    "index.html": {
+      "bytes": 797,
+      "sha256": "f19833da8882d6b5237571a760a5a1cda2ebcbea193d17f1f429a78c369425c2"
+    },
+    "product.json": {
+      "bytes": 138,
+      "sha256": "1ae055636259f14297f9325c15ce455a0859fefcea174aef5e8c40d741225cbe"
+    },
+    "THIRD_PARTY_NOTICES.txt": {
+      "bytes": 14106,
+      "sha256": "470c8ef5ba0d816942df56fb1458993bc60db64cdcb4d6e97578738fb4bf77d1"
+    }
+  }
+}

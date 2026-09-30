@@ -1,0 +1,173 @@
+{
+ "schemaVersion": 3,
+ "kind": "iit-field-atlas-v3",
+ "id": "palette",
+ "name": "银心 · 蛇夫座调色盘",
+ "size": 1536,
+ "planeStep": 0.0010925776447620814,
+ "refPixel": [
+  767,
+  767
+ ],
+ "centreRaDec": [
+  248,
+  -25
+ ],
+ "resolutionArcsec": 338.04047431013936,
+ "orientation": "east-left-north-up; row 0 south; columns increase west",
+ "unit": "W/m2/sr (lines); W/m2/sr/nm at 550 nm (continuum)",
+ "status": "measured-survey (approximate calibration)",
+ "bands": [
+  {
+   "id": "ha",
+   "soft": 2.4086721928877078e-11,
+   "asinhMax": 12.086467844075532,
+   "nm": 656.28,
+   "stats": {
+    "p50R": 3.4278865814208985,
+    "p99R": 105.224365234375,
+    "maxR": 8872.71015625
+   }
+  },
+  {
+   "id": "oiii",
+   "soft": 3.157207713344834e-11,
+   "asinhMax": 0.881373587019543,
+   "nm": 500.684,
+   "stats": {
+    "p50R": 0,
+    "p99R": 0,
+    "maxR": 0
+   }
+  },
+  {
+   "id": "sii",
+   "soft": 2.3509271070022975e-11,
+   "asinhMax": 0.881373587019543,
+   "nm": 672.4,
+   "stats": {
+    "p50R": 0,
+    "p99R": 0,
+    "maxR": 0
+   }
+  },
+  {
+   "id": "cont",
+   "soft": 1e-11,
+   "asinhMax": 9.994383250008509,
+   "nm": 550,
+   "stats": {
+    "p50R": null,
+    "p99R": null,
+    "maxR": null
+   }
+  }
+ ],
+ "binary": {
+  "path": "atlas2/palette.bin",
+  "byteLength": 21233664,
+  "sha256": "b1b68e2378459dd23cde5b77afbe90b768358c98ee19b847bbfaab3cdf5ccf83",
+  "encoding": "uint16-le-asinh ×4 + uint8 valid"
+ },
+ "levels": [],
+ "continuum": {
+  "temperatureK": 4500,
+  "source": "SHASSA continuum image (dR equivalent in the 3.2 nm Hα filter), 5×5 median (stars removed); black body 4500 K assumed"
+ },
+ "stars": {
+  "path": "atlas2/palette-stars.bin",
+  "byteLength": 2209696,
+  "sha256": "2a9caaa4b006f3221a6289609087bab988816a37086b56907aa7f486ecb4857f",
+  "encoding": "float32-le [X, Y, F550 W/m2/nm, Tcolour K]",
+  "count": 138106,
+  "hipparcos": 2209,
+  "gaiaDuplicatesDropped": 2171,
+  "gaiaLimitG": 10.5,
+  "limits": "Gaia G<10.5 within 50°; Hipparcos V<7",
+  "model": "Black body at Ballesteros (2012) colour temperature from B−V (Gaia BP−RP inverted via DR3 Table 5.9), normalized to Bessell (1998) V=0 flux at 550 nm; observed (reddened) colours."
+ },
+ "template": {
+  "source": "Case B Balmer ratios (Storey & Hummer 1995); [O III] 4959/5007 = 1/2.98; low-density [S II] 6716/6731 = 1.4; continuum EW(Hβ)=1370 Å (assumed). Other lines missing.",
+  "ha": {
+   "lines": [
+    [
+     656.282,
+     1,
+     "Hα"
+    ],
+    [
+     486.133,
+     0.3496503496503497,
+     "Hβ"
+    ],
+    [
+     434.047,
+     0.16363636363636366,
+     "Hγ"
+    ],
+    [
+     410.174,
+     0.09055944055944057,
+     "Hδ"
+    ]
+   ],
+   "continuum": 1.1041431830206363
+  },
+  "oiii": {
+   "lines": [
+    [
+     500.684,
+     1,
+     "[O III] 5007"
+    ],
+    [
+     495.891,
+     0.33557046979865773,
+     "[O III] 4959"
+    ]
+   ]
+  },
+  "sii": {
+   "lines": [
+    [
+     671.644,
+     0.5833333333333334,
+     "[S II] 6716"
+    ],
+    [
+     673.082,
+     0.4166666666666667,
+     "[S II] 6731"
+    ]
+   ]
+  },
+  "missing": [
+   "[N II] 6548/6583",
+   "He I",
+   "[S III] 9069/9531",
+   "[Ar III]",
+   "[O II]",
+   "Paschen series"
+  ]
+ },
+ "largeScale": null,
+ "notes": [
+  "80° 场景：Hα 为 SHASSA（V<5 亮星的饱和核与光环按亮度遮掉 871 个像素并用约 1° 分块平滑背景填补，另有 15241 个恒星残差像素用中值替换）。",
+  "银河的未分辨星光来自 SHASSA 连续谱图（Hα 滤镜内连续谱的 dR 当量，滤镜等效宽度取 3.2 nm，5×5 中值去掉恒星），并扣除其中的夜天光底（约 5° 分块的 5% 分位数，中位约 63 R 当量 ≈ V 21.4 mag/″²，夜空由模拟器单独给出）；换算到 550 nm 时假设 4500 K 黑体。扣除后面亮度：中位 V 23.7、90% 分位 V 22.2、99% 分位 V 20.9 mag/″²。比 Gaia G<10.5 暗的恒星都在这一层里。"
+ ],
+ "missing": [
+  "南天广域的 [O III] 与 [S II]（没有定标巡天，按 0 处理）",
+  "[N II] 6548/6583",
+  "He I",
+  "[S III] 9069/9531",
+  "[Ar III]",
+  "[O II]",
+  "Paschen series"
+ ],
+ "sources": [
+  "SHASSA (Gaustad et al. 2001, PASP 113, 1326), continuum-subtracted Hα in deci-Rayleigh, ~0.8′; via CDS hips2fits (ov-gso/P/SHASSA)",
+  "SHASSA continuum (ov-gso/P/SHASSA/CONT) as unresolved Milky Way starlight",
+  "Gaia DR3 (I/355/gaiadr3) and Hipparcos (I/239) via VizieR TAP"
+ ],
+ "licence": "SHASSA: courtesy of Swarthmore College (Gaustad et al. 2001); DSS2 / VPHAS+ as cited (VPHAS+: CC BY 4.0). Local evaluation only; not published."
+}
