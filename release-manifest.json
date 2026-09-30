@@ -3,12 +3,12 @@
   "kind": "iit-pages-release",
   "product": {
     "name": "NvAstraSimulator",
-    "version": "0.6.2",
+    "version": "0.6.3",
     "modelVersion": "eyepiece-d54",
     "dataFamily": "atlas3-v1",
     "linkVersion": 6
   },
-  "sourceCommit": "274bd95699a5454ed6837cada53ae420230a13ac",
+  "sourceCommit": "8780c4d3dc9faca2e8b287b25845153325b82fea",
   "entry": "index.html",
   "files": {
     ".nojekyll": {
@@ -17,7 +17,7 @@
     },
     "app.html": {
       "bytes": 493,
-      "sha256": "735863ef063cd4f8e38cc3d4402c3e17e969ff0841c3be4d830f82c40c85f372"
+      "sha256": "568d981f7184b135c3c7562cec79b0777e6b0688b4e36a5bbbf1b26770c2079b"
     },
     "assets/.gitattributes": {
       "bytes": 8,
@@ -27,9 +27,9 @@
       "bytes": 37545,
       "sha256": "9c6e98676a2ead5aeb0c6f2506b2e3b6765e680e7e7ea60d76ee66202518266c"
     },
-    "assets/app-DtMd8gZ8.js": {
-      "bytes": 542134,
-      "sha256": "9ca3a6817fada0d0d095f2689cbb1f37fceb4a64fdb94658c2af44d21ebff2cc"
+    "assets/app-CEdnNkLu.js": {
+      "bytes": 542382,
+      "sha256": "094f71c379b3672b4964b2950736cdc2617b3b630e41512f6bd8f0a7ef00eff9"
     },
     "assets/favicon-Cr225KxK.svg": {
       "bytes": 896,
@@ -377,11 +377,11 @@
     },
     "index.html": {
       "bytes": 797,
-      "sha256": "f19833da8882d6b5237571a760a5a1cda2ebcbea193d17f1f429a78c369425c2"
+      "sha256": "8ced310099ce1d35e44f52abcd383fcb8bd1e40a2c8aba2c00f7bc72cfb46b4e"
     },
     "product.json": {
       "bytes": 138,
-      "sha256": "1ae055636259f14297f9325c15ce455a0859fefcea174aef5e8c40d741225cbe"
+      "sha256": "b0273ab1924b57f95a29c20db1f62058fdf74c7c343a3bea031a9779fc861537"
     },
     "THIRD_PARTY_NOTICES.txt": {
       "bytes": 14106,
