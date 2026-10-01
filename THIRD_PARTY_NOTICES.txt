@@ -252,3 +252,49 @@ engineering choices, not a reproduction of the full published models.
 User-supplied local videos provide qualitative references and numerical
 encoded-video summaries only. Original videos and extracted frames are not
 distributed; source redistribution rights were not independently verified.
+
+--- Eyepiece app 0.7.0 / D55 ---
+NSNS DR0.2 processed H-alpha/[O III]/[S II] cutouts: Ziegenbalg,
+Northern Sky Narrowband Survey, DOI 10.3847/2515-5172/adfec7.
+https://www.simg.de/nebulae3/dr0_2/ ; CC BY-NC-SA 4.0.
+SHASSA H-alpha and continuum, Gaustad et al. 2001, courtesy of
+Swarthmore College / CDS HiPS as previously acknowledged. New cutouts,
+processed derivatives only; source notice retained, no commercial-rights claim.
+Finkbeiner (2003) large-scale H-alpha data as previously acknowledged.
+Reynolds (1985), ApJ 298 L27; Sahu & Sahu (1993), A&A 280 231:
+line-ratio context only; southern OIII maps remain assumed scenarios.
+Sanchez S. F. et al. (2026), SDSS-V LVM Helix Nebula public data,
+arXiv:2602.10072. DR19 second-order sky-corrected fiber line table:
+https://ifs.astroscu.unam.mx/LVM_DR19_Helix/Helix_DR19_cor.fits.gz
+Only derived surface-brightness maps are distributed; no original paper text.
+User-provided single-exposure Helix H-alpha FITS: morphology and approximate
+LVM-tied scale. Original FITS, private location and original header are omitted.
+Jones et al. (2013), A&A 560 A91, DOI10.1051/0004-6361/201322433;
+ESO SkyCalc CLI: existing LUT reused for a representative average moonlight.
+Adaptive grain/scintillation appearance coefficients are project assumptions,
+not manufacturer measurements or a reproduction of a published full model.
+
+--- Eyepiece app 0.8.0 / D56 ---
+US6150650A (Bowen et al., ITT/K&M, 2000), Variable gain image intensifier:
+https://patents.google.com/patent/US6150650A/en
+ABC mechanism reference only; no circuit, text, figures or calibrated tube curve copied.
+Pattanaik et al., SIGGRAPH 1998, as previously acknowledged, and
+Kilpelainen et al., PLOS ONE 2011, doi:10.1371/journal.pone.0017200:
+https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0017200
+Qualitative luminance/contrast adaptation context only. Dynamic centre metering,
+EV/gamma mapping and smoothing coefficients are project engineering assumptions;
+no paper figures/data reproduced or complete published model claimed.
+
+2026-10-01 D57: Hamamatsu II_TII0007E glossary and Photonis/Exosens XR5 specifications were read online to verify EBI definition and units; no figures or data tables redistributed.
+https://www.hamamatsu.com/content/dam/hamamatsu-photonics/sites/documents/99_SALES_LIBRARY/etd/II_TII0007E.pdf
+https://cdn.photonis.com/system/files/2026-06/Exosens%20NV_Leaflet%20XR5_VD.pdf
+Restrained EV/gamma coefficients are project-authored engineering assumptions prompted by user feedback. Manufacturer specifications do not calibrate these coefficients. The optional dual-filter sky multiplier is derived from a user-perceived covered/open-sky comparison and this project's model, not a measured spectrum or manufacturer tube constant; original spectral assets remain unchanged.
+
+--- Eyepiece app 0.8.2 / D58 ---
+Existing Li Xiaofeng et al. (2022), Infrared Technology 44(8), Figure 8,
+digitized EBI-temperature curves are reused with their original notices.
+The default +20 C scene offset is a user-requested, project-authored
+engineering correction, not a measured internal temperature rise or a
+manufacturer calibration. No new source curves, figures or documents were
+downloaded or redistributed. Historical dual-sky reference behavior is
+retained for old links; its interactive calibration controls are replaced.

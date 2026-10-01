@@ -3,12 +3,12 @@
   "kind": "iit-pages-release",
   "product": {
     "name": "NvAstraSimulator",
-    "version": "0.6.3",
-    "modelVersion": "eyepiece-d54",
-    "dataFamily": "atlas3-v1",
-    "linkVersion": 6
+    "version": "0.9.1",
+    "modelVersion": "eyepiece-d60",
+    "dataFamily": "atlas4-v1",
+    "linkVersion": 12
   },
-  "sourceCommit": "8780c4d3dc9faca2e8b287b25845153325b82fea",
+  "sourceCommit": "0faf671e6dd92d382c692164348d27401701cc99",
   "entry": "index.html",
   "files": {
     ".nojekyll": {
@@ -17,35 +17,35 @@
     },
     "app.html": {
       "bytes": 493,
-      "sha256": "568d981f7184b135c3c7562cec79b0777e6b0688b4e36a5bbbf1b26770c2079b"
+      "sha256": "386a1a236daca6a98a43ec32511f51ec3268ca30f1e42f202f335a1ef627bee6"
     },
     "assets/.gitattributes": {
       "bytes": 8,
       "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
     },
-    "assets/app-BvamdpJO.css": {
-      "bytes": 37545,
-      "sha256": "9c6e98676a2ead5aeb0c6f2506b2e3b6765e680e7e7ea60d76ee66202518266c"
+    "assets/app-B-OG65rW.js": {
+      "bytes": 589884,
+      "sha256": "6e157c7f515cf19e70b6b750db69cca6d0894a9e5b4c06192dcb438848fc9e41"
     },
-    "assets/app-CEdnNkLu.js": {
-      "bytes": 542382,
-      "sha256": "094f71c379b3672b4964b2950736cdc2617b3b630e41512f6bd8f0a7ef00eff9"
+    "assets/app-TIuJwbb8.css": {
+      "bytes": 53388,
+      "sha256": "c0292ef13d414137f1e8d0bbb812a1e39375bd84e3f949018aed9bb43e827310"
     },
     "assets/favicon-Cr225KxK.svg": {
       "bytes": 896,
       "sha256": "1a62088b173d67ba6de9395aca6912ca301aa8282d3ea579f7b9a8b2f6a9af2c"
     },
-    "assets/spectral-worker-Co9UF9jP.js": {
-      "bytes": 33253,
-      "sha256": "58ae843ed6de4c7ff3f9563485abf7cc0f01f68b1733760129eb4b95fd8d9397"
+    "assets/spectral-worker-6cP_m26c.js": {
+      "bytes": 34865,
+      "sha256": "e85673639f523c40e09a5b901059685e935ea1821978000140bdd9cc7f7221ff"
     },
     "data/.gitattributes": {
       "bytes": 8,
       "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
     },
     "data/atlas2-versions.json": {
-      "bytes": 1255,
-      "sha256": "1d2da7ccf4575d7f58b4538c5a402e2320d74b2ce3c4d87e6228261411fffdc3"
+      "bytes": 1668,
+      "sha256": "485601673be894aa3790bb9d14521386dd75640c11bec1858679eeddba564733"
     },
     "data/atlas2/barnard-stars.bin": {
       "bytes": 509312,
@@ -251,6 +251,66 @@
       "bytes": 4553,
       "sha256": "d8f42f098a1e3e517a3a988f83f7574b733eb3071d44d77adcb7fb631200c403"
     },
+    "data/atlas4/barnard-detail.bin": {
+      "bytes": 29360128,
+      "sha256": "f0164412f9252635b664fa00d174ba750ab5aebf174be8ee508fcc4b32e836c7"
+    },
+    "data/atlas4/barnard.bin": {
+      "bytes": 37748736,
+      "sha256": "7199897dd33207bb8fb4129c3a6fc908fe872c1e2e656e1bdaf50cea69b24462"
+    },
+    "data/atlas4/barnard.json": {
+      "bytes": 12938,
+      "sha256": "816f0e91bcc4355d8a86ff0ffd04568957901cc8267168f0e5427594fb1a0e9c"
+    },
+    "data/atlas4/cygnus-detail.bin": {
+      "bytes": 29360128,
+      "sha256": "53cd0bbe80442a6b120b6eb26df8c4b3080006b05f421f50b780e01f843b6151"
+    },
+    "data/atlas4/cygnus.bin": {
+      "bytes": 37748736,
+      "sha256": "3bd138db3ba3a2ca54271e8e73a08fedd154988353c6114a50e47d7f06ad9108"
+    },
+    "data/atlas4/cygnus.json": {
+      "bytes": 12767,
+      "sha256": "d7415554b193ad736d0c2b212638f7fda16a3358f27a830df24c9572359f1336"
+    },
+    "data/atlas4/gum-detail.bin": {
+      "bytes": 29360128,
+      "sha256": "e035bd27616606679df13e392d7e48294ebfee269103642e76f5b0ae4cded714"
+    },
+    "data/atlas4/gum.bin": {
+      "bytes": 84934656,
+      "sha256": "9a8740e47207a0036c4edf186370f3cd27725dc77c7ea7346021e84511b963ee"
+    },
+    "data/atlas4/gum.json": {
+      "bytes": 11663,
+      "sha256": "d85de2817bbd111fb79ba02fcbdf02af947623fd1537ef0263ed19fff7def7a3"
+    },
+    "data/atlas4/helix-lvm-detail.bin": {
+      "bytes": 11796480,
+      "sha256": "125a7fc1626048a1f11bafe983a62d20e5d0018acf76d98a79f1f6f67155111a"
+    },
+    "data/atlas4/helix-user-600s.bin": {
+      "bytes": 15925248,
+      "sha256": "be778ed02fb957f3a63690f04e1fde82ffae852af1c65d8b08b9c1f31f21ed93"
+    },
+    "data/atlas4/helix.json": {
+      "bytes": 8661,
+      "sha256": "35a24932dca49bfbe3b5f770efa06fbd7d961111d14e4e055b3d8b2ba6d47d5e"
+    },
+    "data/atlas4/palette-detail.bin": {
+      "bytes": 29360128,
+      "sha256": "23bccb49b70714e29d43aa5562fd64ecfc4bcbf1520a69707b152d1f73521159"
+    },
+    "data/atlas4/palette.bin": {
+      "bytes": 84934656,
+      "sha256": "459c44b3e39e9e30ea4f4b29b215aefd1f862420b318166e7531e4ad413c4260"
+    },
+    "data/atlas4/palette.json": {
+      "bytes": 11372,
+      "sha256": "b4d04d7215d2072bb1c332b1d10eb9bda2d5dcb922739ed4d12d6ed68b8e0de6"
+    },
     "data/cathode-presets.json": {
       "bytes": 19306,
       "sha256": "23634be2becf9942e04cd075d305f904274b229fe63aa2e7e315ec3cf3d551f1"
@@ -377,15 +437,15 @@
     },
     "index.html": {
       "bytes": 797,
-      "sha256": "8ced310099ce1d35e44f52abcd383fcb8bd1e40a2c8aba2c00f7bc72cfb46b4e"
+      "sha256": "1e4f5068452264b12d5f0ec82309292381c559ca8d9a2ecb4764086034737ff0"
     },
     "product.json": {
-      "bytes": 138,
-      "sha256": "b0273ab1924b57f95a29c20db1f62058fdf74c7c343a3bea031a9779fc861537"
+      "bytes": 139,
+      "sha256": "248d6c1d9c633548ef60fe09f43aa309516c1672bf83617ee7223a3604cfb6ee"
     },
     "THIRD_PARTY_NOTICES.txt": {
-      "bytes": 14106,
-      "sha256": "470c8ef5ba0d816942df56fb1458993bc60db64cdcb4d6e97578738fb4bf77d1"
+      "bytes": 17466,
+      "sha256": "096324d86c559b2291d824fa054273187b2fdc3eaf503617dc5733f76d8ba391"
     }
   }
 }

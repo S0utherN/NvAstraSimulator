@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 3,
+  "kind": "iit-field-atlas-v3",
+  "id": "helix",
+  "name": "NGC 7293 螺旋星云（上帝之眼）",
+  "size": 1024,
+  "planeStep": 0.00013657580457716734,
+  "refPixel": [
+    511,
+    511
+  ],
+  "centreRaDec": [
+    337.4105,
+    -20.8372
+  ],
+  "resolutionArcsec": 48,
+  "orientation": "east-left-north-up; row 0 south; columns increase west",
+  "unit": "W/m2/sr (lines); W/m2/sr/nm at 550 nm (continuum)",
+  "status": "measured survey; user Hα layer approximate cross-calibration, not precision absolute photometry",
+  "bands": [
+    {
+      "id": "ha",
+      "soft": 2.4086721928877078e-11,
+      "asinhMax": 11.169958149866938,
+      "nm": 656.28,
+      "stats": {
+        "p50R": 0.3627261400222778,
+        "p99R": 6.712889862060547,
+        "maxR": 3548.30703125
+      }
+    },
+    {
+      "id": "oiii",
+      "soft": 3.157207713344834e-11,
+      "asinhMax": 0.881373587019543,
+      "nm": 500.684,
+      "stats": {
+        "p50R": 0,
+        "p99R": 0,
+        "maxR": 0
+      }
+    },
+    {
+      "id": "sii",
+      "soft": 2.3509271070022975e-11,
+      "asinhMax": 0.881373587019543,
+      "nm": 672.4,
+      "stats": {
+        "p50R": 0,
+        "p99R": 0,
+        "maxR": 0
+      }
+    }
+  ],
+  "binary": {
+    "path": "atlas2/helix.bin",
+    "byteLength": 7340032,
+    "sha256": "5297584ffcfaad46ed2a949097c272042ff90e80ebe388aba3c21efc2f37dd0f",
+    "encoding": "uint16-le-asinh ×3 + uint8 valid"
+  },
+  "levels": [
+    {
+      "id": "lvm-detail",
+      "label": "LVM 实测光谱 + DSS2 未覆盖区回退",
+      "size": [
+        1536,
+        1536
+      ],
+      "step": 0.000022727949125283576,
+      "origin": [
+        -0.017432336979092505,
+        -0.017432336979092505
+      ],
+      "resolutionArcsec": 35.3,
+      "source": "Sánchez et al. 2026 SDSS-V LVM DR19 Helix corrected fiber line maps; 35.3-arcsec circular fiber-aperture values; second-order sky corrected. Unmeasured positions retain prior DSS2 detail.",
+      "calibration": "Per-fiber integrated flux converted to aperture-mean surface brightness; LVM Hα and [O III] λ5007 replace DSS2 values inside observed fiber circles.",
+      "bands": [
+        {
+          "id": "ha",
+          "soft": 2.4086721928877078e-11,
+          "asinhMax": 10.404373762059462
+        },
+        {
+          "id": "oiii",
+          "soft": 3.157207713344834e-11,
+          "asinhMax": 9.800484470849193
+        },
+        null
+      ],
+      "binary": {
+        "path": "atlas4/helix-lvm-detail.bin",
+        "byteLength": 11796480,
+        "sha256": "125a7fc1626048a1f11bafe983a62d20e5d0018acf76d98a79f1f6f67155111a"
+      }
+    },
+    {
+      "id": "user-ha",
+      "label": "单张 Hα 细节（近似尺度）",
+      "size": [
+        2304,
+        2304
+      ],
+      "step": 0.000008732233814877257,
+      "origin": [
+        -0.010055167237831161,
+        -0.010055167237831161
+      ],
+      "resolutionArcsec": 3.0619592770810007,
+      "source": "User-provided Hα FITS single exposure, 600 s; filter slot 6; no absolute flux unit in source. WCS transformed to atlas TAN; private instrument/site metadata omitted.",
+      "calibration": "Approximate zero-intercept LVM 35.3-arcsec aperture ratio scale: 3.9169e-1 R/mean source-pixel count; 74% scatter; 2× image-noise floor; filter [N II] response unknown",
+      "bands": [
+        {
+          "id": "ha",
+          "soft": 2.4086721928877078e-11,
+          "asinhMax": 12.665819571032221
+        },
+        null,
+        null
+      ],
+      "binary": {
+        "path": "atlas4/helix-user-600s.bin",
+        "byteLength": 15925248,
+        "sha256": "be778ed02fb957f3a63690f04e1fde82ffae852af1c65d8b08b9c1f31f21ed93"
+      }
+    }
+  ],
+  "continuum": null,
+  "stars": {
+    "path": "atlas2/helix-stars.bin",
+    "byteLength": 90096,
+    "sha256": "51497fbb94529e750c27f41726f4a513084d331574eea28a33a403c319ec8875",
+    "encoding": "float32-le [X, Y, F550 W/m2/nm, Tcolour K]",
+    "count": 5631,
+    "hipparcos": 11,
+    "gaiaDuplicatesDropped": 12,
+    "gaiaLimitG": 15,
+    "limits": "Gaia G<15 within 2°, G<12.5 to 5.7°; Hipparcos V<7",
+    "model": "Black body at Ballesteros (2012) colour temperature from B−V (Gaia BP−RP inverted via DR3 Table 5.9), normalized to Bessell (1998) V=0 flux at 550 nm; observed (reddened) colours."
+  },
+  "template": {
+    "source": "Case B Balmer ratios (Storey & Hummer 1995); [O III] 4959/5007 = 1/2.98; low-density [S II] 6716/6731 = 1.4; continuum EW(Hβ)=1370 Å (assumed). Other lines missing.",
+    "ha": {
+      "lines": [
+        [
+          656.282,
+          1,
+          "Hα"
+        ],
+        [
+          486.133,
+          0.3496503496503497,
+          "Hβ"
+        ],
+        [
+          434.047,
+          0.16363636363636366,
+          "Hγ"
+        ],
+        [
+          410.174,
+          0.09055944055944057,
+          "Hδ"
+        ]
+      ],
+      "continuum": 1.1041431830206363
+    },
+    "oiii": {
+      "lines": [
+        [
+          500.684,
+          1,
+          "[O III] 5007"
+        ],
+        [
+          495.891,
+          0.33557046979865773,
+          "[O III] 4959"
+        ]
+      ]
+    },
+    "sii": {
+      "lines": [
+        [
+          671.644,
+          0.5833333333333334,
+          "[S II] 6716"
+        ],
+        [
+          673.082,
+          0.4166666666666667,
+          "[S II] 6731"
+        ]
+      ]
+    },
+    "missing": [
+      "[N II] 6548/6583",
+      "He I",
+      "[S III] 9069/9531",
+      "[Ar III]",
+      "[O II]",
+      "Paschen series"
+    ]
+  },
+  "largeScale": null,
+  "notes": [
+    "8° 底图为 SHASSA Hα（dR÷10 → R；131 个恒星残差像素用 5×5 中值替换，负值置 0）。SHASSA 的 32 Å Hα 滤镜含部分 [N II] 6548/6583，按 Hα 处理（与 7 nm Hα 滤镜的观感一致）。",
+    "细节层（2°，4.7″/像素）用 DSS2 红片的形态：按 Gaia/Hipparcos 位置遮掉 41806 个恒星像素并以平滑背景填补，扣除天空后按 SHASSA 拟合 R = a·(底片值)^γ（γ = 1.09，自由拟合 1.09，散布 0.16 dex）。",
+    "积分“Hα”通量 2.44e-9 erg/cm²/s（SHASSA 自身背景扣除后约 2.3×10⁻⁹），是文献纯 Hα 的 2.5–3.6 倍（LVM Hβ×2.86 = 6.81e-10，O'Dell 1998 = 9.64e-10）。原因主要是 [N II] 6548/6583：Helix 的 [N II]6583 与 Hα 相当，SHASSA 的 32 Å 滤镜部分透过，7 nm Hα 滤镜则全部透过，所以按 SHASSA 值保留（代表 Hα 滤镜看到的亮度）；也可能含 SHASSA 自身的定标误差。",
+    "[O III] 为估计：DSS2 蓝片（含 [O III] 4959/5007 与约 15% 的 Hβ）的形态，按同一底片幂律，总量定为文献绝对通量 F([O III]5007) = 1.18×10⁻⁹ erg/cm²/s（LVM；O'Dell 1998 为 1.94×10⁻⁹）。",
+    "LVM DR19 second-order sky-corrected Hα/[O III] fiber data replace DSS2 estimates within measured 35.3-arcsec apertures; outside those circles the DSS2 morphology remains an estimate/fallback. The 8° SHASSA Hα base remains unchanged. 66423 Hα and 49483 [O III] pixels are directly covered; only [O III] in measured footprints is spectroscopic.",
+    "用户单张 Hα 经 TAN-SIP 对齐。亮度尺度为穿零的近似 LVM aperture ratio（1463个高于背景噪声阈值的光纤，散布约74%）；affine诊断出现负截距，说明存在背景/尺度差异。输入滤镜slot 6的通带未提供，可能漏入[N II]，相对纯Hα偏差未知；不应按精密绝对测光使用。更细用户Hα与粗LVM Hα按图集LOD权重混合取代，不相加。"
+  ],
+  "missing": [
+    "底图 [O III] 与 [S II]（南天没有定标的窄带巡天）",
+    "Helix 的 [S II]；[O III] 为估计值",
+    "[N II] 6548/6583",
+    "He I",
+    "[S III] 9069/9531",
+    "[Ar III]",
+    "[O II]",
+    "Paschen series"
+  ],
+  "sources": [
+    "SHASSA (Gaustad et al. 2001, PASP 113, 1326), continuum-subtracted Hα in deci-Rayleigh, ~0.8′; via CDS hips2fits (ov-gso/P/SHASSA)",
+    "DSS2 red/blue (STScI Digitized Sky Survey II; UK Schmidt SERC-ER / SERC-J plates, AAO/ROE)",
+    "[O III] 5007/Hβ = 4.97 whole nebula: Sánchez et al. 2026, SDSS-V LVM Helix (arXiv:2602.10072); O'Dell 1998 gives 5.76",
+    "Gaia DR3 (I/355/gaiadr3) and Hipparcos (I/239) via VizieR TAP",
+    "User-provided single-frame Hα FITS (600 s); private source header fields are not published.",
+    "Sánchez et al. 2026, SDSS-V LVM Helix DR19 corrected fiber line maps, https://ifs.astroscu.unam.mx/LVM_DR19_Helix/Helix_DR19_cor.fits.gz (DR19 correction table, not DR20 DAP)."
+  ],
+  "licence": "SHASSA: courtesy of Swarthmore College (Gaustad et al. 2001); DSS2 / VPHAS+ as cited (VPHAS+: CC BY 4.0). Local evaluation only; not published."
+}

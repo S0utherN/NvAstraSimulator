@@ -1,0 +1,398 @@
+{
+ "schemaVersion": 3,
+ "kind": "iit-field-atlas-v3",
+ "id": "gum",
+ "name": "甘姆星云 · 船底座",
+ "size": 3072,
+ "planeStep": 0.0005462888223810494,
+ "refPixel": [
+  1535,
+  1535
+ ],
+ "centreRaDec": [
+  140,
+  -50
+ ],
+ "resolutionArcsec": 169.02023715507238,
+ "orientation": "east-left-north-up; row 0 south; columns increase west",
+ "unit": "W/m2/sr (lines); W/m2/sr/nm at 550 nm (continuum)",
+ "status": "measured SHASSA Ha/continuum; OIII is an assumed proxy",
+ "bands": [
+  {
+   "id": "ha",
+   "soft": 2.4086721928877078e-11,
+   "asinhMax": 12.101548325333182,
+   "nm": 656.28,
+   "stats": {
+    "p50R": 7.211784362792969,
+    "p99R": 159.247900390625,
+    "maxR": 9007.52890625
+   }
+  },
+  {
+   "id": "oiii",
+   "soft": 3.157207713344834e-11,
+   "asinhMax": 7.225766305124567,
+   "nm": 500.684,
+   "stats": {
+    "p50R": 0.055019580695749304,
+    "p99R": 1.2149216151517601,
+    "maxR": 68.71953438923745
+   }
+  },
+  {
+   "id": "sii",
+   "soft": 2.3509271070022975e-11,
+   "asinhMax": 0.881373587019543,
+   "nm": 672.4,
+   "stats": {
+    "p50R": null,
+    "p99R": null,
+    "maxR": null
+   }
+  },
+  {
+   "id": "cont",
+   "soft": 1e-11,
+   "asinhMax": 11.253302986489135,
+   "nm": 550,
+   "stats": {
+    "p50R": null,
+    "p99R": null,
+    "maxR": null
+   }
+  }
+ ],
+ "binary": {
+  "path": "atlas4/gum.bin",
+  "byteLength": 84934656,
+  "sha256": "9a8740e47207a0036c4edf186370f3cd27725dc77c7ea7346021e84511b963ee",
+  "encoding": "uint16-le-asinh x 4 + uint8 valid"
+ },
+ "levels": [
+  {
+   "id": "detail",
+   "label": "16 degree detail",
+   "size": [
+    2048,
+    2048
+   ],
+   "step": 0.00013724690888905513,
+   "origin": [
+    -0.1404035877935034,
+    -0.1404035877935034
+   ],
+   "resolutionArcsec": 48,
+   "source": "SHASSA Ha (~48 arcsec PSF); true NSNS OIII HiPS cutout has no substantive coverage; proxy uses Ha morphology.",
+   "calibration": "SHASSA Ha (dR to R); proxy OIII follows Ha morphology.",
+   "bands": [
+    {
+     "id": "ha",
+     "soft": 2.4086721928877078e-11,
+     "asinhMax": 11.32212553704284,
+     "nm": 656.28,
+     "stats": {
+      "p50R": 37.36845397949219,
+      "p99R": 225.5106201171875,
+      "maxR": 4131.489453125
+     }
+    },
+    {
+     "id": "oiii",
+     "soft": 3.157207713344834e-11,
+     "asinhMax": 6.446345503702901,
+     "nm": 500.684,
+     "stats": {
+      "p50R": 0.2850884837610177,
+      "p99R": 1.7204479692014678,
+      "maxR": 31.51963590766804
+     }
+    },
+    {
+     "id": "sii",
+     "soft": 2.3509271070022975e-11,
+     "asinhMax": 0.881373587019543,
+     "nm": 672.4,
+     "stats": {
+      "p50R": null,
+      "p99R": null,
+      "maxR": null
+     }
+    }
+   ],
+   "binary": {
+    "path": "atlas4/gum-detail.bin",
+    "byteLength": 29360128,
+    "sha256": "e035bd27616606679df13e392d7e48294ebfee269103642e76f5b0ae4cded714",
+    "encoding": "uint16-le-asinh x 3 + uint8 valid"
+   },
+   "oiiiProxy": {
+    "status": "assumed-not-measured",
+    "line": "[O III] 5007 / Halpha energy surface-brightness ratio",
+    "ratio": 0.01,
+    "range": [
+     0,
+     0.06
+    ],
+    "energyRatio": true,
+    "uncertainty": "scenario envelope, not statistical confidence interval",
+    "basis": "Assumed 0.01, not measured here. Sahu & Sahu (1993, A&A 280, 231) report no [O III] 5007 detection at 18 Puppis–Vela/Gum positions, but accessible abstract provides no numeric upper limit. [O III]/Halpha is weak and spatially variable in Galactic diffuse gas; Reynolds (1985, ApJ 298 L27) measured about 0.06 in two Galactic-plane directions. This 0–0.06 interval is a conservative scenario bound, not Gum data.",
+    "sourceRefs": [
+     "https://research.rug.nl/en/publications/kinematics-of-the-ionized-gas-in-puppis-vela-including-the-gum-ne",
+     "https://adsabs.harvard.edu/pdf/1985ApJ...298L..27R",
+     "https://arxiv.org/abs/astro-ph/9811315"
+    ]
+   }
+  }
+ ],
+ "continuum": {
+  "temperatureK": 4500,
+  "source": "SHASSA continuum dR-equivalent; divide by 10; bright-star halos masked using existing V<5 catalogue positions, 5x5 median star removal and approximate 5-degree block p5 sky pedestal; 3.2nm filter and 4500K assumed",
+  "skyMedianR": 43.82151489257812,
+  "brightStarMaskedPixels": 4073,
+  "haBrightStarMaskedPixels": 4073
+ },
+ "stars": {
+  "path": "atlas2/gum-stars.bin",
+  "byteLength": 2547568,
+  "sha256": "a54696fde24705349d03e34f418a1ba5542c8b473c02213b4b4a94f0e13b2e6f",
+  "encoding": "float32-le [X, Y, F550 W/m2/nm, Tcolour K]",
+  "count": 159223,
+  "hipparcos": 2838,
+  "gaiaDuplicatesDropped": 2763,
+  "gaiaLimitG": 10.5,
+  "limits": "Gaia G<10.5 within 50°; Hipparcos V<7",
+  "model": "Black body at Ballesteros (2012) colour temperature from B−V (Gaia BP−RP inverted via DR3 Table 5.9), normalized to Bessell (1998) V=0 flux at 550 nm; observed (reddened) colours."
+ },
+ "template": {
+  "source": "Case B Balmer ratios (Storey & Hummer 1995); [O III] 4959/5007 = 1/2.98; low-density [S II] 6716/6731 = 1.4; continuum EW(Hβ)=1370 Å (assumed). Other lines missing.",
+  "ha": {
+   "lines": [
+    [
+     656.282,
+     1,
+     "Hα"
+    ],
+    [
+     486.133,
+     0.3496503496503497,
+     "Hβ"
+    ],
+    [
+     434.047,
+     0.16363636363636366,
+     "Hγ"
+    ],
+    [
+     410.174,
+     0.09055944055944057,
+     "Hδ"
+    ]
+   ],
+   "continuum": 1.1041431830206363
+  },
+  "oiii": {
+   "lines": [
+    [
+     500.684,
+     1,
+     "[O III] 5007"
+    ],
+    [
+     495.891,
+     0.33557046979865773,
+     "[O III] 4959"
+    ]
+   ]
+  },
+  "sii": {
+   "lines": [
+    [
+     671.644,
+     0.5833333333333334,
+     "[S II] 6716"
+    ],
+    [
+     673.082,
+     0.4166666666666667,
+     "[S II] 6731"
+    ]
+   ]
+  },
+  "missing": [
+   "[N II] 6548/6583",
+   "He I",
+   "[S III] 9069/9531",
+   "[Ar III]",
+   "[O II]",
+   "Paschen series"
+  ]
+ },
+ "largeScale": {
+  "method": "SHASSA direct field; no additional large-scale correction"
+ },
+ "notes": [
+  "像素采样间距不等于巡天角分辨率；本图按最大（源PSF，1.5倍输出像素）记录有效PSF。",
+  "SHASSA宽Hα滤带含[N II]。南天OIII是明确标注的假设代理图，不是实测。"
+ ],
+ "missing": [
+  "无与南天匹配的实测OIII/SII图；OIII仅按Hα形态和假设能量比估算。",
+  "南天广域的 [O III] 与 [S II]（没有定标巡天，按 0 处理）",
+  "[N II] 6548/6583",
+  "He I",
+  "[S III] 9069/9531",
+  "[Ar III]",
+  "[O II]",
+  "Paschen series"
+ ],
+ "sources": [
+  "SHASSA (Gaustad et al. 2001) Halpha/continuum; OIII proxy assumption",
+  "Existing Atlas2 Gaia/Hipparcos stars reused by exact byte reference"
+ ],
+ "licence": "SHASSA courtesy of Swarthmore College; no explicit redistribution license located; local non-commercial evaluation only.",
+ "integratedVsAtlas2": {
+  "ha": {
+   "atlas4": {
+    "integratedWm2": 9.790178610120642e-9,
+    "validPixels": 9437184,
+    "validFraction": 1
+   },
+   "atlas2": {
+    "integratedWm2": 9.652207275960906e-9,
+    "validPixels": 2359296,
+    "validFraction": 1
+   },
+   "ratioNewOverOld": 1.0142942780045097,
+   "changeFraction": 0.014294278004509664
+  }
+ },
+ "quantization": {
+  "base": [
+   {
+    "id": "ha",
+    "sourceUnits": "W m-2 sr-1",
+    "samples": 9437184,
+    "positiveSamples": 9163903,
+    "underflowToZero": 6,
+    "maxAbsoluteError": 1.9319744806243667e-10,
+    "maxRelativeErrorPositive": 1
+   },
+   {
+    "id": "oiii",
+    "sourceUnits": "W m-2 sr-1",
+    "samples": 9437184,
+    "positiveSamples": 9163903,
+    "underflowToZero": 310,
+    "maxAbsoluteError": 1.1081582740941474e-12,
+    "maxRelativeErrorPositive": 1
+   },
+   {
+    "id": "sii",
+    "sourceUnits": "W m-2 sr-1",
+    "samples": 9437184,
+    "positiveSamples": 0,
+    "underflowToZero": 0,
+    "maxAbsoluteError": 0,
+    "maxRelativeErrorPositive": 0
+   },
+   {
+    "id": "cont",
+    "sourceUnits": "W m-2 sr-1 nm-1",
+    "samples": 9437184,
+    "positiveSamples": 8965151,
+    "underflowToZero": 5,
+    "maxAbsoluteError": 2.5856931597576853e-11,
+    "maxRelativeErrorPositive": 1
+   }
+  ],
+  "detail": [
+   {
+    "id": "ha",
+    "sourceUnits": "W m-2 sr-1",
+    "samples": 4194304,
+    "positiveSamples": 4171961,
+    "underflowToZero": 0,
+    "maxAbsoluteError": 7.174823378523727e-11,
+    "maxRelativeErrorPositive": 0.00436466797586643
+   },
+   {
+    "id": "oiii",
+    "sourceUnits": "W m-2 sr-1",
+    "samples": 4194304,
+    "positiveSamples": 4171961,
+    "underflowToZero": 0,
+    "maxAbsoluteError": 4.545573755047875e-13,
+    "maxRelativeErrorPositive": 0.3167395477859923
+   },
+   {
+    "id": "sii",
+    "sourceUnits": "W m-2 sr-1",
+    "samples": 4194304,
+    "positiveSamples": 0,
+    "underflowToZero": 0,
+    "maxAbsoluteError": 0,
+    "maxRelativeErrorPositive": 0
+   }
+  ]
+ },
+ "rawInputs": [
+  {
+   "name": "gum-80deg-ha.fits",
+   "url": "https://alasky.cds.unistra.fr/hips-image-services/hips2fits?hips=ov-gso%2FP%2FSHASSA&width=3072&height=3072&fov=80&projection=TAN&coordsys=icrs&ra=140&dec=-50&format=fits",
+   "bytes": 37753920,
+   "sha256": "f491e98263cd04289c37177e164b6d1287f09a844268dce83aeda789b2cb92c1",
+   "source": "SHASSA; Gaustad et al. 2001, PASP 113, 1326",
+   "sourceRef": "https://amundsen.swarthmore.edu/ImagePages/512.html",
+   "licence": "Courtesy of Swarthmore College; no formal license located; cite source and acknowledge NSF support",
+   "unitHint": "deci-Rayleigh",
+   "psf": "~0.8 arcmin native survey resolution; 80-degree hips2fits output is strongly undersampled"
+  },
+  {
+   "name": "gum-80deg-cont.fits",
+   "url": "https://alasky.cds.unistra.fr/hips-image-services/hips2fits?hips=ov-gso%2FP%2FSHASSA%2FCONT&width=3072&height=3072&fov=80&projection=TAN&coordsys=icrs&ra=140&dec=-50&format=fits",
+   "bytes": 37753920,
+   "sha256": "2d63260d9dd5a8258ee93e57f2bd432948ade6eb83a0942bbcdbae07cb64275f",
+   "source": "SHASSA; Gaustad et al. 2001, PASP 113, 1326",
+   "sourceRef": "https://amundsen.swarthmore.edu/ImagePages/512.html",
+   "licence": "Courtesy of Swarthmore College; no formal license located; cite source and acknowledge NSF support",
+   "unitHint": "SHASSA continuum image / dR equivalent",
+   "psf": "~0.8 arcmin native survey resolution; 80-degree hips2fits output is strongly undersampled"
+  },
+  {
+   "name": "gum-16deg-ha.fits",
+   "url": "https://alasky.cds.unistra.fr/hips-image-services/hips2fits?hips=ov-gso%2FP%2FSHASSA&width=2048&height=2048&fov=16&projection=TAN&coordsys=icrs&ra=140&dec=-50&format=fits",
+   "bytes": 16781760,
+   "sha256": "e2b20777a22f055429eceaf69503953c8cd424ad79fa2d8380f74324a05b6793",
+   "source": "SHASSA HiPS",
+   "sourceRef": "https://amundsen.swarthmore.edu/ImagePages/512.html",
+   "licence": "Courtesy of Swarthmore College; no formal license located",
+   "unitHint": "deci-Rayleigh",
+   "psf": "Verify source metadata; output pixels do not improve survey PSF"
+  },
+  {
+   "name": "gum-16deg-oiii.fits",
+   "url": "https://alasky.cds.unistra.fr/hips-image-services/hips2fits?hips=simg.de%2FP%2FNSNS%2FDR0_2%2Foiii&width=2048&height=2048&fov=16&projection=TAN&coordsys=icrs&ra=140&dec=-50&format=fits",
+   "bytes": 16781760,
+   "sha256": "1ad58378403b67213eb89f5abb8c28423d68c3ed4908417eb9b008fb77793adf",
+   "source": "NSNS DR0.2 HiPS attempted at all centers",
+   "sourceRef": "https://www.simg.de/nebulae3/dr0_2/",
+   "licence": "CC BY-NC-SA 4.0",
+   "unitHint": "Rayleigh",
+   "psf": "Verify source metadata; preserve NaN/blank coverage as missing"
+  }
+ ],
+ "coverage": {
+  "baseHaFinite": 9437184,
+  "baseHaTotal": 9437184,
+  "detailOiiiPixelsMissing": 4194304,
+  "detailOiiiFinitePixels": 0,
+  "detailOiiiFiniteNonzeroPixels": 0
+ },
+ "sampling": {
+  "baseArcsec": 112.68015810338159,
+  "detailArcsec": 28.309207070013844,
+  "sourcePSFArcsec": 48,
+  "effectivePSFBase": 169.02023715507238,
+  "effectivePSFDetail": 48
+ }
+}
