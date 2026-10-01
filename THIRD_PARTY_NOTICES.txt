@@ -298,3 +298,24 @@ engineering correction, not a measured internal temperature rise or a
 manufacturer calibration. No new source curves, figures or documents were
 downloaded or redistributed. Historical dual-sky reference behavior is
 retained for old links; its interactive calibration controls are replaced.
+
+--- Eyepiece app 0.9.2 / D61 ---
+Sanchez et al. 2026, SDSS-V Local Volume Mapper (LVM): Helix Nebula
+public data, Data Analysis Pipeline data products, arXiv:2602.10072:
+https://arxiv.org/html/2602.10072v1
+https://ifs.astroscu.unam.mx/LVM_DR19_Helix/Helix_DR19_cor.fits.gz
+Reuses the corrected DR19 table already stored locally for D55. Derived
+35.3 arcsec aperture-mean Ha/OIII5007/NII6583 maps and named-column
+integrated fluxes; no new raw download, FITS, paper figure or original
+header redistributed. Prior LVM/SDSS source notices continue to apply.
+NII6548/6583=1/3 and the fallback integrated NII/Ha ratio are explicitly
+identified approximations; they are not independent spatial measurements.
+Gaustad et al. 2001, SHASSA, arXiv:astro-ph/0108518:
+https://arxiv.org/abs/astro-ph/0108518
+Filter transmissions in sections 2.2 and 4 inform the deblending of the
+already stored Helix Ha-equivalent fallback; source data notices unchanged.
+Existing NSNS/DSS2/SHASSA/VPHAS+/Gaia derivatives are reused unchanged
+except removal of zero-coded absent SII planes in two detail layers.
+User-provided Helix frame and private site/header metadata are not
+redistributed; its unvalidated radiometric fine layer is only retained
+in the frozen atlas4 for historical links, excluded from the new default.

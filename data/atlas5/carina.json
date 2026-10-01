@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 3,
+  "kind": "iit-field-atlas-v3",
+  "id": "carina",
+  "name": "NGC 3372 船底座大星云",
+  "size": 1024,
+  "planeStep": 0.00013657580457716734,
+  "refPixel": [
+    511,
+    511
+  ],
+  "centreRaDec": [
+    161.25,
+    -59.8
+  ],
+  "resolutionArcsec": 48,
+  "orientation": "east-left-north-up; row 0 south; columns increase west",
+  "unit": "W/m2/sr (lines); W/m2/sr/nm at 550 nm (continuum)",
+  "status": "measured-survey (approximate calibration)",
+  "bands": [
+    {
+      "id": "ha",
+      "soft": 2.4086721928877078e-11,
+      "asinhMax": 12.142710682005577,
+      "nm": 656.28,
+      "stats": {
+        "p50R": 78.48590698242188,
+        "p99R": 2575.5791015625,
+        "maxR": 9386.03671875
+      }
+    },
+    {
+      "id": "oiii",
+      "soft": 3.157207713344834e-11,
+      "asinhMax": 0.881373587019543,
+      "nm": 500.684,
+      "stats": {
+        "p50R": 0,
+        "p99R": 0,
+        "maxR": 0
+      }
+    },
+    {
+      "id": "sii",
+      "soft": 2.3509271070022975e-11,
+      "asinhMax": 0.881373587019543,
+      "nm": 672.4,
+      "stats": {
+        "p50R": 0,
+        "p99R": 0,
+        "maxR": 0
+      }
+    }
+  ],
+  "binary": {
+    "path": "atlas2/carina.bin",
+    "byteLength": 7340032,
+    "sha256": "022c7525e39603d3cb1d00e3db66c0bf214e5351b6dbe967c77ef675f15da875",
+    "encoding": "uint16-le-asinh ×3 + uint8 valid"
+  },
+  "levels": [
+    {
+      "id": "detail",
+      "label": "VPHAS+ 3.7°",
+      "size": [
+        1024,
+        1024
+      ],
+      "step": 0.00006308557949287163,
+      "origin": [
+        -0.0322367311208574,
+        -0.0322367311208574
+      ],
+      "resolutionArcsec": 19.518502246624443,
+      "source": "VPHAS+ DR4 Hα and r (Drew et al. 2014; ESO archive, CC BY 4.0; via CDS hips2fits)",
+      "calibration": "Hα − 0.4210·r; SHASSA R = 1.212e+1 × net + 60.0",
+      "bands": [
+        {
+          "id": "ha",
+          "soft": 2.4086721928877078e-11,
+          "asinhMax": 13.503194029961266
+        },
+        null,
+        null
+      ],
+      "binary": {
+        "path": "atlas2/carina-detail.bin",
+        "byteLength": 3145728,
+        "sha256": "a891d19c9a94b320ec74100d78dd805d22ee33601bc6bda31222cded43446c96"
+      }
+    },
+    {
+      "id": "core",
+      "label": "VPHAS+ 1°",
+      "size": [
+        1024,
+        1024
+      ],
+      "step": 0.000017044663653825605,
+      "origin": [
+        -0.008709823127104884,
+        -0.008709823127104884
+      ],
+      "resolutionArcsec": 5.273571369154896,
+      "source": "VPHAS+ DR4 Hα and r (same)",
+      "calibration": "same k; scaled to the 3.7° level: R = 1.209e+1 × net + 67.8",
+      "bands": [
+        {
+          "id": "ha",
+          "soft": 2.4086721928877078e-11,
+          "asinhMax": 13.885916892891567
+        },
+        null,
+        null
+      ],
+      "binary": {
+        "path": "atlas2/carina-core.bin",
+        "byteLength": 3145728,
+        "sha256": "6e5c455287719df96cce92dedccd9362f0468b7d3d9a8388a42453342e3c93e5"
+      }
+    }
+  ],
+  "continuum": null,
+  "stars": {
+    "path": "atlas2/carina-stars.bin",
+    "byteLength": 1774592,
+    "sha256": "2647388be48978ccce4093afb750b0d6f602337926da261022566734e10ff4c5",
+    "encoding": "float32-le [X, Y, F550 W/m2/nm, Tcolour K]",
+    "count": 110912,
+    "hipparcos": 73,
+    "gaiaDuplicatesDropped": 73,
+    "gaiaLimitG": 15,
+    "limits": "Gaia G<15 within 2°, G<12.5 to 5.7°; Hipparcos V<7",
+    "model": "Black body at Ballesteros (2012) colour temperature from B−V (Gaia BP−RP inverted via DR3 Table 5.9), normalized to Bessell (1998) V=0 flux at 550 nm; observed (reddened) colours."
+  },
+  "template": {
+    "source": "Case B Balmer ratios (Storey & Hummer 1995); [O III] 4959/5007 = 1/2.98; low-density [S II] 6716/6731 = 1.4; continuum EW(Hβ)=1370 Å (assumed). Other lines missing.",
+    "ha": {
+      "lines": [
+        [
+          656.282,
+          1,
+          "Hα"
+        ],
+        [
+          486.133,
+          0.3496503496503497,
+          "Hβ"
+        ],
+        [
+          434.047,
+          0.16363636363636366,
+          "Hγ"
+        ],
+        [
+          410.174,
+          0.09055944055944057,
+          "Hδ"
+        ]
+      ],
+      "continuum": 1.1041431830206363
+    },
+    "oiii": {
+      "lines": [
+        [
+          500.684,
+          1,
+          "[O III] 5007"
+        ],
+        [
+          495.891,
+          0.33557046979865773,
+          "[O III] 4959"
+        ]
+      ]
+    },
+    "sii": {
+      "lines": [
+        [
+          671.644,
+          0.5833333333333334,
+          "[S II] 6716"
+        ],
+        [
+          673.082,
+          0.4166666666666667,
+          "[S II] 6731"
+        ]
+      ]
+    },
+    "missing": [
+      "[N II] 6548/6583",
+      "He I",
+      "[S III] 9069/9531",
+      "[Ar III]",
+      "[O II]",
+      "Paschen series"
+    ]
+  },
+  "largeScale": null,
+  "notes": [
+    "8° 底图为 SHASSA Hα（dR÷10 → R；1654 个恒星残差像素用 5×5 中值替换，负值置 0）。SHASSA 的 32 Å Hα 滤镜含部分 [N II] 6548/6583，按 Hα 处理（与 7 nm Hα 滤镜的观感一致）。",
+    "细节层为 VPHAS+ CCD：Hα − k·r 扣连续谱（k = 0.4210，由 14690 个恒星像素的高通比值中位数求得），再按 SHASSA 线性定标（R = 1.212e+1×净值 + 60.0，残差 108.2 R）；1° 核心层同法按 3.7° 层定标。饱和星核与 CCD 溢出拖尾（81 / 941 个像素超过 12000 计数，沿列外扩 20″；V<7 的星另遮 30″ 圆与 ±4′ 竖条）和拼接缝隙用净图的平滑背景填补（16644 / 65583 像素），更大的缺口（0 / 0 像素）用下一层。",
+    "D61：缺测通道的零是存储占位，不能解释为天体无发射；需要匹配视场和通带定标的数据。"
+  ],
+  "missing": [
+    "缺少本目标的实测 [O III]/[S II] 图，当前双窄仅计算 Hα 组。",
+    "[N II] 6548/6583",
+    "He I",
+    "[S III] 9069/9531",
+    "[Ar III]",
+    "[O II]",
+    "Paschen series"
+  ],
+  "sources": [
+    "SHASSA (Gaustad et al. 2001, PASP 113, 1326), continuum-subtracted Hα in deci-Rayleigh, ~0.8′; via CDS hips2fits (ov-gso/P/SHASSA)",
+    "VPHAS+ DR4 Hα/r (Drew et al. 2014, MNRAS 440, 2036; ESO Science Archive, CC BY 4.0)",
+    "Gaia DR3 (I/355/gaiadr3) and Hipparcos (I/239) via VizieR TAP"
+  ],
+  "licence": "SHASSA: courtesy of Swarthmore College (Gaustad et al. 2001); DSS2 / VPHAS+ as cited (VPHAS+: CC BY 4.0). Local evaluation only; not published.",
+  "unmeasuredLineMaps": [
+    "oiii",
+    "sii"
+  ]
+}

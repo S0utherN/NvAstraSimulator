@@ -1,0 +1,438 @@
+{
+  "schemaVersion": 3,
+  "kind": "iit-field-atlas-v3",
+  "id": "barnard",
+  "name": "猎户座 · 巴纳德环",
+  "size": 2048,
+  "planeStep": 0.0003945568611671524,
+  "refPixel": [
+    1023,
+    1023
+  ],
+  "centreRaDec": [
+    84,
+    -1
+  ],
+  "resolutionArcsec": 122.07479178315778,
+  "orientation": "east-left-north-up; row 0 south; columns increase west",
+  "unit": "W/m2/sr (lines); W/m2/sr/nm at 550 nm (continuum)",
+  "status": "measured-survey (NSNS with Finkbeiner large-scale Ha restoration)",
+  "bands": [
+    {
+      "id": "ha",
+      "soft": 2.4086721928877078e-11,
+      "asinhMax": 14.831177866364165,
+      "nm": 656.28,
+      "stats": {
+        "p50R": 10.455955312118695,
+        "p99R": 159.39198445039796,
+        "maxR": 138060.26791294862
+      }
+    },
+    {
+      "id": "oiii",
+      "soft": 3.157207713344834e-11,
+      "asinhMax": 15.69683066074512,
+      "nm": 500.684,
+      "stats": {
+        "p50R": 0.1710055023431778,
+        "p99R": 9.847929954528809,
+        "maxR": 328108.09375
+      }
+    },
+    {
+      "id": "sii",
+      "soft": 2.3509271070022975e-11,
+      "asinhMax": 13.688117519182493,
+      "nm": 672.4,
+      "stats": {
+        "p50R": 1.184546709060669,
+        "p99R": 37.996307373046875,
+        "maxR": 44019.37890625
+      }
+    },
+    {
+      "id": "cont",
+      "soft": 1e-11,
+      "asinhMax": 0.881373587019543,
+      "nm": 550,
+      "stats": {
+        "p50R": null,
+        "p99R": null,
+        "maxR": null
+      }
+    }
+  ],
+  "binary": {
+    "path": "atlas4/barnard.bin",
+    "byteLength": 37748736,
+    "sha256": "7199897dd33207bb8fb4129c3a6fc908fe872c1e2e656e1bdaf50cea69b24462",
+    "encoding": "uint16-le-asinh x 4 + uint8 valid"
+  },
+  "levels": [
+    {
+      "id": "detail",
+      "label": "16 degree detail",
+      "size": [
+        2048,
+        2048
+      ],
+      "step": 0.00013724690888905513,
+      "origin": [
+        -0.1404035877935034,
+        -0.1404035877935034
+      ],
+      "resolutionArcsec": 42.46381060502077,
+      "source": "NSNS DR0.2 Ha/OIII ~10 arcsec nominal; same Finkbeiner low-frequency Ha correction as base. Missing fine SII retains the measured coarse SII map.",
+      "calibration": "NSNS Rayleigh cutouts; low-frequency Ha correction is shared with base. SII has no finer measurement; null means preserve coarse radiance.",
+      "bands": [
+        {
+          "id": "ha",
+          "soft": 2.4086721928877078e-11,
+          "asinhMax": 14.844042138502868,
+          "nm": 656.28,
+          "stats": {
+            "p50R": 22.765288680760523,
+            "p99R": 258.5427259473989,
+            "maxR": 139847.78567719282
+          }
+        },
+        {
+          "id": "oiii",
+          "soft": 3.157207713344834e-11,
+          "asinhMax": 15.974933747761256,
+          "nm": 500.684,
+          "stats": {
+            "p50R": 0.20968945324420932,
+            "p99R": 8.716170310974121,
+            "maxR": 433306.87499999994
+          }
+        },
+        null
+      ],
+      "binary": {
+        "path": "atlas5/barnard-detail.bin",
+        "byteLength": 20971520,
+        "sha256": "28f43b01895b509ea827fb9b591390c22d6ef592988de707d8f4204977eede11"
+      }
+    }
+  ],
+  "continuum": {
+    "temperatureK": 4500,
+    "colorAssumption": "4500 K is a renderer fallback only; no NSNS vc pixels are included in the continuum slot.",
+    "status": "vc-candidate-not-used",
+    "source": "NSNS vc is a star-subtracted visible 440-700nm candidate, approximately R/nm; it retains OIII/Hbeta and other lines. Not added because filter response is unavailable and OIII would be double-counted.",
+    "wavelengthNm": 550
+  },
+  "stars": {
+    "path": "atlas2/barnard-stars.bin",
+    "byteLength": 509312,
+    "sha256": "81463b666b7a4fc9b8135bb77ab6d206b42ad2631e578171272a5198398cd5e0",
+    "encoding": "float32-le [X, Y, F550 W/m2/nm, Tcolour K]",
+    "count": 31832,
+    "hipparcos": 722,
+    "gaiaDuplicatesDropped": 709,
+    "gaiaLimitG": 10.5,
+    "limits": "Gaia G<10.5 within 21°; Hipparcos V<7",
+    "model": "Black body at Ballesteros (2012) colour temperature from B−V (Gaia BP−RP inverted via DR3 Table 5.9), normalized to Bessell (1998) V=0 flux at 550 nm; observed (reddened) colours."
+  },
+  "template": {
+    "source": "Case B Balmer ratios (Storey & Hummer 1995); [O III] 4959/5007 = 1/2.98; low-density [S II] 6716/6731 = 1.4; continuum EW(Hβ)=1370 Å (assumed). Other lines missing.",
+    "ha": {
+      "lines": [
+        [
+          656.282,
+          1,
+          "Hα"
+        ],
+        [
+          486.133,
+          0.3496503496503497,
+          "Hβ"
+        ],
+        [
+          434.047,
+          0.16363636363636366,
+          "Hγ"
+        ],
+        [
+          410.174,
+          0.09055944055944057,
+          "Hδ"
+        ]
+      ],
+      "continuum": 1.1041431830206363
+    },
+    "oiii": {
+      "lines": [
+        [
+          500.684,
+          1,
+          "[O III] 5007"
+        ],
+        [
+          495.891,
+          0.33557046979865773,
+          "[O III] 4959"
+        ]
+      ]
+    },
+    "sii": {
+      "lines": [
+        [
+          671.644,
+          0.5833333333333334,
+          "[S II] 6716"
+        ],
+        [
+          673.082,
+          0.4166666666666667,
+          "[S II] 6731"
+        ]
+      ]
+    },
+    "missing": [
+      "[N II] 6548/6583",
+      "He I",
+      "[S III] 9069/9531",
+      "[Ar III]",
+      "[O II]",
+      "Paschen series"
+    ]
+  },
+  "largeScale": {
+    "method": "NSNS + Gaussian(sigma=1.5deg) low-frequency correction from Finkbeiner 2003; Finkbeiner-only Ha fill beyond NSNS footprint",
+    "filledFromFinkbeiner": 592383,
+    "sourcePSFArcmin": 5.4
+  },
+  "notes": [
+    "像素采样间距不等于巡天角分辨率；本图按最大（源PSF，1.5倍输出像素）记录有效PSF。",
+    "Finkbeiner只用于恢复Hα大尺度结构。NSNS的OIII/SII NaN或空白像素属于缺测，不表示实测零；现有单一有效掩模不能分别表达各线覆盖。NSNS vc含残留OIII/Hβ等线，且滤带响应未确认，因此只作为候选原始源保存，不叠加到已独立计入的线辐射。",
+    "D61：细节层缺测 [S II] 保留粗图实测值，不再用零覆盖；Hα/[O III] 及有效掩膜逐字节保留。"
+  ],
+  "missing": [
+    "OIII/SII超出各自NSNS覆盖范围的像素不可用，不能视为零测量。",
+    "赤纬 −16° 以南的 [O III] 与 [S II]",
+    "[N II] 6548/6583",
+    "He I",
+    "[S III] 9069/9531",
+    "[Ar III]",
+    "[O II]",
+    "Paschen series"
+  ],
+  "sources": [
+    "NSNS DR0.2 HiPS Halpha/OIII/SII; Finkbeiner 2003 Ha; NSNS vc仅作未使用候选",
+    "Existing Atlas2 Gaia/Hipparcos stars reused by exact byte reference"
+  ],
+  "licence": "NSNS CC-BY-NC-SA 4.0; local non-commercial evaluation.",
+  "integratedVsAtlas2": {
+    "ha": {
+      "atlas4": {
+        "integratedWm2": 2.8809387933749403e-9,
+        "validPixels": 4188961,
+        "validFraction": 0.9987261295318604
+      },
+      "atlas2": {
+        "integratedWm2": 2.8804591446340793e-9,
+        "validPixels": 588778,
+        "validFraction": 0.9982265896267362
+      },
+      "ratioNewOverOld": 1.0001665181544943,
+      "changeFraction": 0.00016651815449431062
+    },
+    "oiii": {
+      "atlas4": {
+        "integratedWm2": 2.6698574457853534e-10,
+        "validPixels": 3596578,
+        "validFraction": 0.8574910163879395
+      },
+      "atlas2": {
+        "integratedWm2": 2.657845429925926e-10,
+        "validPixels": 588778,
+        "validFraction": 0.9982265896267362
+      },
+      "ratioNewOverOld": 1.0045194561445066,
+      "changeFraction": 0.004519456144506551
+    },
+    "sii": {
+      "atlas4": {
+        "integratedWm2": 4.93438819166361e-10,
+        "validPixels": 3596578,
+        "validFraction": 0.8574910163879395
+      },
+      "atlas2": {
+        "integratedWm2": 4.898424401779625e-10,
+        "validPixels": 588778,
+        "validFraction": 0.9982265896267362
+      },
+      "ratioNewOverOld": 1.0073419097518213,
+      "changeFraction": 0.007341909751821252
+    }
+  },
+  "quantization": {
+    "base": [
+      {
+        "id": "ha",
+        "sourceUnits": "W m-2 sr-1",
+        "samples": 4194304,
+        "positiveSamples": 4137006,
+        "underflowToZero": 0,
+        "maxAbsoluteError": 3.4538847326954125e-9,
+        "maxRelativeErrorPositive": 0.05554184826555375
+      },
+      {
+        "id": "oiii",
+        "sourceUnits": "W m-2 sr-1",
+        "samples": 4194304,
+        "positiveSamples": 2456812,
+        "underflowToZero": 47,
+        "maxAbsoluteError": 1.02077004580372e-8,
+        "maxRelativeErrorPositive": 1
+      },
+      {
+        "id": "sii",
+        "sourceUnits": "W m-2 sr-1",
+        "samples": 4194304,
+        "positiveSamples": 2849087,
+        "underflowToZero": 4,
+        "maxAbsoluteError": 7.864568641218942e-10,
+        "maxRelativeErrorPositive": 1
+      },
+      {
+        "id": "cont",
+        "sourceUnits": "W m-2 sr-1 nm-1",
+        "samples": 4194304,
+        "positiveSamples": 0,
+        "underflowToZero": 0,
+        "maxAbsoluteError": 0,
+        "maxRelativeErrorPositive": 0
+      }
+    ],
+    "detail": [
+      {
+        "id": "ha",
+        "sourceUnits": "W m-2 sr-1",
+        "samples": 4194304,
+        "positiveSamples": 4028830,
+        "underflowToZero": 0,
+        "maxAbsoluteError": 3.6286390415245988e-9,
+        "maxRelativeErrorPositive": 0.1804317742231067
+      },
+      {
+        "id": "oiii",
+        "sourceUnits": "W m-2 sr-1",
+        "samples": 4194304,
+        "positiveSamples": 2911291,
+        "underflowToZero": 55,
+        "maxAbsoluteError": 1.4653231586664664e-8,
+        "maxRelativeErrorPositive": 1
+      },
+      {
+        "id": "sii",
+        "sourceUnits": "W m-2 sr-1",
+        "samples": 4194304,
+        "positiveSamples": 0,
+        "underflowToZero": 0,
+        "maxAbsoluteError": 0,
+        "maxRelativeErrorPositive": 0
+      }
+    ]
+  },
+  "rawInputs": [
+    {
+      "name": "barnard-44deg-ha.fits",
+      "url": "https://alasky.cds.unistra.fr/hips-image-services/hips2fits?hips=simg.de%2FP%2FNSNS%2FDR0_2%2Fhalpha&width=2048&height=2048&fov=44&projection=TAN&coordsys=icrs&ra=84&dec=-1&format=fits",
+      "bytes": 16781760,
+      "sha256": "b4bd9f27e6e90e910018d4c817914b372a5a55b1dc148b892ef5c41a2ae5ce09",
+      "source": "NSNS DR0.2 HiPS; Ziegenbalg et al. 2025, DOI 10.3847/2515-5172/adfec7",
+      "sourceRef": "https://www.simg.de/nebulae3/dr0_2/",
+      "licence": "CC BY-NC-SA 4.0",
+      "unitHint": "Rayleigh",
+      "psf": [
+        10,
+        "arcsec nominal; source HiPS metadata to verify"
+      ]
+    },
+    {
+      "name": "barnard-44deg-oiii.fits",
+      "url": "https://alasky.cds.unistra.fr/hips-image-services/hips2fits?hips=simg.de%2FP%2FNSNS%2FDR0_2%2Foiii&width=2048&height=2048&fov=44&projection=TAN&coordsys=icrs&ra=84&dec=-1&format=fits",
+      "bytes": 16781760,
+      "sha256": "6c70263184e92f2325b2e5b1c3c01b10a702ad8639b113b3d6d1137f88e87bfd",
+      "source": "NSNS DR0.2 HiPS; Ziegenbalg et al. 2025, DOI 10.3847/2515-5172/adfec7",
+      "sourceRef": "https://www.simg.de/nebulae3/dr0_2/",
+      "licence": "CC BY-NC-SA 4.0",
+      "unitHint": "Rayleigh",
+      "psf": [
+        10,
+        "arcsec nominal; source HiPS metadata to verify"
+      ]
+    },
+    {
+      "name": "barnard-44deg-sii.fits",
+      "url": "https://alasky.cds.unistra.fr/hips-image-services/hips2fits?hips=simg.de%2FP%2FNSNS%2FDR0_2%2Fsii&width=2048&height=2048&fov=44&projection=TAN&coordsys=icrs&ra=84&dec=-1&format=fits",
+      "bytes": 16781760,
+      "sha256": "6f7b20fb41773aa7ce75abde30e15a2b28db54e94761db2fcb20c62065bb2374",
+      "source": "NSNS DR0.2 HiPS; Ziegenbalg et al. 2025, DOI 10.3847/2515-5172/adfec7",
+      "sourceRef": "https://www.simg.de/nebulae3/dr0_2/",
+      "licence": "CC BY-NC-SA 4.0",
+      "unitHint": "Rayleigh",
+      "psf": [
+        10,
+        "arcsec nominal; source HiPS metadata to verify"
+      ]
+    },
+    {
+      "name": "barnard-44deg-vc.fits",
+      "url": "https://alasky.cds.unistra.fr/hips-image-services/hips2fits?hips=simg.de%2FP%2FNSNS%2FDR0_2%2Fvc&width=2048&height=2048&fov=44&projection=TAN&coordsys=icrs&ra=84&dec=-1&format=fits",
+      "bytes": 16781760,
+      "sha256": "3ef30880a8e7dbc543f57867365eaa0c6173587028c2920e4eae9a3fba0e67f9",
+      "source": "NSNS DR0.2 HiPS; Ziegenbalg et al. 2025, DOI 10.3847/2515-5172/adfec7",
+      "sourceRef": "https://www.simg.de/nebulae3/dr0_2/",
+      "licence": "CC BY-NC-SA 4.0",
+      "unitHint": "Rayleigh/nm",
+      "psf": [
+        20,
+        "arcsec usable resolution per official NSNS DR0.2 page"
+      ]
+    },
+    {
+      "name": "barnard-16deg-ha.fits",
+      "url": "https://alasky.cds.unistra.fr/hips-image-services/hips2fits?hips=simg.de%2FP%2FNSNS%2FDR0_2%2Fhalpha&width=2048&height=2048&fov=16&projection=TAN&coordsys=icrs&ra=84&dec=-1&format=fits",
+      "bytes": 16781760,
+      "sha256": "88298087daa496681e02c5a05ebeed0a7c96fb65e2ede62af632343df19a3c8a",
+      "source": "NSNS DR0.2 HiPS",
+      "sourceRef": "https://www.simg.de/nebulae3/dr0_2/",
+      "licence": "CC BY-NC-SA 4.0",
+      "unitHint": "Rayleigh",
+      "psf": "Verify source metadata; output pixels do not improve survey PSF"
+    },
+    {
+      "name": "barnard-16deg-oiii.fits",
+      "url": "https://alasky.cds.unistra.fr/hips-image-services/hips2fits?hips=simg.de%2FP%2FNSNS%2FDR0_2%2Foiii&width=2048&height=2048&fov=16&projection=TAN&coordsys=icrs&ra=84&dec=-1&format=fits",
+      "bytes": 16781760,
+      "sha256": "0d27d996abae16fc09ee6a385ab034135f1029fbfdee5118b82060172f3743de",
+      "source": "NSNS DR0.2 HiPS attempted at all centers",
+      "sourceRef": "https://www.simg.de/nebulae3/dr0_2/",
+      "licence": "CC BY-NC-SA 4.0",
+      "unitHint": "Rayleigh",
+      "psf": "Verify source metadata; preserve NaN/blank coverage as missing"
+    }
+  ],
+  "coverage": {
+    "baseHaFinite": 4188961,
+    "baseHaTotal": 4194304,
+    "oiiiPixelsMissing": 597726,
+    "siiPixelsMissing": 597726,
+    "vcPixelsMissing": 597851,
+    "oiiiZeroPixels": 0,
+    "siiZeroPixels": 0,
+    "detailOiiiPixelsMissing": 0
+  },
+  "sampling": {
+    "baseArcsec": 81.38319452210519,
+    "detailArcsec": 28.309207070013844,
+    "sourcePSFArcsec": 10,
+    "effectivePSFBase": 122.07479178315778,
+    "effectivePSFDetail": 42.46381060502077
+  }
+}

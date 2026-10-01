@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 3,
+  "kind": "iit-field-atlas-v3",
+  "id": "helix",
+  "name": "NGC 7293 螺旋星云（上帝之眼）",
+  "size": 1024,
+  "planeStep": 0.00013657580457716734,
+  "refPixel": [
+    511,
+    511
+  ],
+  "centreRaDec": [
+    337.4105,
+    -20.8372
+  ],
+  "resolutionArcsec": 48,
+  "orientation": "east-left-north-up; row 0 south; columns increase west",
+  "unit": "W/m2/sr (lines); W/m2/sr/nm at 550 nm (continuum)",
+  "status": "LVM measured Ha/OIII/NII in qualified fiber footprints; deblended SHASSA/DSS2 fallback assumed outside",
+  "bands": [
+    {
+      "id": "ha",
+      "nm": 656.28,
+      "soft": 2.4086721928877078e-11,
+      "asinhMax": 10.555145747542982,
+      "stats": {
+        "p50R": 0.19374151298015505,
+        "p99R": 3.3578008287244394,
+        "maxR": 1918.7198029010217
+      }
+    },
+    {
+      "id": "oiii",
+      "nm": 500.684,
+      "soft": 3.157207713344834e-11,
+      "asinhMax": 0.881373587019543,
+      "stats": {
+        "p50R": 0,
+        "p99R": 0,
+        "maxR": 0
+      }
+    },
+    {
+      "id": "nii",
+      "nm": 658.345,
+      "soft": 2.4011170233666916e-11,
+      "asinhMax": 11.08810306482011,
+      "stats": {
+        "p50R": 0.33012856880446034,
+        "p99R": 5.721571824572127,
+        "maxR": 3269.429523518649
+      }
+    }
+  ],
+  "binary": {
+    "path": "atlas5/helix.bin",
+    "byteLength": 7340032,
+    "sha256": "3cdc52ef276cdb4bc27bf7556789e92468e847a76e533a097e330ff192fead29"
+  },
+  "levels": [
+    {
+      "id": "lvm-lines",
+      "label": "LVM Hα / OIII / NII",
+      "size": [
+        1536,
+        1536
+      ],
+      "step": 0.000022727949125283576,
+      "origin": [
+        -0.017432336979092505,
+        -0.017432336979092505
+      ],
+      "resolutionArcsec": 35.3,
+      "source": "Sánchez et al. 2026 LVM DR19 corrected named-column line fluxes. 35.3 arcsec aperture means; DSS2 fallback is an estimate deblended with the integrated LVM NII/Ha ratio.",
+      "calibration": "1 table unit = 1e-19 W/m2 per fiber; divide by pi*(17.65 arcsec in radians)^2. Independent S/N>3 masks, overlapping aperture means averaged; NII6548/6583=1/3 assumed.",
+      "bands": [
+        {
+          "id": "ha",
+          "nm": 656.28,
+          "soft": 2.4086721928877078e-11,
+          "asinhMax": 9.789561361476675,
+          "stats": {
+            "p50R": 0.6053853482825247,
+            "p99R": 173.9248852064473,
+            "maxR": 892.323812125617
+          }
+        },
+        {
+          "id": "oiii",
+          "nm": 500.684,
+          "soft": 3.157207713344834e-11,
+          "asinhMax": 9.800482592168919,
+          "stats": {
+            "p50R": 0.1251999285189017,
+            "p99R": 135.83654777790667,
+            "maxR": 902.1224958403145
+          }
+        },
+        {
+          "id": "nii",
+          "nm": 658.345,
+          "soft": 2.4011170233666916e-11,
+          "asinhMax": 10.322518677140616,
+          "stats": {
+            "p50R": 1.0315548564141275,
+            "p99R": 267.4166492847882,
+            "maxR": 1520.4876769871416
+          }
+        }
+      ],
+      "binary": {
+        "path": "atlas5/helix-lvm-detail.bin",
+        "byteLength": 16515072,
+        "sha256": "dee2a9b7b3e9ea4a6849736b34857e066c81f284735435c4c782723e96b8f142"
+      }
+    }
+  ],
+  "continuum": null,
+  "stars": {
+    "path": "atlas2/helix-stars.bin",
+    "byteLength": 90096,
+    "sha256": "51497fbb94529e750c27f41726f4a513084d331574eea28a33a403c319ec8875",
+    "encoding": "float32-le [X, Y, F550 W/m2/nm, Tcolour K]",
+    "count": 5631,
+    "hipparcos": 11,
+    "gaiaDuplicatesDropped": 12,
+    "gaiaLimitG": 15,
+    "limits": "Gaia G<15 within 2°, G<12.5 to 5.7°; Hipparcos V<7",
+    "model": "Black body at Ballesteros (2012) colour temperature from B−V (Gaia BP−RP inverted via DR3 Table 5.9), normalized to Bessell (1998) V=0 flux at 550 nm; observed (reddened) colours."
+  },
+  "template": {
+    "source": "Case B Balmer ratios (Storey & Hummer 1995); [O III] 4959/5007 = 1/2.98; low-density [S II] 6716/6731 = 1.4; continuum EW(Hβ)=1370 Å (assumed). Other lines missing. D61: separate LVM [N II]6583 map, [N II]6548/6583 energy ratio 1/3 (assumed atomic companion); SII unavailable.",
+    "ha": {
+      "lines": [
+        [
+          656.282,
+          1,
+          "Hα"
+        ],
+        [
+          486.133,
+          0.3496503496503497,
+          "Hβ"
+        ],
+        [
+          434.047,
+          0.16363636363636366,
+          "Hγ"
+        ],
+        [
+          410.174,
+          0.09055944055944057,
+          "Hδ"
+        ]
+      ],
+      "continuum": 1.1041431830206363
+    },
+    "oiii": {
+      "lines": [
+        [
+          500.684,
+          1,
+          "[O III] 5007"
+        ],
+        [
+          495.891,
+          0.33557046979865773,
+          "[O III] 4959"
+        ]
+      ]
+    },
+    "sii": {
+      "lines": []
+    },
+    "missing": [
+      "[S II] 空间图",
+      "He I",
+      "[S III] 9069/9531",
+      "[Ar III]",
+      "[O II]",
+      "Paschen series"
+    ],
+    "nii": {
+      "lines": [
+        [
+          654.805,
+          0.3333333333333333,
+          "[N II] 6548"
+        ],
+        [
+          658.345,
+          1,
+          "[N II] 6583"
+        ]
+      ]
+    }
+  },
+  "largeScale": null,
+  "notes": [
+    "D61：在实测光纤区域分别使用 Hα、[O III]5007、[N II]6583 辐亮度；[N II]6548 按 1/3 能量比伴线计算。第三线图通道现在是 NII，SII 仍缺测。",
+    "SHASSA 红图含部分 NII：先按 T6548/THα=0.5、T6583/THα=1/3 及积分 NII6583/Hα=1.698619 分解，再逐线经过模拟滤镜；DSS2 未测区沿用相同近似拆分，不能视为纯线实测。",
+    "用户 600s 单帧原标度未通过测光一致性检查，且实际滤带未知；新版亮度采用 35.3″ LVM 数据，不让该单帧覆盖实测值。原始单帧及旧版数据仍完整保留。"
+  ],
+  "missing": [
+    "[S II] 空间图",
+    "He I",
+    "[S III] 9069/9531",
+    "[Ar III]",
+    "[O II]",
+    "Paschen series"
+  ],
+  "sources": [
+    "SHASSA (Gaustad et al. 2001, PASP 113, 1326), continuum-subtracted Hα in deci-Rayleigh, ~0.8′; via CDS hips2fits (ov-gso/P/SHASSA)",
+    "DSS2 red/blue (STScI Digitized Sky Survey II; UK Schmidt SERC-ER / SERC-J plates, AAO/ROE)",
+    "[O III] 5007/Hβ = 4.97 whole nebula: Sánchez et al. 2026, SDSS-V LVM Helix (arXiv:2602.10072); O'Dell 1998 gives 5.76",
+    "Gaia DR3 (I/355/gaiadr3) and Hipparcos (I/239) via VizieR TAP",
+    "Sánchez et al. 2026, arXiv:2602.10072, corrected DR19 DAP line table (SHA pinned locally).",
+    "Gaustad et al. 2001, arXiv:astro-ph/0108518, SHASSA Ha/NII transmission §2.2/§4."
+  ],
+  "licence": "SHASSA: courtesy of Swarthmore College (Gaustad et al. 2001); DSS2 / VPHAS+ as cited (VPHAS+: CC BY 4.0). Local evaluation only; not published. LVM: SDSS-V / Sánchez et al. 2026; existing D55 notices apply, see THIRD_PARTY_NOTICES.txt.",
+  "calibration": {
+    "fallbackNii6583ToHa": 1.6986192834254534,
+    "fallbackStatus": "assumed integrated ratio outside spectroscopic footprints",
+    "fiberDiameterArcsec": 35.3,
+    "lvmSha256": "6ea3b58ebc153318ed7ecb95822fdfa2e2f4e6f8e4c625ed607c2e52f4775577",
+    "measuredCoveragePixels": [
+      66423,
+      50023,
+      65050
+    ],
+    "userFineStatus": "not used: failed radiometric consistency; bandpass unknown",
+    "priorAtlas4": "frozen for atlasVersion2 links"
+  }
+}
