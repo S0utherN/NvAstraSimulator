@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#04070a" />
+  <title>About · Privacy and disclaimer · Image-Intensifier Astronomy Simulator</title>
+  <meta name="description" content="Privacy (no data collected), disclaimer (a simulation, not the real thing) and data licences of the Image-Intensifier Astronomy Simulator." />
+  <link rel="icon" href="./icons/icon-192.png" type="image/png" />
+  <link rel="alternate" hreflang="zh-CN" href="./about.html" />
+  <style>
+    :root { --bg: #04070a; --panel: rgba(12, 19, 24, 0.78); --line: rgba(150, 220, 210, 0.12); --text: #d6e3e1; --muted: #8fa5a2; --faint: #5b6f6d; --accent: #6fe3d1; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: radial-gradient(120% 60% at 50% 0%, #0b1a1d 0%, var(--bg) 55%) fixed, var(--bg); color: var(--text);
+      font: 15px/1.7 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+    main { max-width: 760px; margin: 0 auto; padding: 32px 16px 56px; }
+    header { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+    header img { width: 48px; height: 48px; border-radius: 12px; }
+    h1 { margin: 0; font-size: 22px; font-weight: 600; }
+    header p { margin: 0; color: var(--muted); font-size: 13px; }
+    nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 8px; }
+    nav a, .back { color: var(--accent); text-decoration: none; font-size: 14px; padding: 5px 12px; border: 1px solid var(--line); border-radius: 999px; }
+    section { margin-top: 18px; padding: 18px 18px 14px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
+    h2 { margin: 0 0 8px; font-size: 17px; font-weight: 600; color: var(--accent); }
+    p, li { color: var(--muted); }
+    p { margin: 0 0 10px; }
+    ul { margin: 0 0 10px; padding-left: 1.2em; }
+    strong { color: var(--text); font-weight: 600; }
+    .lead { font-size: 16px; color: var(--text); }
+    .table-wrap { overflow-x: auto; margin: 6px -4px 10px; }
+    table { width: 100%; min-width: 520px; border-collapse: collapse; font-size: 13.5px; }
+    th, td { text-align: left; vertical-align: top; padding: 7px 8px; border-bottom: 1px solid var(--line); color: var(--muted); }
+    th { color: var(--text); font-weight: 600; white-space: nowrap; }
+    td:first-child { color: var(--text); }
+    .nc { color: #e8b877; }
+    a { color: var(--accent); }
+    footer { margin-top: 28px; color: var(--faint); font-size: 13px; text-align: center; }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="./icons/icon-192.png" alt="" width="48" height="48" />
+    <div><h1>Image-Intensifier Astronomy Simulator</h1><p>About · Privacy · Disclaimer · Data licences</p></div>
+  </header>
+  <nav aria-label="On this page">
+    <a href="./app.html?lang=en">Open the simulator</a><a href="#privacy">Privacy</a><a href="#disclaimer">Disclaimer</a><a href="#data">Data and licences</a><a href="#contact">Contact</a><a href="./about.html" lang="zh-CN">中文</a>
+  </nav>
+
+  <section id="about">
+    <h2>What is this?</h2>
+    <p class="lead">A night-vision astronomy eyepiece simulator that runs in the browser. Public survey data describe the nebulae and stars, and a physical model of the image intensifier (photocathode, microchannel plate, phosphor screen) simulates every photon event on the GPU in real time, showing roughly what you would see in the eyepiece with different tubes, filters and skies.</p>
+    <p>This site is <strong>free and non-commercial</strong>, for science outreach and research, with no ads and no paid content.</p>
+  </section>
+
+  <section id="privacy">
+    <h2>Privacy: no data collected</h2>
+    <ul>
+      <li><strong>No analytics, ads, accounts or cookies.</strong> The page contains no analytics or tracking code and sends nothing you do, no parameters and no device information to any server.</li>
+      <li><strong>Parameters live only in the link.</strong> Shared links encode the simulation parameters after <code>#s=…</code>; browsers never send the part after <code>#</code> to the server, so only people you share the link with can see it.</li>
+      <li><strong>Stored on this device.</strong> The browser's local storage keeps only interface preferences — whether you have seen the tour, the quality and language choices, collapsed sections — and an error log (error message, version and page path). To open faster next time, data files you have viewed and the page itself are also cached on this device (Cache API and Service Worker); they are identical to the public files on the server. None of this is uploaded; clear it in the simulator under Settings → This device, or by clearing the browser's site data.</li>
+      <li><strong>The error log stays on this device.</strong> If something goes wrong you can copy it from Settings → This device → Error log and decide yourself whether to send it to the author. The copied text includes the browser version and screen size, and you can see all of it before sending.</li>
+      <li><strong>Hosting.</strong> The page and data files are served by a static host (currently GitHub Pages, possibly through a CDN such as Cloudflare), which may keep ordinary access logs (such as IP addresses) under its own policy; this site does not read or use them.</li>
+      <li>If any visitor statistics are ever added, this page and the simulator will say so first, and they will only be enabled with your consent.</li>
+    </ul>
+  </section>
+
+  <section id="disclaimer">
+    <h2>Disclaimer: a simulation, not the real thing</h2>
+    <ul>
+      <li>The view, brightness, noise and “equivalent datasheet” are <strong>model results</strong> meant to explain how image intensifiers work and compare. They <strong>do not represent what any brand, model or individual tube actually shows or measures</strong>. Preset names are only parameter sets, not general product specifications.</li>
+      <li>The model relies on public survey data, numbers from papers and a number of assumptions (for example some targets lack measured [O III] or [S II] maps, and some cathode and phosphor curves are estimates); these gaps and assumptions are marked in the “?” notes throughout the simulator. What you actually see also depends on the telescope, the weather and your own eyes, and may differ noticeably from the simulation.</li>
+      <li>Do not use the results as the basis for purchases, trading, safety or any professional purpose. Buy and use night-vision equipment in accordance with local laws.</li>
+      <li>This site is provided “as is”, without liability for any consequences of using it or relying on its results.</li>
+    </ul>
+  </section>
+
+  <section id="data">
+    <h2>Data sources and licences</h2>
+    <p>Only processed derivatives are published here (resampled, converted units, encoded); no original FITS files, paper texts or images. Each data set is credited as its source requires; some of them <span class="nc">may not be used commercially</span>, which is one reason this site stays non-commercial.</p>
+    <div class="table-wrap">
+      <p>Version 0.9.43 adds regional Cygnus line-map detail, the Heart/Soul Nebulae and Perseus Double Cluster, using NSNS and Gaia/Hipparcos under the acknowledgements and non-commercial terms below.</p>
+      <p>Version 0.9.45 adds ten deep-sky targets (NSNS), the Cepheus–Cassiopeia and Perseus–Auriga wide fields (NSNS with Finkbeiner), the Large Magellanic Cloud (SHASSA) and Butterfly (IC 1318) detail, under the same sources and terms.</p>
+        <table>
+        <thead><tr><th>Data</th><th>Used for</th><th>Licence / credit</th></tr></thead>
+        <tbody>
+          <tr><td>NSNS DR0.2 (S. Ziegenbalg)</td><td>Northern nebulae: Hα, [O III], [S II]</td><td><span class="nc">CC BY-NC-SA 4.0: attribution, non-commercial, share-alike</span>. The NSNS derivatives on this site may likewise only be used non-commercially under that licence. doi:10.3847/2515-5172/adfec7</td></tr>
+          <tr><td>DSS2 (UK Schmidt plates)</td><td>Helix detail level</td><td><span class="nc">Copyrighted material: plates © Anglo-Australian Observatory / Royal Observatory Edinburgh</span>, digitized by STScI; free for research, teaching and non-profit use with acknowledgement; commercial use requires permission</td></tr>
+          <tr><td>SHASSA (Gaustad et al. 2001)</td><td>Southern Hα and continuum</td><td><span class="nc">Images © Las Cumbres Observatory, Inc.</span>; free for scientific and educational use; commercial use requires permission. Acknowledgement: the Southern H-Alpha Sky Survey Atlas (SHASSA), which is supported by the National Science Foundation (Gaustad, McCullough, Rosing &amp; Van Buren 2001, PASP 113, 1326)</td></tr>
+          <tr><td>VPHAS+ DR4 (ESO 177.D-3023)</td><td>Detail levels of Carina, M8, M16</td><td>ESO Science Archive, CC BY 4.0 (Drew et al. 2014)</td></tr>
+          <tr><td>SDSS-V LVM</td><td>Helix line brightness</td><td>SDSS public data (Sánchez et al. 2026), acknowledged as SDSS requires; <span class="nc">commercial use requires ARC approval</span></td></tr>
+          <tr><td>Finkbeiner (2003) Hα all-sky map</td><td>Wide-field background</td><td>Released by NASA LAMBDA (including WHAM, VTSS and SHASSA), credited</td></tr>
+          <tr><td>Gaia DR3</td><td>Star positions and brightness</td><td><span class="nc">ESA/Gaia/DPAC, CC BY-NC 3.0 IGO (non-commercial)</span>, via CDS VizieR</td></tr>
+          <tr><td>Hipparcos and Tycho catalogues (ESA 1997)</td><td>Stars brighter than magnitude 7</td><td>ESA, via CDS VizieR, credited</td></tr>
+          <tr><td>ESO SkyCalc</td><td>Night-sky, airglow and moonlight spectra</td><td>ESO sky model (Noll et al. 2012; Jones et al. 2013), credited</td></tr>
+          <tr><td>CIE tables</td><td>Illuminants and luminosity functions</td><td>CIE published values, credited</td></tr>
+          <tr><td>Journal papers</td><td>Cathode, MCP, phosphor and other parameters</td><td>Only numbers and relations are cited; no text, tables or figures of the papers are included</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The full third-party notices (including algorithm and software licences) are in <a href="./THIRD_PARTY_NOTICES.txt">THIRD_PARTY_NOTICES.txt</a>. If you hold rights to any of these data and have questions about how they are used, please get in touch below and it will be addressed promptly.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Author: 英国高级出摊工程师 · WeChat: S0utherN</p>
+    <p>When reporting a problem, you can include the text copied from the simulator's Settings → This device → Error log, and the shared link from when it happened.</p>
+  </section>
+
+  <footer><a class="back" href="./app.html?lang=en">Back to the simulator</a><p id="version"></p></footer>
+</main>
+<script>
+  // Version line from the build's product.json; the page works without it.
+  fetch('./product.json').then(r => r.ok ? r.json() : null).then(p => {
+    if (p) document.getElementById('version').textContent = 'Version ' + p.version + ' · physics model ' + p.modelVersion + ' · data ' + p.dataFamily;
+  }).catch(() => {});
+</script>
+</body>
+</html>

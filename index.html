@@ -4,12 +4,49 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#04070a" />
   <title>增像管天文模拟器</title>
-  <link rel="icon" href="./assets/favicon-Cr225KxK.svg" />
-  <script type="module" crossorigin src="./assets/app-Z4BqVR68.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/app-BAoSWdxy.css">
+  <meta name="description" content="在浏览器里体验夜视天文目镜：用真实巡天星云数据和增像管物理模型，实时模拟二代、三代增像管配合窄带滤镜看到的画面。免费使用，不收集任何数据。" />
+  <!-- Share cards. og:* for most apps; itemprop for QQ/WeChat-style crawlers; absolute URLs (https://phosphorsky.com/, vite.app.config.ts). -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="增像管天文模拟器" />
+  <meta property="og:title" content="增像管天文模拟器 · 夜视天文目镜" />
+  <meta property="og:description" content="用真实巡天数据和增像管物理模型，实时模拟夜视目镜里的星云。免费，不收集任何数据。" />
+  <meta property="og:image" content="https://phosphorsky.com/share-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://phosphorsky.com/" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta itemprop="name" content="增像管天文模拟器" />
+  <meta itemprop="description" content="用真实巡天数据和增像管物理模型，实时模拟夜视目镜里的星云。" />
+  <meta itemprop="image" content="https://phosphorsky.com/icons/share-thumb.jpg" />
+  <link rel="icon" href="./assets/favicon-Cr225KxK.svg" type="image/svg+xml" />
+  <link rel="icon" href="./icons/icon-192.png" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="增像管模拟" />
+  <link rel="manifest" href="./app.webmanifest" />
+  <style>
+    /* Before the app script runs (slow network, or a browser too old for it): a plain message, no dependencies. */
+    .preboot { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 24px;
+      background: #04070a; color: #7d9592; font: 14px/1.6 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif; text-align: center; }
+    .preboot p { margin: 0; max-width: 420px; }
+    .preboot .hint { opacity: 0; animation: preboot-hint 0.4s 10s forwards; font-size: 13px; color: #4b5f5d; }
+    @keyframes preboot-hint { to { opacity: 1; } }
+  </style>
+  <script type="module" crossorigin src="./assets/app-CI2cZh4d.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/boot-ZzUqWwq0.js">
+  <link rel="modulepreload" crossorigin href="./assets/vendor--Do4GtAm.js">
+  <link rel="stylesheet" crossorigin href="./assets/boot-h25Jt_sr.css">
 </head>
 <body>
-  <div id="root"></div>
+  <!-- Some in-app browsers use the first large image of the page as the share thumbnail. -->
+  <div style="display:none"><img src="./icons/share-thumb.jpg" alt="增像管天文模拟器" width="300" height="300" /></div>
+  <div id="root">
+    <div class="preboot">
+      <p>正在载入增像管天文模拟器…<br />Loading the simulator…</p>
+      <p class="hint">如果一直停在这里，请换用新版 Chrome、Edge 或 Safari 打开；在微信里可点右上角“···”选择在浏览器中打开。<br />Stuck here? Please open this page in a current Chrome, Edge or Safari.</p>
+    </div>
+  </div>
 </body>
 </html>

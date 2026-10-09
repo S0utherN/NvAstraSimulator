@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#04070a" />
+  <title>关于 · 隐私与声明 · 增像管天文模拟器</title>
+  <meta name="description" content="增像管天文模拟器的隐私说明（不收集任何数据）、免责声明（模拟结果不代表实物）和数据来源许可。" />
+  <link rel="icon" href="./icons/icon-192.png" type="image/png" />
+  <style>
+    :root { --bg: #04070a; --panel: rgba(12, 19, 24, 0.78); --line: rgba(150, 220, 210, 0.12); --text: #d6e3e1; --muted: #8fa5a2; --faint: #5b6f6d; --accent: #6fe3d1; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: radial-gradient(120% 60% at 50% 0%, #0b1a1d 0%, var(--bg) 55%) fixed, var(--bg); color: var(--text);
+      font: 15px/1.75 'PingFang SC', 'HarmonyOS Sans SC', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Noto Sans CJK SC', system-ui, sans-serif; }
+    main { max-width: 760px; margin: 0 auto; padding: 32px 16px 56px; }
+    header { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+    header img { width: 48px; height: 48px; border-radius: 12px; }
+    h1 { margin: 0; font-size: 22px; font-weight: 600; }
+    header p { margin: 0; color: var(--muted); font-size: 13px; }
+    nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 8px; }
+    nav a, .back { color: var(--accent); text-decoration: none; font-size: 14px; padding: 5px 12px; border: 1px solid var(--line); border-radius: 999px; }
+    section { margin-top: 18px; padding: 18px 18px 14px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
+    h2 { margin: 0 0 8px; font-size: 17px; font-weight: 600; color: var(--accent); }
+    h3 { margin: 16px 0 4px; font-size: 15px; font-weight: 600; }
+    p, li { color: var(--muted); }
+    p { margin: 0 0 10px; }
+    ul { margin: 0 0 10px; padding-left: 1.2em; }
+    strong { color: var(--text); font-weight: 600; }
+    .lead { font-size: 16px; color: var(--text); }
+    .table-wrap { overflow-x: auto; margin: 6px -4px 10px; }
+    table { width: 100%; min-width: 520px; border-collapse: collapse; font-size: 13.5px; }
+    th, td { text-align: left; vertical-align: top; padding: 7px 8px; border-bottom: 1px solid var(--line); color: var(--muted); }
+    th { color: var(--text); font-weight: 600; white-space: nowrap; }
+    td:first-child { color: var(--text); white-space: nowrap; }
+    .nc { color: #e8b877; }
+    a { color: var(--accent); }
+    footer { margin-top: 28px; color: var(--faint); font-size: 13px; text-align: center; }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="./icons/icon-192.png" alt="" width="48" height="48" />
+    <div><h1>增像管天文模拟器</h1><p>关于 · 隐私说明 · 免责声明 · 数据许可</p></div>
+  </header>
+  <nav aria-label="本页目录">
+    <a href="./app.html">打开模拟器</a><a href="#privacy">隐私</a><a href="#disclaimer">免责声明</a><a href="#data">数据与许可</a><a href="#contact">联系</a><a href="./about-en.html" lang="en">English</a>
+  </nav>
+
+  <section id="about">
+    <h2>这是什么</h2>
+    <p class="lead">一个在浏览器里运行的夜视天文目镜模拟器：用公开巡天数据描述星云和恒星，用增像管（阴极、微通道板、荧光屏）的物理模型，在显卡上实时模拟每一个光子事件，展示不同增像管、滤镜和夜空条件下“目镜里大概会看到什么”。</p>
+    <p>本站<strong>免费、非商业</strong>，用于科普与研究，没有广告和付费内容。</p>
+  </section>
+
+  <section id="privacy">
+    <h2>隐私说明：不收集任何数据</h2>
+    <ul>
+      <li><strong>没有统计、广告、账号或 Cookie。</strong>页面里没有任何分析或追踪代码，不会把你的操作、参数、设备信息发送到任何服务器。</li>
+      <li><strong>参数只在链接里。</strong>分享链接 <code>#s=…</code> 后面编码了模拟参数；按网页规范，<code>#</code> 之后的内容不会发送给服务器，只有你把链接发给别人时对方才能看到。</li>
+      <li><strong>本机存储。</strong>浏览器本地存储（localStorage）里只保存界面偏好：是否看过引导、画质选择、面板折叠状态，以及程序出错时的错误记录（错误信息、版本号和页面路径）。为了下次打开更快，看过的星图等数据文件和网页本身也会缓存在这台设备上（Cache API 与 Service Worker），内容和服务器上公开的文件完全一样。这些都不会上传；可以在模拟器的“设置 → 本机”里清除，或清除浏览器的网站数据。</li>
+      <li><strong>错误记录只在本机。</strong>出错时你可以在“设置 → 本机 → 错误记录”里复制它，自己决定是否发给作者。复制的文字包含浏览器版本和屏幕尺寸，发送前可以看到全部内容。</li>
+      <li><strong>托管服务。</strong>网页和数据文件由静态托管服务（目前是 GitHub Pages，可能经过 Cloudflare 等 CDN）提供，这些服务商可能按其自身政策记录常规访问日志（如 IP 地址）；本站不读取、不使用这些日志。</li>
+      <li>如果将来要加入任何访问统计，会事先在这里和模拟器中明确说明，并只在征得同意后启用。</li>
+    </ul>
+  </section>
+
+  <section id="disclaimer">
+    <h2>免责声明：模拟结果不代表实物</h2>
+    <ul>
+      <li>画面、亮度、噪声和“等效参数纸”都是<strong>模型计算结果</strong>，用来理解增像管的原理和趋势，<strong>不代表任何品牌、型号或某一支具体增像管的实际观感或实测性能</strong>。预设名称只是参数组合，不是通用的产品规格。</li>
+      <li>模型依赖公开巡天数据、论文中的数值和若干假设（例如部分目标缺少实测的 [O III] 或 [S II] 图像、部分阴极与荧光屏曲线为估算）；这些缺口和假设在模拟器各处的“?”说明中有标注。实际目视效果还取决于望远镜、天气、个人视觉等，与模拟可能有明显差异。</li>
+      <li>请勿把模拟结果作为购买、交易、安全或任何专业用途的依据。夜视设备的购买和使用请遵守当地法律法规。</li>
+      <li>本站按“现状”提供，不对使用本站或依据模拟结果造成的任何后果承担责任。</li>
+    </ul>
+  </section>
+
+  <section id="data">
+    <h2>数据来源与许可</h2>
+    <p>本站只发布经过处理的衍生数据（重采样、换算单位、编码），不包含原始 FITS、论文原文或图片。各数据按来源要求署名；其中部分数据<span class="nc">禁止商业使用</span>，这也是本站保持非商业的原因之一。</p>
+    <div class="table-wrap">
+      <p>0.9.43 新增天鹅座局部三线精细层、心脏／灵魂和英仙座双星团，分别使用 NSNS 巡天及 Gaia／Hipparcos 星表；沿用下列署名与非商业使用条款。</p>
+      <p>0.9.45 新增 10 个深空目标（NSNS）、仙王—仙后与英仙—御夫广域（NSNS＋Finkbeiner）、大麦哲伦云（SHASSA）及蝴蝶 IC 1318 精细层，来源与条款同下。</p>
+        <table>
+        <thead><tr><th>数据</th><th>用途</th><th>许可 / 署名要求</th></tr></thead>
+        <tbody>
+          <tr><td>NSNS DR0.2（S. Ziegenbalg）</td><td>北天星云 Hα、[O III]、[S II] 图像</td><td><span class="nc">CC BY-NC-SA 4.0：署名、非商业、相同方式共享</span>。本站的 NSNS 衍生数据同样只能按此许可非商业使用。doi:10.3847/2515-5172/adfec7</td></tr>
+          <tr><td>DSS2（UK Schmidt 底片）</td><td>上帝之眼细节层</td><td><span class="nc">版权材料：底片版权属 Anglo-Australian Observatory / Royal Observatory Edinburgh</span>，由 STScI 数字化；科研、教学和非营利用途可免费使用并署名，商用须许可</td></tr>
+          <tr><td>SHASSA（Gaustad et al. 2001）</td><td>南天 Hα 与连续谱</td><td><span class="nc">图像版权属 Las Cumbres Observatory, Inc.</span>，科研和教育用途免费，商用须许可。致谢：the Southern H-Alpha Sky Survey Atlas (SHASSA), which is supported by the National Science Foundation（Gaustad, McCullough, Rosing &amp; Van Buren 2001, PASP 113, 1326）</td></tr>
+          <tr><td>VPHAS+ DR4（ESO 177.D-3023）</td><td>船底座、M8、M16 细节层</td><td>ESO 科学档案，CC BY 4.0（Drew et al. 2014）</td></tr>
+          <tr><td>SDSS-V LVM</td><td>上帝之眼谱线亮度</td><td>SDSS 公开数据（Sánchez et al. 2026），按 SDSS 要求致谢；<span class="nc">商业用途须 ARC 批准</span></td></tr>
+          <tr><td>Finkbeiner (2003) Hα 全天图</td><td>广域背景</td><td>NASA LAMBDA 发布（含 WHAM、VTSS、SHASSA），署名</td></tr>
+          <tr><td>Gaia DR3</td><td>恒星位置与亮度</td><td><span class="nc">ESA/Gaia/DPAC，CC BY-NC 3.0 IGO（非商业）</span>，经 CDS VizieR 获取</td></tr>
+          <tr><td>依巴谷与第谷星表（ESA 1997）</td><td>亮于 7 等的恒星</td><td>ESA，经 CDS VizieR 获取，署名</td></tr>
+          <tr><td>ESO SkyCalc</td><td>夜空、气辉与月光光谱</td><td>ESO 天空模型（Noll et al. 2012；Jones et al. 2013），署名</td></tr>
+          <tr><td>CIE 表</td><td>光源与视见函数</td><td>CIE 公开数值，署名</td></tr>
+          <tr><td>期刊论文</td><td>阴极、MCP、荧光屏等参数</td><td>只引用数值和关系，不包含论文的文字、表格或图片</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>完整的第三方声明（含算法与软件许可）见 <a href="./THIRD_PARTY_NOTICES.txt">THIRD_PARTY_NOTICES.txt</a>。如果你是某项数据的权利人并对使用方式有疑问，请通过下方方式联系，会及时处理。</p>
+  </section>
+
+  <section id="contact">
+    <h2>联系</h2>
+    <p>作者：英国高级出摊工程师 · 微信：S0utherN</p>
+    <p>反馈问题时，可以附上模拟器“设置 → 本机 → 错误记录”里复制的内容，以及出问题时的分享链接。</p>
+  </section>
+
+  <footer><a class="back" href="./app.html">返回模拟器</a><p id="version"></p></footer>
+</main>
+<script>
+  // Version line from the build's product.json; the page works without it.
+  fetch('./product.json').then(r => r.ok ? r.json() : null).then(p => {
+    if (p) document.getElementById('version').textContent = '版本 ' + p.version + ' · 物理模型 ' + p.modelVersion + ' · 数据 ' + p.dataFamily;
+  }).catch(() => {});
+</script>
+</body>
+</html>

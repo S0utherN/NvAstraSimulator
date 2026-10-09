@@ -319,3 +319,195 @@ except removal of zero-coded absent SII planes in two detail layers.
 User-provided Helix frame and private site/header metadata are not
 redistributed; its unvalidated radiometric fine layer is only retained
 in the frozen atlas4 for historical links, excluded from the new default.
+
+--- Licence review 2026-10-02 (supersedes earlier wording above; see docs/DATA_LICENSES.md) ---
+Gaia DR3: data distributed under CC BY-NC 3.0 IGO; credit ESA/Gaia/DPAC.
+  Commercial use is governed by the ESA space science archive terms
+  (https://www.cosmos.esa.int/web/gaia-users/license).
+SHASSA: images copyright Las Cumbres Observatory, Inc.; scientific and
+  educational use free with acknowledgement; commercial use requires
+  express permission. Required acknowledgement: "the Southern H-Alpha Sky
+  Survey Atlas (SHASSA), which is supported by the National Science
+  Foundation"; Gaustad J. E., McCullough P. R., Rosing W., Van Buren D.,
+  2001, PASP 113, 1326 (https://amundsen.swarthmore.edu/ack.html).
+DSS2: copyrighted material; research, teaching and other non-profit use
+  free with acknowledgement; commercial use prohibited without permission
+  (https://gsss.stsci.edu/Acknowledgements/DSSCopyrights.htm).
+SDSS (SDSS-V LVM): public data release; use for a commercial publication
+  or other commercial purpose requires explicit approval by the
+  Astrophysical Research Consortium (https://sdss.org/collaboration/image-use-policy/).
+CIE tables: the CIE open-access dataset page states no licence; to be
+  confirmed before any commercial use.
+This site is free and non-commercial; all of the above are used on that basis.
+
+--- D67 halo research and project-authored implementation, 2026-10-04 ---
+Li Xiaofeng et al., Performance Comparison Between Super Second Generation
+and Third Generation Image Intensifiers, Infrared Technology 44(8), 764-777 (2022).
+  https://hwjs.nvir.cn/cn/article/Y2022/I8/764
+Guo Bingtao et al., Modeling and simulation of halo effect of night vision system,
+High Power Laser and Particle Beams 28, 119001 (2016), doi:10.11884/HPLPB201628.160081.
+  https://www.hplpb.com.cn/en/article/doi/10.11884/HPLPB201628.160081
+Zacher et al., Effects of image intensifier halo on perceived layout,
+Proc. SPIE 6557, 65570U (2007), doi:10.1117/12.719892.
+  https://www.eecs.yorku.ca/~rallison/papers/Effects%20of%20image%20intensifier%20halo%20on%20perceived%20layout.pdf
+These papers motivate physical mechanisms and qualitative profiles only.
+No figures, digitized profiles, source code or paper PDFs are distributed.
+Halo coefficients, normalized two-disc kernels, MTF derivation, resampling
+compensation, GPU packed taps and ROI compound-noise adjoints are project-authored
+engineering models; numerical verification is not experimental calibration.
+The added J2 evaluation uses a project-authored implementation of the standard
+Bessel power series and large-argument expansion (NIST DLMF 10.2.2, 10.17.3):
+  https://dlmf.nist.gov/10.2#E2 ; https://dlmf.nist.gov/10.17#E3
+The existing J1 approximation and its earlier attribution remain unchanged.
+
+
+Interface fonts (0.9.18; self-hosted, Latin and glyph subsets; files in src/app/fonts/, built by scripts/make-fonts.mjs)
+
+IBM Plex Sans and IBM Plex Mono (Latin subsets as distributed by Fontsource).
+Copyright 2019 IBM Corp. All rights reserved. https://github.com/IBM/plex
+
+IIT Engrave: a Modified Version (glyph subset, renamed) of Smiley Sans v2.0.1, https://github.com/atelier-anchor/smiley-sans
+Copyright (c) 2022--2024, atelierAnchor <https://atelier-anchor.com>, with Reserved Font Name <Smiley> and <得意黑>.
+
+These Font Softwares are licensed under the SIL Open Font License, Version 1.1:
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded,
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+QR code in the saved picture (0.9.21; npm qrcode-generator 1.5.2, bundled in the snapshot chunk)
+------------------------------------------------------------
+QR Code Generator for JavaScript. Copyright (c) 2009 Kazuhiko Arase.
+URL: http://www.d-project.com/ . Licensed under the MIT license:
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+The word "QR Code" is a registered trademark of DENSO WAVE INCORPORATED.
+The unit tests decode the code with jsQR 1.4.0 (Apache-2.0, development only, not shipped).
+
+D73: Andrew Crumey (2014), Human Contrast Threshold and Astronomical Visibility, MNRAS 442, 2600; https://arxiv.org/html/1405.4209. Point-source threshold equations and Blackwell spectral reference; project implementation and display coefficients independently authored, no source figures/data copied. Midori Tanaka et al. (2017), DOI10.2352/J.ImagingSci.Technol.2017.61.6.060401, star-size perception research cited as design context only.
+
+D74: CIE 191:2010, Recommended System for Mesopic Photometry Based on Visual Performance (Commission Internationale de l'Eclairage); only the published adaptation-coefficient formula m = 0.7670 + 0.3334 log10(L_mes) is used for the rod/cone weight, implemented independently (bisection). No CIE tables, figures or text copied. Tone curve, star brightness steps and colour coefficients are project display design.
+
+
+Cygnus regional framing presets (0.9.42, 2026-10-07)
+North America / Pelican, Crescent and Veil reuse the existing Cygnus NSNS,
+Finkbeiner-corrected maps and Gaia/Hipparcos catalogue. Existing source
+attributions and restrictions continue to apply; no new survey files are included.
+This work has made use of the SIMBAD database, operated at CDS, Strasbourg, France,
+for catalogue reference positions. The combined North America / Pelican framing
+centre is a project choice; Crescent is framed on WR 136.
+Source record: docs/TARGET_INGESTION.md (regional presets, D86).
+
+Atlas6 (0.9.43, 2026-10-07)
+NSNS DR0.2 by Stefan Ziegenbalg supplies linear H-alpha/[O III]/[S II]
+FITS for North America/Pelican, Crescent, Veil, Heart/Soul and the Double
+Cluster field background. Derived maps: CC BY-NC-SA 4.0.
+https://www.simg.de/nebulae3/dr0_2/ ; https://www.simg.de/licensing.html
+This research made use of hips2fits, a service provided by CDS.
+https://alasky.cds.unistra.fr/hips-image-services/hips2fits
+New Heart/Soul and Double Cluster point catalogues use ESA/Gaia/DPAC
+Gaia DR3 (CC BY-NC 3.0 IGO) and ESA Hipparcos, via VizieR. Existing Gaia
+and Hipparcos acknowledgements above continue to apply. Catalogue reference
+positions use SIMBAD, operated at CDS, Strasbourg, France.
+Raw-file fingerprints and processing: data/scenes/atlas6-downloads.json;
+docs/reviews/2026-10-07/ATLAS6.md. Original atlas2/4/5 assets are unchanged.
