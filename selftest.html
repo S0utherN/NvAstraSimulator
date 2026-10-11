@@ -1,0 +1,1527 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>设备自检 · 增像管天文模拟器</title>
+<style>body { margin: 0; } [hidden] { display: none !important; }</style>
+</head>
+<body>
+<style>
+/* Layout: one narrow column for a phone screen; verdict first, then the steps, the images, the raw results. */
+:root {
+  --bg: #eef2f2; --panel: #ffffff; --ink: #142224; --muted: #5a6d70; --line: #d3dcdd;
+  --accent: #1c7c80; --ok: #1f7a3a; --bad: #b3261e; --warn: #9a6400; --chip: #e2ebeb;
+  --sans: system-ui, -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0b1416; --panel: #122023; --ink: #dcebec; --muted: #8aa3a6; --line: #22373a;
+  --accent: #5cc7c9; --ok: #5fd08a; --bad: #ff8a80; --warn: #e6b450; --chip: #1b2e31; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0b1416; --panel: #122023; --ink: #dcebec; --muted: #8aa3a6; --line: #22373a;
+  --accent: #5cc7c9; --ok: #5fd08a; --bad: #ff8a80; --warn: #e6b450; --chip: #1b2e31; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font: 15px/1.6 var(--sans); }
+main { max-width: 720px; margin: 0 auto; padding-block: 20px 40px; padding-inline: 16px; display: grid; gap: 16px; }
+h1 { font-size: 22px; margin: 0; text-wrap: balance; letter-spacing: .02em; }
+h2 { font-size: 15px; margin: 0 0 8px; color: var(--muted); font-weight: 600; letter-spacing: .06em; }
+p { margin: 0; }
+.lead { color: var(--muted); max-width: 62ch; }
+section { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; min-width: 0; }
+.verdict { display: grid; gap: 8px; }
+.pill { display: inline-block; font: 600 13px/1 var(--sans); padding: 6px 10px; border-radius: 999px; background: var(--chip); color: var(--muted); width: max-content; }
+.pill.ok { color: var(--ok); } .pill.bad { color: var(--bad); } .pill.warn { color: var(--warn); }
+#verdictText { font-size: 16px; }
+ol.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+ol.steps li { display: grid; grid-template-columns: 56px 1fr; gap: 10px; align-items: baseline; padding: 6px 0; border-top: 1px solid var(--line); }
+ol.steps li:first-child { border-top: 0; }
+.tag { font: 600 12px/1.4 var(--mono); text-align: center; border-radius: 6px; padding: 2px 0; background: var(--chip); color: var(--muted); }
+.tag.ok { color: var(--ok); } .tag.bad { color: var(--bad); } .tag.run { color: var(--accent); }
+.step-name { font-weight: 600; }
+.step-msg { color: var(--muted); font: 13px/1.5 var(--mono); overflow-wrap: anywhere; }
+.figs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+figure { margin: 0; display: grid; gap: 4px; }
+canvas.img { width: 100%; aspect-ratio: 1; image-rendering: pixelated; background: #000; border-radius: 6px; max-width: 100%; }
+figcaption { font-size: 12px; color: var(--muted); text-align: center; }
+dl.info { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 12px; margin: 0; font-size: 13px; }
+dl.info dt { color: var(--muted); }
+dl.info dd { margin: 0; font-family: var(--mono); overflow-wrap: anywhere; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+button { font: 600 14px/1 var(--sans); padding: 11px 16px; border-radius: 8px; border: 1px solid var(--accent); background: var(--accent); color: var(--bg); cursor: pointer; }
+button.secondary { background: transparent; color: var(--accent); }
+button:disabled { opacity: .5; cursor: default; }
+button:focus-visible { outline: 3px solid var(--warn); outline-offset: 2px; }
+textarea { width: 100%; box-sizing: border-box; min-height: 160px; font: 12px/1.45 var(--mono); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px; resize: vertical; }
+#copyNote { font-size: 13px; color: var(--muted); align-self: center; }
+@media (max-width: 420px) { .figs { gap: 6px; } ol.steps li { grid-template-columns: 48px 1fr; } }
+</style>
+
+<main>
+  <header style="display:grid;gap:6px">
+    <h1>广域投影自检</h1>
+    <p class="lead">检测这台设备的显卡能不能正确画出增像管天文模拟器的广域天图：用模拟器的投影代码在显卡上画一张合成天图，和 CPU 逐点算出的结果对比，并与 0.9.49 的旧写法对照。全部在本机完成，不上传任何数据。请用平时打开模拟器的那个浏览器打开本页。</p>
+  </header>
+
+  <section class="verdict" aria-live="polite">
+    <span id="verdictPill" class="pill">检测中</span>
+    <p id="verdictText">正在准备，大约需要 10–30 秒。</p>
+  </section>
+
+  <section>
+    <h2>检测步骤</h2>
+    <ol class="steps" id="steps"></ol>
+  </section>
+
+  <section>
+    <h2>25 mm 平面的 Hα 通道（合成数据）</h2>
+    <div class="figs">
+      <figure><canvas class="img" id="imgGpu" width="256" height="256"></canvas><figcaption>显卡算的</figcaption></figure>
+      <figure><canvas class="img" id="imgCpu" width="256" height="256"></canvas><figcaption>CPU 参照</figcaption></figure>
+      <figure><canvas class="img" id="imgErr" width="256" height="256"></canvas><figcaption>不一致处标红</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>本机显卡</h2>
+    <dl class="info" id="info"></dl>
+  </section>
+
+  <section style="display:grid;gap:10px">
+    <h2>结果（复制后发给开发者）</h2>
+    <textarea id="out" readonly aria-label="检测结果"></textarea>
+    <div class="actions">
+      <button id="copy" type="button">复制结果</button>
+      <button id="rerun" type="button" class="secondary">重新检测</button>
+      <span id="copyNote"></span>
+    </div>
+  </section>
+</main>
+
+<script>"use strict";var Diag=(()=>{var I=Object.defineProperty;var Oe=Object.getOwnPropertyDescriptor;var qe=Object.getOwnPropertyNames;var Ne=Object.prototype.hasOwnProperty;var Ve=(r,e,t)=>e in r?I(r,e,{enumerable:!0,configurable:!0,writable:!0,value:t}):r[e]=t;var je=(r,e)=>{for(var t in e)I(r,t,{get:e[t],enumerable:!0})},Be=(r,e,t,i)=>{if(e&&typeof e=="object"||typeof e=="function")for(let n of qe(e))!Ne.call(r,n)&&n!==t&&I(r,n,{get:()=>e[n],enumerable:!(i=Oe(e,n))||i.enumerable});return r};var Xe=r=>Be(I({},"__esModule",{value:!0}),r);var p=(r,e,t)=>Ve(r,typeof e!="symbol"?e+"":e,t);var ht={};je(ht,{FULLSCREEN_VS:()=>F,GlResources:()=>O,MASKED_CODE:()=>Z,SKY_PROJECT_FS:()=>G,SKY_PROJECT_VARIANTS:()=>B,STEP_ORDER:()=>J,SkyProjector:()=>C,TILE_PIXELS:()=>K,footprintTiles:()=>Re,planeGeometry:()=>Fe,planePixel:()=>ze,ringNested:()=>$,tileIndex:()=>Pe,tileKey:()=>Ee});var j=`
+// Jarzynski & Olano 2020, "Hash Functions for GPU Rendering", pcg4d.
+uvec4 pcg4d(uvec4 v) {
+  v = v * 1664525u + 1013904223u;
+  v.x += v.y * v.w; v.y += v.z * v.x; v.z += v.x * v.y; v.w += v.y * v.z;
+  v ^= v >> 16u;
+  v.x += v.y * v.w; v.y += v.z * v.x; v.z += v.x * v.y; v.w += v.y * v.z;
+  return v;
+}
+
+uvec4 g_key;
+uvec4 g_block;
+int g_used;
+
+void rngInit(uvec4 key) { g_key = key; g_block = pcg4d(key); g_used = 0; }
+
+// Uniform on (0, 1], 24-bit resolution; never returns 0 so log() is safe.
+float rngU01() {
+  if (g_used == 4) { g_block = pcg4d(g_block ^ g_key.wzyx); g_used = 0; }
+  uint u = g_block[g_used];
+  g_used++;
+  return (float(u >> 8u) + 1.0) * (1.0 / 16777216.0);
+}
+
+float rngNormal() {
+  float r = sqrt(-2.0 * log(rngU01()));
+  return r * cos(6.283185307179586 * rngU01());
+}
+
+const float LOG_FACT[10] = float[10](0.0, 0.0, 0.6931471805599453, 1.791759469228055,
+  3.1780538303479458, 4.787491742782046, 6.579251212010101, 8.525161361065415,
+  10.60460290274525, 12.801827480081469);
+
+// log(mu^k e^-mu / k!) written as a Stirling difference so float32 does not
+// cancel k*log(mu) against log(k!) for large means.
+float logPoissonPmf(float k, float mu) {
+  if (k < 10.0) return -mu + k * log(mu) - LOG_FACT[int(k)];
+  float inv = 1.0 / k;
+  return -k * log(k / mu) + (k - mu) - 0.5 * log(k) - 0.9189385332046727
+    - inv / 12.0 + inv * inv * inv / 360.0;
+}
+
+float poissonSample(float mu) {
+  if (mu <= 0.0) return 0.0;
+  if (mu < 10.0) {
+    float limit = exp(-mu), p = 1.0, n = 0.0;
+    for (int i = 0; i < 96; i++) {
+      p *= rngU01();
+      if (p <= limit) return n;
+      n += 1.0;
+    }
+    return n;
+  }
+  if (mu >= 1.0e4) {
+    // Skewness 1/sqrt(mu) <= 0.01: continuity-corrected normal.
+    return max(0.0, floor(mu + sqrt(mu) * rngNormal() + 0.5));
+  }
+  // PTRS, Hoermann 1993 (same constants as physics/noise/distributions.ts).
+  float b = 0.931 + 2.53 * sqrt(mu), a = -0.059 + 0.02483 * b;
+  float invAlpha = 1.1239 + 1.1328 / (b - 3.4), vr = 0.9277 - 3.6224 / (b - 2.0);
+  for (int i = 0; i < 64; i++) {
+    float u = rngU01() - 0.5, v = rngU01(), us = 0.5 - abs(u);
+    float k = floor((2.0 * a / us + b) * u + mu + 0.43);
+    if (k < 0.0) continue;
+    if (us >= 0.07 && v <= vr) return k;
+    if (us < 0.013 && v > us) continue;
+    if (log(v) + log(invAlpha) - log(a / (us * us) + b) <= logPoissonPmf(k, mu)) return k;
+  }
+  return floor(mu + 0.5);
+}
+
+// Marsaglia-Tsang, scale 1; shape < 1 boosted by U^(1/shape).
+float gammaSample(float shape) {
+  float boost = 1.0;
+  if (shape < 1.0) { boost = pow(rngU01(), 1.0 / shape); shape += 1.0; }
+  float d = shape - 1.0 / 3.0, c = 1.0 / sqrt(9.0 * d);
+  for (int i = 0; i < 64; i++) {
+    float x = rngNormal(), t = 1.0 + c * x;
+    if (t <= 0.0) continue;
+    float v = t * t * t, u = rngU01();
+    if (u < 1.0 - 0.0331 * x * x * x * x || log(u) < 0.5 * x * x + d * (1.0 - v + log(v))) return d * v * boost;
+  }
+  return d * boost;
+}
+
+// Output charge (electrons) for n input events with mean gain G and excess
+// noise factor F2 = E[g^2]/E[g]^2: sum of n Gamma(1/(F2-1)) gains.
+float mcpCharge(float n, float gain, float f2) {
+  if (n <= 0.0) return 0.0;
+  if (f2 <= 1.0000001) return n * gain;
+  return gammaSample(n / (f2 - 1.0)) * (f2 - 1.0) * gain;
+}
+`;var h=`#version 300 es
+precision highp float;
+precision highp int;
+precision highp sampler2D;
+`,F=h+`
+const vec2 P[3] = vec2[3](vec2(-1.0, -1.0), vec2(3.0, -1.0), vec2(-1.0, 3.0));
+void main() { gl_Position = vec4(P[gl_VertexID], 0.0, 1.0); }
+`,U=`
+uniform sampler2D u_lut;
+uniform int u_nodes;
+uniform float u_maxAngle;
+vec4 lutAt(int row, float angle) {
+  float x = clamp(angle / u_maxAngle, 0.0, 1.0) * float(u_nodes - 1);
+  int i0 = int(floor(x));
+  int i1 = min(i0 + 1, u_nodes - 1);
+  return mix(texelFetch(u_lut, ivec2(i0, row), 0), texelFetch(u_lut, ivec2(i1, row), 0), x - float(i0));
+}
+uniform int u_tNodes;
+uniform vec2 u_logT;          // log(Tmin), log(Tmax)
+float starWeight(float temperature, float angle) {
+  float x = clamp((log(temperature) - u_logT.x) / (u_logT.y - u_logT.x), 0.0, 1.0) * float(u_tNodes - 1);
+  int k0 = int(floor(x));
+  int k1 = min(k0 + 1, u_tNodes - 1);
+  return mix(lutAt(2 + k0, angle).x, lutAt(2 + k1, angle).x, x - float(k0));
+}
+`,se=`
+const vec2 D65_UV = vec2(0.19784, 0.46832);
+vec2 uvOf(vec3 c) { float q = c.x + 15.0 * c.y + 3.0 * c.z; return q > 0.0 ? vec2(4.0 * c.x, 9.0 * c.y) / q : D65_UV; }
+vec3 xyzOfUv(vec2 uv) { vec2 xy = vec2(9.0 * uv.x, 4.0 * uv.y) / (6.0 * uv.x - 16.0 * uv.y + 12.0); return vec3(xy.x, xy.y, 1.0 - xy.x - xy.y) / xy.y; }
+`,vt=h+U+`
+layout(location=0) in vec4 a_star;            // TAN-plane X (west+), Y (north+), F_lambda(550 nm) W/m^2/nm, colour temperature K
+layout(location=1) in uint a_seed;            // original catalogue ordinal or stable global sky ID
+uniform vec2 u_originMm;   // mm position of texel (0,0) centre
+uniform float u_pitchMm;
+uniform float u_focalMm;
+uniform float u_cathodeR;
+uniform float u_sceneScale;
+uniform vec2 u_size;
+// Moving seeing (0 = static): one-axis rms image motion (mm), log-normal scintillation sigma, time (s), frame.
+uniform float u_tiltMm;
+uniform float u_scint;
+uniform float u_time;       // exposure midpoint (s)
+uniform float u_exposureS;  // rectangular window duration (s)
+uniform uint u_frame;
+uniform mat3 u_point;      // camera -> atlas axes (telescope pointing); its transpose maps atlas -> camera
+out vec2 v_cell;
+out float v_rate;
+uint hashU(uint x) { x ^= x >> 16; x *= 0x7feb352du; x ^= x >> 15; x *= 0x846ca68bu; x ^= x >> 16; return x; }
+float hashF(uint x) { return float(hashU(x) >> 8) * (1.0 / 16777216.0); }
+void main() {
+  vec3 cam = transpose(u_point) * vec3(a_star.xy, 1.0);
+  vec2 mm = cam.z > 1e-6 ? cam.xy / cam.z * u_focalMm : vec2(1e9);
+  float r = length(mm);
+  // Point source: total rate = F550 * w(T, angle) * f^2 (w already includes the band width).
+  float rate = a_star.z * starWeight(a_star.w, atan(r / u_focalMm)) * u_sceneScale * u_focalMm * u_focalMm * 1.0e-3;
+  uint id = a_seed * 7919u + 17u;
+  if (u_tiltMm > 0.0) {
+    // Exact rectangular average of three sinusoids per star/axis (0.7-14 Hz).
+    // The unresolved within-window motion is an input-side Gaussian ensemble-variance blur.
+    // Equal amplitudes a with 3 a^2 / 2 = tilt^2. Different stars move independently
+    // (separations far beyond the isoplanatic angle).
+    vec2 d = vec2(0.0);
+    for (int k = 0; k < 6; k++) {
+      uint h = hashU(id + uint(k) * 104729u);
+      float f = 0.7 * exp(hashF(h) * 3.0), ph = 6.2831853 * hashF(h ^ 0x9e3779b9u);
+      float v = sin(6.2831853 * f * u_time + ph);
+      // Live observation keeps the original instantaneous path; only frozen snapshots integrate a trajectory.
+      if (u_exposureS > 0.0) {
+        float z = 3.14159265 * f * u_exposureS;
+        v *= abs(z) < 1e-6 ? 1.0 : sin(z) / z;
+      }
+      if (k < 3) d.x += v; else d.y += v;
+    }
+    mm += d * u_tiltMm * 0.8164966;
+  }
+  if (u_scint > 0.0) {
+    // Finite-exposure scintillation: unit-mean log-normal approximation scaled by window duration.
+    float u1 = max(1e-7, hashF(hashU(id ^ (u_frame * 2654435761u)))), u2 = hashF(hashU(id + u_frame * 40503u + 1u));
+    float n = sqrt(-2.0 * log(u1)) * cos(6.2831853 * u2);
+    rate *= exp(u_scint * n - 0.5 * u_scint * u_scint);
+  }
+  v_rate = rate;
+  vec2 cell = (mm - u_originMm) / u_pitchMm;
+  v_cell = cell;
+  gl_PointSize = 3.0;
+  gl_Position = r > u_cathodeR ? vec4(2.0, 2.0, 2.0, 1.0) : vec4((cell + 0.5) / u_size * 2.0 - 1.0, 0.0, 1.0);
+}
+`,_t=h+`
+in vec2 v_cell;
+in float v_rate;
+out vec4 o;
+void main() {
+  vec2 d = abs(gl_FragCoord.xy - 0.5 - v_cell);
+  vec2 w = max(vec2(0.0), 1.0 - d);
+  o = vec4(v_rate * w.x * w.y, 0.0, 0.0, 0.0);
+}
+`,We=h+U+`
+uniform sampler2D u_atlas;   // RGBA32F: H\u03B1, [O III] 5007, [S II] (W/m^2/sr), continuum (W/m^2/sr/nm @550); H\u03B1 < 0 = invalid
+uniform int u_atlasSize;
+uniform float u_atlasStep;   // TAN-plane units per atlas pixel
+uniform vec2 u_atlasRef;     // pixel-centre coordinate of the tangent point
+uniform sampler2D u_level0;  // finer levels: RGBA H\u03B1, [O III] or -1, [S II] or -1 (keep coarser), validity
+uniform sampler2D u_level1;
+uniform sampler2D u_level2;  // levels 2-4: further non-overlapping regional patches (D88, D89)
+uniform sampler2D u_level3;
+uniform sampler2D u_level4;
+uniform int u_levels;
+uniform ivec2 u_levelSize[5];
+uniform float u_levelStep[5];
+uniform vec2 u_levelOrigin[5]; // TAN coordinate of level pixel (0,0) centre
+uniform mat3 u_point;        // camera -> atlas axes (telescope pointing)
+uniform float u_cellTan;     // cell pitch in TAN units: sub-samples average the cell area (flux-conserving)
+uniform sampler2D u_stars;   // R16F/R32F: star electron/s per texel x1e-3, bright stars (static mean positions)
+uniform sampler2D u_starsFaint; // same, the fainter stars, which never move with the seeing (0.6.1)
+uniform vec2 u_originMm;
+uniform float u_pitchMm;
+uniform float u_focalMm;
+uniform float u_cathodeR;
+uniform float u_sceneScale;
+uniform float u_starsInRate;  // 1: bright stars are part of the static rate; 0: rendered per frame (moving seeing)
+uniform int u_eyeDiffuse; // D73 display-only XYZ + rod diffuse scene, with NO catalogue stars
+uniform float u_maxSub;       // cap on k (8 at rest; lower while the view is dragged)
+// D79 (naked eye, blurred base map): 0 = everything; 1 = target + sky only; 2 = the stars added to u_base (R rate, G mask).
+uniform int u_part;
+uniform sampler2D u_base;
+out vec4 o;
+
+vec4 atlasTexel(ivec2 q) {
+  if (q.x < 0 || q.y < 0 || q.x >= u_atlasSize || q.y >= u_atlasSize) return vec4(-1.0);
+  return texelFetch(u_atlas, q, 0);
+}
+vec4 atlasBilinear(vec2 tan, out bool ok) {
+  vec2 s = tan / u_atlasStep + u_atlasRef;
+  ivec2 i0 = ivec2(floor(s));
+  vec2 f = s - vec2(i0);
+  vec4 a = atlasTexel(i0), b = atlasTexel(i0 + ivec2(1, 0)), c = atlasTexel(i0 + ivec2(0, 1)), d = atlasTexel(i0 + ivec2(1, 1));
+  ok = min(min(a.x, b.x), min(c.x, d.x)) >= 0.0;
+  return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+}
+vec4 levelTexel(int k, ivec2 q) {
+  if (q.x < 0 || q.y < 0 || q.x >= u_levelSize[k].x || q.y >= u_levelSize[k].y) return vec4(0.0);
+  return k == 0 ? texelFetch(u_level0, q, 0) : k == 1 ? texelFetch(u_level1, q, 0) : k == 2 ? texelFetch(u_level2, q, 0) : k == 3 ? texelFetch(u_level3, q, 0) : texelFetch(u_level4, q, 0);
+}
+// Bilinear level sample; w = coverage weight (0 outside, feathered over 6 px at the edge).
+vec4 levelSample(int k, vec2 tan, out float w) {
+  vec2 s = (tan - u_levelOrigin[k]) / u_levelStep[k];
+  float edge = min(min(s.x, s.y), min(float(u_levelSize[k].x - 1) - s.x, float(u_levelSize[k].y - 1) - s.y));
+  // Outside the feather's support the contribution is exactly zero. Wide fields spend most pixels here.
+  if (edge <= 0.0) { w = 0.0; return vec4(0.0); }
+  ivec2 i0 = ivec2(floor(s));
+  vec2 f = s - vec2(i0);
+  vec4 a = levelTexel(k, i0), b = levelTexel(k, i0 + ivec2(1, 0)), c = levelTexel(k, i0 + ivec2(0, 1)), d = levelTexel(k, i0 + ivec2(1, 1));
+  w = min(min(a.w, b.w), min(c.w, d.w)) * clamp(edge / 6.0, 0.0, 1.0);
+  return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+}
+bool inLevel(int k, vec2 tan, float margin) {
+  vec2 lo = u_levelOrigin[k] - margin, hi = u_levelOrigin[k] + vec2(u_levelSize[k]) * u_levelStep[k] + margin;
+  return all(greaterThan(tan, lo)) && all(lessThan(tan, hi));
+}
+
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy);
+  vec2 mm = u_originMm + vec2(p) * u_pitchMm;
+  float r = length(mm);
+  if (r > u_cathodeR) { o = vec4(0.0); return; }
+  float star = (u_starsInRate * texelFetch(u_stars, p, 0).r + texelFetch(u_starsFaint, p, 0).r) * 1.0e3 / (u_pitchMm * u_pitchMm);
+  if (u_part == 2) { vec2 base = texelFetch(u_base, p, 0).rg; o = vec4(base.r + star, base.g, 0.0, 0.0); return; }
+  float angle = atan(r / u_focalMm);
+  vec4 w = lutAt(0, angle);
+  vec4 sky = lutAt(1, angle);
+  // Ideal rectilinear objective: the direction (x/f, y/f, 1) in camera axes, rotated into the atlas and projected.
+  vec3 v = u_point * vec3(mm / u_focalMm, 1.0);
+  bool front = v.z > 1e-6;
+  vec2 tan = front ? v.xy / v.z : vec2(1e9);
+  // k x k sub-samples over the cell: at least one per source pixel (base or level), at most 8 x 8.
+#ifdef RATE_SINGLE_SAMPLE
+  const int n = 1;
+#else
+  float k = ceil(u_cellTan / u_atlasStep);
+  for (int l = 0; l < 5; l++) if (l < u_levels && inLevel(l, tan, u_cellTan)) k = max(k, ceil(u_cellTan / u_levelStep[l]));
+  int n = int(clamp(k, 1.0, min(8.0, max(1.0, u_maxSub))));
+#endif
+  vec4 bands = vec4(0.0);
+  bool valid = front;
+  for (int j = 0; j < 8; j++) {
+    if (j >= n) break;
+    for (int i = 0; i < 8; i++) {
+      if (i >= n) break;
+      vec2 t = tan + ((vec2(float(i), float(j)) + 0.5) / float(n) - 0.5) * u_cellTan;
+      bool ok;
+      vec4 b = atlasBilinear(t, ok);
+      valid = valid && ok;
+      for (int l = 0; l < 5; l++) {
+        if (l >= u_levels) break;
+        float wl;
+        vec4 h = levelSample(l, t, wl);
+        if (wl > 0.0) b.xyz = vec3(mix(b.x, h.x, wl), h.y >= 0.0 ? mix(b.y, h.y, wl) : b.y, h.z >= 0.0 ? mix(b.z, h.z, wl) : b.z);
+      }
+      bands += b;
+    }
+  }
+  bands /= float(n * n);
+  float target = valid ? u_sceneScale * (dot(bands.xyz, w.xyz) + bands.w * w.w) : 0.0;
+  o = vec4(target + sky.x + (u_part == 1 ? 0.0 : star), 1.0, 0.0, 0.0);
+  if (u_eyeDiffuse == 1) {
+    int row = 2 + u_tNodes;
+    vec4 x = lutAt(row, angle), y = lutAt(row + 1, angle), z = lutAt(row + 2, angle);
+    vec3 xyz = valid ? u_sceneScale * vec3(dot(bands, x), dot(bands, y), dot(bands, z)) : vec3(0.0);
+    o = vec4(xyz + lutAt(row + 3, angle).xyz, target + sky.x);
+  }
+}
+`,yt=We.replace("#version 300 es",`#version 300 es
+#define RATE_SINGLE_SAMPLE`),T=`
+#define TAP(t, i) t[(i) >> 2][(i) & 3]
+bool inBounds(ivec2 q, ivec2 size) { return q.x >= 0 && q.y >= 0 && q.x < size.x && q.y < size.y; }
+`,gt=h+T+`
+uniform sampler2D u_src;
+uniform vec4 u_taps[32];
+uniform int u_radius;
+uniform ivec2 u_dir;
+out vec4 o;
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy), size = textureSize(u_src, 0);
+  vec4 c = texelFetch(u_src, p, 0);
+  float s = c.r * TAP(u_taps, 0);
+  for (int i = 1; i < 128; i++) {
+    if (i > u_radius) break;
+    ivec2 a = p + u_dir * i, b = p - u_dir * i;
+    float v = 0.0;
+    if (inBounds(a, size)) v += texelFetch(u_src, a, 0).r;
+    if (inBounds(b, size)) v += texelFetch(u_src, b, 0).r;
+    s += v * TAP(u_taps, i);
+  }
+  o = vec4(s, c.g, 0.0, 0.0);
+}
+`,bt=h+`
+uniform sampler2D u_src;
+uniform sampler2D u_extra;    // star deposits when stars are rendered per frame (their halo stays static)
+uniform float u_extraScale;
+uniform int u_k;
+out vec4 o;
+void main() {
+  ivec2 c = ivec2(gl_FragCoord.xy), size = textureSize(u_src, 0);
+  float s = 0.0;
+  for (int j = 0; j < u_k; j++) for (int i = 0; i < u_k; i++) {
+    ivec2 q = c * u_k + ivec2(i, j);
+    if (q.x < size.x && q.y < size.y) s += texelFetch(u_src, q, 0).r + u_extraScale * texelFetch(u_extra, q, 0).r;
+  }
+  o = vec4(s / float(u_k * u_k), 0.0, 0.0, 0.0);
+}
+`,Tt=h+T+`
+uniform sampler2D u_src;
+uniform sampler2D u_kernel;
+uniform int u_count;
+out vec4 o;
+void main() {
+  ivec2 c = ivec2(gl_FragCoord.xy), size = textureSize(u_src, 0);
+  float s = 0.0;
+  for (int i = 0; i < u_count; i++) {
+    vec3 tap = texelFetch(u_kernel, ivec2(i, 0), 0).xyz;
+    ivec2 q = c - ivec2(tap.xy);
+    if (inBounds(q, size)) s += tap.z * texelFetch(u_src, q, 0).r;
+  }
+  o = vec4(s, 0.0, 0.0, 0.0);
+}
+`,St=h+`
+uniform sampler2D u_core;
+uniform sampler2D u_halo;
+uniform sampler2D u_outer;
+uniform float u_w;
+uniform float u_outerW;
+uniform int u_k;
+uniform int u_outerK;
+out vec4 o;
+float haloAt(ivec2 q, ivec2 size) { return texelFetch(u_halo, clamp(q, ivec2(0), size - 1), 0).r; }
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy), size = textureSize(u_halo, 0);
+  vec2 rg = texelFetch(u_core, p, 0).rg;
+  // Coarse cell c covers fine cells [c k, c k + k); its centre is at fine coordinate c k + (k - 1) / 2.
+  vec2 x = (vec2(p) + 0.5) / float(u_k) - 0.5;
+  ivec2 i0 = ivec2(floor(x));
+  vec2 f = x - vec2(i0);
+  float h = mix(mix(haloAt(i0, size), haloAt(i0 + ivec2(1, 0), size), f.x), mix(haloAt(i0 + ivec2(0, 1), size), haloAt(i0 + ivec2(1, 1), size), f.x), f.y);
+  if (u_outerW > 0.0) {
+    vec2 ox = (vec2(p) + 0.5) / float(u_outerK) - 0.5;
+    ivec2 oi = ivec2(floor(ox)), os = textureSize(u_outer, 0);
+    vec2 of = ox - vec2(oi);
+    float a = texelFetch(u_outer, clamp(oi, ivec2(0), os - 1), 0).r;
+    float b = texelFetch(u_outer, clamp(oi + ivec2(1,0), ivec2(0), os - 1), 0).r;
+    float c = texelFetch(u_outer, clamp(oi + ivec2(0,1), ivec2(0), os - 1), 0).r;
+    float d = texelFetch(u_outer, clamp(oi + ivec2(1,1), ivec2(0), os - 1), 0).r;
+    h = mix(h, mix(mix(a,b,of.x),mix(c,d,of.x),of.y), u_outerW);
+  }
+  o = vec4((1.0 - u_w) * rg.r + u_w * h, rg.g, 0.0, 0.0);
+}
+`,wt=h+`
+uniform sampler2D u_src;
+out vec4 o;
+void main() {
+  ivec2 c = ivec2(gl_FragCoord.xy) * 2, size = textureSize(u_src, 0);
+  float s = 0.0;
+  for (int y=0;y<2;y++) for(int x=0;x<2;x++) {
+    ivec2 q = c + ivec2(x,y);
+    if (q.x<size.x && q.y<size.y) s += texelFetch(u_src,q,0).r;
+  }
+  o=vec4(s*0.25,0.0,0.0,0.0);
+}
+`,kt=h+T+`
+uniform sampler2D u_src;
+uniform vec4 u_t1[32];
+uniform vec4 u_t2[32];
+uniform int u_r1;
+uniform int u_r2;
+out vec4 o;
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy), size = textureSize(u_src, 0);
+  vec2 c = texelFetch(u_src, p, 0).rg;
+  float s1 = c.x * TAP(u_t1, 0), s2 = c.x * TAP(u_t2, 0);
+  int r = max(u_r1, u_r2);
+  for (int i = 1; i < 128; i++) {
+    if (i > r) break;
+    ivec2 a = p + ivec2(i, 0), b = p - ivec2(i, 0);
+    float v = 0.0;
+    if (inBounds(a, size)) v += texelFetch(u_src, a, 0).r;
+    if (inBounds(b, size)) v += texelFetch(u_src, b, 0).r;
+    if (i <= u_r1) s1 += v * TAP(u_t1, i);
+    if (i <= u_r2) s2 += v * TAP(u_t2, i);
+  }
+  o = vec4(s1, s2, c.y, 0.0);
+}
+`,At=h+T+`
+uniform sampler2D u_src;
+uniform vec4 u_t1[32];
+uniform vec4 u_t2[32];
+uniform int u_r1;
+uniform int u_r2;
+uniform vec2 u_weights;
+out vec4 o;
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy), size = textureSize(u_src, 0);
+  vec3 c = texelFetch(u_src, p, 0).rgb;
+  float s1 = c.x * TAP(u_t1, 0), s2 = c.y * TAP(u_t2, 0);
+  int r = max(u_r1, u_r2);
+  for (int i = 1; i < 128; i++) {
+    if (i > r) break;
+    ivec2 a = p + ivec2(0, i), b = p - ivec2(0, i);
+    vec2 v = vec2(0.0);
+    if (inBounds(a, size)) v += texelFetch(u_src, a, 0).rg;
+    if (inBounds(b, size)) v += texelFetch(u_src, b, 0).rg;
+    if (i <= u_r1) s1 += v.x * TAP(u_t1, i);
+    if (i <= u_r2) s2 += v.y * TAP(u_t2, i);
+  }
+  o = vec4(u_weights.x * s1 + u_weights.y * s2, c.z, 0.0, 0.0);
+}
+`,Mt=h+T+`
+uniform sampler2D u_src;      // RG32F: the charge or its conditional expectation (SAMPLE_FS writes both)
+uniform vec4 u_t1[32];
+uniform vec4 u_t2[32];
+uniform vec4 u_t3[32];
+uniform int u_r1;
+uniform int u_r2;
+uniform int u_r3;
+out vec4 o;
+vec2 sourceAt(ivec2 p) { return texelFetch(u_src, p, 0).rg; }
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy), size = textureSize(u_src, 0);
+  vec2 c = sourceAt(p);
+  float s1 = c.x * TAP(u_t1, 0), s2 = c.x * TAP(u_t2, 0), s3 = c.y * TAP(u_t3, 0);
+  int r = max(max(u_r1, u_r2), u_r3);
+  for (int i = 1; i < 128; i++) {
+    if (i > r) break;
+    ivec2 a = p + ivec2(i, 0), b = p - ivec2(i, 0);
+    vec2 v = vec2(0.0);
+    if (inBounds(a, size)) v += sourceAt(a);
+    if (inBounds(b, size)) v += sourceAt(b);
+    if (i <= u_r1) s1 += v.x * TAP(u_t1, i);
+    if (i <= u_r2) s2 += v.x * TAP(u_t2, i);
+    if (i <= u_r3) s3 += v.y * TAP(u_t3, i);
+  }
+  o = vec4(s1, s2, s3, 0.0);
+}
+`,Et=h+T+`
+uniform sampler2D u_src;
+uniform vec4 u_t1[32];
+uniform vec4 u_t2[32];
+uniform vec4 u_t3[32];
+uniform int u_r1;
+uniform int u_r2;
+uniform int u_r3;
+uniform vec2 u_weights;
+out vec4 o;
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy), size = textureSize(u_src, 0);
+  vec3 c = texelFetch(u_src, p, 0).rgb;
+  float s1 = c.x * TAP(u_t1, 0), s2 = c.y * TAP(u_t2, 0), s3 = c.z * TAP(u_t3, 0);
+  int r = max(max(u_r1, u_r2), u_r3);
+  for (int i = 1; i < 128; i++) {
+    if (i > r) break;
+    ivec2 a = p + ivec2(0, i), b = p - ivec2(0, i);
+    vec3 v = vec3(0.0);
+    if (inBounds(a, size)) v += texelFetch(u_src, a, 0).rgb;
+    if (inBounds(b, size)) v += texelFetch(u_src, b, 0).rgb;
+    if (i <= u_r1) s1 += v.x * TAP(u_t1, i);
+    if (i <= u_r2) s2 += v.y * TAP(u_t2, i);
+    if (i <= u_r3) s3 += v.z * TAP(u_t3, i);
+  }
+  o = vec4(u_weights.x * s1 + u_weights.y * s2 + s3, 0.0, 0.0, 0.0);
+}
+`,Ft=h+j+`
+uniform sampler2D u_rate;   // R: electron/s/mm^2 after input diffusion, G: cathode mask
+uniform float u_areaTime;   // texel area (mm^2) x frame time (s)
+uniform float u_dark;       // event/s/mm^2
+uniform float u_gain;
+uniform float u_f2;
+uniform uint u_frame;
+uniform uint u_seed;
+uniform int u_mean;
+uniform float u_ramp;       // power-on ramp of the photocathode signal only
+uniform sampler2D u_starsDyn; // per-frame star rate (moving seeing), texel units x1e-3 e/s
+uniform float u_starsScale;   // 1e3 / pitch^2 x (1 - halo weight), or 0
+uniform float u_snowRate;     // bright scintillations ("snow"), event/s/mm^2
+uniform float u_snowCharge;   // their mean charge in single-electron units (exponential distribution)
+// 0.9.46: two RG32F targets (formerly one RGBA32F), so the output spot reads 8 instead of 16 bytes per tap.
+layout(location = 0) out vec2 oCharge;   // R: ordinary charge, G: snow charge
+layout(location = 1) out vec2 oExpected; // their conditional expectations
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy);
+  vec2 rv = texelFetch(u_rate, p, 0).rg;
+  float signal = rv.r + u_starsScale * texelFetch(u_starsDyn, p, 0).r;
+  float mu = (signal * u_ramp + u_dark * rv.g) * u_areaTime;
+  float muSnow = u_snowRate * rv.g * u_areaTime;
+  // R: ordinary events (output spot = tube PSF); G: snow events (wider spot, see SPOT_H_FS).
+  vec2 expected = vec2(mu * u_gain, muSnow * u_snowCharge * u_gain);
+  if (u_mean == 1) { oCharge = expected; oExpected = expected; return; }
+  rngInit(uvec4(uint(p.x), uint(p.y), u_frame, u_seed));
+  float q = mcpCharge(poissonSample(mu), u_gain, u_f2), qs = 0.0;
+  if (u_snowRate > 0.0) {
+    float k = poissonSample(muSnow);
+    if (k > 0.0) qs = gammaSample(k) * u_snowCharge * u_gain;
+  }
+  oCharge = vec2(q, qs); oExpected = expected;
+}
+`,Rt=h+`
+uniform sampler2D u_frame;
+uniform sampler2D u_prev;
+uniform sampler2D u_expected;
+uniform float u_invAreaTime;
+uniform float u_alpha;
+out vec4 o;
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy);
+  vec2 cur = vec2(texelFetch(u_frame, p, 0).r, texelFetch(u_expected, p, 0).r) * u_invAreaTime;
+  vec2 prev = texelFetch(u_prev, p, 0).rg;
+  o = vec4(u_alpha >= 1.0 ? cur : prev + u_alpha * (cur - prev), 0.0, 0.0);
+}
+`,Pt=h+se+U+`
+uniform int u_nakedEye;
+uniform int u_eyeTube;
+uniform float u_focalMm;
+uniform vec2 u_eyeTubeMechanism; // working gain, dark rate (MCP input); display-only sky reference
+uniform float u_eyeReferenceY; // fixed display scale; independent of all sky components
+uniform vec4 u_eyeSourceShoulder;
+uniform sampler2D u_eyeDiffuse;
+uniform sampler2D u_eyeWide;   // the same XYZ + rod scene over ~0.5\xB0 apparent field: drives colour strength
+uniform sampler2D u_eyeStars;  // RGB = star tint x L* increment, A = L* increment (bright stars, twinkling)
+uniform sampler2D u_eyeStarsFaint; // the same for the fainter catalogue stars (static)
+uniform float u_eyeGain;
+uniform float u_eyeScale;      // adaptation gain x 2^(EV-1) / tone reference (cd/m\xB2)
+uniform float u_eyeToneMax;
+uniform vec3 u_eyeColour;      // colour gain on the mesopic weight, maximum strength, maximum u'v' distance
+uniform vec2 u_eyeWhite;       // adapted white (CIE 1976 u'v')
+uniform vec3 u_eyeNebula;      // lift contrast, L* per e-fold, view background (scotopic cd/m\xB2)
+uniform float u_eyeSP;
+uniform sampler2D u_intensity; // electron/s/mm^2 at the screen
+uniform sampler2D u_medium;
+uniform sampler2D u_coarse;
+uniform int u_eyeMode;
+uniform vec2 u_eyeContrast; // contrast threshold and field adapting intensity, independent of EV
+uniform int u_eyeLocal;     // 1 (naked eye, D68): each band's contrast is taken against the next coarser band, not the pixel itself
+uniform int u_margin;
+uniform float u_half;          // canvas half-size, px
+uniform vec3 u_xyz;            // XYZ per (electron/s/mm^2) at the screen
+uniform float u_scale;         // 683 / 10 cd/m^2 * 2^EV
+uniform float u_gammaInv;
+uniform vec2 u_centerMm;
+uniform float u_pitchMm;
+uniform float u_cathodeR;
+// Highlight shoulder (display only): knee (display luminance), log slope k, log normalizer, level of the peak; k <= 0 = off.
+uniform vec4 u_shoulder;
+out vec4 o;
+const mat3 XYZ_TO_SRGB = mat3(3.2406255, -0.9689307, 0.0557101,
+                              -1.537208, 1.8757561, -0.2040211,
+                              -0.4986286, 0.0415175, 1.0569959);
+float encodeSrgb(float v) { return v <= 0.0031308 ? 12.92 * v : 1.055 * pow(v, 1.0 / 2.4) - 0.055; }
+float contrastBand(float delta, float base, float threshold) {
+  if (threshold <= 0.0) return delta;
+  float t = max(base, 1e-12) * threshold, d2 = delta * delta;
+  return delta * d2 / (d2 + t * t);
+}
+float limitT(float t, float c, float grey) {
+  float d = c - grey;
+  if (d < 0.0) return min(t, grey / -d);
+  if (d > 0.0) return min(t, (1.0 - grey) / d);
+  return t;
+}
+// The virtual eye is monochrome, but retains the same shoulder, gamut and gamma as the tube.
+vec3 eyeTubeTone(float intensity, vec4 shoulder) {
+  vec3 xyz = u_xyz * (max(0.0, intensity) * u_scale);
+  if (shoulder.y > 0.0 && xyz.y > shoulder.x) {
+    float knee = shoulder.x, y = xyz.y;
+    xyz *= (knee + (shoulder.w - knee) * log(1.0 + shoulder.y * (y - knee)) / shoulder.z) / y;
+  }
+  vec3 rgb = XYZ_TO_SRGB * xyz;
+  float grey = min(1.0, xyz.y), t = 1.0;
+  t = limitT(t, rgb.r, grey); t = limitT(t, rgb.g, grey); t = limitT(t, rgb.b, grey);
+  return pow(clamp(grey + t * (rgb - grey), 0.0, 1.0), vec3(u_gammaInv));
+}
+// CIE 191:2010 mesopic weight (same bisection as eyeMesopicWeight in naked-eye.ts).
+float mesopicWeight(float p, float s) {
+  if (max(p, s) <= 0.005) return 0.0;
+  if (min(p, s) >= 5.0) return 1.0;
+  const float V0 = 683.0 / 1699.0;
+  float lo = 0.0, hi = 1.0;
+  for (int i = 0; i < 14; i++) {
+    float m = 0.5 * (lo + hi), l = (m * p + (1.0 - m) * V0 * s) / (m + (1.0 - m) * V0);
+    if (clamp(0.767 + 0.3334 * log(max(l, 1e-30)) * 0.4342945, 0.0, 1.0) > m) lo = m; else hi = m;
+  }
+  return 0.5 * (lo + hi);
+}
+float lightnessOf(float y) { return y > 0.008856 ? 116.0 * pow(y, 1.0 / 3.0) - 16.0 : 903.3 * y; }
+float lightnessInv(float l) { return l > 8.0 ? pow((l + 16.0) / 116.0, 3.0) : l / 903.3; }
+void main() {
+  vec2 frag = gl_FragCoord.xy;
+  vec2 rel = frag - u_half;
+  float view = clamp(u_half - length(rel) + 0.5, 0.0, 1.0);
+  if (view <= 0.0) { o = vec4(0.0); return; }
+  vec2 mm = u_centerMm + rel * u_pitchMm;
+  float cath = clamp((u_cathodeR - length(mm)) / u_pitchMm + 0.5, 0.0, 1.0);
+  ivec2 pixel = ivec2(frag) + ivec2(u_margin);
+  vec2 screen = texelFetch(u_intensity, pixel, 0).rg;
+  float intensity = max(screen.r, 0.0);
+  if (u_eyeMode == 2 && u_eyeContrast.x > 0.0) {
+    float medium = texelFetch(u_medium, pixel, 0).r, coarse = texelFetch(u_coarse, pixel, 0).r;
+    float adapting = max(u_eyeContrast.y, 1e-12), base = max(screen.g, adapting * 0.1), threshold = u_eyeContrast.x;
+    // Naked eye: an increment is judged against its surroundings (a star is far above the sky around it).
+    float baseMedium = u_eyeLocal == 1 ? max(coarse, adapting * 0.1) : base, baseFine = u_eyeLocal == 1 ? max(medium, adapting * 0.1) : base;
+    intensity = max(0.0, adapting + contrastBand(coarse - adapting, adapting, threshold)
+      + contrastBand(medium - coarse, baseMedium, threshold * 1.3)
+      + contrastBand(screen.r - medium, baseFine, threshold * 2.0));
+  }
+  if (u_eyeTube == 1) {
+    vec4 sky = lutAt(1, atan(length(mm) / u_focalMm));
+    // D84: every sky component is background. D83's moving natural-sky reference boosted detail with airglow.
+    // Isolate the source, apply bounded sensitivity that decreases with TOTAL sky, then the fixed response.
+    float total = max(0.0, sky.x + u_eyeTubeMechanism.y) * u_eyeTubeMechanism.x;
+    // Preserve dark blurred edges: the analytic background cannot exceed what the pixel actually received.
+    float background = min(intensity, total), perIntensity = max(u_xyz.y * u_scale, 1e-30);
+    float reference = u_eyeReferenceY / perIntensity;
+    float sensitivity = sqrt(2.0 * u_eyeReferenceY / (u_eyeReferenceY + total * perIntensity));
+    float source = (intensity - background) * sensitivity;
+    vec3 increment = max(vec3(0.0), eyeTubeTone(reference + source, u_eyeSourceShoulder) - eyeTubeTone(reference, u_eyeSourceShoulder));
+    vec3 lin = clamp(eyeTubeTone(background, u_shoulder) + increment, 0.0, 1.0);
+    vec3 srgb = vec3(encodeSrgb(lin.r), encodeSrgb(lin.g), encodeSrgb(lin.b));
+    o = vec4(srgb * cath * view, view);
+    return;
+  }
+  vec3 xyz = u_xyz * (intensity * u_scale);
+  // Above the knee: y -> knee + (top - knee) ln(1 + k (y - knee)) / ln(1 + k (peak - knee)); same slope at the knee.
+  if (u_shoulder.y > 0.0 && xyz.y > u_shoulder.x) {
+    float knee = u_shoulder.x, y = xyz.y;
+    xyz *= (knee + (u_shoulder.w - knee) * log(1.0 + u_shoulder.y * (y - knee)) / u_shoulder.z) / y;
+  }
+  vec3 rgb = XYZ_TO_SRGB * xyz;
+  if (u_nakedEye == 1) {
+    // D74: mesopic rod/cone luminance (scotopic scale), u = L G 2^(EV-1) / L_ref, then eyeTone (naked-eye.ts).
+    vec4 d = max(vec4(0.0), texelFetch(u_eyeDiffuse, pixel, 0)) * (u_eyeGain * 1e-7);
+    float L = mix(d.a, d.y * u_eyeSP, mesopicWeight(d.y, d.a)), u = L * u_eyeScale;
+    float v = u <= 1.0 ? u : 1.0 + log(u);
+    float Y = u_eyeToneMax * v / (1.0 + v);
+    // D75 nebula lift above EYE_NEBULA_CONTRAST x the view background (eyeNebulaLift).
+    float lift = u_eyeNebula.y * max(0.0, log(L / (u_eyeNebula.x * max(u_eyeNebula.z, 1e-12))));
+    float top = lightnessOf(u_eyeToneMax), l = lightnessOf(Y);
+    if (lift > 0.0 && l < top) Y = lightnessInv(l + (top - l) * (1.0 - exp(-lift / top)));
+    // Colour needs the cones both here and over a neighbourhood (eyeColourStrength); the hue is the local one.
+    vec4 w = max(vec4(0.0), texelFetch(u_eyeWide, pixel, 0)) * (u_eyeGain * 1e-7);
+    float colour = min(u_eyeColour.y, u_eyeColour.x * min(mesopicWeight(d.y, d.a), mesopicWeight(w.y, w.a)));
+    // Pale mesopic colour: u'v' difference from the adapted white, capped, times the strength, drawn about the display white.
+    vec2 delta = uvOf(d.xyz) - u_eyeWhite;
+    float shift = length(delta);
+    if (shift > u_eyeColour.z) delta *= u_eyeColour.z / shift;
+    rgb = XYZ_TO_SRGB * (xyzOfUv(D65_UV + delta * colour) * Y);
+    // Visibility-tested compact stars raise the displayed lightness of their background (independent of EV and pixel size).
+    vec4 star = texelFetch(u_eyeStars, pixel, 0) + texelFetch(u_eyeStarsFaint, pixel, 0);
+    if (star.a > 0.0) {
+      float yb = max(0.0, dot(rgb, vec3(0.2126, 0.7152, 0.0722)));
+      vec3 tint = star.rgb / star.a;
+      // D75: no brighter than the star's own colour can be shown, so bright red/blue stars keep their hue (not white).
+      float yt = min(lightnessInv(lightnessOf(yb) + star.a), 0.98 / max(max(tint.r, tint.g), max(tint.b, 1e-3)));
+      rgb += max(0.0, yt - yb) * tint;
+    }
+    xyz.y = dot(rgb, vec3(0.2126, 0.7152, 0.0722));
+  }
+  float grey = min(1.0, xyz.y), t = 1.0;
+  t = limitT(t, rgb.r, grey); t = limitT(t, rgb.g, grey); t = limitT(t, rgb.b, grey);
+  vec3 lin = clamp(grey + t * (rgb - grey), 0.0, 1.0);
+  lin = pow(lin, vec3(u_gammaInv));
+  vec3 srgb = vec3(encodeSrgb(lin.r), encodeSrgb(lin.g), encodeSrgb(lin.b));
+  o = vec4(srgb * cath * view, view);
+}
+`,zt=h+`
+uniform sampler2D u_src;
+out vec4 o;
+void main() { o = texelFetch(u_src, ivec2(gl_FragCoord.xy), 0); }
+`,Dt=h+T+`
+uniform sampler2D u_src;
+uniform vec4 u_taps[32];
+uniform int u_radius;
+uniform ivec2 u_dir;
+out vec4 o;
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy), size = textureSize(u_src, 0);
+  vec2 s = texelFetch(u_src, p, 0).rg * TAP(u_taps, 0);
+  for (int i = 1; i < 128; i++) {
+    if (i > u_radius) break;
+    ivec2 a = p + u_dir * i, b = p - u_dir * i;
+    vec2 v = vec2(0.0);
+    if (inBounds(a, size)) v += texelFetch(u_src, a, 0).rg;
+    if (inBounds(b, size)) v += texelFetch(u_src, b, 0).rg;
+    s += v * TAP(u_taps, i);
+  }
+  o = vec4(s, 0.0, 0.0);
+}
+`,Lt=h+j+`
+uniform sampler2D u_original;
+uniform sampler2D u_grain;
+uniform vec3 u_style; // strength (incl correlation normalization), tail prominence, fixed pattern amplitude
+uniform uint u_patternSeed;
+uniform vec2 u_centerMm;
+uniform float u_pitchMm;
+uniform float u_gridCenter;
+uniform int u_meanOnly;
+uniform int u_preservePointResidual;
+uniform float u_rawStrength;
+out vec4 o;
+float patternCell(ivec2 p) {
+  uvec4 v = pcg4d(uvec4(uint(p.x), uint(p.y), u_patternSeed, 991u));
+  return float(v.x >> 8u) / 8388608.0 - 1.0;
+}
+float patternAt(vec2 x) {
+  ivec2 p = ivec2(floor(x)); vec2 f = fract(x); f = f * f * (3.0 - 2.0 * f);
+  return mix(mix(patternCell(p), patternCell(p + ivec2(1, 0)), f.x),
+             mix(patternCell(p + ivec2(0, 1)), patternCell(p + ivec2(1, 1)), f.x), f.y);
+}
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy);
+  vec2 a = texelFetch(u_original, p, 0).rg, b = texelFetch(u_grain, p, 0).rg;
+  float mean = max(a.g, 0.0);
+  if (u_meanOnly == 1) { o = vec4(mean, mean, 0.0, 0.0); return; }
+  float residual;
+  if (u_preservePointResidual == 1) {
+    // Compact expected sources have a.g > blurred b.g. Blend back their physical residual continuously;
+    // diffuse fields keep the variance-normalized grain path. The expectation itself remains unblurred.
+    float blurredMean = max(b.g, 0.0);
+    float concentration = clamp(2.0 * (mean - blurredMean) / max(max(mean, blurredMean), 1e-12), 0.0, 1.0);
+    residual = mix((b.r - b.g) * u_style.x, (a.r - a.g) * u_rawStrength, concentration);
+  } else {
+    residual = (b.r - b.g) * u_style.x;
+  }
+  // Same tail mapping as noiseResidual(). Normalization precedes both strength and tail.
+  float prominence = min(3.0, abs(residual) / max(mean, 1e-12));
+  residual *= 1.0 + u_style.y * prominence;
+  vec2 mm = u_centerMm + (gl_FragCoord.xy - u_gridCenter) * u_pitchMm;
+  float pattern = 0.65 * patternAt(mm / 0.065) + 0.35 * patternAt(mm / 0.8 + 13.7);
+  o = vec4(max(0.0, mean * (1.0 + u_style.z * pattern) + residual), mean, 0.0, 0.0);
+}
+`,It=h+T+`
+uniform sampler2D u_src;
+uniform vec4 u_taps[32];
+uniform int u_radius;
+uniform ivec2 u_dir;
+out vec4 o;
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy), size = textureSize(u_src, 0);
+  vec4 v = texelFetch(u_src, p, 0) * TAP(u_taps, 0);
+  for (int i=1; i<128; i++) {
+    if (i > u_radius) break;
+    ivec2 a=p+u_dir*i, b=p-u_dir*i;
+    if (inBounds(a,size)) v += texelFetch(u_src,a,0)*TAP(u_taps,i);
+    if (inBounds(b,size)) v += texelFetch(u_src,b,0)*TAP(u_taps,i);
+  }
+  o=v;
+}
+`,le=`
+float eyeFootprint(vec2 d, float sigma) {
+  float v=0.0;
+  for(int j=0;j<2;j++) for(int i=0;i<2;i++) {
+    vec2 q=d+(vec2(i,j)-.5)*.5;
+    float r2=dot(q,q)/(sigma*sigma);
+    if(r2<=9.0) v+=exp(-.5*r2)*.25;
+  }
+  return v;
+}
+`,Ut=h+U+le+se+`
+layout(location=0) in vec4 a_star;
+layout(location=1) in uint a_seed;
+uniform sampler2D u_diffuse;
+uniform vec2 u_originMm;
+uniform vec2 u_size;
+uniform float u_pitchMm;
+uniform float u_focalMm;
+uniform float u_cathodeR;
+uniform mat3 u_point;
+uniform float u_eyeGain;
+uniform float u_pointGain;
+uniform float u_fieldFactor;
+uniform float u_starSigma;
+uniform vec2 u_starLight;  // L* increment at the threshold, per decade of illuminance over it
+uniform vec3 u_starColour; // maximum strength, illuminance ratio where colour starts, where it is full
+// D75 atmosphere for the eye: one-axis rms image motion (mm) and log-normal twinkle sigma over the eye's ~0.1 s
+// summation (0 = static), and the time (s).
+uniform float u_tiltMm;
+uniform float u_scint;
+uniform float u_time;
+out vec2 v_center;
+out vec4 v_star;
+uint hashU(uint x) { x ^= x >> 16; x *= 0x7feb352du; x ^= x >> 15; x *= 0x846ca68bu; x ^= x >> 16; return x; }
+float hashF(uint x) { return float(hashU(x) >> 8) * (1.0 / 16777216.0); }
+void main() {
+  vec3 cam=transpose(u_point)*vec3(a_star.xy,1.0);
+  vec2 mm=cam.z>1e-6 ? cam.xy/cam.z*u_focalMm : vec2(1e9);
+  float r=length(mm), angle=atan(r/u_focalMm);
+  // Same explicit star identity as STAR_VS.
+  uint id=a_seed*7919u+17u;
+  if (u_tiltMm>0.0) {
+    // The tube's seeing motion (three sinusoids per axis, 0.7-14 Hz), averaged over the eye's 0.1 s summation.
+    vec2 d=vec2(0.0);
+    for (int k=0;k<6;k++) {
+      uint h=hashU(id+uint(k)*104729u);
+      float f=0.7*exp(hashF(h)*3.0), ph=6.2831853*hashF(h^0x9e3779b9u), z=3.14159265*f*0.1;
+      float v=sin(6.2831853*f*u_time+ph)*sin(z)/z;
+      if (k<3) d.x+=v; else d.y+=v;
+    }
+    mm+=d*u_tiltMm*.8164966;
+  }
+  float twinkle=1.0;
+  if (u_scint>0.0) {
+    // Smooth twinkling: four sinusoids of 0.8-8 Hz (unit variance), unit-mean log-normal intensity.
+    float n=0.0;
+    for (int k=0;k<4;k++) {
+      uint h=hashU(id^(uint(k+11)*2654435761u));
+      n+=sin(6.2831853*(0.8*exp(hashF(h)*2.3))*u_time+6.2831853*hashF(h^0x85ebca6bu));
+    }
+    twinkle=exp(u_scint*n*.7071068-.5*u_scint*u_scint);
+  }
+  vec2 cell=(mm-u_originMm)/u_pitchMm;
+  ivec2 q=clamp(ivec2(floor(cell+.5)),ivec2(0),textureSize(u_diffuse,0)-1);
+  // Crumey 2014 eqs 5, 32/33, 65/71. Blackwell S/P correction is applied to BOTH sky and star.
+  float B=max(1e-5,texelFetch(u_diffuse,q,0).a*u_eyeGain*1e-7/1.408);
+  float root=B<.0708 ? 6.505e-4*pow(B,.25)-8.461e-4*sqrt(B) : 1.772e-4*pow(B,.25)+7.167e-5*sqrt(B);
+  float threshold=1.408*u_fieldFactor*root*root;
+  // A twinkling star near the limit drops below it and comes back.
+  float ratio=a_star.z*starWeight(a_star.w,angle)*1e-7*u_pointGain/threshold*twinkle;
+  float visible=smoothstep(.7,1.4,ratio);
+  // D74: equal magnitude steps = equal lightness steps (eyeStarLightness in naked-eye.ts).
+  float lightness=visible*(u_starLight.x+u_starLight.y*log(max(1.0,ratio))*.4342945);
+  float t=clamp((log(a_star.w)-u_logT.x)/(u_logT.y-u_logT.x),0.0,1.0)*float(u_tNodes-1);
+  int k=int(floor(t)), row=2+u_tNodes+4;
+  vec3 xyz=mix(lutAt(row+k,angle).xyz,lutAt(row+min(k+1,u_tNodes-1),angle).xyz,t-float(k));
+  // D75: the star's own warm/cool colour (u'v' about the display white), stronger the further above the limit.
+  float colour=u_starColour.x*smoothstep(u_starColour.y,u_starColour.z,ratio);
+  vec3 chroma=xyzOfUv(D65_UV+(uvOf(xyz)-D65_UV)*colour);
+  mat3 toRgb=mat3(3.2406255,-.9689307,.0557101,-1.537208,1.8757561,-.2040211,-.4986286,.0415175,1.0569959);
+  vec3 tint=max(vec3(0.0),toRgb*chroma);
+  // Unit display luminance: the tint carries hue only, the L* increment carries brightness.
+  tint/=max(dot(tint,vec3(.2126,.7152,.0722)),1e-6);
+  vec2 centre=cell+.5;
+  v_center=centre;
+  // The nearest pixel (the brightest) shows exactly the star's L* increment, whatever its subpixel position.
+  v_star=vec4(tint,1.0)*lightness/max(eyeFootprint(floor(centre)+.5-centre,u_starSigma),1e-6);
+  gl_PointSize=2.0*ceil(3.0*u_starSigma+.5)+1.0;
+  gl_Position=r>u_cathodeR || visible<=0.0 ? vec4(2.0,2.0,2.0,1.0) : vec4((cell+.5)/u_size*2.0-1.0,0.0,1.0);
+}
+`,Gt=h+le+`
+uniform float u_starSigma;
+in vec2 v_center;
+in vec4 v_star;
+out vec4 o;
+void main() { o=v_star*eyeFootprint(gl_FragCoord.xy-v_center,u_starSigma); }
+`;var Ye="      for (int b = 0; b < 4; b++) if (code[b] != 65535u) { sum[b] += w * (soft[b] * sinhStable(float(code[b]) / 65534.0 * amax[b])); ws[b] += w; }",He="      { vec4 c = vec4(code), mk = vec4(lessThan(c, vec4(65534.5))), xv = c / 65534.0 * amax; sum += mk * w * soft * vec4(sinhStable(xv.x), sinhStable(xv.y), sinhStable(xv.z), sinhStable(xv.w)); ws += mk * w; }",ue="vec4 sum = vec4(0.0), ws = vec4(0.0), soft = vec4(0.0), amax = vec4(0.0);",ce="  value = vec4(ws.x > 0.0 ? sum.x / ws.x : -1.0,",Je="int irt = i - JRLL[face] * n + 1, k = JPLL[face] * nr + kshift + 1,",Ke="int jr = 2 + (face >> 2), jp = 2 * (face & 3) + ((face >> 2) == 1 ? 0 : 1); int irt = i - jr * n + 1, k = jp * nr + kshift + 1,",me=[[Ye,He]],fe=[["if (layer < 0) return false;","if (layer < 0) { missing = true; layer = 0; }"],[ue,ue+" bool missing = false;"],[ce,`  if (missing) return false;
+`+ce]],he=[[Je,Ke]],B=[{id:"vector",label:"\u6CE2\u6BB5\u6D6E\u70B9\u5411\u91CF\u8FD0\u7B97",edits:me},{id:"no-return",label:"\u5FAA\u73AF\u5185\u4E0D\u63D0\u524D\u8FD4\u56DE",edits:fe},{id:"arithmetic",label:"\u5E38\u91CF\u6570\u7EC4\u6539\u7B97\u5F0F",edits:he},{id:"all",label:"\u4EE5\u4E0A\u4E09\u9879\u4E00\u8D77",edits:[...me,...fe,...he]}];function de(r,e){if(e===null)return r;let t=B.find(n=>n.id===e);if(!t)throw new Error(`Unknown sky projection variant ${e}`);let i=r;for(let[n,a]of t.edits){if(!i.includes(n))throw new Error(`Sky projection variant ${e}: source changed near "${n.trim().slice(0,40)}"`);i=i.replace(n,a)}return i}var G=`#version 300 es
+precision highp float;
+precision highp int;
+precision highp sampler2D;
+precision highp usampler2DArray;
+precision highp isampler2D;
+uniform usampler2DArray u_tiles;
+uniform sampler2D u_params;
+uniform isampler2D u_map0;
+uniform isampler2D u_map1;
+uniform int u_order0, u_order1, u_orders;
+uniform vec3 u_axis, u_west, u_north;
+uniform float u_step;
+uniform vec2 u_ref;
+out vec4 o;
+const float PI = 3.141592653589793, TAU = 6.283185307179586;
+const int JRLL[12] = int[12](2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4);
+const int JPLL[12] = int[12](1, 3, 5, 7, 0, 2, 4, 6, 1, 3, 5, 7);
+int spread(int x) { x = (x | (x << 8)) & 0x00FF00FF; x = (x | (x << 4)) & 0x0F0F0F0F; x = (x | (x << 2)) & 0x33333333; return (x | (x << 1)) & 0x55555555; }
+// Every integer below stays under 2^15 up to order 12 (2026-10-11): the Adreno 810 compiler (Redmi Note 14 Pro+,
+// Chrome 154) evaluated some of these ints in 16 bits, so a tile-local index of 32768..65535 came out negative and
+// the free sky lost its diffuse layers on that phone. Values are exactly those of healpix.ts / pyramid.ts ringNested.
+// Ring i (1..4n-1 from the north) and pixel iphi (1..4nr) -> face, x, y (HEALPix ring2xyf).
+ivec3 ringXyf(int order, int n, int i, int iphi) {
+  int face, nr, kshift = 0;
+  if (i < n) { nr = i; face = (iphi - 1) / nr; }
+  else if (i <= 3 * n) {
+    nr = n; kshift = (i - n) & 1;
+    int tmp = i - n, ire = tmp + 1, irm = 2 * n + 1 - tmp;
+    int ifm = (iphi - (ire >> 1) + n - 1) >> order, ifp = (iphi - (irm >> 1) + n - 1) >> order;
+    face = ifp == ifm ? (ifp | 4) : (ifp < ifm ? ifp : ifm + 8);
+  } else { nr = 4 * n - i; face = (iphi - 1) / nr + 8; }
+  // ring2xyf: ipt = 2 iphi - JPLL nr - kshift - 1 (minus 8n past the seam), x = (ipt - irt) / 2, y = (-ipt - irt) / 2.
+  // Same values without forming 2 iphi or 8n (up to 32768 at order 12): ipt - irt is even, and y = -irt - x.
+  int irt = i - JRLL[face] * n + 1, k = JPLL[face] * nr + kshift + 1, x = iphi - ((k + irt) >> 1);
+  if (2 * (iphi - n) >= k) x -= 4 * n;
+  return ivec3(face, x, -irt - x);
+}
+// Driver atan/asin/acos are not accurate enough here (D3D11 errors of ~1e-4 rad moved the weights by up to
+// a tenth of a pixel). Cephes atanf with octant reduction: ~2e-7 relative in float32 arithmetic.
+float atanPos(float x) {
+  float y = 0.0;
+  if (x > 2.414213562373095) { y = 1.5707963267948966; x = -1.0 / x; }
+  else if (x > 0.41421356237309503) { y = 0.7853981633974483; x = (x - 1.0) / (x + 1.0); }
+  float z = x * x;
+  return y + (((8.05374449538e-2 * z - 1.38776856032e-1) * z + 1.99777106478e-1) * z - 3.33329491539e-1) * z * x + x;
+}
+float atan2Precise(float y, float x) {
+  if (x == 0.0) return y > 0.0 ? 0.5 * PI : y < 0.0 ? -0.5 * PI : 0.0;
+  float a = atanPos(abs(y) / abs(x));
+  if (x < 0.0) a = PI - a;
+  return y < 0.0 ? -a : a;
+}
+// z and sqrt(1 - z^2) of ring i from its index, without cancellation in the caps.
+void ringZS(int i, int n, out float zr, out float sr) {
+  float nf = float(n);
+  if (i < n) { float q = float(i) * float(i) / (3.0 * nf * nf); zr = 1.0 - q; sr = sqrt(q * (2.0 - q)); }
+  else if (i > 3 * n) { float k = float(4 * n - i), q = k * k / (3.0 * nf * nf); zr = q - 1.0; sr = sqrt(q * (2.0 - q)); }
+  else { zr = float(2 * n - i) * 2.0 / (3.0 * nf); sr = sqrt(1.0 - zr * zr); }
+}
+// asin of the sine of a small angle difference (below a ring spacing): series to u^5.
+float asinSmall(float u) { float u2 = u * u; return u * (1.0 + u2 * (1.0 / 6.0 + u2 * 0.075)); }
+// sinh without cancellation near zero (the codes of a dark sky).
+float sinhStable(float x) { if (x < 0.05) return x * (1.0 + x * x * (1.0 / 6.0 + x * x / 120.0)); float e = exp(x); return 0.5 * (e - 1.0 / e); }
+int layerOf(int k, int tile) { ivec2 at = ivec2(tile & 63, tile >> 6); return k == 0 ? texelFetch(u_map0, at, 0).r : texelFetch(u_map1, at, 0).r; }
+bool interpolate(int k, int order, vec3 v, float s2, out vec4 value) {
+  int n = 1 << order; float nf = float(n), z = v.z, r;
+  if (z > 2.0 / 3.0) r = nf * sqrt(3.0 * s2 / (1.0 + z));
+  else if (z < -2.0 / 3.0) r = 4.0 * nf - nf * sqrt(3.0 * s2 / (1.0 - z));
+  else r = 2.0 * nf - 1.5 * nf * z;
+  int fr = int(floor(r)), lo = clamp(fr, 1, 4 * n - 1), hi = clamp(fr + 1, 1, 4 * n - 1);
+  // Ring weight (\u03B8 \u2212 \u03B8lo)/(\u03B8hi \u2212 \u03B8lo), each difference from sin(a \u2212 b) = sin a cos b \u2212 cos a sin b.
+  float zl, sl, zh, sh, sv = sqrt(s2);
+  ringZS(lo, n, zl, sl); ringZS(hi, n, zh, sh);
+  float f = lo == hi ? 0.0 : clamp(asinSmall(sv * zl - z * sl) / asinSmall(sh * zl - zh * sl), 0.0, 1.0), ra = atan2Precise(v.y, v.x);
+  vec4 sum = vec4(0.0), ws = vec4(0.0), soft = vec4(0.0), amax = vec4(0.0);
+  // The four neighbours mostly share one tile: its layer and parameters are fetched once (same values, fewer reads).
+  int to = order - 8, lastTile = -1, layer = -1;
+  for (int q = 0; q < 2; q++) {
+    int i = q == 0 ? lo : hi, nr = min(i, min(n, 4 * n - i)), shift = (i >= n && i <= 3 * n) ? ((i - n) & 1) : 0, m = 4 * nr;
+    float wr = q == 0 ? 1.0 - f : f, pitch = PI / (2.0 * float(nr)), start = (1.0 - float(shift + 1) * 0.5) * pitch;
+    float t = mod(ra - start, TAU) / pitch, jf = floor(t), a = t - jf;
+    int j = int(jf); if (j >= m) j -= m;
+    for (int e = 0; e < 2; e++) {
+      int jj = e == 0 ? j : (j + 1 == m ? 0 : j + 1);
+      float w = wr * (e == 0 ? 1.0 - a : a);
+      ivec3 p = ringXyf(order, n, i, jj + 1);
+      int tile = (p.x << (2 * to)) + spread(p.y >> 8) + 2 * spread(p.z >> 8);
+      if (tile != lastTile) {
+        lastTile = tile; layer = layerOf(k, tile);
+        if (layer < 0) return false;
+        soft = texelFetch(u_params, ivec2(0, layer), 0); amax = texelFetch(u_params, ivec2(1, layer), 0);
+      }
+      // Texel of the tile-local NESTED index spread(x) + 2 spread(y) (0..65535) in a 256-wide layer: its low and high
+      // bytes, each from four bits of x and y, so no value reaches 2^15 (see ringXyf).
+      int lx = p.y & 255, ly = p.z & 255;
+      uvec4 code = texelFetch(u_tiles, ivec3(spread(lx & 15) + 2 * spread(ly & 15), spread(lx >> 4) + 2 * spread(ly >> 4), layer), 0);
+      for (int b = 0; b < 4; b++) if (code[b] != 65535u) { sum[b] += w * (soft[b] * sinhStable(float(code[b]) / 65534.0 * amax[b])); ws[b] += w; }
+    }
+  }
+  value = vec4(ws.x > 0.0 ? sum.x / ws.x : -1.0, ws.y > 0.0 ? sum.y / ws.y : 0.0, ws.z > 0.0 ? sum.z / ws.z : 0.0, ws.w > 0.0 ? sum.w / ws.w : 0.0);
+  return true;
+}
+void main() {
+  vec2 X = (gl_FragCoord.xy - 0.5 - u_ref) * u_step;
+  vec3 v = normalize(u_axis + X.x * u_west + X.y * u_north);
+  float s2 = v.x * v.x + v.y * v.y;
+  vec4 value;
+  // Plain calls, not inside a short-circuit condition (2026-10-11): the Adreno 810 (Redmi Note 14 Pro+, Chrome 154)
+  // returned "unmeasured" for every pixel from the former if (!interpolate(0, ..) && (u_orders < 2 || !interpolate(1, ..)))
+  // although each interpolation, read alone, was right. Same logic.
+  bool ok = interpolate(0, u_order0, v, s2, value);
+  if (!ok && u_orders >= 2) ok = interpolate(1, u_order1, v, s2, value);
+  if (!ok) value = vec4(-1.0, 0.0, 0.0, 0.0);
+  o = value;
+}
+`,C=class{constructor(e,t){this.gl=e;this.res=t;p(this,"prog");p(this,"variant",null);p(this,"array",null);p(this,"params",null);p(this,"capacity",0);p(this,"slots",new Map);p(this,"maps",new Map);p(this,"clock",0);p(this,"uploads",0);this.prog=t.programDeferred("skyProject",F,G)}get compiled(){return this.prog.done()}setVariant(e){if(e===this.variant)return;let t=this.prog;if(this.prog=this.res.programDeferred("skyProject"+(e?"-"+e:""),F,de(G,e)),this.variant=e,t.done()){try{t.check()}catch{}this.gl.deleteProgram(t.prog),this.res.programs.delete(t.prog)}}get layerBytes(){return this.capacity*256*256*8}allocate(e){let t=this.gl;this.array&&this.res.deleteTexture(this.array),this.params&&this.res.deleteTexture(this.params),this.array=t.createTexture(),this.res.textures.add(this.array),t.bindTexture(t.TEXTURE_2D_ARRAY,this.array),t.texImage3D(t.TEXTURE_2D_ARRAY,0,t.RGBA16UI,256,256,e,0,t.RGBA_INTEGER,t.UNSIGNED_SHORT,null);for(let[i,n]of[[t.TEXTURE_MIN_FILTER,t.NEAREST],[t.TEXTURE_MAG_FILTER,t.NEAREST],[t.TEXTURE_WRAP_S,t.CLAMP_TO_EDGE],[t.TEXTURE_WRAP_T,t.CLAMP_TO_EDGE]])t.texParameteri(t.TEXTURE_2D_ARRAY,i,n);this.params=this.res.texture(2,e,t.RGBA32F,t.RGBA,t.FLOAT,null),this.capacity=e,this.slots.clear();for(let i of this.maps.values())i.data.fill(-1),i.dirty=!0}map(e){let t=this.maps.get(e);if(!t){let i=Math.ceil(12*4**(e-8)/64),n=new Int32Array(64*i).fill(-1);t={tex:this.res.texture(64,i,this.gl.R32I,this.gl.RED_INTEGER,this.gl.INT,n),data:n,dirty:!1},this.maps.set(e,t)}return t}ensure(e,t=1/0){let i=this.gl,n=++this.clock;e.length>this.capacity&&this.allocate(Math.max(64,Math.ceil(e.length*1.25)));let a=new Set(e.map(l=>l.key)),o=0,s=0;for(let l of e){let u=this.slots.get(l.key);if(u){u.used=n;continue}if(o>=t){s++;continue}let m=this.slots.size;if(m>=this.capacity){let d=null;for(let g of this.slots)!a.has(g[0])&&(!d||g[1].used<d[1].used)&&(d=g);let[x,f]=d;this.slots.delete(x),m=f.layer;let b=this.map(f.order);b.data[f.tile]=-1,b.dirty=!0}i.bindTexture(i.TEXTURE_2D_ARRAY,this.array),i.pixelStorei(i.UNPACK_ALIGNMENT,1),i.texSubImage3D(i.TEXTURE_2D_ARRAY,0,0,0,m,256,256,1,i.RGBA_INTEGER,i.UNSIGNED_SHORT,l.codes),i.bindTexture(i.TEXTURE_2D,this.params),i.texSubImage2D(i.TEXTURE_2D,0,0,m,2,1,i.RGBA,i.FLOAT,Float32Array.from([...Array.from(l.soft),...Array.from(l.amax)])),this.slots.set(l.key,{layer:m,order:l.order,tile:l.tile,used:n});let c=this.map(l.order);c.data[l.tile]=m,c.dirty=!0,o++,this.uploads++}for(let l of this.maps.values())l.dirty&&(i.bindTexture(i.TEXTURE_2D,l.tex),i.texSubImage2D(i.TEXTURE_2D,0,0,0,64,l.data.length/64,i.RED_INTEGER,i.INT,l.data),l.dirty=!1);return s}project(e,t,i,n,a){let o=this.gl,s=this.prog,l=x=>s.loc.get(x),[u,m]=[t.orders[0],t.orders[1]??t.orders[0]],c=this.map(u),d=this.map(m);s.check(),o.useProgram(s.prog),o.bindVertexArray(a),o.bindFramebuffer(o.FRAMEBUFFER,e.fbo),o.viewport(0,0,t.size,t.size),o.enable(o.SCISSOR_TEST),o.scissor(0,i,t.size,n-i),o.activeTexture(o.TEXTURE0),o.bindTexture(o.TEXTURE_2D_ARRAY,this.array),o.uniform1i(l("u_tiles"),0),this.res.bindTex(1,this.params,s,"u_params"),this.res.bindTex(2,c.tex,s,"u_map0"),this.res.bindTex(3,d.tex,s,"u_map1"),o.uniform1i(l("u_order0"),u),o.uniform1i(l("u_order1"),m),o.uniform1i(l("u_orders"),t.orders.length),o.uniform3fv(l("u_axis"),[...t.frame.axis]),o.uniform3fv(l("u_west"),[...t.frame.west]),o.uniform3fv(l("u_north"),[...t.frame.north]),o.uniform1f(l("u_step"),t.stepTan),o.uniform2f(l("u_ref"),t.refPixel[0],t.refPixel[1]),o.drawArrays(o.TRIANGLES,0,3),o.disable(o.SCISSOR_TEST),o.activeTexture(o.TEXTURE0),o.bindTexture(o.TEXTURE_2D_ARRAY,null)}};var v=(r,e)=>e?r.replace(/\{(\d+)\}/g,(t,i)=>String(e[+i])):r;var X=class extends Error{},O=class{constructor(e){this.gl=e;p(this,"textures",new Set);p(this,"framebuffers",new Set);p(this,"programs",new Set);p(this,"buffers",new Set);p(this,"vaos",new Set);p(this,"deferred",new Map)}texture(e,t,i,n,a,o){let s=this.gl,l=s.createTexture();this.textures.add(l),s.bindTexture(s.TEXTURE_2D,l),s.pixelStorei(s.UNPACK_ALIGNMENT,1),s.texImage2D(s.TEXTURE_2D,0,i,e,t,0,n,a,o);for(let[u,m]of[[s.TEXTURE_MIN_FILTER,s.NEAREST],[s.TEXTURE_MAG_FILTER,s.NEAREST],[s.TEXTURE_WRAP_S,s.CLAMP_TO_EDGE],[s.TEXTURE_WRAP_T,s.CLAMP_TO_EDGE]])s.texParameteri(s.TEXTURE_2D,u,m);return l}target(e,t,i){let n=this.gl,a=t===n.R16F?n.HALF_FLOAT:n.FLOAT,o=this.texture(e,e,t,i,a,null),s=n.createFramebuffer();this.framebuffers.add(s),n.bindFramebuffer(n.FRAMEBUFFER,s),n.framebufferTexture2D(n.FRAMEBUFFER,n.COLOR_ATTACHMENT0,n.TEXTURE_2D,o,0);let l=n.checkFramebufferStatus(n.FRAMEBUFFER);if(l!==n.FRAMEBUFFER_COMPLETE)throw this.deleteTarget({tex:o,fbo:s,internal:t,format:i,size:e}),new X(v("\u6D6E\u70B9\u6E32\u67D3\u76EE\u6807\u4E0D\u53EF\u7528\uFF080x{0}\uFF09\u3002",[l.toString(16)]));return{tex:o,fbo:s,internal:t,format:i,size:e}}deleteTexture(e){this.gl.deleteTexture(e),this.textures.delete(e)}deleteTarget(e){this.gl.deleteFramebuffer(e.fbo),this.framebuffers.delete(e.fbo),this.deleteTexture(e.tex)}bindTarget(e){this.gl.bindFramebuffer(this.gl.FRAMEBUFFER,e.fbo),this.gl.viewport(0,0,e.size,e.size)}bindTex(e,t,i,n){let a=this.gl;a.activeTexture(a.TEXTURE0+e),a.bindTexture(a.TEXTURE_2D,t),a.uniform1i(i.loc.get(n),e)}program(e,t,i){let n=this.gl,a=n.createProgram();this.programs.add(a);let o=[];try{for(let[u,m]of[[n.VERTEX_SHADER,t],[n.FRAGMENT_SHADER,i]]){let c=n.createShader(u);if(o.push(c),n.shaderSource(c,m),n.compileShader(c),!n.getShaderParameter(c,n.COMPILE_STATUS))throw new Error(v("\u7740\u8272\u5668\u7F16\u8BD1\u5931\u8D25\uFF08{0} / {1}\uFF09\uFF1A{2}",[e,u===n.VERTEX_SHADER?v("\u9876\u70B9"):v("\u7247\u5143"),n.getShaderInfoLog(c)||v("\u9A71\u52A8\u672A\u8FD4\u56DE\u8BE6\u60C5")]));n.attachShader(a,c)}if(n.linkProgram(a),!n.getProgramParameter(a,n.LINK_STATUS))throw new Error(v("\u7740\u8272\u5668\u94FE\u63A5\u5931\u8D25\uFF08{0}\uFF09\uFF1A{1}",[e,n.getProgramInfoLog(a)||v("\u9A71\u52A8\u672A\u8FD4\u56DE\u8BE6\u60C5")]))}catch(u){throw n.deleteProgram(a),this.programs.delete(a),u}finally{for(let u of o)n.isProgram(a)&&n.getAttachedShaders(a)?.includes(u)&&n.detachShader(a,u),n.deleteShader(u)}let s=new Map;return{prog:a,loc:{get:u=>(s.has(u)||s.set(u,n.getUniformLocation(a,u)),s.get(u))}}}programDeferred(e,t,i){let n=this.gl,a=n.createProgram(),o=!!n.getExtension("KHR_parallel_shader_compile");this.programs.add(a);let s=[[n.VERTEX_SHADER,t],[n.FRAGMENT_SHADER,i]].map(([f,b])=>{let g=n.createShader(f);return n.shaderSource(g,b),n.compileShader(g),n.attachShader(a,g),{s:g,type:f}});n.linkProgram(a);let l=!1,u=null,m=()=>{if(!(l||u||!s.length))try{for(let{s:f,type:b}of s)if(!n.getShaderParameter(f,n.COMPILE_STATUS))throw new Error(v("\u7740\u8272\u5668\u7F16\u8BD1\u5931\u8D25\uFF08{0} / {1}\uFF09\uFF1A{2}",[e,b===n.VERTEX_SHADER?v("\u9876\u70B9"):v("\u7247\u5143"),n.getShaderInfoLog(f)||v("\u9A71\u52A8\u672A\u8FD4\u56DE\u8BE6\u60C5")]));if(!n.getProgramParameter(a,n.LINK_STATUS))throw new Error(v("\u7740\u8272\u5668\u94FE\u63A5\u5931\u8D25\uFF08{0}\uFF09\uFF1A{1}",[e,n.getProgramInfoLog(a)||v("\u9A71\u52A8\u672A\u8FD4\u56DE\u8BE6\u60C5")]));l=!0}catch(f){u=f instanceof Error?f:new Error(String(f))}finally{for(let{s:f}of s)n.getAttachedShaders(a)?.includes(f)&&n.detachShader(a,f),n.deleteShader(f);s.length=0,this.deferred.delete(a)}},c=()=>!o||n.getProgramParameter(a,37297)===!0;this.deferred.set(a,{shaders:s,ready:c});let d=()=>{l||u||!this.deferred.has(a)||n.isContextLost()||(c()?m():setTimeout(d,50))};setTimeout(d,50);let x=new Map;return{prog:a,loc:{get:f=>(x.has(f)||x.set(f,n.getUniformLocation(a,f)),x.get(f))},done:()=>l||u!==null||c(),check:()=>{if(m(),u)throw u}}}deleteAll(){let e=this.gl;e.bindFramebuffer(e.FRAMEBUFFER,null),e.bindVertexArray(null),e.bindBuffer(e.ARRAY_BUFFER,null),e.useProgram(null);for(let t of this.framebuffers)e.deleteFramebuffer(t);for(let t of this.textures)e.deleteTexture(t);for(let t of this.buffers)e.deleteBuffer(t);for(let t of this.vaos)e.deleteVertexArray(t);for(let[t,i]of this.deferred){this.programs.delete(t);let n=()=>{if(!e.isContextLost()){if(!i.ready()){setTimeout(n,50);return}for(let{s:a}of i.shaders)e.detachShader(t,a),e.deleteShader(a);i.shaders.length=0,e.deleteProgram(t)}};n()}this.deferred.clear();for(let t of this.programs)e.deleteProgram(t);this.framebuffers.clear(),this.textures.clear(),this.buffers.clear(),this.vaos.clear(),this.programs.clear()}};var R=Math.PI/180;var Ze=(r,e)=>[r[1]*e[2]-r[2]*e[1],r[2]*e[0]-r[0]*e[2],r[0]*e[1]-r[1]*e[0]];function pe(r){if(!Number.isFinite(r))throw new RangeError("RA must be finite");let e=r%360;return e<0?e+360:e===0?0:e}function $e(r,e){if(!Number.isFinite(e)||Math.abs(e)>90)throw new RangeError("Latitude must be in [-90, 90] degrees");let t=pe(r)*R,i=e*R;if(Math.abs(e)===90)return[0,0,Math.sign(e)];let n=Math.cos(i);return[n*Math.cos(t),n*Math.sin(t),Math.sin(i)]}var W=(r,e)=>$e(r,e);function xe(r){let e=W(...r),t=pe(r[0])*R,i=r[1]*R;return{axis:e,west:[Math.sin(t),-Math.cos(t),0],north:[-Math.sin(i)*Math.cos(t),-Math.sin(i)*Math.sin(t),Math.cos(i)]}}var Qe=W(192.85948,27.12825),Y=W(192.85948+90,0),ve=Ze(Qe,Y),q=32.93192*R,_e=(r,e,t,i)=>[t*r[0]+i*e[0],t*r[1]+i*e[1],t*r[2]+i*e[2]],Ht=_e(Y,ve,Math.cos(q),-Math.sin(q)),Jt=_e(Y,ve,Math.sin(q),Math.cos(q));var Zt=2*Math.PI;function ye(r){let e=0;for(let t=0;r;t++,r>>>=2)e|=(r&1)<<t;return e}var et=[2,2,2,2,3,3,3,3,4,4,4,4],tt=[1,3,5,7,0,2,4,6,1,3,5,7];function ge(r,e){let t=2**r,i=Math.floor(e/(t*t)),n=e%(t*t),a=ye(n),o=ye(n>>>1),s=et[i]*t-a-o-1,l=s<t?s:s>3*t?4*t-s:t,u=s<t?1-l*l/(3*t*t):s>3*t?-1+l*l/(3*t*t):(2*t-s)*2/(3*t),m=s>=t&&s<=3*t?s-t&1:0,d=((tt[i]*l+a-o+1+m)/2-(m+1)*.5)*Math.PI/(2*l),x=Math.sqrt(1-u*u);return[x*Math.cos(d),x*Math.sin(d),u]}var rr=new Uint32Array;var J={25:10,50:11,85:12};var rt={25:7,50:5,85:3},it=2048,K=65536,Z=65535,Me=Math.PI/180,nt={2:14.78,3:7.68,4:3.99},Ee=(r,e)=>`${r}/${e}`;function Fe(r,e,t,i=it){let n=Math.tan(Math.atan((9+t)/e)+rt[e]*Me);return{centre:[r[0],r[1]],frame:xe(r),step:e,order:J[e],supportMm:t,size:i,planeStep:2*n/(i-1),refPixel:[(i-1)/2,(i-1)/2],halfTan:n}}var be=(r,e)=>r[0]*e[0]+r[1]*e[1]+r[2]*e[2],at=r=>{let e=Math.hypot(r[0],r[1],r[2]);return[r[0]/e,r[1]/e,r[2]/e]},Te=new Map,ot=r=>{let e=Te.get(r);return e||(e=Array.from({length:12*4**r},(t,i)=>ge(r,i)),Te.set(r,e)),e};function Re(r,e){let t=Math.sin(nt[e]*Me),{axis:i,west:n,north:a}=r.frame,o=r.halfTan,s=[[-1,0],[1,0],[0,-1],[0,1]].map(([u,m])=>at([0,1,2].map(c=>o*i[c]+u*n[c]+m*a[c]))),l=[];return ot(e).forEach((u,m)=>{be(u,i)>-t&&s.every(c=>be(u,c)>=-t)&&l.push(m)}),l}var Pe=r=>new Map([...r].map(e=>[e.order*4096+e.tile,e])),st=[2,2,2,2,3,3,3,3,4,4,4,4],lt=[1,3,5,7,0,2,4,6,1,3,5,7],Se=2*Math.PI,we=r=>(r=(r|r<<8)&16711935,r=(r|r<<4)&252645135,r=(r|r<<2)&858993459,(r|r<<1)&1431655765);function $(r,e,t){let i=1<<r,n,a,o=0;if(e<i)a=e,n=(t-1)/a|0;else if(e<=3*i){a=i,o=e-i&1;let u=e-i,m=t-(u+1>>1)+i-1>>r,c=t-(2*i+1-u>>1)+i-1>>r;n=c===m?c|4:c<m?c:m+8}else a=4*i-e,n=((t-1)/a|0)+8;let s=e-st[n]*i+1,l=2*t-lt[n]*a-o-1;return l>=2*i&&(l-=8*i),n*i*i+we(l-s>>1)+2*we(-l-s>>1)}var w=0,z=0;function ke(r,e){if(r<e){let t=r*r/(3*e*e);w=1-t,z=Math.sqrt(t*(2-t))}else if(r>3*e){let t=4*e-r,i=t*t/(3*e*e);w=i-1,z=Math.sqrt(i*(2-i))}else w=(2*e-r)*2/(3*e),z=Math.sqrt(1-w*w)}var Ae=r=>{let e=r*r;return r*(1+e*(1/6+e*.075))},P=new Float64Array(4),S=new Float64Array(4),ut=16,H=[];function ct(r){return r.values||(r.values=new Float32Array(4*K).fill(NaN),H.push(r),H.length>ut&&delete H.shift().values),r.values}function mt(r,e,t,i,n,a){let o=1<<r,s=e*e+t*t,l=Math.sqrt(s),u=i>2/3?o*Math.sqrt(3*s/(1+i)):i<-2/3?4*o-o*Math.sqrt(3*s/(1-i)):2*o-1.5*o*i,m=Math.floor(u),c=Math.max(1,Math.min(4*o-1,m)),d=Math.max(1,Math.min(4*o-1,m+1));ke(c,o);let x=w,f=z;ke(d,o);let b=w,g=z,Q=c===d?0:Math.max(0,Math.min(1,Ae(l*x-i*f)/Ae(g*x-b*f))),De=Math.atan2(t,e);P.fill(0),S.fill(0);for(let _=0;_<2;_++){let k=_===0?c:d,Le=_===0?1-Q:Q,ee=Math.min(k,o,4*o-k),Ie=k>=o&&k<=3*o?k-o&1:0,N=4*ee,te=Math.PI/(2*ee),Ue=(1-(Ie+1)*.5)*te,M=(De-Ue)%Se;M<0&&(M+=Se),M/=te;let A=Math.floor(M),re=M-A;A>=N&&(A-=N);for(let D=0;D<2;D++){let Ge=D===0?A:A+1===N?0:A+1,ie=Le*(D===0?1-re:re),ne=$(r,k,Ge+1),E=n.get(r*4096+(ne>>>16));if(!E)return!1;let V=4*(ne&65535),Ce=E.codes,ae=ct(E);for(let y=0;y<4;y++){let oe=Ce[V+y];if(oe===Z)continue;let L=ae[V+y];L!==L&&(L=ae[V+y]=E.soft[y]*Math.sinh(oe/65534*E.amax[y])),P[y]=P[y]+ie*L,S[y]=S[y]+ie}}}a[0]=S[0]>0?P[0]/S[0]:-1;for(let _=1;_<4;_++)a[_]=S[_]>0?P[_]/S[_]:0;return!0}function ft(r,e,t,i,n,a=new Float32Array(4)){let{axis:o,west:s,north:l}=r.frame,u=o[0]+i*s[0]+n*l[0],m=o[1]+i*s[1]+n*l[1],c=o[2]+i*s[2]+n*l[2],d=Math.hypot(u,m,c);u/=d,m/=d,c/=d;for(let x of e)if(mt(x,u,m,c,t,a))return a;return a[0]=-1,a[1]=a[2]=a[3]=0,a}var ze=(r,e,t,i,n,a=new Float32Array(4))=>ft(r,e,t,(i-r.refPixel[0])*r.planeStep,(n-r.refPixel[1])*r.planeStep,a);return Xe(ht);})();
+</script>
+<script>
+'use strict';
+const D = window.Diag;
+const $ = id => document.getElementById(id);
+const CENTRE = [266.405, -28.936]; // Sgr A*, the simulator's opening view
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const frame = () => new Promise(r => requestAnimationFrame(() => r()));
+let result;
+const FORCE_FAIL = location.hash === '#selftest'; // checks the diagnosis branch on a healthy GPU
+
+function addStep(name) {
+  const li = document.createElement('li');
+  li.innerHTML = '<span class="tag run">…</span><div><div class="step-name"></div><div class="step-msg"></div></div>';
+  li.querySelector('.step-name').textContent = name;
+  $('steps').appendChild(li);
+  const set = (cls, text, msg) => { const t = li.querySelector('.tag'); t.className = 'tag ' + cls; t.textContent = text; li.querySelector('.step-msg').textContent = msg ?? ''; };
+  const rec = { name, status: 'run', msg: '' }; result.steps.push(rec);
+  return {
+    ok(msg) { set('ok', '通过', msg); rec.status = 'ok'; rec.msg = msg ?? ''; },
+    bad(msg) { set('bad', '失败', msg); rec.status = 'bad'; rec.msg = msg ?? ''; },
+    note(msg) { set('', '信息', msg); rec.status = 'info'; rec.msg = msg ?? ''; },
+  };
+}
+function verdict(cls, text) { const p = $('verdictPill'); p.className = 'pill ' + cls; p.textContent = cls === 'ok' ? '正常' : cls === 'bad' ? '发现问题' : '注意'; $('verdictText').textContent = text; result.verdict = text; }
+function showInfo(info) {
+  const dl = $('info'); dl.innerHTML = '';
+  for (const [k, v] of Object.entries(info)) { const dt = document.createElement('dt'), dd = document.createElement('dd'); dt.textContent = k; dd.textContent = typeof v === 'object' ? JSON.stringify(v) : String(v); dl.append(dt, dd); }
+}
+
+// Synthetic tiles: smooth patterns inside each 256² tile (tile-local x, y from the NESTED index), some masked pixels.
+const compact = v => { v &= 0x55555555; v = (v | (v >>> 1)) & 0x33333333; v = (v | (v >>> 2)) & 0x0F0F0F0F; v = (v | (v >>> 4)) & 0x00FF00FF; return (v | (v >>> 8)) & 0x0000FFFF; };
+function makeTile(order, tile) {
+  const codes = new Uint16Array(4 * 65536), T = tile + 17 * order;
+  for (let L = 0; L < 65536; L++) {
+    const x = compact(L), y = compact(L >>> 1);
+    for (let b = 0; b < 4; b++) {
+      let c = Math.round(30000 + 18000 * Math.sin(0.07 * x + 0.11 * y + 0.9 * b + 0.37 * T) * Math.cos(0.05 * x - 0.03 * y + 0.5 * b + 0.21 * T));
+      if (b === 0 && T % 5 === 0 && (x - 128) ** 2 + (y - 128) ** 2 < 900) c = 65535;
+      if (b > 0 && T % 7 === 3 && x < 16) c = 65535;
+      codes[4 * L + b] = c;
+    }
+  }
+  return { key: D.tileKey(order, tile), order, tile, codes, soft: Float64Array.from([1, 0.5, 0.25, 0.1]), amax: Float64Array.from([6, 5, 5, 7]) };
+}
+// CPU copies of the shader's integer HEALPix helpers (same as pyramid.ts ringNested, kept apart for face/x/y).
+const spreadJs = x => { x = (x | (x << 8)) & 0x00FF00FF; x = (x | (x << 4)) & 0x0F0F0F0F; x = (x | (x << 2)) & 0x33333333; return (x | (x << 1)) & 0x55555555; };
+const JRLL = [2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4], JPLL = [1, 3, 5, 7, 0, 2, 4, 6, 1, 3, 5, 7];
+function ringXyfJs(order, n, i, iphi) {
+  let face, nr, kshift = 0;
+  if (i < n) { nr = i; face = Math.floor((iphi - 1) / nr); }
+  else if (i <= 3 * n) {
+    nr = n; kshift = (i - n) & 1;
+    const tmp = i - n, ire = tmp + 1, irm = 2 * n + 1 - tmp, ifm = (iphi - (ire >> 1) + n - 1) >> order, ifp = (iphi - (irm >> 1) + n - 1) >> order;
+    face = ifp === ifm ? (ifp | 4) : (ifp < ifm ? ifp : ifm + 8);
+  } else { nr = 4 * n - i; face = Math.floor((iphi - 1) / nr) + 8; }
+  const irt = i - JRLL[face] * n + 1; let ipt = 2 * iphi - JPLL[face] * nr - kshift - 1;
+  if (ipt >= 2 * n) ipt -= 8 * n;
+  return [face, (ipt - irt) >> 1, (-ipt - irt) >> 1];
+}
+const tileCache = new Map();
+const tileOf = (order, t) => { const k = order * 4096 + t; if (!tileCache.has(k)) tileCache.set(k, makeTile(order, t)); return tileCache.get(k); };
+
+// The plane cases: like the app's 25/50/85 mm planes (85 mm with the order-11 fallback outside the order-12 band).
+function planeCase(step, size, dropEvery) {
+  const g = D.planeGeometry(CENTRE, step, 1.5, size), order = D.STEP_ORDER[step];
+  let primary = D.footprintTiles(g, order - 8), orders = [order], tiles;
+  if (dropEvery) {
+    primary = primary.filter((_, i) => i % dropEvery !== 0);
+    tiles = primary.map(t => tileOf(order, t)).concat(D.footprintTiles(g, order - 9).map(t => tileOf(order - 1, t)));
+    orders = [order, order - 1];
+  } else tiles = primary.map(t => tileOf(order, t));
+  return { g, orders, tiles, index: D.tileIndex(tiles), p: { size: g.size, stepTan: g.planeStep, refPixel: g.refPixel, frame: g.frame, orders, tiles } };
+}
+
+let gl, res, vao, projector;
+function readTarget(target, size) {
+  gl.bindFramebuffer(gl.FRAMEBUFFER, target.fbo);
+  const buf = new Float32Array(size * size * 4); gl.readPixels(0, 0, size, size, gl.RGBA, gl.FLOAT, buf); return buf;
+}
+// Same as SkyProjector.project, with another program (variants and probes use the projector's own textures).
+function projectWith(prog, target, p, y0, y1) {
+  const loc = n => prog.loc.get(n), o0 = p.orders[0], o1 = p.orders[1] ?? p.orders[0], m0 = projector.map(o0), m1 = projector.map(o1);
+  gl.useProgram(prog.prog); gl.bindVertexArray(vao);
+  gl.bindFramebuffer(gl.FRAMEBUFFER, target.fbo); gl.viewport(0, 0, p.size, p.size);
+  gl.enable(gl.SCISSOR_TEST); gl.scissor(0, y0, p.size, y1 - y0);
+  gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D_ARRAY, projector.array); gl.uniform1i(loc('u_tiles'), 0);
+  res.bindTex(1, projector.params, prog, 'u_params'); res.bindTex(2, m0.tex, prog, 'u_map0'); res.bindTex(3, m1.tex, prog, 'u_map1');
+  gl.uniform1i(loc('u_order0'), o0); gl.uniform1i(loc('u_order1'), o1); gl.uniform1i(loc('u_orders'), p.orders.length);
+  gl.uniform3fv(loc('u_axis'), [...p.frame.axis]); gl.uniform3fv(loc('u_west'), [...p.frame.west]); gl.uniform3fv(loc('u_north'), [...p.frame.north]);
+  gl.uniform1f(loc('u_step'), p.stepTan); gl.uniform2f(loc('u_ref'), p.refPixel[0], p.refPixel[1]);
+  gl.drawArrays(gl.TRIANGLES, 0, 3); gl.disable(gl.SCISSOR_TEST);
+  gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D_ARRAY, null);
+}
+async function render(c, bandRows, prog) {
+  const S = c.p.size, target = res.target(S, gl.RGBA32F, gl.RGBA);
+  projector.ensure(c.tiles);
+  for (let y = 0; y < S; y += bandRows) { const y1 = Math.min(S, y + bandRows); if (prog) projectWith(prog, target, c.p, y, y1); else projector.project(target, c.p, y, y1, vao); gl.flush(); await frame(); }
+  const buf = readTarget(target, S); res.deleteTarget(target); return buf;
+}
+
+// Compare GPU output with the CPU mirror at `n` pixels (random) plus a 64² grid.
+function compare(c, buf, n) {
+  const S = c.p.size, out = new Float32Array(4), pts = [];
+  for (let j = 0; j < 64; j++) for (let i = 0; i < 64; i++) pts.push([Math.floor((i + 0.5) * S / 64), Math.floor((j + 0.5) * S / 64)]);
+  let seed = 12345; const rnd = () => (seed = (Math.imul(seed, 1103515245) + 12345) >>> 0) / 4294967296;
+  for (let k = 0; k < n; k++) pts.push([Math.floor(rnd() * S), Math.floor(rnd() * S)]);
+  let bad = 0, invalidBad = 0, maxRel = 0, valid = 0; const examples = [];
+  for (const [x, y] of pts) {
+    D.planePixel(c.g, c.orders, c.index, x, y, out);
+    const o = 4 * (y * S + x), gpu = [buf[o], buf[o + 1], buf[o + 2], buf[o + 3]];
+    let wrong = false;
+    if (out[0] < 0 || gpu[0] < 0) { if (Math.abs(out[0] - gpu[0]) > 1e-6) { wrong = true; invalidBad++; } }
+    else valid++;
+    for (let b = 0; b < 4; b++) { if (b === 0 && out[0] < 0) continue; const rel = Math.abs(gpu[b] - out[b]) / Math.max(Math.abs(out[b]), 0.05); if (b > 0 || out[0] >= 0) maxRel = Math.max(maxRel, rel); if (rel > 2e-3) wrong = true; }
+    if (wrong) { bad++; if (examples.length < 4) examples.push({ x, y, gpu: gpu.map(v => +v.toPrecision(5)), cpu: [...out].map(v => +v.toPrecision(5)) }); }
+  }
+  return { compared: pts.length, bad, badPct: +(100 * bad / pts.length).toFixed(3), invalidMismatch: invalidBad, cpuValid: valid, maxRel: +maxRel.toPrecision(3), examples, pass: !FORCE_FAIL && bad <= pts.length * 0.002 };
+}
+
+// The 0.9.49 shader, rebuilt from the production one: before the 2026-10-11 rewrite that keeps every integer below 2^15
+// (the Adreno 810 evaluated some of them in 16 bits). Run next to the production shader as the before/after pair.
+const NEW_RING = '  int irt = i - JRLL[face] * n + 1, k = JPLL[face] * nr + kshift + 1, x = iphi - ((k + irt) >> 1);\n  if (2 * (iphi - n) >= k) x -= 4 * n;\n  return ivec3(face, x, -irt - x);';
+const OLD_RING = '  int irt = i - JRLL[face] * n + 1, ipt = 2 * iphi - JPLL[face] * nr - kshift - 1;\n  if (ipt >= 2 * n) ipt -= 8 * n;\n  return ivec3(face, (ipt - irt) >> 1, (-ipt - irt) >> 1);';
+const NEW_FETCH = '      int lx = p.y & 255, ly = p.z & 255;\n      uvec4 code = texelFetch(u_tiles, ivec3(spread(lx & 15) + 2 * spread(ly & 15), spread(lx >> 4) + 2 * spread(ly >> 4), layer), 0);';
+const OLD_FETCH = '      int local = spread(p.y & 255) + 2 * spread(p.z & 255);\n      uvec4 code = texelFetch(u_tiles, ivec3(local & 255, local >> 8, layer), 0);';
+// main(): the former short-circuit call (0.9.49, wrong on the Adreno 810) and the plain calls of production since v5.
+const MAIN_CALL = '  if (!interpolate(0, u_order0, v, s2, value) && (u_orders < 2 || !interpolate(1, u_order1, v, s2, value))) value = vec4(-1.0, 0.0, 0.0, 0.0);';
+const MAIN_PLAIN = '  bool ok = interpolate(0, u_order0, v, s2, value);\n  if (!ok && u_orders >= 2) ok = interpolate(1, u_order1, v, s2, value);\n  if (!ok) value = vec4(-1.0, 0.0, 0.0, 0.0);';
+const VALUE_LINE = '  value = vec4(ws.x > 0.0 ? sum.x / ws.x : -1.0, ws.y > 0.0 ? sum.y / ws.y : 0.0, ws.z > 0.0 ? sum.z / ws.z : 0.0, ws.w > 0.0 ? sum.w / ws.w : 0.0);';
+function edited(name, pairs) {
+  let fs = D.SKY_PROJECT_FS;
+  for (const [a, b] of pairs) { if (!fs.includes(a)) throw Error('shader source changed: ' + a.slice(0, 50)); fs = fs.replace(a, b); }
+  return res.program(name, D.FULLSCREEN_VS, fs);
+}
+/** 0.9.49 (both changes undone) and v3 (16-bit-safe integers, main() still with the short-circuit call). */
+const oldShader = () => edited('sky-0.9.49', [[NEW_RING, OLD_RING], [NEW_FETCH, OLD_FETCH], [MAIN_PLAIN, MAIN_CALL]]);
+const v3Shader = () => edited('sky-v3', [[MAIN_PLAIN, MAIN_CALL]]);
+// Alternatives tried when production fails: the same writings the app falls back to at run time (gpu/sky-variants.ts).
+/** Accumulation probe: the production loops of order 0 report ok, ws.x, ws.w, sum.x (-7 where interpolate failed). */
+const accShader = () => edited('acc-probe', [[VALUE_LINE, '  value = vec4(ws.x, ws.w, sum.x, sum.w);'], [MAIN_PLAIN, '  bool ok = interpolate(0, u_order0, v, s2, value);\n  if (!ok) value = vec4(-7.0);']]);
+/** CPU counterpart: pyramid.ts interpolateSky's sums before the division. */
+function cpuAcc(c, ix, iy) {
+  const g = c.g, X = (ix - g.refPixel[0]) * g.planeStep, Y = (iy - g.refPixel[1]) * g.planeStep, { axis: a, west: w0, north: u } = g.frame, order = c.orders[0];
+  let x = a[0] + X * w0[0] + Y * u[0], y = a[1] + X * w0[1] + Y * u[1], z = a[2] + X * w0[2] + Y * u[2]; const l = Math.hypot(x, y, z); x /= l; y /= l; z /= l;
+  const n = 1 << order, s2 = x * x + y * y, sv = Math.sqrt(s2), r = z > 2 / 3 ? n * Math.sqrt(3 * s2 / (1 + z)) : z < -2 / 3 ? 4 * n - n * Math.sqrt(3 * s2 / (1 - z)) : 2 * n - 1.5 * n * z;
+  const zs = i => i < n ? (q => [1 - q, Math.sqrt(q * (2 - q))])(i * i / (3 * n * n)) : i > 3 * n ? (q => [q - 1, Math.sqrt(q * (2 - q))])((4 * n - i) ** 2 / (3 * n * n)) : (zz => [zz, Math.sqrt(1 - zz * zz)])((2 * n - i) * 2 / (3 * n));
+  const asinSmall = t => { const t2 = t * t; return t * (1 + t2 * (1 / 6 + t2 * 0.075)); };
+  const fr = Math.floor(r), lo = Math.max(1, Math.min(4 * n - 1, fr)), hi = Math.max(1, Math.min(4 * n - 1, fr + 1)), [zl, sl] = zs(lo), [zh, sh] = zs(hi);
+  const f = lo === hi ? 0 : Math.max(0, Math.min(1, asinSmall(sv * zl - z * sl) / asinSmall(sh * zl - zh * sl))), ra = Math.atan2(y, x), sum = [0, 0, 0, 0], ws = [0, 0, 0, 0];
+  for (let q = 0; q < 2; q++) {
+    const i = q === 0 ? lo : hi, wr = q === 0 ? 1 - f : f, nr = Math.min(i, n, 4 * n - i), shift = i >= n && i <= 3 * n ? (i - n) & 1 : 0, m = 4 * nr, pitch = Math.PI / (2 * nr), start = (1 - (shift + 1) * 0.5) * pitch;
+    let t = (ra - start) % (2 * Math.PI); if (t < 0) t += 2 * Math.PI; t /= pitch; let j = Math.floor(t); const fa = t - j; if (j >= m) j -= m;
+    for (let e = 0; e < 2; e++) {
+      const jj = e === 0 ? j : j + 1 === m ? 0 : j + 1, wt = wr * (e === 0 ? 1 - fa : fa), nested = D.ringNested(order, i, jj + 1), tile = c.index.get(order * 4096 + (nested >>> 16));
+      if (!tile) return { ok: false, sum, ws };
+      const p = 4 * (nested & 65535);
+      for (let b = 0; b < 4; b++) { const code = tile.codes[p + b]; if (code === 65535) continue; sum[b] += wt * tile.soft[b] * Math.sinh(code / 65534 * tile.amax[b]); ws[b] += wt; }
+    }
+  }
+  return { ok: true, sum, ws };
+}
+// Do ints reach a float output intact? The tile-local index spread(x) + 2 spread(y) (0..65535), x * 256 + y, and the
+// index of the whole 16-bit inputs, in a shader with a float output like the projection.
+async function int16Check() {
+  const head = D.SKY_PROJECT_FS.slice(0, D.SKY_PROJECT_FS.indexOf('void main() {'));
+  const prog = res.program('int16-check', D.FULLSCREEN_VS, head + 'void main() { int a = int(gl_FragCoord.x), b = int(gl_FragCoord.y); int local = spread(a & 255) + 2 * spread(b & 255); o = vec4(float(local), float(a * 256 + b), float(spread(a) + 2 * spread(b)), 0.0); }\n');
+  const S = 256, target = res.target(S, gl.RGBA32F, gl.RGBA);
+  gl.useProgram(prog.prog); gl.bindVertexArray(vao); gl.bindFramebuffer(gl.FRAMEBUFFER, target.fbo); gl.viewport(0, 0, S, S); gl.drawArrays(gl.TRIANGLES, 0, 3);
+  await frame(); const buf = readTarget(target, S); res.deleteTarget(target); gl.deleteProgram(prog.prog);
+  const bad = [0, 0, 0]; const ex = [];
+  for (let b = 0; b < S; b++) for (let a = 0; a < S; a++) {
+    const o = 4 * (b * S + a), want = [spreadJs(a) + 2 * spreadJs(b), a * 256 + b, spreadJs(a) + 2 * spreadJs(b)];
+    want.forEach((v, k) => { if (buf[o + k] !== v) { bad[k]++; if (ex.length < 2) ex.push({ a, b, k, gpu: buf[o + k], cpu: v }); } });
+  }
+  return { local: bad[0], product: bad[1], whole: bad[2], total: S * S, ex };
+}
+
+// Probes: the production functions with a main() that writes one intermediate stage.
+const PROBE_HEAD = `
+  vec2 X = (gl_FragCoord.xy - 0.5 - u_ref) * u_step;
+  vec3 v = normalize(u_axis + X.x * u_west + X.y * u_north);
+  float s2 = v.x * v.x + v.y * v.y; int order = u_order0, n = 1 << order; float nf = float(n), z = v.z, r;
+  if (z > 2.0 / 3.0) r = nf * sqrt(3.0 * s2 / (1.0 + z)); else if (z < -2.0 / 3.0) r = 4.0 * nf - nf * sqrt(3.0 * s2 / (1.0 - z)); else r = 2.0 * nf - 1.5 * nf * z;
+  int lo = clamp(int(floor(r)), 1, 4 * n - 1); float ra = atan2Precise(v.y, v.x);
+  int nr = min(lo, min(n, 4 * n - lo)), shift = (lo >= n && lo <= 3 * n) ? ((lo - n) & 1) : 0;
+  float pitch = PI / (2.0 * float(nr)), start = (1.0 - float(shift + 1) * 0.5) * pitch, t = mod(ra - start, TAU) / pitch;
+  int j = int(floor(t)); if (j >= 4 * nr) j -= 4 * nr;
+  ivec3 p = ringXyf(order, n, lo, j + 1); int to = order - 8;
+  int tile = (p.x << (2 * to)) + spread(p.y >> 8) + 2 * spread(p.z >> 8), lx = p.y & 255, ly = p.z & 255;
+  int tx = spread(lx & 15) + 2 * spread(ly & 15), ty = spread(lx >> 4) + 2 * spread(ly >> 4);`;
+const PROBES = {
+  A: 'o = vec4(float(lo), float(j), float(tile), float(tx) + 256.0 * float(ty));',
+  B: 'int layer = layerOf(0, tile); uvec4 code = layer < 0 ? uvec4(0u) : texelFetch(u_tiles, ivec3(tx, ty, layer), 0); o = vec4(float(layer), float(code.x), float(code.y), float(code.w));',
+  P: 'int layer = layerOf(0, tile); vec4 sf = texelFetch(u_params, ivec2(0, max(layer, 0)), 0), am = texelFetch(u_params, ivec2(1, max(layer, 0)), 0); o = vec4(sf.x, am.x, sf.w, am.w);',
+};
+function probe(id) {
+  const src = D.SKY_PROJECT_FS, at = src.indexOf('void main() {'); if (at < 0) throw Error('probe: main not found');
+  return res.program('probe-' + id, D.FULLSCREEN_VS, src.slice(0, at) + 'void main() {' + PROBE_HEAD + '\n  ' + PROBES[id] + '\n}\n');
+}
+// CPU side of probe A.
+function cpuProbeA(g, order, ix, iy) {
+  const X = (ix - g.refPixel[0]) * g.planeStep, Y = (iy - g.refPixel[1]) * g.planeStep, { axis: a, west: w, north: u } = g.frame;
+  let x = a[0] + X * w[0] + Y * u[0], y = a[1] + X * w[1] + Y * u[1], z = a[2] + X * w[2] + Y * u[2]; const l = Math.hypot(x, y, z); x /= l; y /= l; z /= l;
+  const n = 1 << order, s2 = x * x + y * y, r = z > 2 / 3 ? n * Math.sqrt(3 * s2 / (1 + z)) : z < -2 / 3 ? 4 * n - n * Math.sqrt(3 * s2 / (1 - z)) : 2 * n - 1.5 * n * z;
+  const lo = Math.max(1, Math.min(4 * n - 1, Math.floor(r))), ra = Math.atan2(y, x), nr = Math.min(lo, n, 4 * n - lo), shift = lo >= n && lo <= 3 * n ? (lo - n) & 1 : 0;
+  const pitch = Math.PI / (2 * nr), start = (1 - (shift + 1) * 0.5) * pitch; let t = (ra - start) % (2 * Math.PI); if (t < 0) t += 2 * Math.PI; t /= pitch;
+  let j = Math.floor(t); if (j >= 4 * nr) j -= 4 * nr;
+  const nested = D.ringNested(order, lo, j + 1); return [lo, j, nested >>> 16, nested & 65535];
+}
+
+// Integer micro-tests: the production helper functions with a main() writing exact integers into an RGBA32I target
+// (256 x 256 inputs each), compared with the CPU copies above.
+function runInt(main, setup) {
+  const head = D.SKY_PROJECT_FS.slice(0, D.SKY_PROJECT_FS.indexOf('void main() {')).replace('out vec4 o;', 'out ivec4 o;');
+  const prog = res.program('int-check', D.FULLSCREEN_VS, head + 'void main() {\n' + main + '\n}\n'), S = 256;
+  const tex = gl.createTexture(), fbo = gl.createFramebuffer();
+  gl.bindTexture(gl.TEXTURE_2D, tex); gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA32I, S, S, 0, gl.RGBA_INTEGER, gl.INT, null);
+  for (const k of [gl.TEXTURE_MIN_FILTER, gl.TEXTURE_MAG_FILTER]) gl.texParameteri(gl.TEXTURE_2D, k, gl.NEAREST);
+  gl.bindFramebuffer(gl.FRAMEBUFFER, fbo); gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+  gl.viewport(0, 0, S, S); gl.useProgram(prog.prog); gl.bindVertexArray(vao); setup?.(n => prog.loc.get(n));
+  gl.drawArrays(gl.TRIANGLES, 0, 3);
+  const buf = new Int32Array(S * S * 4); gl.readPixels(0, 0, S, S, gl.RGBA_INTEGER, gl.INT, buf);
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null); gl.deleteFramebuffer(fbo); gl.deleteTexture(tex); gl.deleteProgram(prog.prog);
+  return buf;
+}
+function countInt(buf, expect) {
+  let bad = 0; const ex = [];
+  for (let y = 0; y < 256; y++) for (let x = 0; x < 256; x++) {
+    const o = 4 * (y * 256 + x), want = expect(x, y), got = [buf[o], buf[o + 1], buf[o + 2], buf[o + 3]];
+    if (want.some((v, k) => v !== null && v !== got[k])) { bad++; if (ex.length < 2) ex.push({ x, y, gpu: got, cpu: want }); }
+  }
+  return { bad, total: 65536, ex };
+}
+const RING_INPUT = 'int order = u_order0, n = 1 << order, y = int(gl_FragCoord.y), x = int(gl_FragCoord.x); int i = 1 + (y * (4 * n - 2)) / 255; int nr = min(i, min(n, 4 * n - i)); int iphi = 1 + (x * (4 * nr - 1)) / 255;';
+const ringInputJs = (n, x, y) => { const i = 1 + Math.floor(y * (4 * n - 2) / 255), nr = Math.min(i, n, 4 * n - i); return [i, 1 + Math.floor(x * (4 * nr - 1) / 255)]; };
+function integerChecks() {
+  const out = {};
+  out.spread = countInt(runInt('int v = int(gl_FragCoord.x) + 256 * int(gl_FragCoord.y); o = ivec4(spread(v & 255), spread(v >> 8), spread(v), v);'),
+    (x, y) => { const v = x + 256 * y; return [spreadJs(v & 255), spreadJs(v >> 8), spreadJs(v), v]; });
+  out.intOps = countInt(runInt('int v = int(gl_FragCoord.x) + 256 * int(gl_FragCoord.y) - 32768; o = ivec4(v >> 3, v & 7, (v + 32768) % 7, (v + 32768) >> (int(gl_FragCoord.x) & 15));'),
+    (x, y) => { const v = x + 256 * y - 32768; return [v >> 3, v & 7, (v + 32768) % 7, (v + 32768) >> (x & 15)]; });
+  for (const order of [10, 12]) {
+    const n = 1 << order;
+    out['ring' + order] = countInt(runInt(RING_INPUT + ' ivec3 p = ringXyf(order, n, i, iphi); o = ivec4(p, i);', l => gl.uniform1i(l('u_order0'), order)),
+      (x, y) => { const [i, iphi] = ringInputJs(n, x, y); return [...ringXyfJs(order, n, i, iphi), i]; });
+    // The same inputs, the steps of ringXyf one by one: kshift, ifm, ifp, face.
+    out['ringSteps' + order] = countInt(runInt(RING_INPUT + ' int tmp = i - n, ire = tmp + 1, irm = 2 * n + 1 - tmp; int ifm = (iphi - (ire >> 1) + n - 1) >> order, ifp = (iphi - (irm >> 1) + n - 1) >> order; o = ivec4((i - n) & 1, ifm, ifp, ifp == ifm ? (ifp | 4) : (ifp < ifm ? ifp : ifm + 8));', l => gl.uniform1i(l('u_order0'), order)),
+      (x, y) => { const [i, iphi] = ringInputJs(n, x, y); if (i < n || i > 3 * n) return [null, null, null, null]; const tmp = i - n, ire = tmp + 1, irm = 2 * n + 1 - tmp, ifm = (iphi - (ire >> 1) + n - 1) >> order, ifp = (iphi - (irm >> 1) + n - 1) >> order; return [(i - n) & 1, ifm, ifp, ifp === ifm ? (ifp | 4) : (ifp < ifm ? ifp : ifm + 8)]; });
+  }
+  return out;
+}
+// Float geometry of the 25 mm probe plane: r (ring coordinate), ra, t (pixel coordinate in the ring), against doubles.
+async function floatChecks(c) {
+  const S = c.p.size, prog = res.program('float-check', D.FULLSCREEN_VS, D.SKY_PROJECT_FS.slice(0, D.SKY_PROJECT_FS.indexOf('void main() {')) + 'void main() {' + PROBE_HEAD + '\n  o = vec4(r, ra, t, float(lo));\n}\n');
+  const target = res.target(S, gl.RGBA32F, gl.RGBA); projectWith(prog, target, c.p, 0, S); await frame(); const b = readTarget(target, S); res.deleteTarget(target);
+  let bad = 0, n = 0; const ex = [];
+  for (let y = 0; y < S; y += 2) for (let x = 0; x < S; x += 2) {
+    const g = c.g, X = (x - g.refPixel[0]) * g.planeStep, Y = (y - g.refPixel[1]) * g.planeStep, { axis: a, west: w, north: u } = g.frame;
+    let vx = a[0] + X * w[0] + Y * u[0], vy = a[1] + X * w[1] + Y * u[1], vz = a[2] + X * w[2] + Y * u[2]; const l = Math.hypot(vx, vy, vz); vx /= l; vy /= l; vz /= l;
+    const N = 1024, s2 = vx * vx + vy * vy, r = vz > 2 / 3 ? N * Math.sqrt(3 * s2 / (1 + vz)) : vz < -2 / 3 ? 4 * N - N * Math.sqrt(3 * s2 / (1 - vz)) : 2 * N - 1.5 * N * vz, ra = Math.atan2(vy, vx);
+    const o = 4 * (y * S + x); n++;
+    if (Math.abs(b[o] - r) > 0.01 || Math.abs(b[o + 1] - ra) > 1e-4) { bad++; if (ex.length < 2) ex.push({ x, y, gpu: [b[o], b[o + 1]].map(v => +v.toPrecision(7)), cpu: [r, ra].map(v => +v.toPrecision(7)) }); }
+  }
+  return { bad, total: n, ex };
+}
+
+function draw(id, S, get) {
+  const cv = $(id), ctx = cv.getContext('2d'), img = ctx.createImageData(256, 256);
+  for (let j = 0; j < 256; j++) for (let i = 0; i < 256; i++) {
+    const [r, g, b] = get(Math.floor((i + 0.5) * S / 256), Math.floor((255 - j + 0.5) * S / 256)), o = 4 * (j * 256 + i);
+    img.data[o] = r; img.data[o + 1] = g; img.data[o + 2] = b; img.data[o + 3] = 255;
+  }
+  ctx.putImageData(img, 0, 0);
+}
+const shade = v => v < 0 ? [70, 0, 0] : (k => [k * 0.55, k * 0.9, k])(255 * Math.min(1, Math.asinh(v / 4) / Math.asinh(60)));
+
+async function run() {
+  result = { page: 'sky-gpu-check v5', when: new Date().toISOString(), ua: navigator.userAgent, info: {}, steps: [], cases: {} };
+  $('steps').innerHTML = ''; $('out').value = ''; $('rerun').disabled = true; verdict('', '正在检测……'); $('verdictPill').textContent = '检测中';
+  try {
+    const canvas = document.createElement('canvas'); canvas.width = canvas.height = 4;
+    gl = canvas.getContext('webgl2', { antialias: false, depth: false, stencil: false });
+    const env = addStep('WebGL2 与浮点渲染');
+    if (!gl) { env.bad('此浏览器没有 WebGL2'); verdict('bad', '这个浏览器不支持 WebGL2，模拟器在这里无法运行。'); return; }
+    const dbg = gl.getExtension('WEBGL_debug_renderer_info'), hf = gl.getShaderPrecisionFormat(gl.FRAGMENT_SHADER, gl.HIGH_FLOAT), hi = gl.getShaderPrecisionFormat(gl.FRAGMENT_SHADER, gl.HIGH_INT);
+    let deflateRaw = false; try { new DecompressionStream('deflate-raw'); deflateRaw = true; } catch { /* old engine */ }
+    const info = result.info = {
+      显卡: dbg ? gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER), 厂商: dbg ? gl.getParameter(dbg.UNMASKED_VENDOR_WEBGL) : gl.getParameter(gl.VENDOR),
+      版本: gl.getParameter(gl.VERSION), GLSL: gl.getParameter(gl.SHADING_LANGUAGE_VERSION),
+      最大纹理: gl.getParameter(gl.MAX_TEXTURE_SIZE), 纹理数组层数: gl.getParameter(gl.MAX_ARRAY_TEXTURE_LAYERS),
+      'highp float': hf ? `${hf.rangeMin}/${hf.rangeMax}/${hf.precision}` : '无', 'highp int': hi ? `${hi.rangeMin}/${hi.rangeMax}/${hi.precision}` : '无',
+      浮点渲染: !!gl.getExtension('EXT_color_buffer_float'), 浮点混合: !!gl.getExtension('EXT_float_blend'), 后台编译: !!gl.getExtension('KHR_parallel_shader_compile'),
+      'deflate-raw': deflateRaw, 内存GB: navigator.deviceMemory ?? '?', 线程: navigator.hardwareConcurrency ?? '?',
+    };
+    showInfo(info);
+    if (!info.浮点渲染) { env.bad('没有 EXT_color_buffer_float'); verdict('bad', '显卡不支持浮点渲染，模拟器会显示不支持页。'); return; }
+    env.ok(String(info.显卡));
+
+    res = new D.GlResources(gl); vao = gl.createVertexArray();
+    const comp = addStep('编译正式版投影着色器');
+    try { res.program('skyProject', D.FULLSCREEN_VS, D.SKY_PROJECT_FS); comp.ok('编译、链接成功'); }
+    catch (e) { comp.bad(e.message); verdict('bad', '这台设备编译不了自由天空的投影着色器，所以广域图层画不出来。把结果复制给开发者。'); return; }
+    projector = new D.SkyProjector(gl, res);
+    for (let i = 0; !projector.compiled && i < 600; i++) await sleep(16);
+
+    const cases = [['25 mm · 2048² · 128 行一带', 25, 2048, 128, 0], ['50 mm · 1024² · 整张一次', 50, 1024, 1024, 0], ['85 mm · 1024² · 含 o11 回退', 85, 1024, 256, 3]];
+    let first = null, allPass = true;
+    for (const [label, step, size, rows, drop] of cases) {
+      const st = addStep('投影 ' + label);
+      await frame();
+      const c = planeCase(step, size, drop), t0 = performance.now(), buf = await render(c, rows, null), ms = performance.now() - t0;
+      const cmp = compare(c, buf, 6000); result.cases[label] = { tiles: c.tiles.length, orders: c.orders, ms: Math.round(ms), glError: gl.getError(), ...cmp };
+      const msg = `${c.tiles.length} 块瓦片，${cmp.compared} 点中 ${cmp.bad} 点不一致（${cmp.badPct}%），无效区不符 ${cmp.invalidMismatch}，最大相对误差 ${cmp.maxRel}`;
+      cmp.pass ? st.ok(msg) : st.bad(msg); allPass &&= cmp.pass;
+      if (!first) {
+        first = c; const S = c.p.size, out = new Float32Array(4);
+        draw('imgGpu', S, (x, y) => shade(buf[4 * (y * S + x)]));
+        draw('imgCpu', S, (x, y) => { D.planePixel(c.g, c.orders, c.index, x, y, out); return shade(out[0]); });
+        draw('imgErr', S, (x, y) => { D.planePixel(c.g, c.orders, c.index, x, y, out); const gv = buf[4 * (y * S + x)], bad = (out[0] < 0) !== (gv < 0) || Math.abs(gv - out[0]) / Math.max(Math.abs(out[0]), 0.05) > 2e-3; return bad ? [230, 40, 40] : shade(out[0]).map(v => v * 0.35); });
+      }
+      await frame();
+    }
+
+    // Integer and float steps of the projection, on every device: which operation the driver gets wrong.
+    const ints = result.ints = integerChecks();
+    const labels = { spread: '整数：位交织 spread()', intOps: '整数：移位、按位与、取余', ring10: '整数：ringXyf（o10）', ringSteps10: '整数：ringXyf 中间步骤（o10）', ring12: '整数：ringXyf（o12）', ringSteps12: '整数：ringXyf 中间步骤（o12）' };
+    for (const [k, r] of Object.entries(ints)) { const st = addStep(labels[k] ?? k), msg = `${r.bad} / ${r.total} 不一致` + (r.ex[0] ? `，例 ${JSON.stringify(r.ex[0])}` : ''); r.bad === 0 ? st.ok(msg) : st.bad(msg); }
+    const c = planeCase(25, 256, 0); projector.ensure(c.tiles);
+    const fl = result.floats = await floatChecks(c);
+    { const st = addStep('浮点：环坐标 r 与赤经角'), msg = `${fl.bad} / ${fl.total} 不一致` + (fl.ex[0] ? `，例 ${JSON.stringify(fl.ex[0])}` : ''); fl.bad <= fl.total * 0.002 ? st.ok(msg) : st.bad(msg); }
+
+    // Before/after: the 0.9.49 shader on the same 25 mm plane, and whether ints reach a float output intact.
+    let oldFails = false;
+    {
+      const st = addStep('对照：0.9.49 旧投影着色器（25 mm）');
+      try { const big = planeCase(25, 2048, 0), out = await render(big, 128, oldShader()), cmp = compare(big, out, 6000); result.cases['old 0.9.49 25 mm'] = cmp; oldFails = !cmp.pass; const msg = `${cmp.bad} / ${cmp.compared} 不一致（${cmp.badPct}%）`; cmp.pass ? st.ok(msg) : st.note(msg); }
+      catch (e) { st.bad(e.message); result.cases['old 0.9.49 25 mm'] = { error: e.message }; }
+    }
+    {
+      const st = addStep('对照：v3 着色器（整数已改、主函数仍是短路调用，25 mm）');
+      try { const big = planeCase(25, 2048, 0), out = await render(big, 128, v3Shader()), cmp = compare(big, out, 6000); result.cases['v3 25 mm'] = cmp; const msg = `${cmp.bad} / ${cmp.compared} 不一致（${cmp.badPct}%）`; cmp.pass ? st.ok(msg) : st.note(msg); }
+      catch (e) { st.bad(e.message); result.cases['v3 25 mm'] = { error: e.message }; }
+    }
+    {
+      const r = result.int16 = await int16Check(), st = addStep('整数到浮点输出：是否按 16 位计算');
+      const msg = `局部序号 ${r.local}、x·256+y ${r.product}、整段位交织 ${r.whole}（共 ${r.total}）不一致` + (r.ex[0] ? `，例 ${JSON.stringify(r.ex[0])}` : '');
+      r.local + r.product + r.whole === 0 ? st.ok(msg) : st.note(msg);
+    }
+
+    if (allPass) verdict('ok', oldFails ? '这台设备的显卡把广域天图算对了。0.9.49 的旧写法在这里会算错（对照一行），更新后即可正常显示。请把结果复制给开发者，用来记录这款设备。' : '这台设备的显卡把广域天图算对了，旧写法在这里也正确。请把结果复制给开发者，用来记录这款设备。');
+    else {
+      // Isolate the failing stage on a small 25 mm plane: geometry (A), tile/texel fetch (B), parameters (P).
+      const S = 256, slots = projector.slots;
+      const runProbe = async id => { const prog = probe(id), target = res.target(S, gl.RGBA32F, gl.RGBA); projectWith(prog, target, c.p, 0, S); await frame(); const b = readTarget(target, S); res.deleteTarget(target); return b; };
+      const a = await runProbe('A'), b = await runProbe('B'), pr = await runProbe('P');
+      let geoBad = 0, fetchBad = 0, paramBad = 0; const ex = [];
+      for (let y = 0; y < S; y += 2) for (let x = 0; x < S; x += 2) {
+        const o = 4 * (y * S + x), cpu = cpuProbeA(c.g, 10, x, y);
+        if (cpu.some((v, k) => v !== a[o + k])) { geoBad++; if (ex.length < 3) ex.push({ x, y, gpu: [a[o], a[o + 1], a[o + 2], a[o + 3]], cpu }); }
+        const tile = a[o + 2], local = a[o + 3], t = tileOf(10, tile), slot = slots.get(D.tileKey(10, tile));
+        const want = [slot ? slot.layer : -1, t.codes[4 * local], t.codes[4 * local + 1], t.codes[4 * local + 3]];
+        if (want.some((v, k) => v !== b[o + k])) fetchBad++;
+        if (slot && (Math.abs(pr[o] - t.soft[0]) > 1e-6 || Math.abs(pr[o + 1] - t.amax[0]) > 1e-6 || Math.abs(pr[o + 2] - t.soft[3]) > 1e-6 || Math.abs(pr[o + 3] - t.amax[3]) > 1e-6)) paramBad++;
+      }
+      const n = (S / 2) ** 2;
+      result.probes = { geometryPct: +(100 * geoBad / n).toFixed(2), fetchPct: +(100 * fetchBad / n).toFixed(2), paramPct: +(100 * paramBad / n).toFixed(2), geometryExamples: ex };
+      const pa = addStep('分段：几何（环、像素、瓦片编号）'); geoBad <= n * 0.002 ? pa.ok(`${geoBad} / ${n} 不一致`) : pa.bad(`${geoBad} / ${n} 不一致`);
+      const pb = addStep('分段：瓦片纹理与层映射读取'); fetchBad <= n * 0.002 ? pb.ok(`${fetchBad} / ${n} 不一致`) : pb.bad(`${fetchBad} / ${n} 不一致`);
+      const pp = addStep('分段：瓦片参数读取'); paramBad === 0 ? pp.ok('一致') : pp.bad(`${paramBad} / ${n} 不一致`);
+      // The production loops of order 0: did interpolate succeed, and what weights and sums did they add up?
+      {
+        const prog = accShader(), target = res.target(S, gl.RGBA32F, gl.RGBA); projectWith(prog, target, c.p, 0, S); await frame(); const g = readTarget(target, S); res.deleteTarget(target);
+        let notOk = 0, ws0 = 0, wsBad = 0, sumBad = 0, cnt = 0; const exA = [];
+        for (let y = 0; y < S; y += 2) for (let x = 0; x < S; x += 2) {
+          const o = 4 * (y * S + x), cpu = cpuAcc(c, x, y); if (!cpu.ok) continue; cnt++;
+          if (g[o] === -7 && g[o + 1] === -7) { notOk++; if (exA.length < 1) exA.push({ x, y, gpu: 'interpolate false' }); continue; }
+          if (g[o] === 0 && cpu.ws[0] > 0) ws0++;
+          const rel = (p, q) => Math.abs(p - q) / Math.max(Math.abs(q), 1e-3);
+          if (rel(g[o], cpu.ws[0]) > 1e-3 || rel(g[o + 1], cpu.ws[3]) > 1e-3) { wsBad++; if (exA.length < 2) exA.push({ x, y, gpu: [g[o], g[o + 1], g[o + 2], g[o + 3]].map(v => +v.toPrecision(5)), cpu: [cpu.ws[0], cpu.ws[3], cpu.sum[0], cpu.sum[3]].map(v => +v.toPrecision(5)) }); }
+          else if (rel(g[o + 2], cpu.sum[0]) > 2e-3 || rel(g[o + 3], cpu.sum[3]) > 2e-3) sumBad++;
+        }
+        result.acc = { compared: cnt, notOk, ws0, wsBad, sumBad, ex: exA };
+        const st = addStep('分段：四邻域累加（权重与加和）'), msg = `${cnt} 点：插值失败 ${notOk}，权重全零 ${ws0}，权重不符 ${wsBad}，加和不符 ${sumBad}` + (exA[0] ? `，例 ${JSON.stringify(exA[0])}` : '');
+        notOk + wsBad + sumBad === 0 ? st.ok(msg) : st.bad(msg);
+      }
+      // Alternative writings of the production shader.
+      const fixes = [];
+      for (const { id, label, edits } of D.SKY_PROJECT_VARIANTS) {
+        const name = '兼容写法：' + label;
+        const st = addStep(name);
+        try { const prog = edited('alt-' + id, edits), big = planeCase(25, 2048, 0), out = await render(big, 128, prog), cmp = compare(big, out, 6000); result.cases['alt ' + id] = cmp; const msg = `${cmp.bad} / ${cmp.compared} 不一致（${cmp.badPct}%）`; if (cmp.pass) { st.ok(msg); fixes.push(id); } else st.bad(msg); }
+        catch (e) { st.bad(e.message); result.cases['alt ' + id] = { error: e.message }; }
+        await frame();
+      }
+      verdict('bad', fixes.length ? `正式着色器在这台设备上仍不正确，备选写法 ${fixes.join('、')} 正确。请把结果复制给开发者。` : '修正后的投影着色器在这台设备上仍和 CPU 参照不一致，备选写法也不行。请把结果复制给开发者。');
+    }
+  } catch (e) {
+    const st = addStep('意外错误'); st.bad(e && e.stack ? e.stack.split('\n').slice(0, 3).join(' | ') : String(e)); verdict('warn', '检测中途出错，请把结果复制给开发者。');
+  } finally {
+    $('out').value = summary(); $('rerun').disabled = false;
+    try { res?.deleteAll(); } catch { /* context may be gone */ }
+  }
+}
+// A short text for copying from a phone: one line per check, at most one example each.
+function summary() {
+  const r = result, ex = e => e ? ' 例' + JSON.stringify(e) : '', lines = [];
+  const os = (r.ua.match(/Android [\d.]+|Windows NT [\d.]+|iPhone OS [\d_]+|Mac OS X [\d_]+/) ?? [''])[0];
+  const browsers = (r.ua.match(/(?:EdgA?|Chrome|CriOS|Firefox|Version|MQQBrowser|MicroMessenger|XiaoMi\/MiuiBrowser|HeyTapBrowser|UCBrowser|Quark|HuaweiBrowser)\/[\d.]+/g) ?? []).join(' ');
+  lines.push(`sky-gpu-check v5 | ${r.info?.显卡 ?? '?'} | ${os} | ${browsers}`);
+  for (const [k, c] of Object.entries(r.cases)) lines.push((k.startsWith('variant') || k.startsWith('alt')) ? `${k}: ${c.error ? 'ERR ' + c.error : c.badPct + '%'}` : `${k}: ${c.badPct}% 不一致, 无效区不符 ${c.invalidMismatch}, maxRel ${c.maxRel}${ex(c.examples?.[0])}`);
+  for (const [k, c] of Object.entries(r.ints ?? {})) lines.push(`${k}: ${c.bad}/${c.total}${ex(c.ex[0])}`);
+  if (r.floats) lines.push(`float r,ra: ${r.floats.bad}/${r.floats.total}${ex(r.floats.ex[0])}`);
+  if (r.acc) lines.push(`acc ${r.acc.compared}: notOk ${r.acc.notOk} ws0 ${r.acc.ws0} wsBad ${r.acc.wsBad} sumBad ${r.acc.sumBad}${ex(r.acc.ex[0])}`);
+  if (r.int16) lines.push(`int16 local ${r.int16.local} product ${r.int16.product} whole ${r.int16.whole} /${r.int16.total}${ex(r.int16.ex[0])}`);
+  if (r.probes) lines.push(`probes geo ${r.probes.geometryPct}% fetch ${r.probes.fetchPct}% param ${r.probes.paramPct}%${ex(r.probes.geometryExamples[0])}`);
+  for (const s of r.steps.filter(s => s.name === '意外错误' || s.name.startsWith('编译'))) if (s.status === 'bad') lines.push('error: ' + s.msg.slice(0, 300));
+  return lines.join('\n');
+}
+$('copy').addEventListener('click', () => {
+  const t = $('out'); const done = () => { $('copyNote').textContent = '已复制'; };
+  navigator.clipboard?.writeText(t.value).then(done, () => { t.focus(); t.select(); $('copyNote').textContent = '已选中，请长按复制'; }) ?? (t.focus(), t.select());
+});
+$('rerun').addEventListener('click', () => { void run(); });
+setTimeout(() => { void run(); }, 300);
+</script>
+
+</body>
+</html>
