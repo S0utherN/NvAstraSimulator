@@ -511,3 +511,197 @@ and Hipparcos acknowledgements above continue to apply. Catalogue reference
 positions use SIMBAD, operated at CDS, Strasbourg, France.
 Raw-file fingerprints and processing: data/scenes/atlas6-downloads.json;
 docs/reviews/2026-10-07/ATLAS6.md. Original atlas2/4/5 assets are unchanged.
+
+All-sky derivatives, Step 2 (2026-10-09)
+New data/sky/allsky-v1 and data/sky/stars-v1 remain in the development
+repository; original survey FITS/CSV responses are not distributed.
+NSNS DR0.2 H-alpha/[OIII]/[SII]: Stefan Ziegenbalg;
+CC BY-NC-SA 4.0. Visual continuum raw candidate is pinned but deliberately
+not used in the all-sky continuum slot: residual OIII/H-beta would double count.
+https://www.simg.de/nebulae3/dr0_2/
+https://www.simg.de/licensing.html
+WHAM acknowledgement and the Gaia/DPAC, Hipparcos, SHASSA/LCO and
+IRAP/CADE acknowledgements already recorded above continue to apply.
+The new coarse FITS tiles are retrieved directly from the corresponding
+official HiPS services and CDS mirrors. VizieR (CDS, Strasbourg, France)
+provides the Gaia DR3 I/355/gaiadr3 and Hipparcos I/239/hip_main queries.
+Finkbeiner (2003) H-alpha composite: WHAM, VTSS and SHASSA contributions;
+NASA LAMBDA reference and CNRS/Unistra CDS HiPS transformation.
+CDS/P/Finkbeiner properties: hips_license=ODbL-1.0,
+hips_copyright=CNRS/Unistra. This applies to this pinned HiPS database
+version, without removing attribution or restrictions of contributing
+surveys. No new commercial licence is claimed.
+https://alasky.cds.unistra.fr/FinkbeinerHalpha/properties
+https://lambda.gsfc.nasa.gov/product/foreground/fg_halpha_info.html
+Provenance: data/sky/allsky-downloads.json.
+Processing and limitations: scripts/preprocess/sky/README.md;
+docs/reviews/2026-10-09/ALLSKY.md; docs/DATA_LICENSES.md.
+
+Faint star tiers for the 50/85 mm lenses (D109, 2026-10-10)
+data/sky/stars-deep-v1 (Gaia DR3 10.5 <= G < 13) uses ESA/Gaia/DPAC Gaia DR3
+(Gaia Collaboration 2023, A&A 674, A1; CC BY-NC 3.0 IGO, non-commercial),
+queried through CDS VizieR I/355/gaiadr3. Provenance:
+data/sky/stars-deep-downloads.json. data/sky/shassa-streaks.json (D110) is a
+position table derived from SHASSA (Gaustad et al. 2001), under the SHASSA
+acknowledgement above.
+
+Fixed-resolution sky pyramid (2026-10-10)
+data/sky/pyramid-v1 (HEALPix orders 10/11/12) is derived from the same NSNS
+DR0.2 H-alpha/[OIII]/[SII] (Stefan Ziegenbalg, CC BY-NC-SA 4.0), SHASSA H-alpha
+(LCO, IRAP/CADE HiPS) and Finkbeiner (2003) sources, read at their finer
+official HiPS tile orders 2 and 3; no new survey or licence category. The
+acknowledgements above continue to apply; raw FITS are not distributed.
+Provenance: data/sky/pyramid-downloads.json. Processing: scripts/preprocess/
+sky/README.md; DECISIONS.md D106.
+
+
+Sky assistance display data (Step 6, 2026-10-09)
+=============================================
+Constellation lines and GeoJSON conversion: Olaf Frohn / d3-celestial,
+commit 7e720a3de062059d4c5400a379146a601d9010e0. BSD-3-Clause.
+Source declarations: data/constellations.lines.json [3] IAU constellation
+page, some modifications by Olaf Frohn; data/constellations.bounds.json
+[4] VI/49 (Davenhall A. C. & Leggett S. K. 1989).
+https://github.com/ofrohn/d3-celestial
+
+Copyright (c) 2015, Olaf Frohn
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Boundary catalogue VI/49: Davenhall A. C. & Leggett S. K. (1989),
+VizieR Online Data Catalog, 1997yCat.6049....0D, CDS Strasbourg, France.
+This work has made use of the VizieR catalogue access tool, CDS,
+Strasbourg, France (DOI: 10.26093/cds/vizier; Ochsenbein et al. 2000,
+A&AS 143, 23). Retrieved rights_uri states free scientific use with
+proper citation; commercial use depends on original catalogue rights.
+No commercial clearance or BSD licence for the underlying VI/49 is claimed.
+https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49
+https://cds.unistra.fr/vizier-org/licences_vizier.html
+
+Star names and HIP identities: IAU / Division C Working Group on Star
+Names, IAU Catalog of Star Names, 2022-04-04; Secretary Eric Mamajek.
+IAU materials: Creative Commons Attribution 4.0 International.
+Only names, HIP identities, coordinates, V magnitudes and constellation
+facts are extracted; no images or etymology texts are included.
+https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt
+https://iauarchive.eso.org/copyright/
+Traditional Chinese star names and the 88 Chinese constellation names:
+own small glossary of this project. d3-celestial Stellarium-derived
+translation files are not used.
+Provenance: data/sky/overlays-downloads.json; data/sky/overlays-v1/manifest.json.
+Processing: scripts/sky-overlays-data.mjs; docs/DATA_LICENSES.md.
+
+Sky atlas display facts (2026-10-09): SIMBAD astronomical database,
+operated at CDS, Strasbourg, France. Angular dimensions/magnitudes retain
+the individual source bibcodes, wavebands and quality in
+data/sky/catalog-v1/simbad.json; missing facts are not invented.
+https://simbad.cds.unistra.fr/
+https://cds.unistra.fr/vizier-org/licences_vizier.html
+Catalogue thumbnails are generated by this simulator from the existing
+credited survey derivatives (not external photographs). Underlying
+NSNS/SHASSA and other survey restrictions continue to apply.
+
+Sky atlas angular-size supplement (2026-10-09):
+OpenNGC, Mattia Verga, version 75ca7ff090e1d0081a5b08be70eb3bc45ccd9e06,
+https://github.com/mattiaverga/OpenNGC, CC BY-SA 4.0.
+OpenNGC-derived records and size adaptations in data/sky/catalog-v1/sizes.json
+(and the corresponding sizes in entries.json) are distributed under CC BY-SA 4.0.
+Sharpless S. 1959, ApJS 4,257, VizieR VII/20; Lynds B.T. 1965, ApJS 12,163,
+VizieR VII/9: separate CDS scientific-use conditions, original references retained.
+This work has made use of VizieR, CDS, Strasbourg, France, DOI 10.26093/cds/vizier;
+Ochsenbein et al. 2000, A&AS 143,23. No general commercial licence is inferred.
+Thumbnails use recommended optics/filter and the simulator's existing settled
+display chain; there is no per-object extra stretch or external photograph.
+
+MDW DR1 H-alpha pilot (California, 2026-10-09):
+https://mdw.astro.columbia.edu/dr1_images.html
+https://doi.org/10.5281/zenodo.17307324
+https://arxiv.org/abs/2510.22900
+Noor Aftab, Xunhe (Andrew) Zhang, Sean Walker, Dennis di Cicco,
+David R. Mittelman, Sanya Gupta, Andrew K. Saydjari, Mary Putman,
+and David Schiminovich (2025), MDW DR1.
+Funding: Michele and David Mittelman Family Foundation.
+Survey founders / data acquisition and reduction: David Mittelman,
+Dennis di Cicco and Sean Walker. Columbia University Astronomy Department
+performed the final data reduction, calibration and distribution.
+The release record specifies CC BY 4.0 and reserves all commercial rights.
+This project uses the pilot non-commercially only; no commercial permission
+is inferred. The underlying NSNS CC BY-NC-SA 4.0 restrictions remain.
+Modifications: SIP-aware radiance resampling, per-field continuum/calibration
+fit and high-frequency graft onto NSNS, bad-area/star masks and feathering,
+asinh coding, and simulator-rendered California catalogue thumbnail.
+Only H-alpha detail is added; OIII/SII, stars and continuum retain original data.
+Fields 1193, 1194, 1286, 1287; original raw FITS not redistributed.
+Pins: data/sky/mdw-downloads.json; derivative: data/scenes/atlas8/.
+Processing and limitations: scripts/preprocess/mdw/README.md.
+
+IPHAS Step 10 offline pilot (IC443, 2026-10-09; not integrated):
+CDS/P/IPHAS/DR2/halpha and /r HiPS properties specify ODbL-1.0,
+CNRS/Unistra, HiPS creator Buga M. (CDS). Properties for /i were
+checked, but no i-band imagery downloaded. Source information from
+https://alasky.cds.unistra.fr/MocServer/query?ID=CDS/P/IPHAS/DR2/halpha&fmt=html&get=record
+is provided under https://opendatacommons.org/licenses/odbl/1-0/.
+Credits: IPHAS team and Isaac Newton Telescope / Isaac Newton Group;
+IAC / Observatorio del Roque de los Muchachos, La Palma; Cambridge
+Astronomical Survey Unit / Institute of Astronomy; Centre for
+Astrophysics Research, University of Hertfordshire; STFC ST/J001333/1.
+Barentsen et al. (2014), MNRAS 444,3230; Drew et al. (2005);
+Gonzalez-Solares et al. (2008). HiPS2FITS is a CDS service.
+SVO Filter Profile Service / Carlos Rodrigo, MCIN/AEI/10.13039/501100011033,
+PID2023-146210NB-I00; Rodrigo et al. 2024 A&A 689,A93;
+Rodrigo, Solano, Bayo 2012; Rodrigo, Solano 2020. ING filter curves
+INT/IPHAS.Ha and INT/WFC.Gunn_r: local calculations only, no raw
+curve database redistribution or new general licence inferred.
+NSNS DR0.2 / Stefan Ziegenbalg and MDW DR1 credits/restrictions above
+remain applicable to report figures. ODbL database permission does not
+replace individual image rights; no public derivative database or
+new application dataset is conveyed here. Full processing algorithms,
+source links, diagnostic-image notices and failed science gates:
+scripts/preprocess/iphas/README.md and docs/reviews/2026-10-09/SKY_STEP10.md.
+
+Sky atlas card photos (D108, 2026-10-10)
+---------------------------------------
+Thirty-two photos from Wikimedia Commons, registered to the star catalogue, rotated
+north up / east left, cropped and scaled to 360x240 by this project (data/sky/catalog-v1/photos/).
+Crops of CC BY-SA photos are shared under the same licence. Source, author and licence of each:
+auriga: IC 410 - IC 417 - NGC 1912 in Auriga.jpg — gjdonatiello, CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en), https://commons.wikimedia.org/wiki/File:IC_410_-_IC_417_-_NGC_1912_in_Auriga.jpg
+barnard: Orion Head to Toe.jpg — Rogelio Bernal Andreo, CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0), https://commons.wikimedia.org/wiki/File:Orion_Head_to_Toe.jpg
+bubble: The Bubble Nebula (NGC 7635) (noao0702a).jpg — T.A. Rector/University of Alaska Anchorage, H. Schweiker/WIYN and NOIRLab/NSF/AURA, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:The_Bubble_Nebula_(NGC_7635)_(noao0702a).jpg
+butterfly: IC1318 - The Butterfly nebula.jpg — Makrem Larnaout, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:IC1318_-_The_Butterfly_nebula.jpg
+california: California nebula from Estonia.jpg — Taavi Niittee/Tõrva Astronoomiaklubi/Tõrva Astronomy Club, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:California_nebula_from_Estonia.jpg
+carina: The Eta Carinae nebula, NGC 3372 (noao-02192).tiff — NOIRLab/NSF/AURA, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:The_Eta_Carinae_nebula,_NGC_3372_(noao-02192).tiff
+cave: Sh2-155 - The Cave Nebula (53269442481).jpg — Carsten Frenzl from Deutschland, CC BY 2.0 (https://creativecommons.org/licenses/by/2.0), https://commons.wikimedia.org/wiki/File:Sh2-155_-_The_Cave_Nebula_(53269442481).jpg
+cepheus: Emission nebulae in Cepheus and Cassiopeia.jpg — Tk833, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:Emission_nebulae_in_Cepheus_and_Cassiopeia.jpg
+christmas-tree: NGC 2264 by ESO.jpg — ESO, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:NGC_2264_by_ESO.jpg
+crescent: Crescent nebula.jpg — Taavi Niittee, CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en), https://commons.wikimedia.org/wiki/File:Crescent_nebula.jpg
+cygnus: Cygnus heart - Flickr - MrGuillermo.jpg — Guillermo S., Public domain, https://commons.wikimedia.org/wiki/File:Cygnus_heart_-_Flickr_-_MrGuillermo.jpg
+double-cluster: Kaksikparv logoga.jpg — Taavi Niittee, CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en), https://commons.wikimedia.org/wiki/File:Kaksikparv_logoga.jpg
+elephant-trunk: IC 1396A Elephant Trunk Nebula (noao1507a).jpg — T.A. Rector (University of Alaska Anchorage) and H. Schweiker (WIYN and NOIRLab/NSF/AURA), CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:IC_1396A_Elephant_Trunk_Nebula_(noao1507a).jpg
+flaming-star: IC405-19x4min-20210401.jpg — Skatebiker, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:IC405-19x4min-20210401.jpg
+flying-bat: Nebulosa Pipistrello Volante Sh2-129, Nebulosa Calamaro OU4 e Nebulosa Cavalluccio Marino Barnard 150in Ha O3.jpg — Gianni.lacroce, CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en), https://commons.wikimedia.org/wiki/File:Nebulosa_Pipistrello_Volante_Sh2-129,_Nebulosa_Calamaro_OU4_e_Nebulosa_Cavalluccio_Marino_Barnard_150in_Ha_O3.jpg
+gum: Gum Nebula2 1500x.jpg — Roberto Mura, Public domain, https://commons.wikimedia.org/wiki/File:Gum_Nebula2_1500x.jpg
+heart-soul: IC 1805 The Heart Nebula.png — Sjpickard5389, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:IC_1805_The_Heart_Nebula.png
+helix: NGC 7293 (noao-helixblock3).jpg — KPNO/NOIRLab/NSF/AURA/Adam Block, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:NGC_7293_(noao-helixblock3).jpg
+horsehead: Horsehead Nebula and Flame Nebula.jpg — Gianni.lacroce, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:Horsehead_Nebula_and_Flame_Nebula.jpg
+jellyfish: IC 443 region (new version) - Flickr - gjdonatiello.jpg — Giuseppe Donatiello from Oria (Brindisi), Italy, CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en), https://commons.wikimedia.org/wiki/File:IC_443_region_(new_version)_-_Flickr_-_gjdonatiello.jpg
+lmc: Deepest, widest view of the Large Magellanic Cloud from SMASH.jpg — CTIO/NOIRLab/NSF/AURA/SMASH/D. Nidever (Montana State University) Acknowledgment: Image processing: Travis Rector (University of Alaska Anchorage), Mahdi Zamani &amp; Davide de Martin, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:Deepest,_widest_view_of_the_Large_Magellanic_Cloud_from_SMASH.jpg
+m16: Eagle Nebula from ESO.jpg — ESO, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:Eagle_Nebula_from_ESO.jpg
+m27: M27 Dumbbell.png — Juan Lacruz, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:M27_Dumbbell.png
+m31: Andromeda Galaxy 560mm FL.jpg — David (Deddy) Dayag, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:Andromeda_Galaxy_560mm_FL.jpg
+m42: M42 Orion Nebula and Running Man (Dust and Gas).jpg — Dylan O'Donnell, deography.com, CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en), https://commons.wikimedia.org/wiki/File:M42_Orion_Nebula_and_Running_Man_(Dust_and_Gas).jpg
+m8: Lagoon Nebula (ESO).jpg — ESO/S. Guisard, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:Lagoon_Nebula_(ESO).jpg
+north-america: NGC 7000- The North America Nebula and the Pelican Nebula (noao-n7000mosblock).tiff — KPNO/NOIRLab/NSF/AURA/Adam Block, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:NGC_7000-_The_North_America_Nebula_and_the_Pelican_Nebula_(noao-n7000mosblock).tiff
+pacman: Pacman nebula.jpg — Ram samudrala, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:Pacman_nebula.jpg
+palette: Milky Way from Simeon, Virginia.png — Brandon Ghany / Horizon Productions SFL, CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en), https://commons.wikimedia.org/wiki/File:Milky_Way_from_Simeon,_Virginia.png
+rosette: Rosett2.jpg — Taavi Niittee, CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en), https://commons.wikimedia.org/wiki/File:Rosett2.jpg
+simeis-147: Simeis 147 (28254062070).jpg — Giuseppe Donatiello, CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en), https://commons.wikimedia.org/wiki/File:Simeis_147_(28254062070).jpg
+veil: Veil Nebula.jpg — Adam Block/Steward Observatory/University of Arizona, CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0), https://commons.wikimedia.org/wiki/File:Veil_Nebula.jpg

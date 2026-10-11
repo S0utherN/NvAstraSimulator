@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "packages": {
+    "app": {
+      "baseUrl": "./",
+      "manifest": "package-manifest.1e5891b23731e54d.json",
+      "sha256": "1e5891b23731e54d1f4761ae9edd45b8fc83ecf0fc54b9d8d8d753a13fbbb5e7"
+    }
+  },
+  "routes": [
+    {
+      "prefix": "",
+      "bundle": "app"
+    }
+  ]
+}

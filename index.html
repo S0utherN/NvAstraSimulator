@@ -33,11 +33,14 @@
     .preboot p { margin: 0; max-width: 420px; }
     .preboot .hint { opacity: 0; animation: preboot-hint 0.4s 10s forwards; font-size: 13px; color: #4b5f5d; }
     @keyframes preboot-hint { to { opacity: 1; } }
+    .preboot .icp { position: absolute; left: 0; right: 0; bottom: max(12px, env(safe-area-inset-bottom)); font-size: 11px; }
+    .preboot .icp a { color: #4b5f5d; text-decoration: none; }
   </style>
-  <script type="module" crossorigin src="./assets/app-D4H_1gc1.js"></script>
-  <link rel="modulepreload" crossorigin href="./assets/boot-SEgErXE4.js">
+  <script type="module" crossorigin src="./assets/app-TRO3USAB.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/boot-172aSsFW.js">
   <link rel="modulepreload" crossorigin href="./assets/vendor--Do4GtAm.js">
-  <link rel="stylesheet" crossorigin href="./assets/boot-h25Jt_sr.css">
+  <link rel="modulepreload" crossorigin href="./assets/hosting-Dx1z5pPz.js">
+  <link rel="stylesheet" crossorigin href="./assets/boot-DY4rQS1Z.css">
 </head>
 <body>
   <!-- Some in-app browsers use the first large image of the page as the share thumbnail. -->
@@ -46,6 +49,8 @@
     <div class="preboot">
       <p>正在载入增像管天文模拟器…<br />Loading the simulator…</p>
       <p class="hint">如果一直停在这里，请换用新版 Chrome、Edge 或 Safari 打开；在微信里可点右上角“···”选择在浏览器中打开。<br />Stuck here? Please open this page in a current Chrome, Edge or Safari.</p>
+      <!-- ICP filing number at the foot of the home page (the app shows it again once running: src/app/ui/site-info.ts). -->
+      <p class="icp"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">琼ICP备2026014550号-1</a></p>
     </div>
   </div>
 </body>
