@@ -684,9 +684,38 @@ by this project (data/scenes/atlas9/*.json "profile", labelled as a model). Back
 resampled from data/sky/pyramid-v1, whose NSNS DR0.2, SHASSA and Finkbeiner (2003) credits and
 restrictions above apply unchanged.
 
+Pan-STARRS1 detail and six new fields, atlas11 (D123, 2026-10-12)
+------------------------------------------------------------------
+M33, M51, M81/M82, M101, the Leo Triplet and the Pleiades (M45), and finer detail levels for
+M42 and the Helix Nebula. Fine structure from Pan-STARRS1 DR1 g (Chambers et al. 2016,
+arXiv:1612.05560; Flewelling et al. 2020, ApJS 251, 7), cut out by the CDS hips2fits service from
+the HiPS CDS/P/PanSTARRS/DR1/g (ODbL-1.0, https://opendatacommons.org/licenses/odbl/1-0/; images
+© PS1 Science Consortium). Acknowledgement requested by the PS1 Science Consortium:
+The Pan-STARRS1 Surveys (PS1) and the PS1 public science archive have been made possible through
+contributions by the Institute for Astronomy, the University of Hawaii, the Pan-STARRS Project
+Office, the Max-Planck Society and its participating institutes, the Max Planck Institute for
+Astronomy, Heidelberg and the Max Planck Institute for Extraterrestrial Physics, Garching, The
+Johns Hopkins University, Durham University, the University of Edinburgh, the Queen's University
+Belfast, the Harvard-Smithsonian Center for Astrophysics, the Las Cumbres Observatory Global
+Telescope Network Incorporated, the National Central University of Taiwan, the Space Telescope
+Science Institute, the National Aeronautics and Space Administration under Grant No. NNX08AR22G
+issued through the Planetary Science Division of the NASA Science Mission Directorate, the
+National Science Foundation Grant No. AST-1238877, the University of Maryland, Eotvos Lorand
+University (ELTE), the Los Alamos National Laboratory, and the Gordon and Betty Moore Foundation.
+Only the morphology is used: PS1 g with the catalogue stars removed is injected as a ratio into
+the survey levels that set the brightness (NSNS DR0.2 lines and visual continuum, the D122 Helix
+level), whose credits and restrictions above apply unchanged. Stars: Gaia DR3 from the ESA Gaia
+archive TAP (gaiadr3.gaia_source; CC BY-NC 3.0 IGO, non-commercial) and Hipparcos (I/239/hip_main)
+through the CDS VizieR TAP service. Galaxy centres, sizes, position angles and B, V magnitudes:
+OpenNGC (Mattia Verga, CC BY-SA 4.0), credited above. The derived levels are an adaptation of the
+PS1 database extracts and are shared under ODbL-1.0 together with the NSNS terms; the raw FITS and
+catalogue downloads are not redistributed. Pins: data/scenes/atlas11-downloads.json; derivative:
+data/scenes/atlas11/; processing: scripts/preprocess/prepare_atlas11.mjs and
+docs/reviews/2026-10-12/ATLAS11.md.
+
 Sky atlas card photos (D108, 2026-10-10)
 ---------------------------------------
-Forty photos from Wikimedia Commons (the eight globular clusters added 2026-10-12), registered to the star catalogue, rotated
+Forty-six photos from Wikimedia Commons (the eight globular clusters and the six D123 targets added 2026-10-12), registered to the star catalogue, rotated
 north up / east left, cropped and scaled to 360x240 by this project (data/sky/catalog-v1/photos/).
 Crops of CC BY-SA photos are shared under the same licence. Source, author and licence of each:
 47-tuc: Wide-field view of the sky around the globular cluster 47 Tucanae (eso1302c).tiff — ESO/Digitized Sky Survey 2 Acknowledgment: Davide De Martin., CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:Wide-field_view_of_the_sky_around_the_globular_cluster_47_Tucanae_(eso1302c).tiff
@@ -710,16 +739,22 @@ heart-soul: IC 1805 The Heart Nebula.png — Sjpickard5389, CC BY 4.0 (https://c
 helix: NGC 7293 (noao-helixblock3).jpg — KPNO/NOIRLab/NSF/AURA/Adam Block, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:NGC_7293_(noao-helixblock3).jpg
 horsehead: Horsehead Nebula and Flame Nebula.jpg — Gianni.lacroce, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:Horsehead_Nebula_and_Flame_Nebula.jpg
 jellyfish: IC 443 region (new version) - Flickr - gjdonatiello.jpg — Giuseppe Donatiello from Oria (Brindisi), Italy, CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en), https://commons.wikimedia.org/wiki/File:IC_443_region_(new_version)_-_Flickr_-_gjdonatiello.jpg
+leo-triplet: Lõvi Kolmik.jpg — Taavi Niittee, CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en), https://commons.wikimedia.org/wiki/File:L%C3%B5vi_Kolmik.jpg
 lmc: Deepest, widest view of the Large Magellanic Cloud from SMASH.jpg — CTIO/NOIRLab/NSF/AURA/SMASH/D. Nidever (Montana State University) Acknowledgment: Image processing: Travis Rector (University of Alaska Anchorage), Mahdi Zamani &amp; Davide de Martin, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:Deepest,_widest_view_of_the_Large_Magellanic_Cloud_from_SMASH.jpg
+m101: Pinwheel galaxy Tõrva.jpg — Taavi Niittee, CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en), https://commons.wikimedia.org/wiki/File:Pinwheel_galaxy_T%C3%B5rva.jpg
 m13: M13 cluster Tõrva.jpg — Taavi Niittee, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:M13_cluster_T%C3%B5rva.jpg
 m16: Eagle Nebula from ESO.jpg — ESO, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:Eagle_Nebula_from_ESO.jpg
 m22: M22 Combine7 cp Vs (18670836859).jpg — Giuseppe Donatiello, CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en), https://commons.wikimedia.org/wiki/File:M22_Combine7_cp_Vs_(18670836859).jpg
 m27: M27 Dumbbell.png — Juan Lacruz, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:M27_Dumbbell.png
 m31: Andromeda Galaxy 560mm FL.jpg — David (Deddy) Dayag, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:Andromeda_Galaxy_560mm_FL.jpg
+m33: M33 galaxy.jpg — Juan Lacruz, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:M33_galaxy.jpg
 m4: The globular star cluster Messier 4.jpg — ESO. Acknowledgement: ESO Imaging Survey, CC BY 3.0 (https://creativecommons.org/licenses/by/3.0), https://commons.wikimedia.org/wiki/File:The_globular_star_cluster_Messier_4.jpg
 m42: M42 Orion Nebula and Running Man (Dust and Gas).jpg — Dylan O'Donnell, deography.com, CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en), https://commons.wikimedia.org/wiki/File:M42_Orion_Nebula_and_Running_Man_(Dust_and_Gas).jpg
+m45: Pleiades large.jpg — NASA, ESA, AURA/Caltech, Palomar Observatory, Public domain, https://commons.wikimedia.org/wiki/File:Pleiades_large.jpg
 m5: Messier 5.jpg — Starhopper, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:Messier_5.jpg
+m51: Whirlpool galaxy tõrva.jpg — Taavi Niittee, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:Whirlpool_galaxy_t%C3%B5rva.jpg
 m8: Lagoon Nebula (ESO).jpg — ESO/S. Guisard, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:Lagoon_Nebula_(ESO).jpg
+m81-m82: Galaxies M81 & M82 (noao-m81m82).jpg — T.A. Rector (University of Alaska Anchorage) and NOIRLab/NSF/AURA/, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:Galaxies_M81_%26_M82_(noao-m81m82).jpg
 ngc6397: Euclid’s view of globular cluster NGC 6397 ESA25170813.jpg — ESA/Euclid/Euclid Consortium/NASA image processing by J.-C. Cuillandre (CEA Paris-Saclay) G. Anselmi, CC BY-SA 3.0 igo (https://creativecommons.org/licenses/by-sa/3.0/igo/deed.en), https://commons.wikimedia.org/wiki/File:Euclid%E2%80%99s_view_of_globular_cluster_NGC_6397_ESA25170813.jpg
 ngc6752: Star cluster NGC 6752.jpg — ESO, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:Star_cluster_NGC_6752.jpg
 north-america: NGC 7000- The North America Nebula and the Pelican Nebula (noao-n7000mosblock).tiff — KPNO/NOIRLab/NSF/AURA/Adam Block, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:NGC_7000-_The_North_America_Nebula_and_the_Pelican_Nebula_(noao-n7000mosblock).tiff

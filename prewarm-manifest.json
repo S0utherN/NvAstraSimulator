@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "definition": "unique response body bytes, no Content-Encoding; headers/TLS excluded",
-  "totalBytes": 13481284,
+  "totalBytes": 13146301,
   "files": [
     {
       "bundle": "app",
@@ -13,19 +13,19 @@
       "bundle": "app",
       "path": "THIRD_PARTY_NOTICES.txt",
       "url": "https://s0uthern.github.io/NvAstraSimulator/THIRD_PARTY_NOTICES.txt",
-      "bytes": 50501
+      "bytes": 54164
     },
     {
       "bundle": "app",
       "path": "about-en.html",
       "url": "https://s0uthern.github.io/NvAstraSimulator/about-en.html",
-      "bytes": 15002
+      "bytes": 16456
     },
     {
       "bundle": "app",
       "path": "about.html",
       "url": "https://s0uthern.github.io/NvAstraSimulator/about.html",
-      "bytes": 13942
+      "bytes": 15370
     },
     {
       "bundle": "app",
@@ -53,26 +53,26 @@
     },
     {
       "bundle": "app",
-      "path": "assets/47-tuc-C5nXoBVK.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/47-tuc-C5nXoBVK.webp",
-      "bytes": 7318
+      "path": "assets/47-tuc-Zw6JVd02.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/47-tuc-Zw6JVd02.webp",
+      "bytes": 7704
     },
     {
       "bundle": "app",
-      "path": "assets/FilterBench-BPRvAHYF.js",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/FilterBench-BPRvAHYF.js",
+      "path": "assets/FilterBench-DmQMr1Xe.js",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/FilterBench-DmQMr1Xe.js",
       "bytes": 18644
     },
     {
       "bundle": "app",
-      "path": "assets/VerifyPanel-CxLafFWQ.js",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/VerifyPanel-CxLafFWQ.js",
-      "bytes": 24593
+      "path": "assets/VerifyPanel-WYEmbhSd.js",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/VerifyPanel-WYEmbhSd.js",
+      "bytes": 24719
     },
     {
       "bundle": "app",
-      "path": "assets/app-BInYYFMN.js",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/app-BInYYFMN.js",
+      "path": "assets/app-D0tHphq9.js",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/app-D0tHphq9.js",
       "bytes": 5499
     },
     {
@@ -83,15 +83,15 @@
     },
     {
       "bundle": "app",
-      "path": "assets/auriga-DDn5W3uf.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/auriga-DDn5W3uf.webp",
-      "bytes": 7054
+      "path": "assets/auriga-CrPKGVCo.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/auriga-CrPKGVCo.webp",
+      "bytes": 7060
     },
     {
       "bundle": "app",
-      "path": "assets/barnard-DTEhCiR6.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/barnard-DTEhCiR6.webp",
-      "bytes": 7190
+      "path": "assets/barnard-C0rH7JTD.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/barnard-C0rH7JTD.webp",
+      "bytes": 7286
     },
     {
       "bundle": "app",
@@ -101,21 +101,21 @@
     },
     {
       "bundle": "app",
-      "path": "assets/boot-DeEq6lEF.js",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/boot-DeEq6lEF.js",
-      "bytes": 895022
+      "path": "assets/boot-CQVieguC.css",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/boot-CQVieguC.css",
+      "bytes": 95353
     },
     {
       "bundle": "app",
-      "path": "assets/boot-Dqjgx1Hj.css",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/boot-Dqjgx1Hj.css",
-      "bytes": 94255
+      "path": "assets/boot-CxoV5K6X.js",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/boot-CxoV5K6X.js",
+      "bytes": 891132
     },
     {
       "bundle": "app",
-      "path": "assets/bubble-DuFP0s6n.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/bubble-DuFP0s6n.webp",
-      "bytes": 7872
+      "path": "assets/bubble-CdGyuMFy.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/bubble-CdGyuMFy.webp",
+      "bytes": 7390
     },
     {
       "bundle": "app",
@@ -131,15 +131,15 @@
     },
     {
       "bundle": "app",
-      "path": "assets/butterfly-s5ojIf0u.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/butterfly-s5ojIf0u.webp",
-      "bytes": 7848
+      "path": "assets/butterfly-CPgh8VHN.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/butterfly-CPgh8VHN.webp",
+      "bytes": 7218
     },
     {
       "bundle": "app",
-      "path": "assets/california-BFkbW3B1.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/california-BFkbW3B1.webp",
-      "bytes": 7504
+      "path": "assets/california-Cwv84c-l.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/california-Cwv84c-l.webp",
+      "bytes": 6764
     },
     {
       "bundle": "app",
@@ -149,21 +149,15 @@
     },
     {
       "bundle": "app",
+      "path": "assets/carina-BHNeS6im.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/carina-BHNeS6im.webp",
+      "bytes": 8988
+    },
+    {
+      "bundle": "app",
       "path": "assets/carina-Cv9kw3SU.webp",
       "url": "https://s0uthern.github.io/NvAstraSimulator/assets/carina-Cv9kw3SU.webp",
       "bytes": 36972
-    },
-    {
-      "bundle": "app",
-      "path": "assets/carina-ZAMVymiC.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/carina-ZAMVymiC.webp",
-      "bytes": 8680
-    },
-    {
-      "bundle": "app",
-      "path": "assets/cave-0aexuTJA.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/cave-0aexuTJA.webp",
-      "bytes": 7690
     },
     {
       "bundle": "app",
@@ -173,9 +167,15 @@
     },
     {
       "bundle": "app",
-      "path": "assets/cepheus-BBSx8R-X.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/cepheus-BBSx8R-X.webp",
-      "bytes": 7378
+      "path": "assets/cave-wsk_KaFF.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/cave-wsk_KaFF.webp",
+      "bytes": 7052
+    },
+    {
+      "bundle": "app",
+      "path": "assets/cepheus-CKcd_JjR.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/cepheus-CKcd_JjR.webp",
+      "bytes": 7550
     },
     {
       "bundle": "app",
@@ -185,21 +185,21 @@
     },
     {
       "bundle": "app",
-      "path": "assets/christmas-tree-BXf0qp8G.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/christmas-tree-BXf0qp8G.webp",
-      "bytes": 7466
-    },
-    {
-      "bundle": "app",
       "path": "assets/christmas-tree-DVXZW3ww.webp",
       "url": "https://s0uthern.github.io/NvAstraSimulator/assets/christmas-tree-DVXZW3ww.webp",
       "bytes": 11244
     },
     {
       "bundle": "app",
-      "path": "assets/crescent-B-pH0p9H.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/crescent-B-pH0p9H.webp",
-      "bytes": 7218
+      "path": "assets/christmas-tree-pnT-ESAe.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/christmas-tree-pnT-ESAe.webp",
+      "bytes": 6950
+    },
+    {
+      "bundle": "app",
+      "path": "assets/crescent-Cjb7pRr9.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/crescent-Cjb7pRr9.webp",
+      "bytes": 6452
     },
     {
       "bundle": "app",
@@ -209,9 +209,9 @@
     },
     {
       "bundle": "app",
-      "path": "assets/cygnus-DZ7STIcV.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/cygnus-DZ7STIcV.webp",
-      "bytes": 7364
+      "path": "assets/cygnus-C2wKcJeb.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/cygnus-C2wKcJeb.webp",
+      "bytes": 7690
     },
     {
       "bundle": "app",
@@ -227,9 +227,9 @@
     },
     {
       "bundle": "app",
-      "path": "assets/double-cluster-DvB0YpOG.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/double-cluster-DvB0YpOG.webp",
-      "bytes": 12364
+      "path": "assets/double-cluster-CS8yi1N0.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/double-cluster-CS8yi1N0.webp",
+      "bytes": 11382
     },
     {
       "bundle": "app",
@@ -239,9 +239,9 @@
     },
     {
       "bundle": "app",
-      "path": "assets/elephant-trunk-DAZj3KyR.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/elephant-trunk-DAZj3KyR.webp",
-      "bytes": 7632
+      "path": "assets/elephant-trunk-DGPB-ehO.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/elephant-trunk-DGPB-ehO.webp",
+      "bytes": 7098
     },
     {
       "bundle": "app",
@@ -251,9 +251,9 @@
     },
     {
       "bundle": "app",
-      "path": "assets/flaming-star-8zeYiqUe.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/flaming-star-8zeYiqUe.webp",
-      "bytes": 7732
+      "path": "assets/flaming-star-B9BeObsA.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/flaming-star-B9BeObsA.webp",
+      "bytes": 7270
     },
     {
       "bundle": "app",
@@ -263,9 +263,9 @@
     },
     {
       "bundle": "app",
-      "path": "assets/flying-bat-Bt71zZ93.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/flying-bat-Bt71zZ93.webp",
-      "bytes": 7488
+      "path": "assets/flying-bat-BIdpdZqA.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/flying-bat-BIdpdZqA.webp",
+      "bytes": 7214
     },
     {
       "bundle": "app",
@@ -275,9 +275,9 @@
     },
     {
       "bundle": "app",
-      "path": "assets/gum-LmC05KBY.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/gum-LmC05KBY.webp",
-      "bytes": 8400
+      "path": "assets/gum-Rk3ix2l3.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/gum-Rk3ix2l3.webp",
+      "bytes": 8764
     },
     {
       "bundle": "app",
@@ -287,15 +287,15 @@
     },
     {
       "bundle": "app",
-      "path": "assets/heart-soul-DWPZrhLC.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/heart-soul-DWPZrhLC.webp",
-      "bytes": 11388
+      "path": "assets/heart-soul-BHl3Vqmm.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/heart-soul-BHl3Vqmm.webp",
+      "bytes": 7242
     },
     {
       "bundle": "app",
-      "path": "assets/heart-soul-DxXLwK_A.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/heart-soul-DxXLwK_A.webp",
-      "bytes": 7794
+      "path": "assets/heart-soul-DWPZrhLC.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/heart-soul-DWPZrhLC.webp",
+      "bytes": 11388
     },
     {
       "bundle": "app",
@@ -305,15 +305,15 @@
     },
     {
       "bundle": "app",
-      "path": "assets/helix-DYJYxHyA.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/helix-DYJYxHyA.webp",
-      "bytes": 6904
+      "path": "assets/helix-cjgkzXl_.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/helix-cjgkzXl_.webp",
+      "bytes": 6512
     },
     {
       "bundle": "app",
-      "path": "assets/horsehead-4rU4ixuk.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/horsehead-4rU4ixuk.webp",
-      "bytes": 7226
+      "path": "assets/horsehead-Ca1Lkc1O.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/horsehead-Ca1Lkc1O.webp",
+      "bytes": 6552
     },
     {
       "bundle": "app",
@@ -323,21 +323,21 @@
     },
     {
       "bundle": "app",
-      "path": "assets/hosting-DWwc5bg_.js",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/hosting-DWwc5bg_.js",
-      "bytes": 7179
+      "path": "assets/hosting-CDTT0ZeG.js",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/hosting-CDTT0ZeG.js",
+      "bytes": 7219
     },
     {
       "bundle": "app",
-      "path": "assets/i18n-data-en-DcyCoq0p.js",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/i18n-data-en-DcyCoq0p.js",
-      "bytes": 26645
+      "path": "assets/i18n-data-en-Cnsf4X_a.js",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/i18n-data-en-Cnsf4X_a.js",
+      "bytes": 32566
     },
     {
       "bundle": "app",
-      "path": "assets/i18n-en-Be76KeBd.js",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/i18n-en-Be76KeBd.js",
-      "bytes": 259357
+      "path": "assets/i18n-en-D1vCk5KN.js",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/i18n-en-D1vCk5KN.js",
+      "bytes": 264809
     },
     {
       "bundle": "app",
@@ -371,9 +371,9 @@
     },
     {
       "bundle": "app",
-      "path": "assets/iit-engrave-CtYxlnMr.woff2",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/iit-engrave-CtYxlnMr.woff2",
-      "bytes": 55468
+      "path": "assets/iit-engrave-BLXRBCpu.woff2",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/iit-engrave-BLXRBCpu.woff2",
+      "bytes": 58456
     },
     {
       "bundle": "app",
@@ -383,15 +383,27 @@
     },
     {
       "bundle": "app",
-      "path": "assets/jellyfish-CEKNrM0F.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/jellyfish-CEKNrM0F.webp",
-      "bytes": 7864
+      "path": "assets/jellyfish-D-cZT6NN.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/jellyfish-D-cZT6NN.webp",
+      "bytes": 7204
     },
     {
       "bundle": "app",
-      "path": "assets/lmc-B_Lj7K5w.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/lmc-B_Lj7K5w.webp",
-      "bytes": 6562
+      "path": "assets/leo-triplet-D0aN7U45.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/leo-triplet-D0aN7U45.webp",
+      "bytes": 4446
+    },
+    {
+      "bundle": "app",
+      "path": "assets/leo-triplet-O05cBRe4.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/leo-triplet-O05cBRe4.webp",
+      "bytes": 5102
+    },
+    {
+      "bundle": "app",
+      "path": "assets/lmc-B8rqLsHy.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/lmc-B8rqLsHy.webp",
+      "bytes": 6774
     },
     {
       "bundle": "app",
@@ -401,15 +413,27 @@
     },
     {
       "bundle": "app",
+      "path": "assets/m101-BaUUhTUf.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m101-BaUUhTUf.webp",
+      "bytes": 13334
+    },
+    {
+      "bundle": "app",
+      "path": "assets/m101-DmhfPJj1.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m101-DmhfPJj1.webp",
+      "bytes": 5082
+    },
+    {
+      "bundle": "app",
       "path": "assets/m13-CaVU_JKo.webp",
       "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m13-CaVU_JKo.webp",
       "bytes": 28172
     },
     {
       "bundle": "app",
-      "path": "assets/m13-Dpfg83Hv.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m13-Dpfg83Hv.webp",
-      "bytes": 5914
+      "path": "assets/m13-DN6-B1an.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m13-DN6-B1an.webp",
+      "bytes": 6324
     },
     {
       "bundle": "app",
@@ -419,15 +443,15 @@
     },
     {
       "bundle": "app",
-      "path": "assets/m16-P0TXtQK2.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m16-P0TXtQK2.webp",
-      "bytes": 7796
+      "path": "assets/m16-bHdlIql3.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m16-bHdlIql3.webp",
+      "bytes": 7434
     },
     {
       "bundle": "app",
-      "path": "assets/m22-Db8lBPEv.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m22-Db8lBPEv.webp",
-      "bytes": 11368
+      "path": "assets/m22-D1cDUhO0.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m22-D1cDUhO0.webp",
+      "bytes": 12074
     },
     {
       "bundle": "app",
@@ -437,9 +461,9 @@
     },
     {
       "bundle": "app",
-      "path": "assets/m27-CADIIWOZ.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m27-CADIIWOZ.webp",
-      "bytes": 8260
+      "path": "assets/m27-B5fQjWQ-.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m27-B5fQjWQ-.webp",
+      "bytes": 7788
     },
     {
       "bundle": "app",
@@ -455,9 +479,21 @@
     },
     {
       "bundle": "app",
-      "path": "assets/m31-BxMudOER.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m31-BxMudOER.webp",
-      "bytes": 7290
+      "path": "assets/m31-F3aAMaak.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m31-F3aAMaak.webp",
+      "bytes": 6912
+    },
+    {
+      "bundle": "app",
+      "path": "assets/m33-BF5KrPwy.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m33-BF5KrPwy.webp",
+      "bytes": 25794
+    },
+    {
+      "bundle": "app",
+      "path": "assets/m33-CpLkzJCZ.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m33-CpLkzJCZ.webp",
+      "bytes": 6588
     },
     {
       "bundle": "app",
@@ -467,15 +503,15 @@
     },
     {
       "bundle": "app",
-      "path": "assets/m4-D__Z25KO.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m4-D__Z25KO.webp",
-      "bytes": 6952
+      "path": "assets/m4-D__AHMad.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m4-D__AHMad.webp",
+      "bytes": 7540
     },
     {
       "bundle": "app",
-      "path": "assets/m42-D1xnqGRX.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m42-D1xnqGRX.webp",
-      "bytes": 6702
+      "path": "assets/m42-D4ab-PbP.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m42-D4ab-PbP.webp",
+      "bytes": 6566
     },
     {
       "bundle": "app",
@@ -485,9 +521,21 @@
     },
     {
       "bundle": "app",
-      "path": "assets/m5-CtF3YZN5.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m5-CtF3YZN5.webp",
-      "bytes": 5876
+      "path": "assets/m45-Bn9HYbmX.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m45-Bn9HYbmX.webp",
+      "bytes": 17942
+    },
+    {
+      "bundle": "app",
+      "path": "assets/m45-Dm8bplDE.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m45-Dm8bplDE.webp",
+      "bytes": 7622
+    },
+    {
+      "bundle": "app",
+      "path": "assets/m5-ChhQb2GL.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m5-ChhQb2GL.webp",
+      "bytes": 6274
     },
     {
       "bundle": "app",
@@ -497,15 +545,45 @@
     },
     {
       "bundle": "app",
+      "path": "assets/m51-C3bWokBs.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m51-C3bWokBs.webp",
+      "bytes": 6988
+    },
+    {
+      "bundle": "app",
+      "path": "assets/m51-_DDiPHa4.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m51-_DDiPHa4.webp",
+      "bytes": 4866
+    },
+    {
+      "bundle": "app",
+      "path": "assets/m8-BKtyp--9.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m8-BKtyp--9.webp",
+      "bytes": 7724
+    },
+    {
+      "bundle": "app",
       "path": "assets/m8-Bv86Udjj.webp",
       "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m8-Bv86Udjj.webp",
       "bytes": 27654
     },
     {
       "bundle": "app",
-      "path": "assets/m8-aYSkoH74.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m8-aYSkoH74.webp",
-      "bytes": 8048
+      "path": "assets/m81-m82-BmxPYSOr.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m81-m82-BmxPYSOr.webp",
+      "bytes": 5778
+    },
+    {
+      "bundle": "app",
+      "path": "assets/m81-m82-E0G8pWNf.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/m81-m82-E0G8pWNf.webp",
+      "bytes": 5460
+    },
+    {
+      "bundle": "app",
+      "path": "assets/ngc6397--zrwEP5z.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/ngc6397--zrwEP5z.webp",
+      "bytes": 9970
     },
     {
       "bundle": "app",
@@ -515,27 +593,15 @@
     },
     {
       "bundle": "app",
-      "path": "assets/ngc6397-DJBaIHBd.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/ngc6397-DJBaIHBd.webp",
-      "bytes": 9624
-    },
-    {
-      "bundle": "app",
-      "path": "assets/ngc6752-C0l-JSLX.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/ngc6752-C0l-JSLX.webp",
-      "bytes": 7354
-    },
-    {
-      "bundle": "app",
       "path": "assets/ngc6752-Dw_Xs6tH.webp",
       "url": "https://s0uthern.github.io/NvAstraSimulator/assets/ngc6752-Dw_Xs6tH.webp",
       "bytes": 34468
     },
     {
       "bundle": "app",
-      "path": "assets/north-america-ChL4RF5E.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/north-america-ChL4RF5E.webp",
-      "bytes": 7798
+      "path": "assets/ngc6752-Dx70Aie7.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/ngc6752-Dx70Aie7.webp",
+      "bytes": 7944
     },
     {
       "bundle": "app",
@@ -545,9 +611,9 @@
     },
     {
       "bundle": "app",
-      "path": "assets/omega-cen-CZ2Ai2Au.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/omega-cen-CZ2Ai2Au.webp",
-      "bytes": 9898
+      "path": "assets/north-america-DPMWnEOP.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/north-america-DPMWnEOP.webp",
+      "bytes": 7222
     },
     {
       "bundle": "app",
@@ -557,15 +623,21 @@
     },
     {
       "bundle": "app",
-      "path": "assets/pacman-CkyX7baa.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/pacman-CkyX7baa.webp",
-      "bytes": 43444
+      "path": "assets/omega-cen-y364zPAe.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/omega-cen-y364zPAe.webp",
+      "bytes": 10378
     },
     {
       "bundle": "app",
-      "path": "assets/pacman-Ct0JsVvB.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/pacman-Ct0JsVvB.webp",
-      "bytes": 7768
+      "path": "assets/pacman-10ekf3FV.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/pacman-10ekf3FV.webp",
+      "bytes": 7306
+    },
+    {
+      "bundle": "app",
+      "path": "assets/pacman-CkyX7baa.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/pacman-CkyX7baa.webp",
+      "bytes": 43444
     },
     {
       "bundle": "app",
@@ -575,9 +647,9 @@
     },
     {
       "bundle": "app",
-      "path": "assets/palette-Cc8Iaic_.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/palette-Cc8Iaic_.webp",
-      "bytes": 7912
+      "path": "assets/palette-DX8BHJaC.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/palette-DX8BHJaC.webp",
+      "bytes": 8132
     },
     {
       "bundle": "app",
@@ -587,15 +659,21 @@
     },
     {
       "bundle": "app",
-      "path": "assets/rosette-C-n2DNC9.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/rosette-C-n2DNC9.webp",
-      "bytes": 7606
-    },
-    {
-      "bundle": "app",
       "path": "assets/rosette-Do1-l0Ad.webp",
       "url": "https://s0uthern.github.io/NvAstraSimulator/assets/rosette-Do1-l0Ad.webp",
       "bytes": 28118
+    },
+    {
+      "bundle": "app",
+      "path": "assets/rosette-aKkUFJxJ.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/rosette-aKkUFJxJ.webp",
+      "bytes": 7134
+    },
+    {
+      "bundle": "app",
+      "path": "assets/simeis-147-BHXDRyIh.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/simeis-147-BHXDRyIh.webp",
+      "bytes": 7306
     },
     {
       "bundle": "app",
@@ -605,27 +683,21 @@
     },
     {
       "bundle": "app",
-      "path": "assets/simeis-147-DSn_GsF7.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/simeis-147-DSn_GsF7.webp",
-      "bytes": 7880
-    },
-    {
-      "bundle": "app",
       "path": "assets/sky-worker-B8XrTk-M.js",
       "url": "https://s0uthern.github.io/NvAstraSimulator/assets/sky-worker-B8XrTk-M.js",
       "bytes": 18342
     },
     {
       "bundle": "app",
-      "path": "assets/snapshot-sheet-Cjma_A8q.js",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/snapshot-sheet-Cjma_A8q.js",
-      "bytes": 59252
+      "path": "assets/snapshot-sheet-diD4XFT7.js",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/snapshot-sheet-diD4XFT7.js",
+      "bytes": 59277
     },
     {
       "bundle": "app",
-      "path": "assets/spectral-worker-M8bnXOtr.js",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/spectral-worker-M8bnXOtr.js",
-      "bytes": 54109
+      "path": "assets/spectral-worker--OmrzUVo.js",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/spectral-worker--OmrzUVo.js",
+      "bytes": 54620
     },
     {
       "bundle": "app",
@@ -635,9 +707,9 @@
     },
     {
       "bundle": "app",
-      "path": "assets/veil-s9jyXsAn.webp",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/veil-s9jyXsAn.webp",
-      "bytes": 7512
+      "path": "assets/veil-BUZVyUmj.webp",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/assets/veil-BUZVyUmj.webp",
+      "bytes": 7286
     },
     {
       "bundle": "app",
@@ -647,9 +719,9 @@
     },
     {
       "bundle": "app",
-      "path": "data/atlas2-versions.52803304c58f2d81.json.gz",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/data/atlas2-versions.52803304c58f2d81.json.gz",
-      "bytes": 2304
+      "path": "data/atlas2-versions.afbdb8f6a86fb39f.json.gz",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/data/atlas2-versions.afbdb8f6a86fb39f.json.gz",
+      "bytes": 2629
     },
     {
       "bundle": "app",
@@ -665,9 +737,9 @@
     },
     {
       "bundle": "app",
-      "path": "data/environment.52e0e83afe75dc56.json.gz",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/data/environment.52e0e83afe75dc56.json.gz",
-      "bytes": 11991
+      "path": "data/environment.298baf5d38809081.json.gz",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/data/environment.298baf5d38809081.json.gz",
+      "bytes": 12115
     },
     {
       "bundle": "app",
@@ -683,9 +755,9 @@
     },
     {
       "bundle": "app",
-      "path": "data/environment/sky-lut.6ee1da80baa766ae.bin.gz",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/data/environment/sky-lut.6ee1da80baa766ae.bin.gz",
-      "bytes": 1630910
+      "path": "data/environment/sky-lut.9f4b827518e72e68.bin.gz",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/data/environment/sky-lut.9f4b827518e72e68.bin.gz",
+      "bytes": 1161221
     },
     {
       "bundle": "app",
@@ -695,9 +767,9 @@
     },
     {
       "bundle": "app",
-      "path": "data/simulator-versions.d8966be55c15eaa4.json.gz",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/data/simulator-versions.d8966be55c15eaa4.json.gz",
-      "bytes": 548
+      "path": "data/simulator-versions.52f22fcde80cd833.json.gz",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/data/simulator-versions.52f22fcde80cd833.json.gz",
+      "bytes": 547
     },
     {
       "bundle": "app",
@@ -1765,7 +1837,7 @@
       "bundle": "app",
       "path": "devicetest.html",
       "url": "https://s0uthern.github.io/NvAstraSimulator/devicetest.html",
-      "bytes": 183465
+      "bytes": 185042
     },
     {
       "bundle": "app",
@@ -1811,9 +1883,9 @@
     },
     {
       "bundle": "app",
-      "path": "package-manifest.860c4b2bca6e22c0.json",
-      "url": "https://s0uthern.github.io/NvAstraSimulator/package-manifest.860c4b2bca6e22c0.json",
-      "bytes": 1596031
+      "path": "package-manifest.98426eb574cc3d4a.json",
+      "url": "https://s0uthern.github.io/NvAstraSimulator/package-manifest.98426eb574cc3d4a.json",
+      "bytes": 1606982
     },
     {
       "bundle": "app",
@@ -1825,7 +1897,7 @@
       "bundle": "app",
       "path": "selftest.html",
       "url": "https://s0uthern.github.io/NvAstraSimulator/selftest.html",
-      "bytes": 122471
+      "bytes": 122709
     },
     {
       "bundle": "app",
@@ -1837,7 +1909,7 @@
       "bundle": "app",
       "path": "sw.js",
       "url": "https://s0uthern.github.io/NvAstraSimulator/sw.js",
-      "bytes": 7934
+      "bytes": 8284
     }
   ]
 }

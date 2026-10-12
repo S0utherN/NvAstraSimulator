@@ -358,6 +358,8 @@ uniform int u_levels;
 uniform ivec2 u_levelSize[5];
 uniform float u_levelStep[5];
 uniform vec2 u_levelOrigin[5]; // TAN coordinate of level pixel (0,0) centre
+// D123: 1 = a continuum level (R holds the F550 continuum, G/B unused): it replaces the continuum band, not the lines.
+uniform float u_levelCont[5];
 uniform mat3 u_point;        // camera -> atlas axes (telescope pointing)
 uniform float u_cellTan;     // cell pitch in TAN units: sub-samples average the cell area (flux-conserving)
 uniform sampler2D u_stars;   // R16F/R32F: star electron/s per texel x1e-3, bright stars (static mean positions)
@@ -465,7 +467,10 @@ void main() {
         if (l >= u_levels) break;
         float wl;
         vec4 h = levelSample(l, t, wl);
-        if (wl > 0.0) b.xyz = vec3(mix(b.x, h.x, wl), h.y >= 0.0 ? mix(b.y, h.y, wl) : b.y, h.z >= 0.0 ? mix(b.z, h.z, wl) : b.z);
+        if (wl > 0.0) {
+          if (u_levelCont[l] > 0.5) b.w = mix(b.w, h.x, wl);
+          else b.xyz = vec3(mix(b.x, h.x, wl), h.y >= 0.0 ? mix(b.y, h.y, wl) : b.y, h.z >= 0.0 ? mix(b.z, h.z, wl) : b.z);
+        }
       }
       b.w += profileAt(t, u_cellTan / float(n));
 #endif
