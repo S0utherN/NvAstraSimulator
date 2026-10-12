@@ -1,0 +1,1605 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>设备性能自检 · 增像管天文模拟器</title>
+<style>body { margin: 0; } [hidden] { display: none !important; }</style>
+</head>
+<body>
+<style>
+:root {
+  --bg: #eef2f2; --panel: #ffffff; --ink: #142224; --muted: #5a6d70; --line: #d3dcdd;
+  --accent: #1c7c80; --ok: #1f7a3a; --bad: #b3261e; --warn: #9a6400; --chip: #e2ebeb;
+  --sans: system-ui, -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0b1416; --panel: #122023; --ink: #dcebec; --muted: #8aa3a6; --line: #22373a;
+  --accent: #5cc7c9; --ok: #5fd08a; --bad: #ff8a80; --warn: #e6b450; --chip: #1b2e31; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0b1416; --panel: #122023; --ink: #dcebec; --muted: #8aa3a6; --line: #22373a;
+  --accent: #5cc7c9; --ok: #5fd08a; --bad: #ff8a80; --warn: #e6b450; --chip: #1b2e31; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font: 15px/1.6 var(--sans); }
+main { max-width: 720px; margin: 0 auto; padding-block: 20px 40px; padding-inline: 16px; display: grid; gap: 16px; }
+h1 { font-size: 22px; margin: 0; text-wrap: balance; letter-spacing: .02em; }
+h2 { font-size: 15px; margin: 0 0 8px; color: var(--muted); font-weight: 600; letter-spacing: .06em; }
+p { margin: 0; }
+.lead { color: var(--muted); max-width: 62ch; }
+section { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; min-width: 0; }
+.verdict { display: grid; gap: 8px; }
+.pill { display: inline-block; font: 600 13px/1 var(--sans); padding: 6px 10px; border-radius: 999px; background: var(--chip); color: var(--muted); width: max-content; }
+.pill.ok { color: var(--ok); } .pill.bad { color: var(--bad); } .pill.warn { color: var(--warn); }
+#verdictText { font-size: 16px; }
+ol.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+ol.steps li { display: grid; grid-template-columns: 56px 1fr; gap: 10px; align-items: baseline; padding: 6px 0; border-top: 1px solid var(--line); }
+ol.steps li:first-child { border-top: 0; }
+.tag { font: 600 12px/1.4 var(--mono); text-align: center; border-radius: 6px; padding: 2px 0; background: var(--chip); color: var(--muted); }
+.tag.ok { color: var(--ok); } .tag.bad { color: var(--bad); } .tag.run { color: var(--accent); }
+.step-name { font-weight: 600; }
+.step-msg { color: var(--muted); font: 13px/1.5 var(--mono); overflow-wrap: anywhere; }
+table { width: 100%; border-collapse: collapse; font: 13px/1.5 var(--mono); }
+th, td { text-align: right; padding: 4px 6px; border-top: 1px solid var(--line); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+thead th { border-top: 0; color: var(--muted); font-weight: 600; }
+.scroll { overflow-x: auto; }
+dl.info { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 12px; margin: 0; font-size: 13px; }
+dl.info dt { color: var(--muted); }
+dl.info dd { margin: 0; font-family: var(--mono); overflow-wrap: anywhere; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+button { font: 600 14px/1 var(--sans); padding: 11px 16px; border-radius: 8px; border: 1px solid var(--accent); background: var(--accent); color: var(--bg); cursor: pointer; }
+button.secondary { background: transparent; color: var(--accent); }
+button:disabled { opacity: .5; cursor: default; }
+button:focus-visible { outline: 3px solid var(--warn); outline-offset: 2px; }
+textarea { width: 100%; box-sizing: border-box; min-height: 160px; font: 12px/1.45 var(--mono); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px; resize: vertical; }
+#copyNote { font-size: 13px; color: var(--muted); align-self: center; }
+.note { font-size: 13px; color: var(--muted); }
+@media (max-width: 420px) { ol.steps li { grid-template-columns: 48px 1fr; } }
+</style>
+
+<main>
+  <header style="display:grid;gap:6px">
+    <h1>设备性能自检</h1>
+    <p class="lead">用增像管天文模拟器自己的渲染程序，在这台设备的显卡上按手机常用的几档网格各画几十帧合成星空（不下载任何数据），测每一步的耗时，并检查显卡能力。全部在本机完成，不上传任何数据。请在页面保持前台的情况下等待约 1 分钟，然后把结果复制给开发者。<br><span class="note">Device performance self-check for the night-vision simulator: synthetic sky, real shaders, nothing uploaded.</span></p>
+  </header>
+
+  <section class="verdict" aria-live="polite">
+    <span id="verdictPill" class="pill">检测中</span>
+    <p id="verdictText">正在准备，大约需要 1 分钟。</p>
+  </section>
+
+  <section>
+    <h2>检测步骤</h2>
+    <ol class="steps" id="steps"></ol>
+  </section>
+
+  <section>
+    <h2>每帧耗时（毫秒，中位数；readPixels 串行计时含驱动与排队）</h2>
+    <div class="scroll"><table id="grids"><thead><tr><th>网格</th><th>静止帧</th><th>拖动帧</th><th>其中速率图</th><th>停手重建</th><th>星点</th><th>栅栏延迟</th><th>连续拖动</th></tr></thead><tbody></tbody></table></div>
+    <p class="note" style="margin-top:8px">"连续拖动"是不等待显卡、按屏幕刷新连续出帧时每帧的真实墙钟间隔；"栅栏延迟"是一帧提交后到显卡完成的等待，反映显卡积压。</p>
+  </section>
+
+  <section>
+    <h2>自由天空（合成 HEALPix 瓦片直接取样，25 mm；毫秒，中位数）</h2>
+    <div class="scroll"><table id="sky"><thead><tr><th>网格</th><th>拖动帧</th><th>其中速率图</th><th>停手重建</th><th>星点</th><th>星点图</th><th>连续拖动</th></tr></thead><tbody></tbody></table></div>
+    <p class="note" style="margin-top:8px">与上表同一网格、同一套核：速率图每格直接取瓦片（拖动 1 次、停手 k² 次），星点按常驻瓦片逐帧沉积，"星点图"是停手后缩星用的最亮星点图。</p>
+  </section>
+
+  <section>
+    <h2>本机显卡与浏览器</h2>
+    <dl class="info" id="info"></dl>
+  </section>
+
+  <section style="display:grid;gap:10px">
+    <h2>结果（复制后发给开发者）</h2>
+    <textarea id="out" readonly aria-label="检测结果"></textarea>
+    <div class="actions">
+      <button id="copy" type="button">复制结果</button>
+      <button id="rerun" type="button" class="secondary">重新检测</button>
+      <span id="copyNote"></span>
+    </div>
+  </section>
+</main>
+
+<script>"use strict";var Diag=(()=>{var he=Object.defineProperty;var $r=Object.getOwnPropertyDescriptor;var Qr=Object.getOwnPropertyNames;var Jr=Object.prototype.hasOwnProperty;var Zr=(o,e,t)=>e in o?he(o,e,{enumerable:!0,configurable:!0,writable:!0,value:t}):o[e]=t;var en=(o,e)=>{for(var t in e)he(o,t,{get:e[t],enumerable:!0})},tn=(o,e,t,r)=>{if(e&&typeof e=="object"||typeof e=="function")for(let n of Qr(e))!Jr.call(o,n)&&n!==t&&he(o,n,{get:()=>e[n],enumerable:!(r=$r(e,n))||r.enumerable});return o};var rn=o=>tn(he({},"__esModule",{value:!0}),o);var d=(o,e,t)=>Zr(o,typeof e!="symbol"?e+"":e,t);var ni={};en(ni,{DRAG_GRID_SCALE:()=>tt,EyepieceRenderer:()=>Me,GpuUnsupportedError:()=>O,MIN_GRID:()=>Yr,STEP_ORDER:()=>He,dragGrid:()=>Kr,footprintTiles:()=>hr,gridBounds:()=>Xr,tileKey:()=>mr,tubeKernels:()=>zt,viewGeometry:()=>fr});var Fe=`
+// Jarzynski & Olano 2020, "Hash Functions for GPU Rendering", pcg4d.
+uvec4 pcg4d(uvec4 v) {
+  v = v * 1664525u + 1013904223u;
+  v.x += v.y * v.w; v.y += v.z * v.x; v.z += v.x * v.y; v.w += v.y * v.z;
+  v ^= v >> 16u;
+  v.x += v.y * v.w; v.y += v.z * v.x; v.z += v.x * v.y; v.w += v.y * v.z;
+  return v;
+}
+
+uvec4 g_key;
+uvec4 g_block;
+int g_used;
+
+void rngInit(uvec4 key) { g_key = key; g_block = pcg4d(key); g_used = 0; }
+
+// Uniform on (0, 1], 24-bit resolution; never returns 0 so log() is safe.
+float rngU01() {
+  if (g_used == 4) { g_block = pcg4d(g_block ^ g_key.wzyx); g_used = 0; }
+  uint u = g_block[g_used];
+  g_used++;
+  return (float(u >> 8u) + 1.0) * (1.0 / 16777216.0);
+}
+
+float rngNormal() {
+  float r = sqrt(-2.0 * log(rngU01()));
+  return r * cos(6.283185307179586 * rngU01());
+}
+
+const float LOG_FACT[10] = float[10](0.0, 0.0, 0.6931471805599453, 1.791759469228055,
+  3.1780538303479458, 4.787491742782046, 6.579251212010101, 8.525161361065415,
+  10.60460290274525, 12.801827480081469);
+
+// log(mu^k e^-mu / k!) written as a Stirling difference so float32 does not
+// cancel k*log(mu) against log(k!) for large means.
+float logPoissonPmf(float k, float mu) {
+  if (k < 10.0) return -mu + k * log(mu) - LOG_FACT[int(k)];
+  float inv = 1.0 / k;
+  return -k * log(k / mu) + (k - mu) - 0.5 * log(k) - 0.9189385332046727
+    - inv / 12.0 + inv * inv * inv / 360.0;
+}
+
+float poissonSample(float mu) {
+  if (mu <= 0.0) return 0.0;
+  if (mu < 10.0) {
+    float limit = exp(-mu), p = 1.0, n = 0.0;
+    for (int i = 0; i < 96; i++) {
+      p *= rngU01();
+      if (p <= limit) return n;
+      n += 1.0;
+    }
+    return n;
+  }
+  if (mu >= 1.0e4) {
+    // Skewness 1/sqrt(mu) <= 0.01: continuity-corrected normal.
+    return max(0.0, floor(mu + sqrt(mu) * rngNormal() + 0.5));
+  }
+  // PTRS, Hoermann 1993 (same constants as physics/noise/distributions.ts).
+  float b = 0.931 + 2.53 * sqrt(mu), a = -0.059 + 0.02483 * b;
+  float invAlpha = 1.1239 + 1.1328 / (b - 3.4), vr = 0.9277 - 3.6224 / (b - 2.0);
+  for (int i = 0; i < 64; i++) {
+    float u = rngU01() - 0.5, v = rngU01(), us = 0.5 - abs(u);
+    float k = floor((2.0 * a / us + b) * u + mu + 0.43);
+    if (k < 0.0) continue;
+    if (us >= 0.07 && v <= vr) return k;
+    if (us < 0.013 && v > us) continue;
+    if (log(v) + log(invAlpha) - log(a / (us * us) + b) <= logPoissonPmf(k, mu)) return k;
+  }
+  return floor(mu + 0.5);
+}
+
+// Marsaglia-Tsang, scale 1; shape < 1 boosted by U^(1/shape).
+float gammaSample(float shape) {
+  float boost = 1.0;
+  if (shape < 1.0) { boost = pow(rngU01(), 1.0 / shape); shape += 1.0; }
+  float d = shape - 1.0 / 3.0, c = 1.0 / sqrt(9.0 * d);
+  for (int i = 0; i < 64; i++) {
+    float x = rngNormal(), t = 1.0 + c * x;
+    if (t <= 0.0) continue;
+    float v = t * t * t, u = rngU01();
+    if (u < 1.0 - 0.0331 * x * x * x * x || log(u) < 0.5 * x * x + d * (1.0 - v + log(v))) return d * v * boost;
+  }
+  return d * boost;
+}
+
+// Output charge (electrons) for n input events with mean gain G and excess
+// noise factor F2 = E[g^2]/E[g]^2: sum of n Gamma(1/(F2-1)) gains.
+float mcpCharge(float n, float gain, float f2) {
+  if (n <= 0.0) return 0.0;
+  if (f2 <= 1.0000001) return n * gain;
+  return gammaSample(n / (f2 - 1.0)) * (f2 - 1.0) * gain;
+}
+`;var S=`#version 300 es
+precision highp float;
+precision highp int;
+precision highp sampler2D;
+`,ne=o=>S.replace("#version 300 es",`#version 300 es
+#define ${o}`);var A=S+`
+const vec2 P[3] = vec2[3](vec2(-1.0, -1.0), vec2(3.0, -1.0), vec2(-1.0, 3.0));
+void main() { gl_Position = vec4(P[gl_VertexID], 0.0, 1.0); }
+`,j=`
+uniform sampler2D u_lut;
+uniform int u_nodes;
+uniform float u_maxAngle;
+vec4 lutAt(int row, float angle) {
+  float x = clamp(angle / u_maxAngle, 0.0, 1.0) * float(u_nodes - 1);
+  int i0 = int(floor(x));
+  int i1 = min(i0 + 1, u_nodes - 1);
+  return mix(texelFetch(u_lut, ivec2(i0, row), 0), texelFetch(u_lut, ivec2(i1, row), 0), x - float(i0));
+}
+uniform int u_tNodes;
+uniform vec2 u_logT;          // log(Tmin), log(Tmax)
+float starWeight(float temperature, float angle) {
+  float x = clamp((log(temperature) - u_logT.x) / (u_logT.y - u_logT.x), 0.0, 1.0) * float(u_tNodes - 1);
+  int k0 = int(floor(x));
+  int k1 = min(k0 + 1, u_tNodes - 1);
+  return mix(lutAt(2 + k0, angle).x, lutAt(2 + k1, angle).x, x - float(k0));
+}
+`,Pe=`
+const vec2 D65_UV = vec2(0.19784, 0.46832);
+vec2 uvOf(vec3 c) { float q = c.x + 15.0 * c.y + 3.0 * c.z; return q > 0.0 ? vec2(4.0 * c.x, 9.0 * c.y) / q : D65_UV; }
+vec3 xyzOfUv(vec2 uv) { vec2 xy = vec2(9.0 * uv.x, 4.0 * uv.y) / (6.0 * uv.x - 16.0 * uv.y + 12.0); return vec3(xy.x, xy.y, 1.0 - xy.x - xy.y) / xy.y; }
+`,ke=`
+#ifdef STAR_SKY
+layout(location=0) in vec4 a_dir;             // ICRS unit vector, F_lambda(550 nm) W/m^2/nm
+layout(location=1) in uint a_seed;            // stable global sky ID
+layout(location=2) in float a_T;              // colour temperature K
+uniform vec3 u_axis, u_west, u_north;         // the virtual plane's TAN frame (tangent point = the view axis)
+vec4 starAttr() { float dz = dot(a_dir.xyz, u_axis); return vec4(dz > 1e-6 ? vec2(dot(a_dir.xyz, u_west), dot(a_dir.xyz, u_north)) / dz : vec2(1e9), a_dir.w, a_T); }
+#else
+layout(location=0) in vec4 a_star;            // TAN-plane X (west+), Y (north+), F_lambda(550 nm) W/m^2/nm, colour temperature K
+layout(location=1) in uint a_seed;            // original catalogue ordinal or stable global sky ID
+vec4 starAttr() { return a_star; }
+#endif
+`,at=ke+`
+uniform vec2 u_originMm;   // mm position of texel (0,0) centre
+uniform float u_pitchMm;
+uniform float u_focalMm;
+uniform float u_cathodeR;
+uniform float u_sceneScale;
+uniform vec2 u_size;
+// Moving seeing (0 = static): one-axis rms image motion (mm), log-normal scintillation sigma, time (s), frame.
+uniform float u_tiltMm;
+uniform float u_scint;
+uniform float u_time;       // exposure midpoint (s)
+uniform float u_exposureS;  // rectangular window duration (s)
+uniform uint u_frame;
+uniform mat3 u_point;      // camera -> atlas axes (telescope pointing); its transpose maps atlas -> camera
+out vec2 v_cell;
+out float v_rate;
+uint hashU(uint x) { x ^= x >> 16; x *= 0x7feb352du; x ^= x >> 15; x *= 0x846ca68bu; x ^= x >> 16; return x; }
+float hashF(uint x) { return float(hashU(x) >> 8) * (1.0 / 16777216.0); }
+void main() {
+  vec4 star = starAttr();
+  vec3 cam = transpose(u_point) * vec3(star.xy, 1.0);
+  vec2 mm = cam.z > 1e-6 ? cam.xy / cam.z * u_focalMm : vec2(1e9);
+  float r = length(mm);
+  // Point source: total rate = F550 * w(T, angle) * f^2 (w already includes the band width).
+  float rate = star.z * starWeight(star.w, atan(r / u_focalMm)) * u_sceneScale * u_focalMm * u_focalMm * 1.0e-3;
+  uint id = a_seed * 7919u + 17u;
+  if (u_tiltMm > 0.0) {
+    // Exact rectangular average of three sinusoids per star/axis (0.7-14 Hz).
+    // The unresolved within-window motion is an input-side Gaussian ensemble-variance blur.
+    // Equal amplitudes a with 3 a^2 / 2 = tilt^2. Different stars move independently
+    // (separations far beyond the isoplanatic angle).
+    vec2 d = vec2(0.0);
+    for (int k = 0; k < 6; k++) {
+      uint h = hashU(id + uint(k) * 104729u);
+      float f = 0.7 * exp(hashF(h) * 3.0), ph = 6.2831853 * hashF(h ^ 0x9e3779b9u);
+      float v = sin(6.2831853 * f * u_time + ph);
+      // Live observation keeps the original instantaneous path; only frozen snapshots integrate a trajectory.
+      if (u_exposureS > 0.0) {
+        float z = 3.14159265 * f * u_exposureS;
+        v *= abs(z) < 1e-6 ? 1.0 : sin(z) / z;
+      }
+      if (k < 3) d.x += v; else d.y += v;
+    }
+    mm += d * u_tiltMm * 0.8164966;
+  }
+  if (u_scint > 0.0) {
+    // Finite-exposure scintillation: unit-mean log-normal approximation scaled by window duration.
+    float u1 = max(1e-7, hashF(hashU(id ^ (u_frame * 2654435761u)))), u2 = hashF(hashU(id + u_frame * 40503u + 1u));
+    float n = sqrt(-2.0 * log(u1)) * cos(6.2831853 * u2);
+    rate *= exp(u_scint * n - 0.5 * u_scint * u_scint);
+  }
+  v_rate = rate;
+  vec2 cell = (mm - u_originMm) / u_pitchMm;
+  v_cell = cell;
+  gl_PointSize = 3.0;
+  gl_Position = r > u_cathodeR ? vec4(2.0, 2.0, 2.0, 1.0) : vec4((cell + 0.5) / u_size * 2.0 - 1.0, 0.0, 1.0);
+}
+`,st=S+j+at,ot=ne("STAR_SKY")+j+at,De=S+`
+in vec2 v_cell;
+in float v_rate;
+out vec4 o;
+void main() {
+  vec2 d = abs(gl_FragCoord.xy - 0.5 - v_cell);
+  vec2 w = max(vec2(0.0), 1.0 - d);
+  o = vec4(v_rate * w.x * w.y, 0.0, 0.0, 0.0);
+}
+`,lt=ke+`
+uniform vec2 u_originMm;
+uniform float u_pitchMm;
+uniform float u_focalMm;
+uniform float u_cathodeR;
+uniform vec2 u_size;
+uniform mat3 u_point;
+uniform float u_radius;
+out vec2 v_cell;
+out float v_logFlux;
+void main() {
+  vec4 star = starAttr();
+  vec3 cam = transpose(u_point) * vec3(star.xy, 1.0);
+  vec2 mm = cam.z > 1e-6 ? cam.xy / cam.z * u_focalMm : vec2(1e9);
+  vec2 cell = (mm - u_originMm) / u_pitchMm;
+  v_cell = cell;
+  v_logFlux = log(max(star.z, 1e-30));
+  gl_PointSize = 2.0 * u_radius + 2.0;
+  gl_Position = length(mm) > u_cathodeR ? vec4(2.0, 2.0, 2.0, 1.0) : vec4((cell + 0.5) / u_size * 2.0 - 1.0, 0.0, 1.0);
+}
+`,ut=S+lt,ct=ne("STAR_SKY")+lt,Ie=S+`
+uniform float u_radius;
+uniform float u_variance;
+in vec2 v_cell;
+in float v_logFlux;
+out vec4 o;
+void main() {
+  vec2 d = v_cell - (gl_FragCoord.xy - 0.5);
+  float r2 = dot(d, d);
+  if (r2 > u_radius * u_radius) discard;
+  // ln F550 spans about -40..-10 here; the score only orders stars, so any monotone map into [0, 1] will do.
+  gl_FragDepth = clamp((0.5 * r2 / u_variance - v_logFlux) / 160.0, 0.0, 1.0);
+  o = vec4(d, 0.0, 1.0);
+}
+`,Ce=`
+#ifdef SKY_DIRECT
+uniform vec3 u_axis, u_west, u_north;  // the virtual plane's TAN frame in ICRS (tangent point = the view axis)
+uniform float u_pixelTan;              // HEALPix pixel spacing of the primary order (TAN units): sub-samples per cell
+#else
+uniform sampler2D u_atlas;   // RGBA32F: H\u03B1, [O III] 5007, [S II] (W/m^2/sr), continuum (W/m^2/sr/nm @550); H\u03B1 < 0 = invalid
+// D119 (sim/cluster-profile.ts): a globular cluster's modelled unresolved light, added to the continuum. R32F table:
+// column i at ln r = u_profileGeom.z + i / u_profileGeom.w around u_profileGeom.xy (TAN), row j smoothed by a Gaussian
+// of sigma0 2^j; samples that lie a distance s apart read sigma = s (between two rows). u_profileSize.x = 0: none.
+uniform sampler2D u_profile;
+uniform ivec2 u_profileSize;
+uniform vec4 u_profileGeom;
+uniform float u_profileLogSigma0;
+#endif
+uniform int u_atlasSize;
+uniform float u_atlasStep;   // TAN-plane units per atlas pixel
+uniform vec2 u_atlasRef;     // pixel-centre coordinate of the tangent point
+uniform sampler2D u_level0;  // finer levels: RGBA H\u03B1, [O III] or -1, [S II] or -1 (keep coarser), validity
+uniform sampler2D u_level1;
+uniform sampler2D u_level2;  // levels 2-4: further non-overlapping regional patches (D88, D89)
+uniform sampler2D u_level3;
+uniform sampler2D u_level4;
+uniform int u_levels;
+uniform ivec2 u_levelSize[5];
+uniform float u_levelStep[5];
+uniform vec2 u_levelOrigin[5]; // TAN coordinate of level pixel (0,0) centre
+uniform mat3 u_point;        // camera -> atlas axes (telescope pointing)
+uniform float u_cellTan;     // cell pitch in TAN units: sub-samples average the cell area (flux-conserving)
+uniform sampler2D u_stars;   // R16F/R32F: star electron/s per texel x1e-3, bright stars (static mean positions)
+uniform sampler2D u_starsFaint; // same, the fainter stars, which never move with the seeing (0.6.1)
+uniform vec2 u_originMm;
+uniform float u_pitchMm;
+uniform float u_focalMm;
+uniform float u_cathodeR;
+uniform float u_sceneScale;
+uniform float u_starsInRate;  // 1: bright stars are part of the static rate; 0: rendered per frame (moving seeing)
+uniform int u_eyeDiffuse; // D73 display-only XYZ + rod diffuse scene, with NO catalogue stars
+uniform float u_maxSub;       // cap on k (8 at rest; lower while the view is dragged)
+// D79 (naked eye, blurred base map): 0 = everything; 1 = target + sky only; 2 = the stars added to u_base (R rate, G mask).
+uniform int u_part;
+uniform sampler2D u_base;
+out vec4 o;
+
+#ifndef SKY_DIRECT
+vec4 atlasTexel(ivec2 q) {
+  if (q.x < 0 || q.y < 0 || q.x >= u_atlasSize || q.y >= u_atlasSize) return vec4(-1.0);
+  return texelFetch(u_atlas, q, 0);
+}
+vec4 atlasBilinear(vec2 tan, out bool ok) {
+  vec2 s = tan / u_atlasStep + u_atlasRef;
+  ivec2 i0 = ivec2(floor(s));
+  vec2 f = s - vec2(i0);
+  vec4 a = atlasTexel(i0), b = atlasTexel(i0 + ivec2(1, 0)), c = atlasTexel(i0 + ivec2(0, 1)), d = atlasTexel(i0 + ivec2(1, 1));
+  ok = min(min(a.x, b.x), min(c.x, d.x)) >= 0.0;
+  return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+}
+float profileRow(int j, int i, float fx) {
+  return mix(texelFetch(u_profile, ivec2(i, j), 0).r, texelFetch(u_profile, ivec2(i + 1, j), 0).r, fx);
+}
+float profileAt(vec2 t, float spacing) {
+  if (u_profileSize.x == 0) return 0.0;
+  float x = max(0.0, (log(max(length(t - u_profileGeom.xy), 1e-12)) - u_profileGeom.z) * u_profileGeom.w);
+  if (x >= float(u_profileSize.x - 1)) return 0.0;
+  float y = clamp((log(max(spacing, 1e-30)) - u_profileLogSigma0) * 1.44269504, 0.0, float(u_profileSize.y - 1));
+  int i = int(x), j0 = int(y), j1 = min(j0 + 1, u_profileSize.y - 1);
+  float fx = x - float(i);
+  return mix(profileRow(j0, i, fx), profileRow(j1, i, fx), y - float(j0));
+}
+#endif
+vec4 levelTexel(int k, ivec2 q) {
+  if (q.x < 0 || q.y < 0 || q.x >= u_levelSize[k].x || q.y >= u_levelSize[k].y) return vec4(0.0);
+  return k == 0 ? texelFetch(u_level0, q, 0) : k == 1 ? texelFetch(u_level1, q, 0) : k == 2 ? texelFetch(u_level2, q, 0) : k == 3 ? texelFetch(u_level3, q, 0) : texelFetch(u_level4, q, 0);
+}
+// Bilinear level sample; w = coverage weight (0 outside, feathered over 6 px at the edge).
+vec4 levelSample(int k, vec2 tan, out float w) {
+  vec2 s = (tan - u_levelOrigin[k]) / u_levelStep[k];
+  float edge = min(min(s.x, s.y), min(float(u_levelSize[k].x - 1) - s.x, float(u_levelSize[k].y - 1) - s.y));
+  // Outside the feather's support the contribution is exactly zero. Wide fields spend most pixels here.
+  if (edge <= 0.0) { w = 0.0; return vec4(0.0); }
+  ivec2 i0 = ivec2(floor(s));
+  vec2 f = s - vec2(i0);
+  vec4 a = levelTexel(k, i0), b = levelTexel(k, i0 + ivec2(1, 0)), c = levelTexel(k, i0 + ivec2(0, 1)), d = levelTexel(k, i0 + ivec2(1, 1));
+  w = min(min(a.w, b.w), min(c.w, d.w)) * clamp(edge / 6.0, 0.0, 1.0);
+  return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+}
+bool inLevel(int k, vec2 tan, float margin) {
+  vec2 lo = u_levelOrigin[k] - margin, hi = u_levelOrigin[k] + vec2(u_levelSize[k]) * u_levelStep[k] + margin;
+  return all(greaterThan(tan, lo)) && all(lessThan(tan, hi));
+}
+
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy);
+  vec2 mm = u_originMm + vec2(p) * u_pitchMm;
+  float r = length(mm);
+  if (r > u_cathodeR) { o = vec4(0.0); return; }
+  float star = (u_starsInRate * texelFetch(u_stars, p, 0).r + texelFetch(u_starsFaint, p, 0).r) * 1.0e3 / (u_pitchMm * u_pitchMm);
+  if (u_part == 2) { vec2 base = texelFetch(u_base, p, 0).rg; o = vec4(base.r + star, base.g, 0.0, 0.0); return; }
+  float angle = atan(r / u_focalMm);
+  vec4 w = lutAt(0, angle);
+  vec4 sky = lutAt(1, angle);
+  // Ideal rectilinear objective: the direction (x/f, y/f, 1) in camera axes, rotated into the atlas and projected.
+  vec3 v = u_point * vec3(mm / u_focalMm, 1.0);
+  bool front = v.z > 1e-6;
+  vec2 tan = front ? v.xy / v.z : vec2(1e9);
+  // k x k sub-samples over the cell: at least one per source pixel (base or level), at most 8 x 8.
+#ifdef RATE_SINGLE_SAMPLE
+  const int n = 1;
+#else
+#ifdef SKY_DIRECT
+  float k = ceil(u_cellTan / u_pixelTan);
+#else
+  float k = ceil(u_cellTan / u_atlasStep);
+  for (int l = 0; l < 5; l++) if (l < u_levels && inLevel(l, tan, u_cellTan)) k = max(k, ceil(u_cellTan / u_levelStep[l]));
+#endif
+  int n = int(clamp(k, 1.0, min(8.0, max(1.0, u_maxSub))));
+#endif
+  vec4 bands = vec4(0.0);
+  bool valid = front;
+  for (int j = 0; j < 8; j++) {
+    if (j >= n) break;
+    for (int i = 0; i < 8; i++) {
+      if (i >= n) break;
+      vec2 t = tan + ((vec2(float(i), float(j)) + 0.5) / float(n) - 0.5) * u_cellTan;
+#ifdef SKY_DIRECT
+      vec4 b = skyValue(normalize(u_axis + t.x * u_west + t.y * u_north));
+      bool ok = b.x >= 0.0;
+#else
+      bool ok;
+      vec4 b = atlasBilinear(t, ok);
+      for (int l = 0; l < 5; l++) {
+        if (l >= u_levels) break;
+        float wl;
+        vec4 h = levelSample(l, t, wl);
+        if (wl > 0.0) b.xyz = vec3(mix(b.x, h.x, wl), h.y >= 0.0 ? mix(b.y, h.y, wl) : b.y, h.z >= 0.0 ? mix(b.z, h.z, wl) : b.z);
+      }
+      b.w += profileAt(t, u_cellTan / float(n));
+#endif
+      valid = valid && ok;
+      bands += b;
+    }
+  }
+  bands /= float(n * n);
+#ifdef SKY_DIRECT
+  // The runtime check reads the sampled bands themselves (u_part 3, one sample per cell, RGBA target).
+  if (u_part == 3) { o = valid ? bands : vec4(-1.0, 0.0, 0.0, 0.0); return; }
+#endif
+  float target = valid ? u_sceneScale * (dot(bands.xyz, w.xyz) + bands.w * w.w) : 0.0;
+  o = vec4(target + sky.x + (u_part == 1 ? 0.0 : star), 1.0, 0.0, 0.0);
+  if (u_eyeDiffuse == 1) {
+    int row = 2 + u_tNodes;
+    vec4 x = lutAt(row, angle), y = lutAt(row + 1, angle), z = lutAt(row + 2, angle);
+    vec3 xyz = valid ? u_sceneScale * vec3(dot(bands, x), dot(bands, y), dot(bands, z)) : vec3(0.0);
+    o = vec4(xyz + lutAt(row + 3, angle).xyz, target + sky.x);
+  }
+}
+`,Le=S+j+Ce,mt=Le.replace("#version 300 es",`#version 300 es
+#define RATE_SINGLE_SAMPLE`),Y=`
+#define TAP(t, i) t[(i) >> 2][(i) & 3]
+bool inBounds(ivec2 q, ivec2 size) { return q.x >= 0 && q.y >= 0 && q.x < size.x && q.y < size.y; }
+`,ht=S+Y+`
+uniform sampler2D u_src;
+uniform vec4 u_taps[32];
+uniform int u_radius;
+uniform ivec2 u_dir;
+out vec4 o;
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy), size = textureSize(u_src, 0);
+  vec4 c = texelFetch(u_src, p, 0);
+  float s = c.r * TAP(u_taps, 0);
+  for (int i = 1; i < 128; i++) {
+    if (i > u_radius) break;
+    ivec2 a = p + u_dir * i, b = p - u_dir * i;
+    float v = 0.0;
+    if (inBounds(a, size)) v += texelFetch(u_src, a, 0).r;
+    if (inBounds(b, size)) v += texelFetch(u_src, b, 0).r;
+    s += v * TAP(u_taps, i);
+  }
+  o = vec4(s, c.g, 0.0, 0.0);
+}
+`,ft=S+`
+uniform sampler2D u_src;
+uniform sampler2D u_extra;    // star deposits when stars are rendered per frame (their halo stays static)
+uniform float u_extraScale;
+uniform int u_k;
+out vec4 o;
+void main() {
+  ivec2 c = ivec2(gl_FragCoord.xy), size = textureSize(u_src, 0);
+  float s = 0.0;
+  for (int j = 0; j < u_k; j++) for (int i = 0; i < u_k; i++) {
+    ivec2 q = c * u_k + ivec2(i, j);
+    if (q.x < size.x && q.y < size.y) s += texelFetch(u_src, q, 0).r + u_extraScale * texelFetch(u_extra, q, 0).r;
+  }
+  o = vec4(s / float(u_k * u_k), 0.0, 0.0, 0.0);
+}
+`,pt=S+Y+`
+uniform sampler2D u_src;
+uniform sampler2D u_kernel;
+uniform int u_count;
+out vec4 o;
+void main() {
+  ivec2 c = ivec2(gl_FragCoord.xy), size = textureSize(u_src, 0);
+  float s = 0.0;
+  for (int i = 0; i < u_count; i++) {
+    vec3 tap = texelFetch(u_kernel, ivec2(i, 0), 0).xyz;
+    ivec2 q = c - ivec2(tap.xy);
+    if (inBounds(q, size)) s += tap.z * texelFetch(u_src, q, 0).r;
+  }
+  o = vec4(s, 0.0, 0.0, 0.0);
+}
+`,dt=S+`
+uniform sampler2D u_core;
+uniform sampler2D u_halo;
+uniform sampler2D u_outer;
+uniform float u_w;
+uniform float u_outerW;
+uniform int u_k;
+uniform int u_outerK;
+out vec4 o;
+float haloAt(ivec2 q, ivec2 size) { return texelFetch(u_halo, clamp(q, ivec2(0), size - 1), 0).r; }
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy), size = textureSize(u_halo, 0);
+  vec2 rg = texelFetch(u_core, p, 0).rg;
+  // Coarse cell c covers fine cells [c k, c k + k); its centre is at fine coordinate c k + (k - 1) / 2.
+  vec2 x = (vec2(p) + 0.5) / float(u_k) - 0.5;
+  ivec2 i0 = ivec2(floor(x));
+  vec2 f = x - vec2(i0);
+  float h = mix(mix(haloAt(i0, size), haloAt(i0 + ivec2(1, 0), size), f.x), mix(haloAt(i0 + ivec2(0, 1), size), haloAt(i0 + ivec2(1, 1), size), f.x), f.y);
+  if (u_outerW > 0.0) {
+    vec2 ox = (vec2(p) + 0.5) / float(u_outerK) - 0.5;
+    ivec2 oi = ivec2(floor(ox)), os = textureSize(u_outer, 0);
+    vec2 of = ox - vec2(oi);
+    float a = texelFetch(u_outer, clamp(oi, ivec2(0), os - 1), 0).r;
+    float b = texelFetch(u_outer, clamp(oi + ivec2(1,0), ivec2(0), os - 1), 0).r;
+    float c = texelFetch(u_outer, clamp(oi + ivec2(0,1), ivec2(0), os - 1), 0).r;
+    float d = texelFetch(u_outer, clamp(oi + ivec2(1,1), ivec2(0), os - 1), 0).r;
+    h = mix(h, mix(mix(a,b,of.x),mix(c,d,of.x),of.y), u_outerW);
+  }
+  o = vec4((1.0 - u_w) * rg.r + u_w * h, rg.g, 0.0, 0.0);
+}
+`,gt=S+`
+uniform sampler2D u_src;
+out vec4 o;
+void main() {
+  ivec2 c = ivec2(gl_FragCoord.xy) * 2, size = textureSize(u_src, 0);
+  float s = 0.0;
+  for (int y=0;y<2;y++) for(int x=0;x<2;x++) {
+    ivec2 q = c + ivec2(x,y);
+    if (q.x<size.x && q.y<size.y) s += texelFetch(u_src,q,0).r;
+  }
+  o=vec4(s*0.25,0.0,0.0,0.0);
+}
+`,bt=S+Y+`
+uniform sampler2D u_src;
+uniform vec4 u_t1[32];
+uniform vec4 u_t2[32];
+uniform int u_r1;
+uniform int u_r2;
+out vec4 o;
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy), size = textureSize(u_src, 0);
+  vec2 c = texelFetch(u_src, p, 0).rg;
+  float s1 = c.x * TAP(u_t1, 0), s2 = c.x * TAP(u_t2, 0);
+  int r = max(u_r1, u_r2);
+  for (int i = 1; i < 128; i++) {
+    if (i > r) break;
+    ivec2 a = p + ivec2(i, 0), b = p - ivec2(i, 0);
+    float v = 0.0;
+    if (inBounds(a, size)) v += texelFetch(u_src, a, 0).r;
+    if (inBounds(b, size)) v += texelFetch(u_src, b, 0).r;
+    if (i <= u_r1) s1 += v * TAP(u_t1, i);
+    if (i <= u_r2) s2 += v * TAP(u_t2, i);
+  }
+  o = vec4(s1, s2, c.y, 0.0);
+}
+`,yt=S+Y+`
+uniform sampler2D u_src;
+uniform vec4 u_t1[32];
+uniform vec4 u_t2[32];
+uniform int u_r1;
+uniform int u_r2;
+uniform vec2 u_weights;
+out vec4 o;
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy), size = textureSize(u_src, 0);
+  vec3 c = texelFetch(u_src, p, 0).rgb;
+  float s1 = c.x * TAP(u_t1, 0), s2 = c.y * TAP(u_t2, 0);
+  int r = max(u_r1, u_r2);
+  for (int i = 1; i < 128; i++) {
+    if (i > r) break;
+    ivec2 a = p + ivec2(0, i), b = p - ivec2(0, i);
+    vec2 v = vec2(0.0);
+    if (inBounds(a, size)) v += texelFetch(u_src, a, 0).rg;
+    if (inBounds(b, size)) v += texelFetch(u_src, b, 0).rg;
+    if (i <= u_r1) s1 += v.x * TAP(u_t1, i);
+    if (i <= u_r2) s2 += v.y * TAP(u_t2, i);
+  }
+  o = vec4(u_weights.x * s1 + u_weights.y * s2, c.z, 0.0, 0.0);
+}
+`,xt=S+Y+`
+uniform sampler2D u_src;      // RG32F: the charge or its conditional expectation (SAMPLE_FS writes both)
+uniform vec4 u_t1[32];
+uniform vec4 u_t2[32];
+uniform vec4 u_t3[32];
+uniform int u_r1;
+uniform int u_r2;
+uniform int u_r3;
+out vec4 o;
+vec2 sourceAt(ivec2 p) { return texelFetch(u_src, p, 0).rg; }
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy), size = textureSize(u_src, 0);
+  vec2 c = sourceAt(p);
+  float s1 = c.x * TAP(u_t1, 0), s2 = c.x * TAP(u_t2, 0), s3 = c.y * TAP(u_t3, 0);
+  int r = max(max(u_r1, u_r2), u_r3);
+  for (int i = 1; i < 128; i++) {
+    if (i > r) break;
+    ivec2 a = p + ivec2(i, 0), b = p - ivec2(i, 0);
+    vec2 v = vec2(0.0);
+    if (inBounds(a, size)) v += sourceAt(a);
+    if (inBounds(b, size)) v += sourceAt(b);
+    if (i <= u_r1) s1 += v.x * TAP(u_t1, i);
+    if (i <= u_r2) s2 += v.x * TAP(u_t2, i);
+    if (i <= u_r3) s3 += v.y * TAP(u_t3, i);
+  }
+  o = vec4(s1, s2, s3, 0.0);
+}
+`,vt=S+Y+`
+uniform sampler2D u_src;
+uniform vec4 u_t1[32];
+uniform vec4 u_t2[32];
+uniform vec4 u_t3[32];
+uniform int u_r1;
+uniform int u_r2;
+uniform int u_r3;
+uniform vec2 u_weights;
+out vec4 o;
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy), size = textureSize(u_src, 0);
+  vec3 c = texelFetch(u_src, p, 0).rgb;
+  float s1 = c.x * TAP(u_t1, 0), s2 = c.y * TAP(u_t2, 0), s3 = c.z * TAP(u_t3, 0);
+  int r = max(max(u_r1, u_r2), u_r3);
+  for (int i = 1; i < 128; i++) {
+    if (i > r) break;
+    ivec2 a = p + ivec2(0, i), b = p - ivec2(0, i);
+    vec3 v = vec3(0.0);
+    if (inBounds(a, size)) v += texelFetch(u_src, a, 0).rgb;
+    if (inBounds(b, size)) v += texelFetch(u_src, b, 0).rgb;
+    if (i <= u_r1) s1 += v.x * TAP(u_t1, i);
+    if (i <= u_r2) s2 += v.y * TAP(u_t2, i);
+    if (i <= u_r3) s3 += v.z * TAP(u_t3, i);
+  }
+  o = vec4(u_weights.x * s1 + u_weights.y * s2 + s3, 0.0, 0.0, 0.0);
+}
+`,_t=S+Fe+`
+uniform sampler2D u_rate;   // R: electron/s/mm^2 after input diffusion, G: cathode mask
+uniform float u_areaTime;   // texel area (mm^2) x frame time (s)
+uniform float u_dark;       // event/s/mm^2
+uniform float u_gain;
+uniform float u_f2;
+uniform uint u_frame;
+uniform uint u_seed;
+uniform int u_mean;
+uniform float u_ramp;       // power-on ramp of the photocathode signal only
+uniform sampler2D u_starsDyn; // per-frame star rate (moving seeing), texel units x1e-3 e/s
+uniform float u_starsScale;   // 1e3 / pitch^2 x (1 - halo weight), or 0
+uniform float u_snowRate;     // bright scintillations ("snow"), event/s/mm^2
+uniform float u_snowCharge;   // their mean charge in single-electron units (exponential distribution)
+// 0.9.46: two RG32F targets (formerly one RGBA32F), so the output spot reads 8 instead of 16 bytes per tap.
+layout(location = 0) out vec2 oCharge;   // R: ordinary charge, G: snow charge
+layout(location = 1) out vec2 oExpected; // their conditional expectations
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy);
+  vec2 rv = texelFetch(u_rate, p, 0).rg;
+  float signal = rv.r + u_starsScale * texelFetch(u_starsDyn, p, 0).r;
+  float mu = (signal * u_ramp + u_dark * rv.g) * u_areaTime;
+  float muSnow = u_snowRate * rv.g * u_areaTime;
+  // R: ordinary events (output spot = tube PSF); G: snow events (wider spot, see SPOT_H_FS).
+  vec2 expected = vec2(mu * u_gain, muSnow * u_snowCharge * u_gain);
+  if (u_mean == 1) { oCharge = expected; oExpected = expected; return; }
+  rngInit(uvec4(uint(p.x), uint(p.y), u_frame, u_seed));
+  float q = mcpCharge(poissonSample(mu), u_gain, u_f2), qs = 0.0;
+  if (u_snowRate > 0.0) {
+    float k = poissonSample(muSnow);
+    if (k > 0.0) qs = gammaSample(k) * u_snowCharge * u_gain;
+  }
+  oCharge = vec2(q, qs); oExpected = expected;
+}
+`,St=S+`
+uniform sampler2D u_frame;
+uniform sampler2D u_prev;
+uniform sampler2D u_expected;
+uniform float u_invAreaTime;
+uniform float u_alpha;
+out vec4 o;
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy);
+  vec2 cur = vec2(texelFetch(u_frame, p, 0).r, texelFetch(u_expected, p, 0).r) * u_invAreaTime;
+  vec2 prev = texelFetch(u_prev, p, 0).rg;
+  o = vec4(u_alpha >= 1.0 ? cur : prev + u_alpha * (cur - prev), 0.0, 0.0);
+}
+`,Mt=S+Pe+j+`
+uniform int u_nakedEye;
+uniform int u_eyeTube;
+uniform float u_focalMm;
+uniform vec2 u_eyeTubeMechanism; // working gain, dark rate (MCP input); display-only sky reference
+uniform float u_eyeReferenceY; // fixed display scale; independent of all sky components
+uniform float u_eyeSourceGain; // D114: 2^EV from the total sky SQM, on the source increment only
+uniform vec4 u_eyeSourceShoulder;
+uniform sampler2D u_eyeDiffuse;
+uniform sampler2D u_eyeWide;   // the same XYZ + rod scene over ~0.5\xB0 apparent field: drives colour strength
+uniform sampler2D u_eyeStars;  // RGB = star tint x L* increment, A = L* increment (bright stars, twinkling)
+uniform sampler2D u_eyeStarsFaint; // the same for the fainter catalogue stars (static)
+uniform float u_eyeGain;
+uniform float u_eyeScale;      // adaptation gain x 2^(EV-1) / tone reference (cd/m\xB2)
+uniform float u_eyeToneMax;
+uniform vec3 u_eyeColour;      // colour gain on the mesopic weight, maximum strength, maximum u'v' distance
+uniform vec2 u_eyeWhite;       // adapted white (CIE 1976 u'v')
+uniform vec3 u_eyeNebula;      // lift contrast, L* per e-fold, view background (scotopic cd/m\xB2)
+uniform float u_eyeSP;
+uniform sampler2D u_intensity; // electron/s/mm^2 at the screen
+uniform sampler2D u_medium;
+uniform sampler2D u_coarse;
+uniform int u_eyeMode;
+uniform vec2 u_eyeContrast; // contrast threshold and field adapting intensity, independent of EV
+uniform int u_eyeLocal;     // 1 (naked eye, D68): each band's contrast is taken against the next coarser band, not the pixel itself
+uniform int u_margin;
+uniform float u_half;          // canvas half-size, px
+// D116: grid texels per canvas pixel (1 at rest; below 1 while a dragged free sky runs on a reduced grid) and the
+// texel coordinate of the view centre (margin + n / 2). Texel positions are scaled about the view centre.
+uniform float u_viewScale;
+uniform float u_gridCentre;
+uniform vec3 u_xyz;            // XYZ per (electron/s/mm^2) at the screen
+uniform float u_scale;         // 683 / 10 cd/m^2 * 2^EV
+uniform float u_gammaInv;
+uniform vec2 u_centerMm;
+uniform float u_pitchMm;
+uniform float u_cathodeR;
+// Highlight shoulder (display only): knee (display luminance), log slope k, log normalizer, level of the peak; k <= 0 = off.
+uniform vec4 u_shoulder;
+// D115 star reshaping (display only; renderer.setStarShape): thinner bright catalogue stars, same light.
+uniform sampler2D u_starMap;  // RG = offset to the star covering this texel (texels), A = 1; see STAR_MAP_FS
+uniform vec4 u_starShape;     // c0 (1 = off), knee (x white), physical PSF variance (texel^2), SHARP_REF (D118)
+uniform vec4 u_starProfA;     // peak-normalised amplitudes of the grid's star profile, four Gaussian components (sum 1)
+uniform vec4 u_starProfV;     // their variances (texel^2)
+uniform vec4 u_starProfW;     // D118: the components' light shares (sum 1)
+uniform vec4 u_starProfP;     // D118: their physical variances (texel^2; no deposit or tap discretisation)
+uniform float u_starSynth;    // D118: 1 = draw sharp stars' cores from the PSF at this finer canvas's pixels
+uniform int u_compose;        // D118: 1 = finer canvas; outside bright stars' discs copy u_gridDisplay (the grid-sized picture)
+uniform sampler2D u_gridDisplay;
+uniform float u_starRing;     // radius of the background ring around a star (texels)
+uniform float u_starNoise;    // D118: the star's own light is reshaped above this many noise sigmas of its background ring
+uniform float u_starWhite;    // "white" for the star reshaping: this display-linear level (the shoulder's top is the scene's brightest)
+uniform sampler2D u_gridBright; // D118: texels a star was reshaped in, written by the grid-sized pass (R8)
+layout(location = 0) out vec4 o;
+// D118: second target of the grid-sized pass, 1 where a star was reshaped (discarded when drawing to the canvas).
+layout(location = 1) out vec4 oBright;
+float starReshaped = 0.0;
+const mat3 XYZ_TO_SRGB = mat3(3.2406255, -0.9689307, 0.0557101,
+                              -1.537208, 1.8757561, -0.2040211,
+                              -0.4986286, 0.0415175, 1.0569959);
+float encodeSrgb(float v) { return v <= 0.0031308 ? 12.92 * v : 1.055 * pow(v, 1.0 / 2.4) - 0.055; }
+float contrastBand(float delta, float base, float threshold) {
+  if (threshold <= 0.0) return delta;
+  float t = max(base, 1e-12) * threshold, d2 = delta * delta;
+  return delta * d2 / (d2 + t * t);
+}
+float limitT(float t, float c, float grey) {
+  float d = c - grey;
+  if (d < 0.0) return min(t, grey / -d);
+  if (d > 0.0) return min(t, (1.0 - grey) / d);
+  return t;
+}
+// The virtual eye is monochrome, but retains the same shoulder, gamut and gamma as the tube.
+vec3 eyeTubeTone(float intensity, vec4 shoulder) {
+  vec3 xyz = u_xyz * (max(0.0, intensity) * u_scale);
+  if (shoulder.y > 0.0 && xyz.y > shoulder.x) {
+    float knee = shoulder.x, y = xyz.y;
+    xyz *= (knee + (shoulder.w - knee) * log(1.0 + shoulder.y * (y - knee)) / shoulder.z) / y;
+  }
+  vec3 rgb = XYZ_TO_SRGB * xyz;
+  float grey = min(1.0, xyz.y), t = 1.0;
+  t = limitT(t, rgb.r, grey); t = limitT(t, rgb.g, grey); t = limitT(t, rgb.b, grey);
+  return pow(clamp(grey + t * (rgb - grey), 0.0, 1.0), vec3(u_gammaInv));
+}
+// CIE 191:2010 mesopic weight (same bisection as eyeMesopicWeight in naked-eye.ts).
+float mesopicWeight(float p, float s) {
+  if (max(p, s) <= 0.005) return 0.0;
+  if (min(p, s) >= 5.0) return 1.0;
+  const float V0 = 683.0 / 1699.0;
+  float lo = 0.0, hi = 1.0;
+  for (int i = 0; i < 14; i++) {
+    float m = 0.5 * (lo + hi), l = (m * p + (1.0 - m) * V0 * s) / (m + (1.0 - m) * V0);
+    if (clamp(0.767 + 0.3334 * log(max(l, 1e-30)) * 0.4342945, 0.0, 1.0) > m) lo = m; else hi = m;
+  }
+  return 0.5 * (lo + hi);
+}
+float lightnessOf(float y) { return y > 0.008856 ? 116.0 * pow(y, 1.0 / 3.0) - 16.0 : 903.3 * y; }
+float lightnessInv(float l) { return l > 8.0 ? pow((l + 16.0) / 116.0, 3.0) : l / 903.3; }
+// Luminance before the highlight shoulder that it shows as y (inverse of the log shoulder; identity when off or below the knee).
+float unshoulder(vec4 sh, float y) {
+  if (sh.y <= 0.0 || y <= sh.x) return y;
+  y = min(y, sh.x + 0.999 * (sh.w - sh.x));
+  return sh.x + (exp((y - sh.x) * sh.z / (sh.w - sh.x)) - 1.0) / sh.y;
+}
+// D115: screen intensity above b that this pixel shows as white (tube; or the virtual eye's source path).
+float whiteExcess(float b, vec2 mm) {
+  float perIntensity = max(u_xyz.y * u_scale, 1e-30);
+  if (u_eyeTube == 1) {
+    float total = max(0.0, lutAt(1, atan(length(mm) / u_focalMm)).x + u_eyeTubeMechanism.y) * u_eyeTubeMechanism.x;
+    float sensitivity = u_eyeSourceGain * sqrt(2.0 * u_eyeReferenceY / (u_eyeReferenceY + total * perIntensity));
+    float source = unshoulder(u_eyeSourceShoulder, u_starWhite) / perIntensity - u_eyeReferenceY / perIntensity;
+    return min(b, total) + source / sensitivity - b;
+  }
+  return unshoulder(u_shoulder, u_starWhite) / perIntensity - b;
+}
+ivec2 starTexel(vec2 p) { return clamp(ivec2(floor(p + 0.5)), ivec2(0), textureSize(u_intensity, 0) - 1); }
+#define CE(a, b) { float lo = min(a, b); b = max(a, b); a = lo; }
+// D115/D118: the star's own light in texel q (index units, centres at integers): its excess over the background b
+// above the noise allowance, at most a generous (wider) model of its profile scaled to the measured peak.
+float starOwnAt(vec2 q, vec2 c, float b, float allowance, float peak) {
+  vec2 d = q - c;
+  float excess = texelFetch(u_intensity, starTexel(q), 0).r - b;
+  return min(max(excess - allowance, 0.0), peak * dot(u_starProfA, exp(-0.5 * dot(d, d) / (1.6 * u_starProfV))));
+}
+// D115: the star at texel position c seen from texel p. Background = median of eight texels on a ring just outside the
+// star's disc, peak = brightest of the 3x3 around its centre (both from the picture itself, so moving and twinkling
+// stars and the tube's noise are taken as they are). A peak above the knee K is lowered to K (P/K)^c (c < 1) by scaling
+// the star's whole profile, which stays smooth and round: the white core and the visible disc shrink, brighter stars
+// still grow (more slowly), and stars that only just reached white turn a little grey, so the brightest stand out.
+// (Sharpening the profile instead made blocky cores: a steep edge aliases on the grid.) Only the star's own light is
+// scaled: not a neighbour inside its disc, nor the noise in its faint wings.
+float reshapeStar(vec2 p, vec2 c, float intensity, vec2 mm) {
+  float peak = 0.0, sum = 0.0; vec2 peakAt = c;
+  for (int dy = -1; dy <= 1; dy++) for (int dx = -1; dx <= 1; dx++) {
+    vec2 q = vec2(starTexel(c + vec2(dx, dy)));
+    float t = texelFetch(u_intensity, ivec2(q), 0).r; sum += t;
+    if (t > peak) { peak = t; peakAt = q; }
+  }
+  float s0 = texelFetch(u_intensity, starTexel(c + vec2(u_starRing, 0.0)), 0).r, s1 = texelFetch(u_intensity, starTexel(c - vec2(u_starRing, 0.0)), 0).r;
+  float s2 = texelFetch(u_intensity, starTexel(c + vec2(0.0, u_starRing)), 0).r, s3 = texelFetch(u_intensity, starTexel(c - vec2(0.0, u_starRing)), 0).r;
+  float e = u_starRing * 0.7071068;
+  float s4 = texelFetch(u_intensity, starTexel(c + vec2(e, e)), 0).r, s5 = texelFetch(u_intensity, starTexel(c - vec2(e, e)), 0).r;
+  float s6 = texelFetch(u_intensity, starTexel(c + vec2(e, -e)), 0).r, s7 = texelFetch(u_intensity, starTexel(c + vec2(-e, e)), 0).r;
+  CE(s0, s2) CE(s1, s3) CE(s4, s6) CE(s5, s7) CE(s0, s4) CE(s1, s5) CE(s2, s6) CE(s3, s7)
+  CE(s0, s1) CE(s2, s3) CE(s4, s5) CE(s6, s7) CE(s2, s4) CE(s3, s5) CE(s1, s4) CE(s3, s6) CE(s1, s2) CE(s3, s4) CE(s5, s6)
+  float b = 0.5 * (s3 + s4), x = intensity - b, w = whiteExcess(b, mm), knee = u_starShape.y * w;
+  peak -= b;
+  // The model's amplitude at the star's true centre: the brightest texel may sit up to half a texel off it (a star on a
+  // texel edge puts half its light in each neighbour), so it is divided by the profile there (D118).
+  vec2 dp = peakAt - c;
+  float top = peak / max(dot(u_starProfA, exp(-0.5 * dot(dp, dp) / u_starProfV)), 0.05);
+  if (x <= 0.0 || knee <= 0.0 || top <= knee) return intensity;
+  starReshaped = 1.0;
+  vec2 d = p - c;
+  // D118: the allowance is the local noise (the ring's interquartile spread / 1.35, times u_starNoise sigmas), not a
+  // fixed share of white: a fixed 4 % was never scaled and stayed as a faint glow ring around the shrunken core. In a
+  // noiseless view (naked eye, mean frame) it is ~0 and the whole wing shrinks with the core.
+  float r2 = dot(d, d), allowance = u_starNoise * (s5 - s2) / 1.349;
+  // The star's own light here is at most this generous (wider) model of its profile; above the allowance (which keeps
+  // the background's noise as it is) that part is scaled, the rest (a neighbour, noise) is left. No weight depends on
+  // the pixel's own value, so the mapping stays monotone: no dark rings. Taken at the four texel centres around this
+  // pixel and interpolated exactly as the picture is (bilinear on a finer canvas; the texel itself at rest), so between
+  // texels nothing of the star is left behind (D118).
+  vec2 i0 = floor(p), f = p - i0;
+  float own = min(x, mix(mix(starOwnAt(i0, c, b, allowance, top), starOwnAt(i0 + vec2(1.0, 0.0), c, b, allowance, top), f.x),
+    mix(starOwnAt(i0 + vec2(0.0, 1.0), c, b, allowance, top), starOwnAt(i0 + vec2(1.0, 1.0), c, b, allowance, top), f.x), f.y));
+  // Unscaled only at the very edge of the disc (radius u_starRing - 1 = 8 sigma of the broadest component), so a
+  // very wide star can never show a seam there.
+  float edge = 1.0 - smoothstep(0.85 * (u_starRing - 1.0), u_starRing - 1.0, sqrt(r2));
+  // D118: the exponent follows the pixel actually drawn (u_viewScale texels a side; 1 at rest on a full grid).
+  float pixel = u_viewScale * u_viewScale / 6.0, c0 = u_starShape.x;
+  float cExp = c0 * clamp(u_starShape.z / (u_starShape.z + pixel) / u_starShape.w, 0.1, 1.0);
+  float shaped = own * (peak > knee ? pow(knee * pow(peak / knee, cExp) / peak, edge) : 1.0);
+  if (u_starSynth > 0.0) {
+    // D118: on a canvas finer than the grid, draw the core of the star's own light from its flux (the 3x3 sum; a sharp
+    // star keeps nearly all of it there) and the physical PSF at these pixels, centred on its catalogue position, so a
+    // star on a texel corner is no longer a 2x2 block. Its peak is compressed like the D115 one; blended in above the
+    // knee so the stars just reaching it change smoothly.
+    vec4 vt = u_starProfP + pixel, at = u_starProfW / vt;
+    float norm = dot(at, vec4(1.0)), coreTop = max(sum - 9.0 * b, 0.0) * norm / 6.2831853;
+    float topShown = coreTop > knee ? knee * pow(coreTop / knee, cExp) : coreTop;
+    float core = topShown * dot(at / norm, exp(-0.5 * r2 / vt));
+    shaped = mix(shaped, core, u_starSynth * smoothstep(knee, 2.0 * knee, coreTop) * edge);
+  }
+  return intensity - own + shaped;
+}
+// Catmull-Rom (Keys, a = -0.5) of a picture at p in texel units (centres at half-integers), 4x4 texels, clamped at the
+// edges and to the display range (the kernel overshoots a little at sharp edges).
+vec4 catmullRom(sampler2D s, vec2 p) {
+  vec2 q = p - 0.5, i0 = floor(q), f = q - i0;
+  vec2 f2 = f * f, f3 = f2 * f;
+  vec2 w0 = 0.5 * (-f3 + 2.0 * f2 - f), w1 = 0.5 * (3.0 * f3 - 5.0 * f2 + 2.0), w2 = 0.5 * (-3.0 * f3 + 4.0 * f2 + f), w3 = 0.5 * (f3 - f2);
+  ivec2 lim = textureSize(s, 0) - 1, b = ivec2(i0) - 1;
+  vec4 row[4];
+  for (int j = 0; j < 4; j++) {
+    int y = clamp(b.y + j, 0, lim.y);
+    row[j] = w0.x * texelFetch(s, ivec2(clamp(b.x, 0, lim.x), y), 0) + w1.x * texelFetch(s, ivec2(clamp(b.x + 1, 0, lim.x), y), 0)
+      + w2.x * texelFetch(s, ivec2(clamp(b.x + 2, 0, lim.x), y), 0) + w3.x * texelFetch(s, ivec2(clamp(b.x + 3, 0, lim.x), y), 0);
+  }
+  return clamp(w0.y * row[0] + w1.y * row[1] + w2.y * row[2] + w3.y * row[3], 0.0, 1.0);
+}
+void main() {
+  vec2 frag = gl_FragCoord.xy;
+  vec2 rel = frag - u_half;
+  float view = clamp(u_half - length(rel) + 0.5, 0.0, 1.0);
+  oBright = vec4(0.0);
+  if (view <= 0.0) { o = vec4(0.0); return; }
+  vec2 mm = u_centerMm + rel * u_pitchMm;
+  float cath = clamp((u_cathodeR - length(mm)) / u_pitchMm + 0.5, 0.0, 1.0);
+  // At rest u_viewScale is 1 and this is exactly ivec2(frag) + u_margin (frag sits at a half-integer).
+  vec2 tex = rel * u_viewScale + u_gridCentre;
+  ivec2 pixel = ivec2(floor(tex));
+  if (u_compose == 1) {
+    // D118: only texels where the grid-sized pass reshaped a star are drawn again at these pixels; elsewhere that
+    // pass's picture is copied. 0.9.59: Catmull-Rom, not bilinear: the browser's own scaling of a grid-sized canvas is
+    // sharper than bilinear, and the bilinear copy softened the Milky Way's fine structure by about 14 % on phones.
+    ivec2 g = clamp(pixel - ivec2(u_margin), ivec2(0), textureSize(u_gridBright, 0) - 1);
+    if (texelFetch(u_gridBright, g, 0).r < 0.5) {
+      o = catmullRom(u_gridDisplay, tex - float(u_margin));
+      return;
+    }
+  }
+  vec2 screen;
+  if (u_viewScale < 1.0) {
+    // D116: a coarser drag grid is drawn bilinearly between texel centres (the grain softens; no new statistics).
+    vec2 q = tex - 0.5; ivec2 i0 = ivec2(floor(q)), lim = textureSize(u_intensity, 0) - 1; vec2 f = q - vec2(i0);
+    vec2 a = texelFetch(u_intensity, clamp(i0, ivec2(0), lim), 0).rg, b = texelFetch(u_intensity, clamp(i0 + ivec2(1, 0), ivec2(0), lim), 0).rg;
+    vec2 c = texelFetch(u_intensity, clamp(i0 + ivec2(0, 1), ivec2(0), lim), 0).rg, d = texelFetch(u_intensity, clamp(i0 + ivec2(1, 1), ivec2(0), lim), 0).rg;
+    screen = mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+  } else screen = texelFetch(u_intensity, pixel, 0).rg;
+  float intensity = max(screen.r, 0.0);
+  if (u_eyeMode == 2 && u_eyeContrast.x > 0.0) {
+    float medium = texelFetch(u_medium, pixel, 0).r, coarse = texelFetch(u_coarse, pixel, 0).r;
+    float adapting = max(u_eyeContrast.y, 1e-12), base = max(screen.g, adapting * 0.1), threshold = u_eyeContrast.x;
+    // Naked eye: an increment is judged against its surroundings (a star is far above the sky around it).
+    float baseMedium = u_eyeLocal == 1 ? max(coarse, adapting * 0.1) : base, baseFine = u_eyeLocal == 1 ? max(medium, adapting * 0.1) : base;
+    intensity = max(0.0, adapting + contrastBand(coarse - adapting, adapting, threshold)
+      + contrastBand(medium - coarse, baseMedium, threshold * 1.3)
+      + contrastBand(screen.r - medium, baseFine, threshold * 2.0));
+  }
+  if (u_starShape.x < 1.0) {
+    vec4 star = texelFetch(u_starMap, pixel, 0);
+    // Positions in texel-index units (texel centres at integers): this pixel's own, sub-texel on a finer canvas (D118).
+    if (star.a > 0.0) intensity = reshapeStar(tex - 0.5, vec2(pixel) + star.xy, intensity, mm);
+  }
+  if (u_eyeTube == 1) {
+    vec4 sky = lutAt(1, atan(length(mm) / u_focalMm));
+    // D84: every sky component is background. D83's moving natural-sky reference boosted detail with airglow.
+    // Isolate the source, apply bounded sensitivity that decreases with TOTAL sky, then the fixed response.
+    float total = max(0.0, sky.x + u_eyeTubeMechanism.y) * u_eyeTubeMechanism.x;
+    // Preserve dark blurred edges: the analytic background cannot exceed what the pixel actually received.
+    float background = min(intensity, total), perIntensity = max(u_xyz.y * u_scale, 1e-30);
+    float reference = u_eyeReferenceY / perIntensity;
+    // D114: times the sky-linked gain, which keeps rising where this bounded sqrt flattens (darker than the default sky).
+    float sensitivity = u_eyeSourceGain * sqrt(2.0 * u_eyeReferenceY / (u_eyeReferenceY + total * perIntensity));
+    float source = (intensity - background) * sensitivity;
+    vec3 increment = max(vec3(0.0), eyeTubeTone(reference + source, u_eyeSourceShoulder) - eyeTubeTone(reference, u_eyeSourceShoulder));
+    vec3 lin = clamp(eyeTubeTone(background, u_shoulder) + increment, 0.0, 1.0);
+    vec3 srgb = vec3(encodeSrgb(lin.r), encodeSrgb(lin.g), encodeSrgb(lin.b));
+    o = vec4(srgb * cath * view, view); oBright = vec4(starReshaped);
+    return;
+  }
+  vec3 xyz = u_xyz * (intensity * u_scale);
+  // Above the knee: y -> knee + (top - knee) ln(1 + k (y - knee)) / ln(1 + k (peak - knee)); same slope at the knee.
+  if (u_shoulder.y > 0.0 && xyz.y > u_shoulder.x) {
+    float knee = u_shoulder.x, y = xyz.y;
+    xyz *= (knee + (u_shoulder.w - knee) * log(1.0 + u_shoulder.y * (y - knee)) / u_shoulder.z) / y;
+  }
+  vec3 rgb = XYZ_TO_SRGB * xyz;
+  if (u_nakedEye == 1) {
+    // D74: mesopic rod/cone luminance (scotopic scale), u = L G 2^(EV-1) / L_ref, then eyeTone (naked-eye.ts).
+    vec4 d = max(vec4(0.0), texelFetch(u_eyeDiffuse, pixel, 0)) * (u_eyeGain * 1e-7);
+    float L = mix(d.a, d.y * u_eyeSP, mesopicWeight(d.y, d.a)), u = L * u_eyeScale;
+    float v = u <= 1.0 ? u : 1.0 + log(u);
+    float Y = u_eyeToneMax * v / (1.0 + v);
+    // D75 nebula lift above EYE_NEBULA_CONTRAST x the view background (eyeNebulaLift).
+    float lift = u_eyeNebula.y * max(0.0, log(L / (u_eyeNebula.x * max(u_eyeNebula.z, 1e-12))));
+    float top = lightnessOf(u_eyeToneMax), l = lightnessOf(Y);
+    if (lift > 0.0 && l < top) Y = lightnessInv(l + (top - l) * (1.0 - exp(-lift / top)));
+    // Colour needs the cones both here and over a neighbourhood (eyeColourStrength); the hue is the local one.
+    vec4 w = max(vec4(0.0), texelFetch(u_eyeWide, pixel, 0)) * (u_eyeGain * 1e-7);
+    float colour = min(u_eyeColour.y, u_eyeColour.x * min(mesopicWeight(d.y, d.a), mesopicWeight(w.y, w.a)));
+    // Pale mesopic colour: u'v' difference from the adapted white, capped, times the strength, drawn about the display white.
+    vec2 delta = uvOf(d.xyz) - u_eyeWhite;
+    float shift = length(delta);
+    if (shift > u_eyeColour.z) delta *= u_eyeColour.z / shift;
+    rgb = XYZ_TO_SRGB * (xyzOfUv(D65_UV + delta * colour) * Y);
+    // Visibility-tested compact stars raise the displayed lightness of their background (independent of EV and pixel size).
+    vec4 star = texelFetch(u_eyeStars, pixel, 0) + texelFetch(u_eyeStarsFaint, pixel, 0);
+    if (star.a > 0.0) {
+      float yb = max(0.0, dot(rgb, vec3(0.2126, 0.7152, 0.0722)));
+      vec3 tint = star.rgb / star.a;
+      // D75: no brighter than the star's own colour can be shown, so bright red/blue stars keep their hue (not white).
+      float yt = min(lightnessInv(lightnessOf(yb) + star.a), 0.98 / max(max(tint.r, tint.g), max(tint.b, 1e-3)));
+      rgb += max(0.0, yt - yb) * tint;
+    }
+    xyz.y = dot(rgb, vec3(0.2126, 0.7152, 0.0722));
+  }
+  float grey = min(1.0, xyz.y), t = 1.0;
+  t = limitT(t, rgb.r, grey); t = limitT(t, rgb.g, grey); t = limitT(t, rgb.b, grey);
+  vec3 lin = clamp(grey + t * (rgb - grey), 0.0, 1.0);
+  lin = pow(lin, vec3(u_gammaInv));
+  vec3 srgb = vec3(encodeSrgb(lin.r), encodeSrgb(lin.g), encodeSrgb(lin.b));
+  o = vec4(srgb * cath * view, view); oBright = vec4(starReshaped);
+}
+`,Tt=S+`
+uniform sampler2D u_src;
+out vec4 o;
+void main() { o = texelFetch(u_src, ivec2(gl_FragCoord.xy), 0); }
+`,At=S+Y+`
+uniform sampler2D u_src;
+uniform vec4 u_taps[32];
+uniform int u_radius;
+uniform ivec2 u_dir;
+out vec4 o;
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy), size = textureSize(u_src, 0);
+  vec2 s = texelFetch(u_src, p, 0).rg * TAP(u_taps, 0);
+  for (int i = 1; i < 128; i++) {
+    if (i > u_radius) break;
+    ivec2 a = p + u_dir * i, b = p - u_dir * i;
+    vec2 v = vec2(0.0);
+    if (inBounds(a, size)) v += texelFetch(u_src, a, 0).rg;
+    if (inBounds(b, size)) v += texelFetch(u_src, b, 0).rg;
+    s += v * TAP(u_taps, i);
+  }
+  o = vec4(s, 0.0, 0.0);
+}
+`,Et=S+Fe+`
+uniform sampler2D u_original;
+uniform sampler2D u_grain;
+uniform vec3 u_style; // strength (incl correlation normalization), tail prominence, fixed pattern amplitude
+uniform uint u_patternSeed;
+uniform vec2 u_centerMm;
+uniform float u_pitchMm;
+uniform float u_gridCenter;
+uniform int u_meanOnly;
+uniform int u_preservePointResidual;
+uniform float u_rawStrength;
+out vec4 o;
+float patternCell(ivec2 p) {
+  uvec4 v = pcg4d(uvec4(uint(p.x), uint(p.y), u_patternSeed, 991u));
+  return float(v.x >> 8u) / 8388608.0 - 1.0;
+}
+float patternAt(vec2 x) {
+  ivec2 p = ivec2(floor(x)); vec2 f = fract(x); f = f * f * (3.0 - 2.0 * f);
+  return mix(mix(patternCell(p), patternCell(p + ivec2(1, 0)), f.x),
+             mix(patternCell(p + ivec2(0, 1)), patternCell(p + ivec2(1, 1)), f.x), f.y);
+}
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy);
+  vec2 a = texelFetch(u_original, p, 0).rg, b = texelFetch(u_grain, p, 0).rg;
+  float mean = max(a.g, 0.0);
+  if (u_meanOnly == 1) { o = vec4(mean, mean, 0.0, 0.0); return; }
+  float residual;
+  if (u_preservePointResidual == 1) {
+    // Compact expected sources have a.g > blurred b.g. Blend back their physical residual continuously;
+    // diffuse fields keep the variance-normalized grain path. The expectation itself remains unblurred.
+    float blurredMean = max(b.g, 0.0);
+    float concentration = clamp(2.0 * (mean - blurredMean) / max(max(mean, blurredMean), 1e-12), 0.0, 1.0);
+    residual = mix((b.r - b.g) * u_style.x, (a.r - a.g) * u_rawStrength, concentration);
+  } else {
+    residual = (b.r - b.g) * u_style.x;
+  }
+  // Same tail mapping as noiseResidual(). Normalization precedes both strength and tail.
+  float prominence = min(3.0, abs(residual) / max(mean, 1e-12));
+  residual *= 1.0 + u_style.y * prominence;
+  vec2 mm = u_centerMm + (gl_FragCoord.xy - u_gridCenter) * u_pitchMm;
+  float pattern = 0.65 * patternAt(mm / 0.065) + 0.35 * patternAt(mm / 0.8 + 13.7);
+  o = vec4(max(0.0, mean * (1.0 + u_style.z * pattern) + residual), mean, 0.0, 0.0);
+}
+`,wt=S+Y+`
+uniform sampler2D u_src;
+uniform vec4 u_taps[32];
+uniform int u_radius;
+uniform ivec2 u_dir;
+out vec4 o;
+void main() {
+  ivec2 p = ivec2(gl_FragCoord.xy), size = textureSize(u_src, 0);
+  vec4 v = texelFetch(u_src, p, 0) * TAP(u_taps, 0);
+  for (int i=1; i<128; i++) {
+    if (i > u_radius) break;
+    ivec2 a=p+u_dir*i, b=p-u_dir*i;
+    if (inBounds(a,size)) v += texelFetch(u_src,a,0)*TAP(u_taps,i);
+    if (inBounds(b,size)) v += texelFetch(u_src,b,0)*TAP(u_taps,i);
+  }
+  o=v;
+}
+`,Ne=`
+float eyeFootprint(vec2 d, float sigma) {
+  float v=0.0;
+  for(int j=0;j<2;j++) for(int i=0;i<2;i++) {
+    vec2 q=d+(vec2(i,j)-.5)*.5;
+    float r2=dot(q,q)/(sigma*sigma);
+    if(r2<=9.0) v+=exp(-.5*r2)*.25;
+  }
+  return v;
+}
+`,Rt=ke+`
+uniform sampler2D u_diffuse;
+uniform vec2 u_originMm;
+uniform vec2 u_size;
+uniform float u_pitchMm;
+uniform float u_focalMm;
+uniform float u_cathodeR;
+uniform mat3 u_point;
+uniform float u_eyeGain;
+uniform float u_pointGain;
+uniform float u_fieldFactor;
+uniform float u_starSigma;
+uniform vec2 u_starLight;  // L* increment at the threshold, per decade of illuminance over it
+uniform vec3 u_starColour; // maximum strength, illuminance ratio where colour starts, where it is full
+// D75 atmosphere for the eye: one-axis rms image motion (mm) and log-normal twinkle sigma over the eye's ~0.1 s
+// summation (0 = static), and the time (s).
+uniform float u_tiltMm;
+uniform float u_scint;
+uniform float u_time;
+out vec2 v_center;
+out vec4 v_star;
+uint hashU(uint x) { x ^= x >> 16; x *= 0x7feb352du; x ^= x >> 15; x *= 0x846ca68bu; x ^= x >> 16; return x; }
+float hashF(uint x) { return float(hashU(x) >> 8) * (1.0 / 16777216.0); }
+void main() {
+  vec4 a_star=starAttr();
+  vec3 cam=transpose(u_point)*vec3(a_star.xy,1.0);
+  vec2 mm=cam.z>1e-6 ? cam.xy/cam.z*u_focalMm : vec2(1e9);
+  float r=length(mm), angle=atan(r/u_focalMm);
+  // Same explicit star identity as STAR_VS.
+  uint id=a_seed*7919u+17u;
+  if (u_tiltMm>0.0) {
+    // The tube's seeing motion (three sinusoids per axis, 0.7-14 Hz), averaged over the eye's 0.1 s summation.
+    vec2 d=vec2(0.0);
+    for (int k=0;k<6;k++) {
+      uint h=hashU(id+uint(k)*104729u);
+      float f=0.7*exp(hashF(h)*3.0), ph=6.2831853*hashF(h^0x9e3779b9u), z=3.14159265*f*0.1;
+      float v=sin(6.2831853*f*u_time+ph)*sin(z)/z;
+      if (k<3) d.x+=v; else d.y+=v;
+    }
+    mm+=d*u_tiltMm*.8164966;
+  }
+  float twinkle=1.0;
+  if (u_scint>0.0) {
+    // Smooth twinkling: four sinusoids of 0.8-8 Hz (unit variance), unit-mean log-normal intensity.
+    float n=0.0;
+    for (int k=0;k<4;k++) {
+      uint h=hashU(id^(uint(k+11)*2654435761u));
+      n+=sin(6.2831853*(0.8*exp(hashF(h)*2.3))*u_time+6.2831853*hashF(h^0x85ebca6bu));
+    }
+    twinkle=exp(u_scint*n*.7071068-.5*u_scint*u_scint);
+  }
+  vec2 cell=(mm-u_originMm)/u_pitchMm;
+  ivec2 q=clamp(ivec2(floor(cell+.5)),ivec2(0),textureSize(u_diffuse,0)-1);
+  // Crumey 2014 eqs 5, 32/33, 65/71. Blackwell S/P correction is applied to BOTH sky and star.
+  float B=max(1e-5,texelFetch(u_diffuse,q,0).a*u_eyeGain*1e-7/1.408);
+  float root=B<.0708 ? 6.505e-4*pow(B,.25)-8.461e-4*sqrt(B) : 1.772e-4*pow(B,.25)+7.167e-5*sqrt(B);
+  float threshold=1.408*u_fieldFactor*root*root;
+  // A twinkling star near the limit drops below it and comes back.
+  float ratio=a_star.z*starWeight(a_star.w,angle)*1e-7*u_pointGain/threshold*twinkle;
+  float visible=smoothstep(.7,1.4,ratio);
+  // D74: equal magnitude steps = equal lightness steps (eyeStarLightness in naked-eye.ts).
+  float lightness=visible*(u_starLight.x+u_starLight.y*log(max(1.0,ratio))*.4342945);
+  float t=clamp((log(a_star.w)-u_logT.x)/(u_logT.y-u_logT.x),0.0,1.0)*float(u_tNodes-1);
+  int k=int(floor(t)), row=2+u_tNodes+4;
+  vec3 xyz=mix(lutAt(row+k,angle).xyz,lutAt(row+min(k+1,u_tNodes-1),angle).xyz,t-float(k));
+  // D75: the star's own warm/cool colour (u'v' about the display white), stronger the further above the limit.
+  float colour=u_starColour.x*smoothstep(u_starColour.y,u_starColour.z,ratio);
+  vec3 chroma=xyzOfUv(D65_UV+(uvOf(xyz)-D65_UV)*colour);
+  mat3 toRgb=mat3(3.2406255,-.9689307,.0557101,-1.537208,1.8757561,-.2040211,-.4986286,.0415175,1.0569959);
+  vec3 tint=max(vec3(0.0),toRgb*chroma);
+  // Unit display luminance: the tint carries hue only, the L* increment carries brightness.
+  tint/=max(dot(tint,vec3(.2126,.7152,.0722)),1e-6);
+  vec2 centre=cell+.5;
+  v_center=centre;
+  // The nearest pixel (the brightest) shows exactly the star's L* increment, whatever its subpixel position.
+  v_star=vec4(tint,1.0)*lightness/max(eyeFootprint(floor(centre)+.5-centre,u_starSigma),1e-6);
+  gl_PointSize=2.0*ceil(3.0*u_starSigma+.5)+1.0;
+  gl_Position=r>u_cathodeR || visible<=0.0 ? vec4(2.0,2.0,2.0,1.0) : vec4((cell+.5)/u_size*2.0-1.0,0.0,1.0);
+}
+`,Ft=S+j+Ne+Pe+Rt,Pt=ne("STAR_SKY")+j+Ne+Pe+Rt,Ge=S+Ne+`
+uniform float u_starSigma;
+in vec2 v_center;
+in vec4 v_star;
+out vec4 o;
+void main() { o=v_star*eyeFootprint(gl_FragCoord.xy-v_center,u_starSigma); }
+`;var B={knee:.5,minC:.35,noiseSigmas:2,stars:1e3,sharpRef:.8,maxCanvas:2048,maxCanvasRatio:3,synthSigma:.9,white:.8};var nn=(o,e=1)=>{let t=Math.min(1,Math.max(0,o));return t>0?(1-t*(1-B.minC))*Math.min(1,Math.max(.1,e/B.sharpRef)):1},kt=o=>{let e=0;for(let t=1;t<=o.radius;t++)e+=2*o.half[t]*t*t;return e};function Dt(o,e){let t=[];for(let u=0;u<2;u++)for(let g=0;g<2;g++){let m=o.input.weights[u]*o.spotWeights[g];m>0&&t.push({w:m,v:kt(o.input.taps[u])+kt(o.spot[g])+1/6,physical:(o.inputSigmas[u]**2+o.spotSigmas[g]**2)/e**2})}let r=t.map(u=>u.w/u.v),n=r.reduce((u,g)=>u+g,0),i=t.reduce((u,g)=>u+g.w,0),s=[0,0,0,0],a=[1,1,1,1],l=[0,0,0,0],c=[1,1,1,1];t.forEach((u,g)=>{s[g]=r[g]/n,a[g]=u.v,l[g]=u.w/i,c[g]=Math.max(u.physical,1e-4)});let p=Math.sqrt(Math.max(...t.map(u=>u.v))),h=t.reduce((u,g)=>u+g.w*g.physical,0)/i;return{a:s,v:a,w:l,p:c,radius:Math.min(32,Math.max(3,Math.ceil(8*p+1))),sharpness:an(h,1)}}var an=(o,e)=>o/(o+e*e/6),sn=o=>o.w.reduce((e,t,r)=>e+t*o.p[r],0),It=o=>Math.sqrt(o.w.reduce((e,t,r)=>e+t*o.v[r],0));function Ct(o,e){return[e&&o>0?nn(o):1,B.knee,e?sn(e):1,B.sharpRef]}function I(o,e){if(!Number.isFinite(o)||o<=0)throw new RangeError(`${e} must be finite and positive`);return o}function C(o,e){if(!Number.isFinite(o)||o<0)throw new RangeError(`${e} must be finite and nonnegative`);return o}function H(o){if(C(o,"fraction"),o>1)throw new RangeError("Fraction must be <= 1, not a percentage");return o}var on={mtf5LpPerMm:64,broadWeight:.25},fe=.35,Oe=3;function Be(o,e,t){return{model:"normalized-gaussian-mixture",stage:e,includesScreen:t,components:o.map(([r,n])=>({weight:{value:r,unit:"1"},sigma:{value:n,unit:"mm"}})),status:"assumed",calibration:"absolute",licence:"Project-authored engineering model",referencePlane:e==="input-position"?"mcp-input":"phosphor-output",origin:[{sourceId:"ASSUMPTION-SPATIAL-06",locator:"DECISIONS D29; docs/SPATIAL_BENCHMARK.md"}],uncertainty:{kind:"unknown",description:"Engineering PSF family; no measured tube or screen MTF."},processingHistory:["Nonnegative normalized isotropic Gaussian mixture; includes screen once; no independent resolution blur."]}}function Lt(o=on){let{mtf5LpPerMm:e,broadWeight:t}=o;if(I(e,"MTF5 lp/mm"),H(t),e<15||e>120||t>.6)throw new RangeError("Engineering PSF controls: MTF5 15..120 lp/mm, broad weight 0..0.6");let r=0,n=.1;for(let s=0;s<70;s++){let a=(r+n)/2;(1-t)*Math.exp(-2*Math.PI**2*a*a*e*e)+t*Math.exp(-2*Math.PI**2*Oe**2*a*a*e*e)>.05?r=a:n=a}let i=(r+n)/2;return{controls:{...o},inputVarianceFraction:fe,input:Be([[1,Math.sqrt(fe)*i]],"input-position",!1),output:Be([[1-t,Math.sqrt(1-fe)*i],[t,Math.sqrt(Oe**2-fe)*i]],"output-spot",!0),whole:Be([[1-t,i],[t,Oe*i]],"whole-tube",!0)}}var ie=Object.freeze({edgeDrop:.2,outerFraction:.1,outerRadiusRatio:2});function Ue(o){let e=ln(o);return o.profile==="two-disc"?[{radiusMm:e,fraction:1-ie.outerFraction,edgeDrop:ie.edgeDrop},{radiusMm:e*ie.outerRadiusRatio,fraction:ie.outerFraction,edgeDrop:ie.edgeDrop}]:[{radiusMm:e,fraction:1,edgeDrop:0}]}var ln=o=>o.diameterMm/2;function ze(o,e,t=12,r=0){if(I(o,"halo radius"),I(e,"kernel pitch"),H(r),!Number.isInteger(t)||t<1)throw new RangeError("Halo subsamples must be a positive integer");let n=Math.ceil(o/e+.5),i=2*n+1,s=new Float32Array(i*i),a=0;for(let l=0;l<i;l++)for(let c=0;c<i;c++){let p=0;for(let h=0;h<t;h++)for(let u=0;u<t;u++){let g=(c-n+(u+.5)/t-.5)*e,m=(l-n+(h+.5)/t-.5)*e,b=(g*g+m*m)/(o*o);b<1&&(p+=1-r*b)}s[l*i+c]=p,a+=p}for(let l=0;l<s.length;l++)s[l]/=a;return{radius:n,size:i,values:s}}var U=class extends Map{constructor(t){super();this.limit=t}get(t){let r=super.get(t);return r!==void 0&&(super.delete(t),super.set(t,r)),r}set(t,r){for(super.delete(t),super.set(t,r);this.size>this.limit;)super.delete(this.keys().next().value);return this}};var Nt=127,un=8,cn=32,Gt=new U(16);function Ut(o,e){let t=`${o}|${e}`,r=Gt.get(t);if(r)return r;let n=Lt({mtf5LpPerMm:o,broadWeight:e}),i=s=>{for(let a of Object.values(s))a&&typeof a=="object"&&i(a);Object.freeze(s)};return i(n),Gt.set(t,n),n}function D(o,e){let t=o/e,r=Math.max(1,Math.ceil(5*t)),n=Math.min(Nt,r),i=new Float32Array(Nt+1),s=0;for(let a=0;a<=n;a++){let l=Math.exp(-.5*(a/t)**2);i[a]=l,s+=a?2*l:l}for(let a=0;a<=n;a++)i[a]/=s;return{radius:n,half:i,clipped:n<r}}var mn={sigmas:[0,0],weights:[1,0]},Ot=new U(16);function Bt(o,e,t,r,n=!1){let i=`${o}|${e}|${t}|${r}|${n}`,s=Ot.get(i);if(s)return s;let a=t*e,l=ze(o,a,12,r);if(n&&t>1){let h=(t*t+(t%2?-1:.5))/6*e*e,u=o**2*(1/4-r/6)/(1-r/2)-h,g=m=>m.values.reduce((b,y,x)=>b+y*(x%m.size-m.radius)**2*a*a,0);if(u>0){let m=.061*a,b=o,y=Math.abs(g(l)-u),x=(1/4-r/6)/(1-r/2),v=Math.min(b,Math.max(m,Math.sqrt(Math.max(0,u-a*a/12)/x)));for(let w=0;w<18;w++){let R=ze(v,a,12,r),P=g(R),k=Math.abs(P-u);if(k<y&&(y=k,l=R),y<=u*.001)break;P>u?b=v:m=v;let F=v+(u-P)/(2*x*v);v=w<3&&F>m&&F<b?F:(m+b)/2}}}let c=[];for(let h=0;h<l.size;h++)for(let u=0;u<l.size;u++)l.values[h*l.size+u]>0&&c.push(u-l.radius,h-l.radius,l.values[h*l.size+u],0);let p={...l,factor:t,packed:Float32Array.from(c),count:c.length/4};return Ot.set(i,p),p}function zt(o,e,t,r=0,n=null,i=null,s=!1){let a=Ut(o,e),l=a.input.components[0].sigma.value,c=typeof r=="number"?{sigmas:[r,0],weights:[1,0]}:r,p=_=>({taps:[D(Math.hypot(l,_.sigmas[0]),t),D(Math.hypot(l,_.sigmas[1]),t)],weights:[_.weights[0],_.weights[1]]}),h=i??c??mn,u=p(c),g=p(h),m=[Math.hypot(l,h.sigmas[0]),Math.hypot(l,h.sigmas[1])],[b,y]=a.output.components,x=[D(b.sigma.value,t),D(y.sigma.value,t)],v=[b.weight.value,y.weight.value],w=(_,M)=>{let G=_.half[0]*M.half[0];for(let N=1;N<=Math.min(_.radius,M.radius);N++)G+=2*_.half[N]*M.half[N];return G},R=0;for(let _=0;_<2;_++)for(let M=0;M<2;M++)R+=v[_]*v[M]*w(x[_],x[M])**2;let P=null,k=0;if(n&&n.weight>0&&n.diameterMm>0){let[_,M]=Ue(n),G=_.radiusMm,N=n.profile==="two-disc",X=Math.min(cn,Math.max(N&&G/t>=5?2:1,Math.ceil(G/t/un)));if(k=Math.ceil((M?.radiusMm??G)/t)+2*(M?X*2:X),!s){let ue=Bt(G,t,X,_.edgeDrop,N),ce=M?{...Bt(M.radiusMm,t,X*2,M.edgeDrop,N),fraction:M.fraction}:null;P={...ue,weight:n.weight,outer:ce}}}let L=Math.max(...u.taps.map((_,M)=>u.weights[M]>0?_.radius:0),...g.taps.map((_,M)=>g.weights[M]>0?_.radius:0))+Math.max(x[0].radius,x[1].radius)+2+k,K=[Math.hypot(l,c.sigmas[0]),Math.hypot(l,c.sigmas[1])];return{psf:a,input:u,inputShort:g,inputShortSigmas:m,inputSigmas:K,spotSigmas:[b.sigma.value,y.sigma.value],halo:P,spot:x,spotWeights:v,spotSumSquares:R,margin:L,haloMargin:k}}var f=(o,e)=>e?o.replace(/\{(\d+)\}/g,(t,r)=>String(e[+r])):o;var Si={fine:f("\u7EC6\u9510"),soft:f("\u67D4\u9897\u7C92"),coarse:f("\u7C97\u4EAE\u8DF3\u52A8"),legacy:f("\u539F\u59CB")};var Vt=o=>Array.from({length:2*o.radius+1},(e,t)=>o.half[Math.abs(t-o.radius)]),hn=(o,e)=>{let t=new Array(o.length+e.length-1).fill(0);for(let r=0;r<o.length;r++)for(let n=0;n<e.length;n++)t[r+n]+=o[r]*e[n];return t},fn=(o,e)=>{let t=(o.length-1)/2,r=(e.length-1)/2,n=Math.min(t,r),i=0;for(let s=-n;s<=n;s++)i+=o[s+t]*e[s+r];return i};function qt(o,e){let t=Vt(e),r=o.spot.map(i=>hn(Vt(i),t)),n=0;for(let i=0;i<2;i++)for(let s=0;s<2;s++)n+=o.spotWeights[i]*o.spotWeights[s]*fn(r[i],r[s])**2;return Math.sqrt(o.spotSumSquares/Math.max(n,1e-30))}function Ve(o,e=.5,t=.9){if(!(o>t)||!Number.isFinite(o))return null;let r=a=>(t-e)*a-Math.log1p(a*(o-e)),n=1e-9,i=1;for(;r(i)<0;)i*=2;for(let a=0;a<60;a++){let l=(n+i)/2;r(l)<0?n=l:i=l}let s=(n+i)/2;return{knee:e,top:t,k:s,norm:Math.log1p(s*(o-e))}}var pe=o=>!(o instanceof Float32Array);function de(o,e,t){if(!pe(o))return o[4*e+t];let r=o.overlay;if(r){let n=Math.floor(e/r.width),i=e%r.width;if(i<r.left[n]||i>=r.right[n])return r.rgba[4*(r.offsets[n]+(i<r.left[n]?i:r.left[n]+i-r.right[n]))+t]}return o.luts[t][o.codes[4*e+t]]}var qe=5;function Wt(o,e){if(o.length<2||!(2*o[0].step<=e))return o.length;let t=1;for(;t<o.length&&!(4*o[t].step<e);)t++;return t}var jt=.1;function Yt(o,e,t=!1){return t||e<=0?1:-Math.expm1(-2*Math.max(0,o)/e)}var pn=.7,dn=3,gn=o=>Math.abs(o)<1e-8?1:Math.sin(o)/o;var ae=new Map;function Ht(o,e=2048){if(o<=0)return 1;if(e===2048&&ae.has(o))return ae.get(o);let t=0;for(let r=0;r<e;r++)t+=gn(Math.PI*pn*Math.exp(dn*(r+.5)/e)*o)**2;return t=Math.min(1,Math.max(0,t/e)),e===2048&&(ae.size>128&&ae.clear(),ae.set(o,t)),t}function ge(o,e){return Math.sqrt(Math.log1p(Math.min(1,Math.max(0,o)/Math.max(.002,e))))}var O=class extends Error{},be=class{constructor(e){this.gl=e;d(this,"textures",new Set);d(this,"framebuffers",new Set);d(this,"programs",new Set);d(this,"buffers",new Set);d(this,"vaos",new Set);d(this,"deferred",new Map)}texture(e,t,r,n,i,s){let a=this.gl,l=a.createTexture();this.textures.add(l),a.bindTexture(a.TEXTURE_2D,l),a.pixelStorei(a.UNPACK_ALIGNMENT,1),a.texImage2D(a.TEXTURE_2D,0,r,e,t,0,n,i,s);for(let[c,p]of[[a.TEXTURE_MIN_FILTER,a.NEAREST],[a.TEXTURE_MAG_FILTER,a.NEAREST],[a.TEXTURE_WRAP_S,a.CLAMP_TO_EDGE],[a.TEXTURE_WRAP_T,a.CLAMP_TO_EDGE]])a.texParameteri(a.TEXTURE_2D,c,p);return l}target(e,t,r){let n=this.gl,i=t===n.R16F?n.HALF_FLOAT:t===n.RGBA8?n.UNSIGNED_BYTE:n.FLOAT,s=this.texture(e,e,t,r,i,null),a=n.createFramebuffer();this.framebuffers.add(a),n.bindFramebuffer(n.FRAMEBUFFER,a),n.framebufferTexture2D(n.FRAMEBUFFER,n.COLOR_ATTACHMENT0,n.TEXTURE_2D,s,0);let l=n.checkFramebufferStatus(n.FRAMEBUFFER);if(l!==n.FRAMEBUFFER_COMPLETE)throw this.deleteTarget({tex:s,fbo:a,internal:t,format:r,size:e}),new O(f("\u6D6E\u70B9\u6E32\u67D3\u76EE\u6807\u4E0D\u53EF\u7528\uFF080x{0}\uFF09\u3002",[l.toString(16)]));return{tex:s,fbo:a,internal:t,format:r,size:e}}deleteTexture(e){this.gl.deleteTexture(e),this.textures.delete(e)}deleteTarget(e){this.gl.deleteFramebuffer(e.fbo),this.framebuffers.delete(e.fbo),this.deleteTexture(e.tex)}bindTarget(e){this.gl.bindFramebuffer(this.gl.FRAMEBUFFER,e.fbo),this.gl.viewport(0,0,e.size,e.size)}bindTex(e,t,r,n){let i=this.gl;i.activeTexture(i.TEXTURE0+e),i.bindTexture(i.TEXTURE_2D,t),i.uniform1i(r.loc.get(n),e)}program(e,t,r){let n=this.gl,i=n.createProgram();this.programs.add(i);let s=[];try{for(let[c,p]of[[n.VERTEX_SHADER,t],[n.FRAGMENT_SHADER,r]]){let h=n.createShader(c);if(s.push(h),n.shaderSource(h,p),n.compileShader(h),!n.getShaderParameter(h,n.COMPILE_STATUS))throw new Error(f("\u7740\u8272\u5668\u7F16\u8BD1\u5931\u8D25\uFF08{0} / {1}\uFF09\uFF1A{2}",[e,c===n.VERTEX_SHADER?f("\u9876\u70B9"):f("\u7247\u5143"),n.getShaderInfoLog(h)||f("\u9A71\u52A8\u672A\u8FD4\u56DE\u8BE6\u60C5")]));n.attachShader(i,h)}if(n.linkProgram(i),!n.getProgramParameter(i,n.LINK_STATUS))throw new Error(f("\u7740\u8272\u5668\u94FE\u63A5\u5931\u8D25\uFF08{0}\uFF09\uFF1A{1}",[e,n.getProgramInfoLog(i)||f("\u9A71\u52A8\u672A\u8FD4\u56DE\u8BE6\u60C5")]))}catch(c){throw n.deleteProgram(i),this.programs.delete(i),c}finally{for(let c of s)n.isProgram(i)&&n.getAttachedShaders(i)?.includes(c)&&n.detachShader(i,c),n.deleteShader(c)}let a=new Map;return{prog:i,loc:{get:c=>(a.has(c)||a.set(c,n.getUniformLocation(i,c)),a.get(c))}}}programDeferred(e,t,r){let n=this.gl,i=n.createProgram(),s=!!n.getExtension("KHR_parallel_shader_compile");this.programs.add(i);let a=[[n.VERTEX_SHADER,t],[n.FRAGMENT_SHADER,r]].map(([m,b])=>{let y=n.createShader(m);return n.shaderSource(y,b),n.compileShader(y),n.attachShader(i,y),{s:y,type:m}});n.linkProgram(i);let l=!1,c=null,p=()=>{if(!(l||c||!a.length))try{for(let{s:m,type:b}of a)if(!n.getShaderParameter(m,n.COMPILE_STATUS))throw new Error(f("\u7740\u8272\u5668\u7F16\u8BD1\u5931\u8D25\uFF08{0} / {1}\uFF09\uFF1A{2}",[e,b===n.VERTEX_SHADER?f("\u9876\u70B9"):f("\u7247\u5143"),n.getShaderInfoLog(m)||f("\u9A71\u52A8\u672A\u8FD4\u56DE\u8BE6\u60C5")]));if(!n.getProgramParameter(i,n.LINK_STATUS))throw new Error(f("\u7740\u8272\u5668\u94FE\u63A5\u5931\u8D25\uFF08{0}\uFF09\uFF1A{1}",[e,n.getProgramInfoLog(i)||f("\u9A71\u52A8\u672A\u8FD4\u56DE\u8BE6\u60C5")]));l=!0}catch(m){c=m instanceof Error?m:new Error(String(m))}finally{for(let{s:m}of a)n.getAttachedShaders(i)?.includes(m)&&n.detachShader(i,m),n.deleteShader(m);a.length=0,this.deferred.delete(i)}},h=()=>!s||n.getProgramParameter(i,37297)===!0;this.deferred.set(i,{shaders:a,ready:h});let u=()=>{l||c||!this.deferred.has(i)||n.isContextLost()||(h()?p():setTimeout(u,50))};setTimeout(u,50);let g=new Map;return{prog:i,loc:{get:m=>(g.has(m)||g.set(m,n.getUniformLocation(i,m)),g.get(m))},done:()=>l||c!==null||h(),check:()=>{if(p(),c)throw c}}}deleteAll(){let e=this.gl;e.bindFramebuffer(e.FRAMEBUFFER,null),e.bindVertexArray(null),e.bindBuffer(e.ARRAY_BUFFER,null),e.useProgram(null);for(let t of this.framebuffers)e.deleteFramebuffer(t);for(let t of this.textures)e.deleteTexture(t);for(let t of this.buffers)e.deleteBuffer(t);for(let t of this.vaos)e.deleteVertexArray(t);for(let[t,r]of this.deferred){this.programs.delete(t);let n=()=>{if(!e.isContextLost()){if(!r.ready()){setTimeout(n,50);return}for(let{s:i}of r.shaders)e.detachShader(t,i),e.deleteShader(i);r.shaders.length=0,e.deleteProgram(t)}};n()}this.deferred.clear();for(let t of this.programs)e.deleteProgram(t);this.framebuffers.clear(),this.textures.clear(),this.buffers.clear(),this.vaos.clear(),this.programs.clear()}};var bn="      for (int b = 0; b < 4; b++) if (code[b] != 65535u) { sum[b] += w * (soft[b] * sinhStable(float(code[b]) / 65534.0 * amax[b])); ws[b] += w; }",yn="      { vec4 c = vec4(code), mk = vec4(lessThan(c, vec4(65534.5))), xv = c / 65534.0 * amax; sum += mk * w * soft * vec4(sinhStable(xv.x), sinhStable(xv.y), sinhStable(xv.z), sinhStable(xv.w)); ws += mk * w; }",Xt="vec4 sum = vec4(0.0), ws = vec4(0.0), soft = vec4(0.0), amax = vec4(0.0);",Kt="  value = vec4(ws.x > 0.0 ? sum.x / ws.x : -1.0,",xn="int irt = i - JRLL[face] * n + 1, k = JPLL[face] * nr + kshift + 1,",vn="int jr = 2 + (face >> 2), jp = 2 * (face & 3) + ((face >> 2) == 1 ? 0 : 1); int irt = i - jr * n + 1, k = jp * nr + kshift + 1,",$t=[[bn,yn]],Qt=[["if (layer < 0) return false;","if (layer < 0) { missing = true; layer = 0; }"],[Xt,Xt+" bool missing = false;"],[Kt,`  if (missing) return false;
+`+Kt]],Jt=[[xn,vn]],_n=[{id:"vector",label:"\u6CE2\u6BB5\u6D6E\u70B9\u5411\u91CF\u8FD0\u7B97",edits:$t},{id:"no-return",label:"\u5FAA\u73AF\u5185\u4E0D\u63D0\u524D\u8FD4\u56DE",edits:Qt},{id:"arithmetic",label:"\u5E38\u91CF\u6570\u7EC4\u6539\u7B97\u5F0F",edits:Jt},{id:"all",label:"\u4EE5\u4E0A\u4E09\u9879\u4E00\u8D77",edits:[...$t,...Qt,...Jt]}];function Zt(o,e){if(e===null)return o;let t=_n.find(n=>n.id===e);if(!t)throw new Error(`Unknown sky projection variant ${e}`);let r=o;for(let[n,i]of t.edits){if(!r.includes(n))throw new Error(`Sky projection variant ${e}: source changed near "${n.trim().slice(0,40)}"`);r=r.replace(n,i)}return r}var er=`
+precision highp usampler2DArray;
+precision highp isampler2D;
+uniform usampler2DArray u_tiles;
+uniform sampler2D u_params;
+uniform isampler2D u_map0;
+uniform isampler2D u_map1;
+uniform int u_order0, u_order1, u_orders;
+const float PI = 3.141592653589793, TAU = 6.283185307179586;
+const int JRLL[12] = int[12](2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4);
+const int JPLL[12] = int[12](1, 3, 5, 7, 0, 2, 4, 6, 1, 3, 5, 7);
+int spread(int x) { x = (x | (x << 8)) & 0x00FF00FF; x = (x | (x << 4)) & 0x0F0F0F0F; x = (x | (x << 2)) & 0x33333333; return (x | (x << 1)) & 0x55555555; }
+// Every integer below stays under 2^15 up to order 12 (2026-10-11): the Adreno 810 compiler (Redmi Note 14 Pro+,
+// Chrome 154) evaluated some of these ints in 16 bits, so a tile-local index of 32768..65535 came out negative and
+// the free sky lost its diffuse layers on that phone. Values are exactly those of healpix.ts / pyramid.ts ringNested.
+// Ring i (1..4n-1 from the north) and pixel iphi (1..4nr) -> face, x, y (HEALPix ring2xyf).
+ivec3 ringXyf(int order, int n, int i, int iphi) {
+  int face, nr, kshift = 0;
+  if (i < n) { nr = i; face = (iphi - 1) / nr; }
+  else if (i <= 3 * n) {
+    nr = n; kshift = (i - n) & 1;
+    int tmp = i - n, ire = tmp + 1, irm = 2 * n + 1 - tmp;
+    int ifm = (iphi - (ire >> 1) + n - 1) >> order, ifp = (iphi - (irm >> 1) + n - 1) >> order;
+    face = ifp == ifm ? (ifp | 4) : (ifp < ifm ? ifp : ifm + 8);
+  } else { nr = 4 * n - i; face = (iphi - 1) / nr + 8; }
+  // ring2xyf: ipt = 2 iphi - JPLL nr - kshift - 1 (minus 8n past the seam), x = (ipt - irt) / 2, y = (-ipt - irt) / 2.
+  // Same values without forming 2 iphi or 8n (up to 32768 at order 12): ipt - irt is even, and y = -irt - x.
+  int irt = i - JRLL[face] * n + 1, k = JPLL[face] * nr + kshift + 1, x = iphi - ((k + irt) >> 1);
+  if (2 * (iphi - n) >= k) x -= 4 * n;
+  return ivec3(face, x, -irt - x);
+}
+// Driver atan/asin/acos are not accurate enough here (D3D11 errors of ~1e-4 rad moved the weights by up to
+// a tenth of a pixel). Cephes atanf with octant reduction: ~2e-7 relative in float32 arithmetic.
+float atanPos(float x) {
+  float y = 0.0;
+  if (x > 2.414213562373095) { y = 1.5707963267948966; x = -1.0 / x; }
+  else if (x > 0.41421356237309503) { y = 0.7853981633974483; x = (x - 1.0) / (x + 1.0); }
+  float z = x * x;
+  return y + (((8.05374449538e-2 * z - 1.38776856032e-1) * z + 1.99777106478e-1) * z - 3.33329491539e-1) * z * x + x;
+}
+float atan2Precise(float y, float x) {
+  if (x == 0.0) return y > 0.0 ? 0.5 * PI : y < 0.0 ? -0.5 * PI : 0.0;
+  float a = atanPos(abs(y) / abs(x));
+  if (x < 0.0) a = PI - a;
+  return y < 0.0 ? -a : a;
+}
+// z and sqrt(1 - z^2) of ring i from its index, without cancellation in the caps.
+void ringZS(int i, int n, out float zr, out float sr) {
+  float nf = float(n);
+  if (i < n) { float q = float(i) * float(i) / (3.0 * nf * nf); zr = 1.0 - q; sr = sqrt(q * (2.0 - q)); }
+  else if (i > 3 * n) { float k = float(4 * n - i), q = k * k / (3.0 * nf * nf); zr = q - 1.0; sr = sqrt(q * (2.0 - q)); }
+  else { zr = float(2 * n - i) * 2.0 / (3.0 * nf); sr = sqrt(1.0 - zr * zr); }
+}
+// asin of the sine of a small angle difference (below a ring spacing): series to u^5.
+float asinSmall(float u) { float u2 = u * u; return u * (1.0 + u2 * (1.0 / 6.0 + u2 * 0.075)); }
+// sinh without cancellation near zero (the codes of a dark sky).
+float sinhStable(float x) { if (x < 0.05) return x * (1.0 + x * x * (1.0 / 6.0 + x * x / 120.0)); float e = exp(x); return 0.5 * (e - 1.0 / e); }
+int layerOf(int k, int tile) { ivec2 at = ivec2(tile & 63, tile >> 6); return k == 0 ? texelFetch(u_map0, at, 0).r : texelFetch(u_map1, at, 0).r; }
+bool interpolate(int k, int order, vec3 v, float s2, out vec4 value) {
+  int n = 1 << order; float nf = float(n), z = v.z, r;
+  if (z > 2.0 / 3.0) r = nf * sqrt(3.0 * s2 / (1.0 + z));
+  else if (z < -2.0 / 3.0) r = 4.0 * nf - nf * sqrt(3.0 * s2 / (1.0 - z));
+  else r = 2.0 * nf - 1.5 * nf * z;
+  int fr = int(floor(r)), lo = clamp(fr, 1, 4 * n - 1), hi = clamp(fr + 1, 1, 4 * n - 1);
+  // Ring weight (\u03B8 \u2212 \u03B8lo)/(\u03B8hi \u2212 \u03B8lo), each difference from sin(a \u2212 b) = sin a cos b \u2212 cos a sin b.
+  float zl, sl, zh, sh, sv = sqrt(s2);
+  ringZS(lo, n, zl, sl); ringZS(hi, n, zh, sh);
+  float f = lo == hi ? 0.0 : clamp(asinSmall(sv * zl - z * sl) / asinSmall(sh * zl - zh * sl), 0.0, 1.0), ra = atan2Precise(v.y, v.x);
+  vec4 sum = vec4(0.0), ws = vec4(0.0), soft = vec4(0.0), amax = vec4(0.0);
+  // The four neighbours mostly share one tile: its layer and parameters are fetched once (same values, fewer reads).
+  int to = order - 8, lastTile = -1, layer = -1;
+  for (int q = 0; q < 2; q++) {
+    int i = q == 0 ? lo : hi, nr = min(i, min(n, 4 * n - i)), shift = (i >= n && i <= 3 * n) ? ((i - n) & 1) : 0, m = 4 * nr;
+    float wr = q == 0 ? 1.0 - f : f, pitch = PI / (2.0 * float(nr)), start = (1.0 - float(shift + 1) * 0.5) * pitch;
+    float t = mod(ra - start, TAU) / pitch, jf = floor(t), a = t - jf;
+    int j = int(jf); if (j >= m) j -= m;
+    for (int e = 0; e < 2; e++) {
+      int jj = e == 0 ? j : (j + 1 == m ? 0 : j + 1);
+      float w = wr * (e == 0 ? 1.0 - a : a);
+      ivec3 p = ringXyf(order, n, i, jj + 1);
+      int tile = (p.x << (2 * to)) + spread(p.y >> 8) + 2 * spread(p.z >> 8);
+      if (tile != lastTile) {
+        lastTile = tile; layer = layerOf(k, tile);
+        if (layer < 0) return false;
+        soft = texelFetch(u_params, ivec2(0, layer), 0); amax = texelFetch(u_params, ivec2(1, layer), 0);
+      }
+      // Texel of the tile-local NESTED index spread(x) + 2 spread(y) (0..65535) in a 256-wide layer: its low and high
+      // bytes, each from four bits of x and y, so no value reaches 2^15 (see ringXyf).
+      int lx = p.y & 255, ly = p.z & 255;
+      uvec4 code = texelFetch(u_tiles, ivec3(spread(lx & 15) + 2 * spread(ly & 15), spread(lx >> 4) + 2 * spread(ly >> 4), layer), 0);
+      for (int b = 0; b < 4; b++) if (code[b] != 65535u) { sum[b] += w * (soft[b] * sinhStable(float(code[b]) / 65534.0 * amax[b])); ws[b] += w; }
+    }
+  }
+  value = vec4(ws.x > 0.0 ? sum.x / ws.x : -1.0, ws.y > 0.0 ? sum.y / ws.y : 0.0, ws.z > 0.0 ? sum.z / ws.z : 0.0, ws.w > 0.0 ? sum.w / ws.w : 0.0);
+  return true;
+}
+// The map value at unit vector v: the primary order, else the fallback order (u_orders == 2); H\u03B1 = -1 where neither
+// covers (a tile absent from both pyramids) or where every neighbour is unmeasured (a present tile not yet resident is
+// a blank layer, see SkyTileStore, so a missing fine tile never shows the coarse order instead, D107).
+// Plain calls, not inside a short-circuit condition (2026-10-11): the Adreno 810 (Redmi Note 14 Pro+, Chrome 154)
+// returned "unmeasured" for every pixel from the former if (!interpolate(0, ..) && (u_orders < 2 || !interpolate(1, ..)))
+// although each interpolation, read alone, was right. Same logic.
+vec4 skyValue(vec3 v) {
+  float s2 = v.x * v.x + v.y * v.y;
+  vec4 value;
+  bool ok = interpolate(0, u_order0, v, s2, value);
+  if (!ok && u_orders >= 2) ok = interpolate(1, u_order1, v, s2, value);
+  if (!ok) value = vec4(-1.0, 0.0, 0.0, 0.0);
+  return value;
+}
+`,Oi=`#version 300 es
+precision highp float;
+precision highp int;
+precision highp sampler2D;
+`+er+`
+uniform vec3 u_axis, u_west, u_north;
+uniform float u_step;
+uniform vec2 u_ref;
+out vec4 o;
+void main() {
+  vec2 X = (gl_FragCoord.xy - 0.5 - u_ref) * u_step;
+  vec3 v = normalize(u_axis + X.x * u_west + X.y * u_north);
+  o = skyValue(v);
+}
+`;function We(o,e=!1){return ne("SKY_DIRECT"+(e?`
+#define RATE_SINGLE_SAMPLE`:""))+j+Zt(er,o)+Ce}var ye=class{constructor(e,t){this.gl=e;this.res=t;d(this,"array",null);d(this,"params",null);d(this,"capacity",0);d(this,"slots",new Map);d(this,"maps",new Map);d(this,"present",new Map);d(this,"clock",0);d(this,"uploads",0);d(this,"pbo",null)}staged(e,t){let r=this.gl;this.pbo||(this.pbo=r.createBuffer(),this.res.buffers.add(this.pbo)),r.bindBuffer(r.PIXEL_UNPACK_BUFFER,this.pbo),r.bufferData(r.PIXEL_UNPACK_BUFFER,e,r.STREAM_DRAW),r.pixelStorei(r.UNPACK_ALIGNMENT,1),t(),r.bindBuffer(r.PIXEL_UNPACK_BUFFER,null)}get layerBytes(){return this.capacity*256*256*8}get resident(){return this.slots.size}has(e){return this.slots.has(e)}allocate(e){let t=this.gl;this.array&&this.res.deleteTexture(this.array),this.params&&this.res.deleteTexture(this.params),this.array=t.createTexture(),this.res.textures.add(this.array),t.bindTexture(t.TEXTURE_2D_ARRAY,this.array),t.texImage3D(t.TEXTURE_2D_ARRAY,0,t.RGBA16UI,256,256,e,0,t.RGBA_INTEGER,t.UNSIGNED_SHORT,null);for(let[r,n]of[[t.TEXTURE_MIN_FILTER,t.NEAREST],[t.TEXTURE_MAG_FILTER,t.NEAREST],[t.TEXTURE_WRAP_S,t.CLAMP_TO_EDGE],[t.TEXTURE_WRAP_T,t.CLAMP_TO_EDGE]])t.texParameteri(t.TEXTURE_2D_ARRAY,r,n);t.pixelStorei(t.UNPACK_ALIGNMENT,1),t.texSubImage3D(t.TEXTURE_2D_ARRAY,0,0,0,0,256,256,1,t.RGBA_INTEGER,t.UNSIGNED_SHORT,new Uint16Array(4*65536).fill(65535)),this.params=this.res.texture(2,e,t.RGBA32F,t.RGBA,t.FLOAT,null),this.capacity=e,this.slots.clear();for(let[r,n]of this.maps)this.reset(r,n.data),n.dirty=!0}reset(e,t){let r=this.present.get(e);if(!r){t.fill(-1);return}for(let n=0;n<t.length;n++)t[n]=n<r.length&&r[n]?0:-1}map(e){let t=this.maps.get(e);if(!t){let r=Math.ceil(12*4**(e-8)/64),n=new Int32Array(64*r);this.reset(e,n),t={tex:this.res.texture(64,r,this.gl.R32I,this.gl.RED_INTEGER,this.gl.INT,n),data:n,dirty:!1},this.maps.set(e,t)}return t}presence(e,t){let r=12*4**(e-8),n=new Uint8Array(r);for(let s of t)s>=0&&s<r&&(n[s]=1);this.present.set(e,n);let i=this.map(e);for(let s=0;s<i.data.length;s++)i.data[s]<=0&&(i.data[s]=s<r&&n[s]?0:-1);i.dirty=!0}ensure(e,t=1/0){let r=this.gl,n=++this.clock;e.length+1>this.capacity&&this.allocate(Math.max(64,Math.ceil(e.length*1.25)+1));let i=new Set(e.map(l=>l.key)),s=0,a=0;for(let l of e){let c=this.slots.get(l.key);if(c){c.used=n;continue}if(s>=t){a++;continue}let p=this.slots.size+1;if(p>=this.capacity){let u=null;for(let y of this.slots)!i.has(y[0])&&(!u||y[1].used<u[1].used)&&(u=y);let[g,m]=u;this.slots.delete(g),p=m.layer;let b=this.map(m.order);b.data[m.tile]=this.present.get(m.order)?.[m.tile]?0:-1,b.dirty=!0}r.bindTexture(r.TEXTURE_2D_ARRAY,this.array),this.staged(l.codes,()=>r.texSubImage3D(r.TEXTURE_2D_ARRAY,0,0,0,p,256,256,1,r.RGBA_INTEGER,r.UNSIGNED_SHORT,0)),r.bindTexture(r.TEXTURE_2D,this.params),this.staged(Float32Array.from([...Array.from(l.soft),...Array.from(l.amax)]),()=>r.texSubImage2D(r.TEXTURE_2D,0,0,p,2,1,r.RGBA,r.FLOAT,0)),this.slots.set(l.key,{layer:p,order:l.order,tile:l.tile,used:n});let h=this.map(l.order);h.data[l.tile]=p,h.dirty=!0,s++,this.uploads++}return this.flushMaps(),a}flushMaps(){let e=this.gl;for(let t of this.maps.values())t.dirty&&(e.bindTexture(e.TEXTURE_2D,t.tex),this.staged(t.data,()=>e.texSubImage2D(e.TEXTURE_2D,0,0,0,64,t.data.length/64,e.RED_INTEGER,e.INT,0)),t.dirty=!1)}bind(e,t,r){let n=this.gl,i=p=>e.loc.get(p);this.array||this.allocate(64);let[s,a]=[t[0],t[1]??t[0]],l=this.map(s),c=this.map(a);this.flushMaps(),n.activeTexture(n.TEXTURE0+r.tiles),n.bindTexture(n.TEXTURE_2D_ARRAY,this.array),n.uniform1i(i("u_tiles"),r.tiles),this.res.bindTex(r.params,this.params,e,"u_params"),this.res.bindTex(r.map0,l.tex,e,"u_map0"),this.res.bindTex(r.map1,c.tex,e,"u_map1"),n.uniform1i(i("u_order0"),s),n.uniform1i(i("u_order1"),a),n.uniform1i(i("u_orders"),Math.min(2,t.length))}unbind(e){let t=this.gl;t.activeTexture(t.TEXTURE0+e.tiles),t.bindTexture(t.TEXTURE_2D_ARRAY,null)}};var se=Math.PI/180;var Sn=(o,e)=>[o[1]*e[2]-o[2]*e[1],o[2]*e[0]-o[0]*e[2],o[0]*e[1]-o[1]*e[0]];function tr(o){if(!Number.isFinite(o))throw new RangeError("RA must be finite");let e=o%360;return e<0?e+360:e===0?0:e}function Mn(o,e){if(!Number.isFinite(e)||Math.abs(e)>90)throw new RangeError("Latitude must be in [-90, 90] degrees");let t=tr(o)*se,r=e*se;if(Math.abs(e)===90)return[0,0,Math.sign(e)];let n=Math.cos(r);return[n*Math.cos(t),n*Math.sin(t),Math.sin(r)]}var je=(o,e)=>Mn(o,e);function rr(o){let e=je(...o),t=tr(o[0])*se,r=o[1]*se;return{axis:e,west:[Math.sin(t),-Math.cos(t),0],north:[-Math.sin(r)*Math.cos(t),-Math.sin(r)*Math.sin(t),Math.cos(r)]}}var Tn=je(192.85948,27.12825),Ye=je(192.85948+90,0),nr=Sn(Tn,Ye),xe=32.93192*se,ir=(o,e,t,r)=>[t*o[0]+r*e[0],t*o[1]+r*e[1],t*o[2]+r*e[2]],zi=ir(Ye,nr,Math.cos(xe),-Math.sin(xe)),Vi=ir(Ye,nr,Math.sin(xe),Math.cos(xe));var Wi=2*Math.PI;function ar(o){let e=0;for(let t=0;o;t++,o>>>=2)e|=(o&1)<<t;return e}var An=[2,2,2,2,3,3,3,3,4,4,4,4],En=[1,3,5,7,0,2,4,6,1,3,5,7];function sr(o,e){let t=2**o,r=Math.floor(e/(t*t)),n=e%(t*t),i=ar(n),s=ar(n>>>1),a=An[r]*t-i-s-1,l=a<t?a:a>3*t?4*t-a:t,c=a<t?1-l*l/(3*t*t):a>3*t?-1+l*l/(3*t*t):(2*t-a)*2/(3*t),p=a>=t&&a<=3*t?a-t&1:0,u=((En[r]*l+i-s+1+p)/2-(p+1)*.5)*Math.PI/(2*l),g=Math.sqrt(1-c*c);return[g*Math.cos(u),g*Math.sin(u),c]}var He={25:10,50:11,85:12};var ur=o=>Math.sqrt(4*Math.PI/(12*4**o)),wn=.5,Rn=2048,Fn=65536,Pn=65535,cr=Math.PI/180,kn={2:14.78,3:7.68,4:3.99},mr=(o,e)=>`${o}/${e}`;var or=(o,e)=>o[0]*e[0]+o[1]*e[1]+o[2]*e[2],Dn=o=>{let e=Math.hypot(o[0],o[1],o[2]);return[o[0]/e,o[1]/e,o[2]/e]},lr=new Map,In=o=>{let e=lr.get(o);return e||(e=Array.from({length:12*4**o},(t,r)=>sr(o,r)),lr.set(o,e)),e};function hr(o,e){let t=Math.sin(kn[e]*cr),{axis:r,west:n,north:i}=o.frame,s=o.halfTan,a=[[-1,0],[1,0],[0,-1],[0,1]].map(([c,p])=>Dn([0,1,2].map(h=>s*r[h]+c*n[h]+p*i[h]))),l=[];return In(e).forEach((c,p)=>{or(c,r)>-t&&a.every(h=>or(c,h)>=-t)&&l.push(p)}),l}var Ki=2*Math.PI;var $i=new Float64Array(4),Qi=new Float64Array(4);var Xe=6;function fr(o,e,t,r=wn){let n=Math.tan(Math.atan((9+t)/e)+r*cr),i=Rn;return{centre:[o[0],o[1]],frame:rr(o),step:e,order:He[e],supportMm:t,size:i,planeStep:2*n/(i-1),refPixel:[(i-1)/2,(i-1)/2],halfTan:n}}var Ji={key:"blank",order:-1,tile:-1,codes:new Uint16Array(4*Fn).fill(Pn),soft:new Float64Array(4),amax:new Float64Array(4)};var ta=Math.PI/180;function pr(o,e){let t=new Int32Array(o.length);for(let r=0;r<e;r++){let n=-1,i=-1/0,s=0;for(let a=0;a<o.length;a++){let l=o[a],c=t[a];c<l.length&&l[c]>i&&(i=l[c],n=a,s=c)}if(n<0)break;t[n]=s+1}return t}function dr(o,e,t){let r=o.length;if(t.photo.length!==r||t.target&&t.target.length!==r||e&&e.length!==r)throw new RangeError("Readout shape mismatch");if(I(t.areaTime,"area x time"),I(t.gain,"gain"),C(t.snowCharge,"snow charge"),!Number.isFinite(t.f2)||t.f2<1)throw new RangeError("F2 must be >=1");let n=(m,b)=>{if(typeof m=="number")return m;if(m.length!==r)throw new RangeError("Readout shape mismatch");return m[b]},i=0,s=0,a=0,l=0,c=0,p=0,h=t.gain,u=h**4*t.f2*(2*t.f2-1)*(3*t.f2-2),g=h*t.snowCharge;for(let m=0;m<r;m++){let b=o[m],y=e?.[m]??0;if(!Number.isFinite(b)||!Number.isFinite(y))throw new RangeError("Invalid readout weights");if(b!==0){let x=C(t.photo[m],"photo rate")*t.areaTime,v=C(n(t.dark,m),"dark rate")*t.areaTime;i+=b*x*h,a+=b*v*h;let w=t.target?C(t.target[m],"target rate")*t.areaTime:x;s+=b*w*h,c+=b*b*(x+v)*h*h*t.f2,p+=b**4*(x+v)*u}if(y!==0){let x=C(n(t.snow,m),"snow rate")*t.areaTime;l+=y*x*g,c+=y*y*x*2*g**2,p+=y**4*x*24*g**4}}return{photoMean:i,targetMean:s,darkMean:a,snowMean:l,mean:i+a+l,variance:c,fourthCentral:p+3*c**2,snr:c>0?Math.abs(s)/Math.sqrt(c):0}}function gr(o,e,t,r,n){if(o.length!==e*t||r.length!==n.length)throw new RangeError("ROI kernel shape");let i=new Float64Array(o.length);for(let s=0;s<r.length;s++){if(n[s]===0)continue;let a=r[s],l=new Float64Array(o.length);for(let c=0;c<t;c++)for(let p=0;p<e;p++){let h=o[c*e+p];if(h!==0)for(let u=-a.radius;u<=a.radius;u++)p+u>=0&&p+u<e&&(l[c*e+p+u]+=h*a.half[Math.abs(u)])}for(let c=0;c<t;c++)for(let p=0;p<e;p++){let h=l[c*e+p]*n[s];if(h!==0)for(let u=-a.radius;u<=a.radius;u++)c+u>=0&&c+u<t&&(i[(c+u)*e+p]+=h*a.half[Math.abs(u)])}}return i}var ve=class{constructor(e,t,r,n,i,s=null){d(this,"ordinary");d(this,"snow");this.ordinary=gr(e,t,r,n,i),this.snow=s?gr(e,t,r,[s],[1]):null}moments(e){return dr(this.ordinary,this.snow,e)}};var T=64,br=new Uint32Array,yr=(o,e,t)=>Math.min(T-1,Math.max(0,Math.floor((o-e)/t)));function Cn(o){let e=o.length/4,t=new Uint32Array(e),r=new Uint16Array(e),n=new Uint32Array(T*T+1),i=1/0,s=1/0,a=-1/0,l=-1/0;for(let u=0;u<e;u++){let g=o[4*u],m=o[4*u+1];i=Math.min(i,g),a=Math.max(a,g),s=Math.min(s,m),l=Math.max(l,m)}let c=(a-i)/T||1,p=(l-s)/T||1;for(let u=0;u<e;u++)n[(r[u]=yr(o[4*u+1],s,p)*T+yr(o[4*u],i,c))+1]++;for(let u=1;u<n.length;u++)n[u]+=n[u-1];let h=n.slice();for(let u=0;u<e;u++)t[h[r[u]]++]=u;return{minX:i,minY:s,maxX:a,maxY:l,dx:c,dy:p,offsets:n,ids:t,binOf:r}}var oe=class o{constructor(e){d(this,"offsets",new Uint32Array(T*T+1));d(this,"ids");d(this,"binOf");d(this,"selections",new U(8));d(this,"cover",null);d(this,"minX",1/0);d(this,"minY",1/0);d(this,"maxX",-1/0);d(this,"maxY",-1/0);d(this,"dx",1);d(this,"dy",1);let t=Cn(e);this.ids=t.ids,this.binOf=t.binOf,this.offsets=t.offsets,this.minX=t.minX,this.minY=t.minY,this.maxX=t.maxX,this.maxY=t.maxY,this.dx=t.dx,this.dy=t.dy}static fromParts(e){let t=new o(new Float32Array(0));return t.ids=e.ids,t.binOf=e.binOf,t.offsets=e.offsets,t.minX=e.minX,t.minY=e.minY,t.maxX=e.maxX,t.maxY=e.maxY,t.dx=e.dx,t.dy=e.dy,t}static async create(e,t){let r=new o(new Float32Array(0)),n=e.length/4;r.ids=new Uint32Array(n),r.binOf=new Uint16Array(n);for(let a=0;a<n;a+=4096){await t();for(let l=a;l<Math.min(n,a+4096);l++){let c=e[4*l],p=e[4*l+1];r.minX=Math.min(r.minX,c),r.maxX=Math.max(r.maxX,c),r.minY=Math.min(r.minY,p),r.maxY=Math.max(r.maxY,p)}}r.dx=(r.maxX-r.minX)/T||1,r.dy=(r.maxY-r.minY)/T||1;let i=a=>r.binY(e[4*a+1])*T+r.binX(e[4*a]);for(let a=0;a<n;a+=4096){await t();for(let l=a;l<Math.min(n,a+4096);l++)r.offsets[(r.binOf[l]=i(l))+1]++}for(let a=1;a<r.offsets.length;a++)r.offsets[a]+=r.offsets[a-1];let s=r.offsets.slice();for(let a=0;a<n;a+=4096){await t();for(let l=a;l<Math.min(n,a+4096);l++)r.ids[s[r.binOf[l]]++]=l}return r}binX(e){return Math.min(T-1,Math.max(0,Math.floor((e-this.minX)/this.dx)))}binY(e){return Math.min(T-1,Math.max(0,Math.floor((e-this.minY)/this.dy)))}query(e,t,r){if(!this.ids.length)return br;let n=r[0],i=r[1],s=r[2],a=r[3],l=r[4],c=r[5],p=r[6],h=r[7],u=r[8],g=l*u-c*h,m=s*h-i*u,b=i*c-s*l,y=c*p-a*u,x=n*u-s*p,v=s*a-n*c,w=a*h-l*p,R=i*p-n*h,P=n*l-i*a,k=n*g+i*y+s*w,F=Math.fround(e),L=Math.fround(t);if(!Number.isFinite(k)||Math.abs(k)<1e-12||!Number.isFinite(F)||F<=0||!Number.isFinite(L)||L<0)return null;let K=(L+32*2**-23*Math.max(L,F))/F,_=1/0,M=-1/0,G=1/0,N=-1/0;for(let E of[-K,K])for(let q of[-K,K]){let W=(w*E+R*q+P)/k;if(W<=1e-5)return null;let te=(g*E+m*q+b)/(k*W),re=(y*E+x*q+v)/(k*W);_=Math.min(_,te),M=Math.max(M,te),G=Math.min(G,re),N=Math.max(N,re)}if(M<this.minX||_>this.maxX||N<this.minY||G>this.maxY)return br;let X=this.binX(_),ue=this.binX(M),ce=this.binY(G),rt=this.binY(N),V=this.cover;if(V&&V.focal===F&&V.radius===L&&X>=V.x0&&ue<=V.x1&&ce>=V.y0&&rt<=V.y1)return V.selected;let $=Math.max(0,X-1),Q=Math.min(T-1,ue+1),J=Math.max(0,ce-1),Z=Math.min(T-1,rt+1),Ee=E=>(this.cover={x0:$,x1:Q,y0:J,y1:Z,focal:F,radius:L,selected:E},E),we=((Z*T+J)*T+Q)*T+$,nt=this.selections.get(we);if(nt!==void 0)return Ee(nt);let me=0;for(let E=J;E<=Z;E++)me+=this.offsets[E*T+Q+1]-this.offsets[E*T+$];if(me>=this.ids.length*.75)return this.selections.set(we,null),Ee(null);let ee=new Uint32Array(me),Re=0;if(me*8>this.ids.length){let E=this.binOf,q=E.length;for(let W=0;W<q;W++){let te=E[W],re=te&T-1,it=te/T|0;re>=$&&re<=Q&&it>=J&&it<=Z&&(ee[Re++]=W)}}else{for(let E=J;E<=Z;E++){let q=this.ids.subarray(this.offsets[E*T+$],this.offsets[E*T+Q+1]);ee.set(q,Re),Re+=q.length}ee.sort()}return this.selections.set(we,ee),Ee(ee)}},xr=new WeakMap;function vr(o){let e=xr.get(o);return e||(e=new oe(o),xr.set(o,e)),e}function Ke(o,e){let t=0,r=o.length;for(;t<r;){let n=t+r>>>1;o[n]<e?t=n+1:r=n}return t}var _r=new WeakMap;function $e(o,e){if(o.length%4)throw new Error("Invalid star catalogue stride");let t=o.length/4;if(e){if(e.length!==t)throw new Error("Star seed count does not match catalogue");return e}let r=_r.get(o);return r||(r=Uint32Array.from({length:t},(n,i)=>i),_r.set(o,r)),r}var _e=null,Sr=[];function Mr(){return _e||(_e=new MessageChannel,_e.port1.onmessage=()=>Sr.shift()?.()),new Promise(o=>{Sr.push(o),_e.port2.postMessage(0)})}var ga={gen2:f("\u666E\u901A\u4E8C\u4EE3"),"gen2-red":f("\u7EA2\u62D3\u4E8C\u4EE3"),gen3:f("\u4E09\u4EE3"),"gen3-blue":f("\u84DD\u5EF6\u4F38\u4E09\u4EE3"),"cn-gen3":f("\u56FD\u4EA7\u4E09\u4EE3")};var le=9/Math.tan(20*Math.PI/180);var Tr={focalMm:800,apertureMm:200,opticsType:"reflector"};var ba={label:"1\xD7",focalMm:le,defaultAperture:le/1.2,minAperture:le/4,maxAperture:le/1};var Ln={min:30,max:67,default:67},Nn={min:30,max:90,default:40},Gn={min:20,max:85,default:26},On={min:.95,max:4,default:1.2},Ar={min:.7,max:.99,eyepiece:.9,nv:.9};var Bn={min:.3,max:1,default:.7},Un={min:.7,max:.99,default:.92};var zn={min:3,max:8,default:7},Qe=["veil","north-america","butterfly","crescent"],ya=[{id:"m42",dataset:"m42",name:f("M42 \u730E\u6237\u661F\u4E91"),short:"M42",mode:"direct",sceneScale:1,region:f("\u5317\u5929 NSNS")},{id:"horsehead",dataset:"horsehead",name:f("\u9A6C\u5934\u4E0E\u706B\u7130\u661F\u4E91"),short:f("\u9A6C\u5934"),mode:"direct",sceneScale:1,region:f("\u5317\u5929 NSNS")},{id:"m27",dataset:"m27",name:f("M27 \u54D1\u94C3\u661F\u4E91"),short:"M27",mode:"direct",sceneScale:1,region:f("\u5317\u5929 NSNS")},{id:"rosette",dataset:"rosette",name:f("NGC 2237 \u73AB\u7470\u661F\u4E91"),short:f("\u73AB\u7470"),mode:"direct",sceneScale:1,region:f("\u5317\u5929 NSNS")},{id:"m31",dataset:"m31",name:f("M31 \u4ED9\u5973\u5EA7\u661F\u7CFB"),short:"M31",mode:"direct",sceneScale:1,region:f("\u5317\u5929 NSNS \u8FDE\u7EED\u8C31")},{id:"m8",dataset:"m8",name:f("M8 \u7901\u6E56\u661F\u4E91"),short:"M8",mode:"direct",sceneScale:1,region:f("\u5357\u5929 SHASSA + VPHAS+")},{id:"m16",dataset:"m16",name:f("M16 \u9E70\u72B6\u661F\u4E91"),short:"M16",mode:"direct",sceneScale:1,region:f("NSNS + VPHAS+ \u6838\u5FC3")},{id:"helix",dataset:"helix",name:f("NGC 7293 \u4E0A\u5E1D\u4E4B\u773C"),short:f("\u4E0A\u5E1D\u4E4B\u773C"),mode:"direct",sceneScale:1,region:f("\u5357\u5929 SHASSA + DSS2")},{id:"carina",dataset:"carina",name:f("NGC 3372 \u8239\u5E95\u5EA7\u5927\u661F\u4E91"),short:f("\u8239\u5E95\u5EA7"),mode:"direct",sceneScale:1,region:f("\u5357\u5929 SHASSA + VPHAS+")},{id:"heart-soul",dataset:"heart-soul",defaultFocalMm:180,name:f("\u5FC3\u810F\uFF0F\u7075\u9B42\u661F\u4E91"),short:f("\u5FC3\u810F\uFF0F\u7075\u9B42"),mode:"direct",sceneScale:1,region:f("NSNS \xB7 Gaia G<14.5")},{id:"double-cluster",dataset:"double-cluster",defaultFocalMm:600,name:f("\u82F1\u4ED9\u5EA7\u53CC\u661F\u56E2"),short:f("\u53CC\u661F\u56E2"),mode:"direct",sceneScale:1,region:f("NGC 869 / 884 \xB7 Gaia G<17")},{id:"north-america",dataset:"cygnus",detailRegions:Qe,defaultPointingDeg:[-2.66155,2.41041],defaultFocalMm:250,name:f("NGC 7000 \u5317\u7F8E\u6D32\u661F\u4E91"),short:f("\u5317\u7F8E\u6D32\u661F\u4E91"),mode:"direct",sceneScale:1,region:f("NSNS \u4E09\u7EBF \xB7 \u53EF\u62D6\u5230\u9762\u7EB1\u3001\u65B0\u6708\u3001\u8774\u8776"),note:f("\u5317\u7F8E\uFF0F\u9E48\u9E55\u3001\u9762\u7EB1\u3001\u8774\u8776 IC 1318\u3001\u65B0\u6708\u56DB\u5757 H\u03B1\uFF0FOIII\uFF0FSII \u7CBE\u7EC6\u5C42\u540C\u65F6\u8F7D\u5165\uFF0C\u62D6\u52A8\u671B\u8FDC\u955C\u5373\u53EF\u524D\u5F80\u3002\u661F\u8868\u4ECD\u9650\u4E8E Gaia G<10.5\u3002")},{id:"crescent",dataset:"cygnus",group:"north-america",detailRegions:Qe,defaultPointingDeg:[5.47247,-3.43791],defaultFocalMm:800,name:f("NGC 6888 \u65B0\u6708\u661F\u4E91"),short:f("\u65B0\u6708"),mode:"direct",sceneScale:1,region:f("NSNS \u4E09\u7EBF\u7CBE\u7EC6\u5C42"),note:f("\u5317\u7F8E\uFF0F\u9E48\u9E55\u3001\u9762\u7EB1\u3001\u8774\u8776 IC 1318\u3001\u65B0\u6708\u56DB\u5757 H\u03B1\uFF0FOIII\uFF0FSII \u7CBE\u7EC6\u5C42\u540C\u65F6\u8F7D\u5165\uFF0C\u62D6\u52A8\u671B\u8FDC\u955C\u5373\u53EF\u524D\u5F80\u3002\u661F\u8868\u4ECD\u9650\u4E8E Gaia G<10.5\u3002")},{id:"veil",dataset:"cygnus",group:"north-america",detailRegions:Qe,defaultPointingDeg:[-2.41191,-11.3044],defaultFocalMm:250,name:f("\u9762\u7EB1\u661F\u4E91 \xB7 \u5929\u9E45\u5EA7\u73AF"),short:f("\u9762\u7EB1"),mode:"direct",sceneScale:1,region:f("NSNS \u4E09\u7EBF\u7CBE\u7EC6\u5C42"),note:f("\u5317\u7F8E\uFF0F\u9E48\u9E55\u3001\u9762\u7EB1\u3001\u8774\u8776 IC 1318\u3001\u65B0\u6708\u56DB\u5757 H\u03B1\uFF0FOIII\uFF0FSII \u7CBE\u7EC6\u5C42\u540C\u65F6\u8F7D\u5165\uFF0C\u62D6\u52A8\u671B\u8FDC\u955C\u5373\u53EF\u524D\u5F80\u3002\u661F\u8868\u4ECD\u9650\u4E8E Gaia G<10.5\u3002")},{id:"elephant-trunk",dataset:"elephant-trunk",defaultFocalMm:300,name:f("\u8C61\u9F3B\u661F\u4E91 IC 1396"),short:f("\u8C61\u9F3B"),mode:"direct",sceneScale:1,region:f("NSNS \u4E09\u7EBF \xB7 Gaia G<14.5")},{id:"california",dataset:"california",defaultFocalMm:350,name:f("\u52A0\u5DDE\u661F\u4E91 NGC 1499"),short:f("\u52A0\u5DDE"),mode:"direct",sceneScale:1,region:f("NSNS \u4E09\u7EBF \xB7 Gaia G<14.5")},{id:"flying-bat",dataset:"flying-bat",defaultFocalMm:350,name:f("\u98DE\u8760\u661F\u4E91 Sh2-129 \xB7 \u4E4C\u8D3C Ou4"),short:f("\u98DE\u8760\uFF0F\u4E4C\u8D3C"),mode:"direct",sceneScale:1,region:f("NSNS \u4E09\u7EBF \xB7 Gaia G<14.5")},{id:"simeis-147",dataset:"simeis-147",defaultFocalMm:250,name:f("\u897F\u95E8\u5B50 147 \xB7 Sh2-240"),short:f("\u897F\u95E8\u5B50 147"),mode:"direct",sceneScale:1,region:f("NSNS \u4E09\u7EBF \xB7 Gaia G<14.5")},{id:"flaming-star",dataset:"flaming-star",defaultFocalMm:450,name:f("\u706B\u7130\u661F IC 405 \xB7 \u874C\u86AA IC 410"),short:f("\u706B\u7130\u661F\uFF0F\u874C\u86AA"),mode:"direct",sceneScale:1,region:f("NSNS \u4E09\u7EBF \xB7 Gaia G<14.5")},{id:"bubble",dataset:"bubble",defaultFocalMm:800,name:f("\u6C14\u6CE1\u661F\u4E91 NGC 7635 \xB7 M52"),short:f("\u6C14\u6CE1"),mode:"direct",sceneScale:1,region:f("NSNS \u4E09\u7EBF \xB7 Gaia G<16")},{id:"cave",dataset:"cave",defaultFocalMm:800,name:f("\u6D1E\u7A74\u661F\u4E91 Sh2-155"),short:f("\u6D1E\u7A74"),mode:"direct",sceneScale:1,region:f("NSNS \u4E09\u7EBF \xB7 Gaia G<16")},{id:"jellyfish",dataset:"jellyfish",defaultFocalMm:800,name:f("\u6C34\u6BCD\u661F\u4E91 IC 443"),short:f("\u6C34\u6BCD"),mode:"direct",sceneScale:1,region:f("NSNS \u4E09\u7EBF \xB7 Gaia G<16")},{id:"christmas-tree",dataset:"christmas-tree",defaultFocalMm:800,name:f("\u5723\u8BDE\u6811\uFF0F\u9525\u72B6\u661F\u4E91 NGC 2264"),short:f("\u5723\u8BDE\u6811"),mode:"direct",sceneScale:1,region:f("NSNS \u4E09\u7EBF \xB7 Gaia G<16")},{id:"pacman",dataset:"pacman",defaultFocalMm:1e3,name:f("\u5403\u8C46\u4EBA\u661F\u4E91 NGC 281"),short:f("\u5403\u8C46\u4EBA"),mode:"direct",sceneScale:1,region:f("NSNS \u4E09\u7EBF \xB7 Gaia G<16")},{id:"omega-cen",dataset:"omega-cen",defaultFocalMm:800,name:f("\u534A\u4EBA\u9A6C \u03C9 \u7403\u72B6\u661F\u56E2"),short:f("\u534A\u4EBA\u9A6C \u03C9"),mode:"direct",sceneScale:1,region:f("Gaia G<{0} \xB7 \u6838\u5FC3\u5149\u6309\u6A21\u578B",[18])},{id:"47-tuc",dataset:"47-tuc",defaultFocalMm:1e3,name:f("\u675C\u9E43\u5EA7 47 \u7403\u72B6\u661F\u56E2"),short:f("\u675C\u9E43 47"),mode:"direct",sceneScale:1,region:f("Gaia G<{0} \xB7 \u6838\u5FC3\u5149\u6309\u6A21\u578B",[18])},{id:"m22",dataset:"m22",defaultFocalMm:1e3,name:f("M22 \u4EBA\u9A6C\u5EA7\u7403\u72B6\u661F\u56E2"),short:"M22",mode:"direct",sceneScale:1,region:f("Gaia G<{0} \xB7 \u6838\u5FC3\u5149\u6309\u6A21\u578B",[16.5])},{id:"m13",dataset:"m13",defaultFocalMm:1500,name:f("M13 \u6B66\u4ED9\u5EA7\u7403\u72B6\u661F\u56E2"),short:"M13",mode:"direct",sceneScale:1,region:f("Gaia G<{0} \xB7 \u6838\u5FC3\u5149\u6309\u6A21\u578B",[18])},{id:"m4",dataset:"m4",defaultFocalMm:800,name:f("M4 \u5929\u874E\u5EA7\u7403\u72B6\u661F\u56E2"),short:"M4",mode:"direct",sceneScale:1,region:f("Gaia G<{0} \xB7 \u6838\u5FC3\u5149\u6309\u6A21\u578B",[18])},{id:"m5",dataset:"m5",defaultFocalMm:1500,name:f("M5 \u5DE8\u86C7\u5EA7\u7403\u72B6\u661F\u56E2"),short:"M5",mode:"direct",sceneScale:1,region:f("Gaia G<{0} \xB7 \u6838\u5FC3\u5149\u6309\u6A21\u578B",[18])},{id:"ngc6752",dataset:"ngc6752",defaultFocalMm:1500,name:f("NGC 6752 \u5B54\u96C0\u5EA7\u7403\u72B6\u661F\u56E2"),short:"NGC 6752",mode:"direct",sceneScale:1,region:f("Gaia G<{0} \xB7 \u6838\u5FC3\u5149\u6309\u6A21\u578B",[18])},{id:"ngc6397",dataset:"ngc6397",defaultFocalMm:1e3,name:f("NGC 6397 \u5929\u575B\u5EA7\u7403\u72B6\u661F\u56E2"),short:"NGC 6397",mode:"direct",sceneScale:1,region:f("Gaia G<{0} \xB7 \u6838\u5FC3\u5149\u6309\u6A21\u578B",[18])},{id:"barnard",dataset:"barnard",name:f("\u730E\u6237\u5EA7 \xB7 \u5DF4\u7EB3\u5FB7\u73AF"),short:f("\u5DF4\u7EB3\u5FB7\u73AF"),mode:"1x",sceneScale:1,region:"44\xB0 \xB7 NSNS"},{id:"cygnus",dataset:"cygnus",name:f("\u5929\u9E45\u5EA7"),short:f("\u5929\u9E45\u5EA7"),mode:"1x",sceneScale:1,region:"44\xB0 \xB7 NSNS"},{id:"cepheus",dataset:"cepheus",name:f("\u4ED9\u738B\u2014\u4ED9\u540E"),short:f("\u4ED9\u738B\u2014\u4ED9\u540E"),mode:"1x",sceneScale:1,region:"44\xB0 \xB7 NSNS"},{id:"auriga",dataset:"auriga",name:f("\u82F1\u4ED9\u2014\u5FA1\u592B"),short:f("\u82F1\u4ED9\u2014\u5FA1\u592B"),mode:"1x",sceneScale:1,region:"44\xB0 \xB7 NSNS"},{id:"palette",dataset:"palette",name:f("\u94F6\u5FC3"),short:f("\u94F6\u5FC3"),mode:"1x",sceneScale:1,region:"80\xB0 \xB7 SHASSA"},{id:"gum",dataset:"gum",name:f("\u7518\u59C6\u661F\u4E91 \xB7 \u8239\u5E95\u5EA7"),short:f("\u7518\u59C6"),mode:"1x",sceneScale:1,region:"80\xB0 \xB7 SHASSA"},{id:"lmc",dataset:"lmc",name:f("\u5927\u9EA6\u54F2\u4F26\u4E91"),short:f("\u5927\u9EA6\u54F2\u4F26\u4E91"),mode:"1x",sceneScale:1,region:"44\xB0 \xB7 SHASSA"}];var xa={viewMode:"sky",raDeg:266.405,decDeg:-28.936,deepTarget:"m42",target:"palette",focal:"1x",focalMm:Tr.focalMm,wideFocalMm:25,atlasVersion:3,pointXDeg:0,pointYDeg:0,apertureMm:25/1.2,sceneScale:1,reducer:!1,reducerRatio:Bn.default,reducerTransmission:Un.default,afocal:!1,eyepieceMm:Ln.default,eyepieceAfovDeg:Nn.default,nvFocalMm:Gn.default,nvF:On.default,eyepieceTransmission:Ar.eyepiece,nvTransmission:Ar.nv,filter:"none",filterShift:!0,filterFwhmNm:7,filterPosition:"front",filterOptimized:!1,filterDesignF:2,cathode:"gen2-red",collection:.85,inputFilm:!1,qeCustom:null,qeScale:1,qePresetVersion:2,ionFilm:"thin",cathodeVoltage:600,gain:800,autoGain:!0,abcLimitCdM2:10,f2:1.2,darkRate:616,temperatureC:20,snowRate:200,snowCharge:50,noiseAppearanceVersion:2,noiseStability:.2,noiseStyle:"fine",noiseGrainUm:5,noiseStrength:.7,noiseTail:.6,noisePattern:.008,noiseSeed:417,mtf5:64,broadWeight:.6,haloMm:.6,haloWeight:.05,phosphor:"P45",opticsType:Tr.opticsType,lensTransmission:.92,mirrorReflectance:.9,obstruction:.33,aberrationUm:8,atmosphere:!0,altitudeDeg:45,aerosolAod:.2,seeingArcsec:1.5,airglow:1,moonLevel:0,sqm:21.5,dualSkyScale:1,ebiCorrection:!0,nakedEye:!1,eyePupilMm:zn.default};var Aa=Object.freeze([{name:"H\u03B1",nm:656.28},{name:"OIII 5007",nm:500.684},{name:"OIII 4959",nm:495.891},{name:"H\u03B2",nm:486.133},{name:"830 nm",nm:830},{name:"880 nm",nm:880}]);var Ga=Object.freeze({illuminant:"CIE A 2856 K",temperatureC:20,snr:{illuminanceLx:108e-6,spotDiameterMm:.2,bandwidthHz:10,sided:"one-sided",windowS:.05,beta:1},gain:"linear regime (2e-6 fc class), no automatic brightness control or saturation",resolution:"frequency where the tube MTF (incl. halo) falls to 5 %; a proxy, not a USAF visual reading"});var Ua=Math.PI/648e3;var es=Object.freeze({status:"assumed",voltageV:6e3,radiantEfficiency:.05,magnification:1,angularEmission:"one-sided-Lambertian",linearWarningCurrentAperMm2:1e-9});var wr=.65,Rr=.97,Hn=4.5,Xn=.85,Kn=(1-(Xn-wr)/(1-wr))**(1/Rr),$n=Object.freeze({residualLoss:Kn**(Hn-Rr),resolutionFactor:54.75/61});var ss=Array.from({length:161},(o,e)=>300+5*e);var Fr=2.431,Pr=40,kr=.42,Dr=.88;var eo=683/1699;var Ir=3,Cr=10;var Lr=.5,Nr=2.2,Gr=.75;var Or=.06;var Br=[.19784,.46832];var Ze=[14,46],Ur=.7,Se=[.9,3,60];var zr=o=>ge(o,jt);var ti=3e3,ri=1<<18,et={tiles:0,params:3,map0:4,map1:7},qr=48*1024*1024,z=4*Xe,Wr={firsts:new Int32Array(0),counts:new Int32Array(0),n:0},Te=class Te{constructor(e){this.canvas=e;d(this,"gl");d(this,"disposed",!1);d(this,"res");d(this,"progs");d(this,"vao");d(this,"starVao");d(this,"starBuffer");d(this,"starSeedBuffer");d(this,"starIndexBuffer");d(this,"starIndex",null);d(this,"starSelection",null);d(this,"starSelectionDirty",!0);d(this,"starCount",0);d(this,"starFormat");d(this,"atlasTex",null);d(this,"atlasPixels",null);d(this,"starPixels",null);d(this,"starSeedPixels",null);d(this,"atlasSize",1);d(this,"atlasStep",1);d(this,"atlasRef",[0,0]);d(this,"levelTex",[]);d(this,"levels",[]);d(this,"profile",null);d(this,"profileTex",null);d(this,"sky",null);d(this,"skyStore",null);d(this,"skyDescribed",new Set);d(this,"skyStars",new Map);d(this,"skyStarBytes",0);d(this,"skyClock",0);d(this,"skyMerged",null);d(this,"multiDraw");d(this,"skyProgs",null);d(this,"skyVariantId",null);d(this,"point",new Float32Array([1,0,0,0,1,0,0,0,1]));d(this,"lutTex");d(this,"lutNodes",2);d(this,"lutMaxAngle",1);d(this,"starT",{min:2500,max:4e4,count:2});d(this,"eyeColor",!1);d(this,"eye",null);d(this,"eyeTimeS",0);d(this,"eyeDirty",!0);d(this,"eyeSettings",{gain:1,pointGain:1,fieldFactor:2});d(this,"eyeAdaptation",1);d(this,"eyeWhite",Br);d(this,"eyeBackground",78e-5);d(this,"size",0);d(this,"margin",0);d(this,"geometry",null);d(this,"kernels",null);d(this,"mech",{gain:1e3,f2:1.5,darkRate:100});d(this,"display",{xyzPerIntensity:[0,0,0],exposureEv:0,gamma:1});d(this,"eyeSourceGain",1);d(this,"seeing",{tiltMm:0,scint:0});d(this,"eyeSigmaMm",0);d(this,"observer",{mode:0,sigmaMm:0,mediumSigmaMm:0,coarseSigmaMm:0,threshold:0,luminance:0});d(this,"noise",{noiseAppearanceVersion:1,noiseStyle:"legacy",noiseGrainUm:8,noiseStrength:.75,noiseTail:.1,noisePattern:.008,noiseSeed:417});d(this,"noiseKernel",null);d(this,"lastMean",!1);d(this,"lastNoiseInput",null);d(this,"contrastKernels",null);d(this,"sceneScale",1);d(this,"t",null);d(this,"starShape",0);d(this,"starProf",null);d(this,"starMapDirty",!0);d(this,"starMapDepth",null);d(this,"sampleFbo",null);d(this,"rebuildScissor",null);d(this,"coarse",null);d(this,"haloKernelTex",null);d(this,"haloPacked",null);d(this,"outerHalo",null);d(this,"accFront","acc0");d(this,"exposureReset",!0);d(this,"exposureWindowS",-1);d(this,"exposureWasMean",!1);d(this,"exposureBlur",null);d(this,"starFrameInput",null);d(this,"ratesDirty",!0);d(this,"hasFrame",!1);d(this,"scienceAvailable",!0);d(this,"atlasUploadMetrics",[]);d(this,"dynStars",0);d(this,"forceDynamicStars",!1);d(this,"diffuseBlurMm",0);d(this,"maxSub",8);d(this,"highlight",{on:!1,whiteIntensity:0,sourceIntensity:0});d(this,"gridDisplay",null);d(this,"snowTaps",null);d(this,"roiDiagnostics",new U(4));let t=e.getContext("webgl2",{alpha:!0,premultipliedAlpha:!0,antialias:!1,depth:!1,stencil:!1,preserveDrawingBuffer:!1});if(!t)throw new O(f("\u6B64\u6D4F\u89C8\u5668\u4E0D\u652F\u6301 WebGL2\u3002"));if(!t.getExtension("EXT_color_buffer_float"))throw new O(f("\u6B64\u663E\u5361/\u6D4F\u89C8\u5668\u4E0D\u652F\u6301\u6D6E\u70B9\u6E32\u67D3\uFF08EXT_color_buffer_float\uFF09\u3002"));this.gl=t,this.res=new be(t),t.disable(t.DITHER);try{this.starFormat=t.getExtension("EXT_float_blend")?t.R32F:t.R16F,this.progs={eyeBlur:this.res.program("eyeBlur",A,wt),eyeStar:this.res.program("eyeStar",Ft,Ge),eyeStarSky:this.res.program("eyeStarSky",Pt,Ge),rate:this.res.program("rate",A,Le),star:this.res.program("star",st,De),starSky:this.res.program("starSky",ot,De),blur:this.res.program("blur",A,ht),starMap:this.res.program("starMap",ut,Ie),starMapSky:this.res.program("starMapSky",ct,Ie),rateDrag:this.res.program("rateDrag",A,mt),inputH:this.res.program("inputH",A,bt),inputV:this.res.program("inputV",A,yt),haloDown:this.res.program("haloDown",A,ft),haloConv:this.res.program("haloConv",A,pt),haloCombine:this.res.program("haloCombine",A,dt),haloReduce:this.res.program("haloReduce",A,gt),spotH:this.res.program("spotH",A,xt),spotV:this.res.program("spotV",A,vt),sample:this.res.program("sample",A,_t),accum:this.res.program("accum",A,St),display:this.res.program("display",A,Mt),copy:this.res.program("copy",A,Tt),pairBlur:this.res.program("pairBlur",A,At),appearance:this.res.program("appearance",A,Et)},this.vao=t.createVertexArray(),this.starVao=t.createVertexArray(),this.starBuffer=t.createBuffer(),this.starSeedBuffer=t.createBuffer(),this.starIndexBuffer=t.createBuffer(),this.res.vaos.add(this.vao),this.res.vaos.add(this.starVao),this.res.buffers.add(this.starBuffer),this.res.buffers.add(this.starIndexBuffer),this.res.buffers.add(this.starSeedBuffer),t.bindVertexArray(this.starVao),t.bindBuffer(t.ELEMENT_ARRAY_BUFFER,this.starIndexBuffer),t.bindBuffer(t.ARRAY_BUFFER,this.starBuffer);let r=t.getAttribLocation(this.progs.star.prog,"a_star");t.enableVertexAttribArray(r),t.vertexAttribPointer(r,4,t.FLOAT,!1,16,0),t.bindBuffer(t.ARRAY_BUFFER,this.starSeedBuffer),t.enableVertexAttribArray(1),t.vertexAttribIPointer(1,1,t.UNSIGNED_INT,4,0),t.bindVertexArray(null),this.lutTex=this.res.texture(2,2,t.RGBA32F,t.RGBA,t.FLOAT,null),this.skyProgs=this.compileSky(null),this.multiDraw=t.getExtension("WEBGL_multi_draw")}catch(r){throw this.dispose(),r}}get needsExpectation(){return this.noise.noiseStyle!=="legacy"||this.observer.mode===2}atlasTexture(e,t,r){let n=this.gl;if(!pe(e))return this.res.texture(t,r,n.RGBA32F,n.RGBA,n.FLOAT,e);let i=this.res.texture(t,r,n.RGBA32F,n.RGBA,n.FLOAT,null),s=Math.max(1,Math.floor(ri/t)),a=new Float32Array(4*t*Math.min(s,r)),{codes:l,luts:c}=e;for(let p=0;p<r;p+=s){let h=Math.min(s,r-p),u=4*t*p,g=h===s?a:a.subarray(0,4*t*h);for(let m=0;m<g.length;m++)g[m]=e.overlay?de(e,u+m>>>2,m&3):c[m&3][l[u+m]];n.texSubImage2D(n.TEXTURE_2D,0,0,p,t,h,n.RGBA,n.FLOAT,g)}return i}setAtlas(e){let t=this.gl;this.scienceAvailable=!e.degraded,this.forceDynamicStars=e.forceDynamicStars??!1;let r=$e(e.stars,e.starSeeds);if(e.levels.length>qe)throw new Error("too many atlas levels");this.sky=null,(this.atlasPixels!==e.rgba||this.atlasSize!==e.size)&&(this.releaseAtlasTex(),this.atlasTex=this.atlasTexture(e.rgba,e.size,e.size),this.atlasPixels=e.rgba),this.atlasSize=e.size,this.atlasStep=e.stepTan,this.atlasRef=[...e.refPixel];let n=this.levelTex;this.levelTex=e.levels.map((i,s)=>this.levels[s]?.rgba===i.rgba&&this.levels[s]?.size[0]===i.size[0]&&this.levels[s]?.size[1]===i.size[1]?n[s]:this.atlasTexture(i.rgba,i.size[0],i.size[1]));for(let i of n)this.levelTex.includes(i)||this.res.deleteTexture(i);this.levels=e.levels,this.setProfile(e.profile??null),this.starPixels!==e.stars&&(t.bindBuffer(t.ARRAY_BUFFER,this.starBuffer),t.bufferData(t.ARRAY_BUFFER,e.stars,t.STATIC_DRAW),this.starPixels=e.stars),this.starCount=e.stars.length/4,this.starSeedPixels!==r&&(t.bindBuffer(t.ARRAY_BUFFER,this.starSeedBuffer),t.bufferData(t.ARRAY_BUFFER,r,t.STATIC_DRAW),this.starSeedPixels=r),this.starIndex=vr(e.stars),this.starSelection=null,this.starSelectionDirty=!0,this.ratesDirty=!0,this.updateDynamicStars()}async setAtlasProgressive(e,t){let r=this.gl,n=performance.now(),i=[],s=[],a=0,l=0,c=0,p=m=>{let b=performance.now();m();let y=performance.now()-b;a+=y,l=Math.max(l,y),c++},h=async()=>{if(await Mr(),this.disposed||!t())throw new DOMException("Superseded atlas upload","AbortError")},u=async(m,b,y)=>{let x;await h(),p(()=>{x=this.res.texture(b,y,r.RGBA32F,r.RGBA,r.FLOAT,null),i.push(x)});let v=Math.max(1,Math.floor(8192/b)),w=new Float32Array(4*b*Math.min(v,y));for(let R=0;R<y;R+=v)await h(),p(()=>{let P=Math.min(v,y-R),k=4*b*R,F;if(pe(m)){F=w.subarray(0,4*b*P);for(let L=0;L<F.length;L++)F[L]=de(m,k+L>>>2,L&3)}else F=m.subarray(k,k+4*b*P);r.bindTexture(r.TEXTURE_2D,x),r.texSubImage2D(r.TEXTURE_2D,0,0,R,b,P,r.RGBA,r.FLOAT,F)});return x},g=!1;try{if(e.levels.length>qe)throw Error("too many atlas levels");let m=await u(e.rgba,e.size,e.size),b=[];for(let x of e.levels)b.push(await u(x.rgba,x.size[0],x.size[1]));let y=await this.prepareStars(e.stars,e.starSeeds,h,p,s);return await h(),p(()=>{this.commitAtlas(m,b,e,e.rgba,y),g=!0}),this.atlasUploadMetrics.push({at:performance.now(),wallMs:performance.now()-n,cpuMs:a,longestChunkMs:l,chunks:c}),this.atlasUploadMetrics.length>32&&this.atlasUploadMetrics.shift(),!0}catch(m){if(m instanceof DOMException&&m.name==="AbortError")return!1;throw m}finally{if(!g){for(let m of i)this.res.deleteTexture(m);for(let m of s)r.deleteBuffer(m),this.res.buffers.delete(m)}}}async prepareStars(e,t,r,n,i,s,a=!1){let l=this.gl,c=async m=>{let b;if(a)return await r(),n(()=>{b=l.createBuffer(),this.res.buffers.add(b),i.push(b),l.bindBuffer(l.ARRAY_BUFFER,b),l.bufferData(l.ARRAY_BUFFER,m,l.STATIC_DRAW)}),b;await r(),n(()=>{b=l.createBuffer(),this.res.buffers.add(b),i.push(b),l.bindBuffer(l.ARRAY_BUFFER,b),l.bufferData(l.ARRAY_BUFFER,m.byteLength,l.STATIC_DRAW)});for(let y=0;y<m.length;y+=32768)await r(),n(()=>{l.bindBuffer(l.ARRAY_BUFFER,b),l.bufferSubData(l.ARRAY_BUFFER,y*4,m.subarray(y,y+32768))});return b},p=$e(e,t),h=await c(e),u=await c(p),g=s??await oe.create(e,r);return{starsIn:e,seeds:p,stars:h,seedBuffer:u,index:g}}releaseAtlasTex(){this.atlasTex&&this.res.deleteTexture(this.atlasTex),this.atlasTex=null}setProfile(e){if(!(e===this.profile&&(!e||this.profileTex))){if(this.profileTex&&(this.res.deleteTexture(this.profileTex),this.profileTex=null),e){let t=this.gl;t.activeTexture(t.TEXTURE15),this.profileTex=this.res.texture(e.radii,e.rows,t.R32F,t.RED,t.FLOAT,Float32Array.from(e.values)),t.bindTexture(t.TEXTURE_2D,null)}this.profile=e}}commitAtlas(e,t,r,n,i){let s=this.gl;this.sky=null,this.releaseAtlasTex();for(let a of this.levelTex)this.res.deleteTexture(a);this.setProfile(r.profile??null);for(let a of[this.starBuffer,this.starSeedBuffer])s.deleteBuffer(a),this.res.buffers.delete(a);this.atlasTex=e,this.levelTex=t,this.levels=r.levels,this.atlasPixels=n,this.atlasSize=r.size,this.atlasStep=r.stepTan,this.atlasRef=[...r.refPixel],this.starBuffer=i.stars,this.starSeedBuffer=i.seedBuffer,this.starPixels=i.starsIn,this.starSeedPixels=i.seeds,this.starCount=i.starsIn.length/4,this.starIndex=i.index,s.bindVertexArray(this.starVao),s.bindBuffer(s.ARRAY_BUFFER,i.stars),s.vertexAttribPointer(0,4,s.FLOAT,!1,16,0),s.bindBuffer(s.ARRAY_BUFFER,i.seedBuffer),s.vertexAttribIPointer(1,1,s.UNSIGNED_INT,4,0),s.bindVertexArray(null),this.scienceAvailable=!r.degraded,this.forceDynamicStars=r.forceDynamicStars??!1,this.starSelection=null,this.starSelectionDirty=!0,this.ratesDirty=!0,this.roiDiagnostics.clear(),this.updateDynamicStars()}compileSky(e){let t=e?"-"+e:"";return{rate:this.res.programDeferred("rateSky"+t,A,We(e)),rateDrag:this.res.programDeferred("rateSkyDrag"+t,A,We(e,!0))}}get skyVariant(){return this.skyVariantId}setSkyVariant(e){if(e===this.skyVariantId)return;let t=this.skyProgs;if(this.skyProgs=this.compileSky(e),this.skyVariantId=e,this.ratesDirty=!0,t){for(let r of[t.rate,t.rateDrag])if(r.done()){try{r.check()}catch{}this.gl.deleteProgram(r.prog),this.res.programs.delete(r.prog)}}}get skyCompiled(){return!this.skyProgs||this.skyProgs.rate.done()&&this.skyProgs.rateDrag.done()}checkSkyPrograms(){this.skyProgs&&(this.skyProgs.rate.check(),this.skyProgs.rateDrag.check())}get skyTileBytes(){return this.skyStore?.layerBytes??0}get skyStarBufferBytes(){return this.skyStarBytes}setSkyView(e){this.releaseAtlasTex();for(let t of this.levelTex)this.res.deleteTexture(t);this.levelTex=[],this.levels=[],this.setProfile(null),this.skyStore??(this.skyStore=new ye(this.gl,this.res)),this.sky={view:e,orders:[...e.orders],frame:e.geometry.frame,pixelTan:ur(e.order),starKeys:[]},this.skyMerged&&(this.skyMerged.count=0,this.skyMerged.ranges=[],this.skyMerged.brightest=Wr),this.atlasPixels=null,this.atlasSize=e.meta.size,this.atlasStep=e.meta.planeStep,this.atlasRef=[...e.meta.refPixel],this.starPixels=null,this.starSeedPixels=null,this.starIndex=null,this.starSelection=null,this.starSelectionDirty=!1,this.starCount=0,this.scienceAvailable=!0,this.forceDynamicStars=!0,this.ratesDirty=!0,this.roiDiagnostics.clear(),this.updateDynamicStars()}syncSky(e,t,r,n,i=3){let s=this.sky,a=this.skyStore;if(!s||!a)return{covered:!1,missing:1/0};let l=++this.skyClock;for(let m of e.orders)this.skyDescribed.has(m)||(this.skyDescribed.add(m),a.presence(m,n(m)));a.ensure(t,i);let c=0,p=0,h=0;for(let m of e.tiles)a.has(m.key)||c++;let u=[],g=new Map(r.map(m=>[m.key,m]));for(let m of e.stars){let b=this.skyStars.get(m.key);if(!b){let y=g.get(m.key);y&&p<i&&(b=this.uploadStarTile(y),p++)}b?(b.used=l,u.push(m.key),h+=b.count):c++}return this.evictStarTiles(new Set(u)),(s.starKeys.length!==u.length||s.starKeys.some((m,b)=>m!==u[b]))&&(s.starKeys=u,this.mergeStarTiles(u),this.ratesDirty=!0),h!==this.starCount&&(this.starCount=h,this.updateDynamicStars()),(s.orders.length!==e.orders.length||s.orders.some((m,b)=>m!==e.orders[b]))&&(s.orders=[...e.orders],this.ratesDirty=!0),{covered:c===0,missing:c}}uploadStarTile(e){let t=this.gl,r=t.createBuffer(),n=t.createVertexArray();this.res.buffers.add(r),this.res.vaos.add(n),t.bindVertexArray(n),t.bindBuffer(t.ARRAY_BUFFER,r),t.bufferData(t.ARRAY_BUFFER,e.data,t.STATIC_DRAW),t.enableVertexAttribArray(0),t.vertexAttribPointer(0,4,t.FLOAT,!1,z,0),t.enableVertexAttribArray(1),t.vertexAttribIPointer(1,1,t.UNSIGNED_INT,z,20),t.enableVertexAttribArray(2),t.vertexAttribPointer(2,1,t.FLOAT,!1,z,16),t.bindVertexArray(null);let i=new Float32Array(Math.min(e.count,B.stars));for(let a=0;a<i.length;a++)i[a]=e.data[Xe*a+3];let s={vao:n,buffer:r,count:e.count,bytes:e.bytes,used:this.skyClock,flux:i};return this.skyStars.set(e.key,s),this.skyStarBytes+=e.bytes,s}evictStarTiles(e){if(this.skyStarBytes<=qr)return;let t=this.gl;for(let[r,n]of[...this.skyStars].filter(([i])=>!e.has(i)).sort((i,s)=>i[1].used-s[1].used)){if(this.skyStarBytes<=qr)break;t.deleteBuffer(n.buffer),this.res.buffers.delete(n.buffer),t.deleteVertexArray(n.vao),this.res.vaos.delete(n.vao),this.skyStars.delete(r),this.skyStarBytes-=n.bytes}}setSkyFrame(e){let t=this.sky;if(!t)return;let r=t.frame,n=(i,s)=>i.every((a,l)=>Math.fround(a)===Math.fround(s[l]));n(r.axis,e.axis)&&n(r.west,e.west)&&n(r.north,e.north)||(this.ratesDirty=!0),t.frame=e}skyFrameUniforms(e){let t=this.sky.frame,r=this.gl;r.uniform3f(e.loc.get("u_axis"),t.axis[0],t.axis[1],t.axis[2]),r.uniform3f(e.loc.get("u_west"),t.west[0],t.west[1],t.west[2]),r.uniform3f(e.loc.get("u_north"),t.north[0],t.north[1],t.north[2])}mergeStarTiles(e){let t=this.gl,r=e.map(h=>this.skyStars.get(h)).filter(h=>!!h),n=r.reduce((h,u)=>h+u.count,0),i=this.skyMerged;if(!i||i.capacity<n){i&&(t.deleteBuffer(i.buffer),this.res.buffers.delete(i.buffer),t.deleteVertexArray(i.vao),this.res.vaos.delete(i.vao));let h=Math.ceil(n*1.5)+1024,u=t.createBuffer(),g=t.createVertexArray();this.res.buffers.add(u),this.res.vaos.add(g),t.bindVertexArray(g),t.bindBuffer(t.ARRAY_BUFFER,u),t.bufferData(t.ARRAY_BUFFER,h*z,t.DYNAMIC_COPY),t.enableVertexAttribArray(0),t.vertexAttribPointer(0,4,t.FLOAT,!1,z,0),t.enableVertexAttribArray(1),t.vertexAttribIPointer(1,1,t.UNSIGNED_INT,z,20),t.enableVertexAttribArray(2),t.vertexAttribPointer(2,1,t.FLOAT,!1,z,16),t.bindVertexArray(null),i=this.skyMerged={buffer:u,vao:g,capacity:h,count:0,ranges:[],brightest:Wr}}t.bindBuffer(t.COPY_WRITE_BUFFER,i.buffer);let s=0;i.ranges=[];for(let h of r)t.bindBuffer(t.COPY_READ_BUFFER,h.buffer),t.copyBufferSubData(t.COPY_READ_BUFFER,t.COPY_WRITE_BUFFER,0,s*z,h.count*z),i.ranges.push({first:s,count:h.count}),s+=h.count;t.bindBuffer(t.COPY_READ_BUFFER,null),t.bindBuffer(t.COPY_WRITE_BUFFER,null),i.count=s;let a=pr(r.map(h=>h.flux),B.stars),l=a.reduce((h,u)=>h+(u>0?1:0),0),c=new Int32Array(l),p=new Int32Array(l);for(let h=0,u=0;h<a.length;h++)a[h]>0&&(c[u]=i.ranges[h].first,p[u]=a[h],u++);i.brightest={firsts:c,counts:p,n:l}}drawSkyStars(e=!1){let t=this.gl,r=this.skyMerged;if(!(!r||r.count===0)){if(t.bindVertexArray(r.vao),!e)t.drawArrays(t.POINTS,0,r.count);else{let{firsts:n,counts:i,n:s}=r.brightest;if(this.multiDraw)this.multiDraw.multiDrawArraysWEBGL(t.POINTS,n,0,i,0,s);else for(let a=0;a<s;a++)t.drawArrays(t.POINTS,n[a],i[a])}t.bindVertexArray(null)}}useSkyRate(e){let t=e?this.skyProgs.rateDrag:this.skyProgs.rate;return t.check(),this.gl.useProgram(t.prog),t}readSkyBands(e){let t=this.sky,r=this.t,n=this.geometry;if(!t||!r||!n||!this.skyStore)return null;let i=this.gl,s=this.useSkyRate(!0);this.res.bindTarget(r.tmp),this.rateUniforms(s),this.res.bindTex(6,this.lutTex,s,"u_base"),i.uniform1i(s.loc.get("u_eyeDiffuse"),0),i.uniform1i(s.loc.get("u_part"),3),i.enable(i.SCISSOR_TEST);let a=e.map(l=>{i.scissor(0,l,this.size,1),this.draw();let c=new Float32Array(4*this.size);return i.readPixels(0,l,this.size,1,i.RGBA,i.FLOAT,c),c});return i.disable(i.SCISSOR_TEST),this.skyStore.unbind(et),{rows:a,size:this.size,originMm:this.originMm(),pitchMm:n.pitchMm,focalMm:n.focalMm,cathodeRadiusMm:n.cathodeRadiusMm,point:this.point}}updateDynamicStars(){let e=this.geometry;if(!e)return;let t=Math.PI*(e.cathodeRadiusMm/e.focalMm)**2,r=(this.atlasSize*this.atlasStep)**2,n=this.forceDynamicStars?this.starCount:Math.min(this.starCount,Math.ceil(ti*Math.max(1,r/t)));n!==this.dynStars&&(this.dynStars=n,this.ratesDirty=!0)}setLut(e){let t=this.gl;t.bindTexture(t.TEXTURE_2D,this.lutTex),t.texImage2D(t.TEXTURE_2D,0,t.RGBA32F,e.nodes,e.rows,0,t.RGBA,t.FLOAT,e.data),this.eyeColor=!!e.eyeColor,this.eyeColor||this.releaseEye(),this.lutNodes=e.nodes,this.lutMaxAngle=e.maxAngleRad,this.starT={...e.starT},this.ratesDirty=!0}setSceneScale(e){e!==this.sceneScale&&(this.sceneScale=e,this.ratesDirty=!0)}setDiffuseBlur(e){e!==this.diffuseBlurMm&&(this.diffuseBlurMm=e,this.ratesDirty=!0)}diffuseTaps(){let e=this.geometry;return this.diffuseBlurMm/e.pitchMm>.3?D(this.diffuseBlurMm,e.pitchMm):null}setCenter(e){!this.geometry||e[0]===this.geometry.centerMm[0]&&e[1]===this.geometry.centerMm[1]||(this.geometry={...this.geometry,centerMm:[e[0],e[1]]},this.ratesDirty=!0)}setRateSubsamples(e){e!==this.maxSub&&(this.maxSub=e,this.ratesDirty=!0)}setPointing(e){if(e.length!==9)throw new Error("pointing matrix");e.some((t,r)=>Math.fround(t)!==this.point[r])&&(this.point=Float32Array.from(e),this.ratesDirty=!0,this.starSelectionDirty=!0)}setGeometry(e,t,r=!1){(e.focalMm!==this.geometry?.focalMm||e.cathodeRadiusMm!==this.geometry?.cathodeRadiusMm)&&(this.starSelectionDirty=!0),this.roiDiagnostics.clear();let n=this.needsExpectation?Math.min(254,Math.ceil(2.25/e.pitchMm)):0,s=Math.max(...[t.input,t.inputShort].flatMap(g=>g.taps.map((m,b)=>g.weights[b]>0?m.radius:0)))+Math.max(...t.spot.map(g=>g.radius))+2,a=Math.max(t.margin,s+n),l=e.n+2*jr(a,16),c=this.t!==null&&(this.size-e.n)%2===0&&(r?e.n+2*a<=this.size:l<=this.size&&this.size<=l+64),p=c?(this.size-e.n)/2:jr(r?1.25*a:a,16),h=e.n+2*p,u=this.geometry!==null&&(e.n!==this.geometry.n||p!==this.margin);this.geometry=e,this.kernels=t,this.starProf=Dt(t,e.pitchMm),this.starMapDirty=!0,c?(this.margin=p,u&&(this.hasFrame=!1)):(h!==this.size||p!==this.margin)&&this.allocate(h,p),this.setupHalo(t),this.ratesDirty=!0,this.updateDynamicStars()}setupHalo(e){let t=this.gl,r=e.halo;this.outerHalo&&!r?.outer&&(this.res.deleteTarget(this.outerHalo.a),this.res.deleteTarget(this.outerHalo.b),this.res.deleteTexture(this.outerHalo.kernel),this.outerHalo=null);let n=r?Math.ceil(this.size/r.factor):0;if(this.coarse&&(!r||this.coarse.factor!==r.factor||this.coarse.a.size!==n)){for(let i of[this.coarse.a,this.coarse.b])this.res.deleteTarget(i);this.coarse=null}if(!r){this.haloKernelTex&&(this.res.deleteTexture(this.haloKernelTex),this.haloKernelTex=null),this.haloPacked=null;return}if(this.coarse||(this.coarse={factor:r.factor,a:this.res.target(n,t.R32F,t.RED),b:this.res.target(n,t.R32F,t.RED)}),this.haloPacked!==r.packed&&(this.haloKernelTex&&this.res.deleteTexture(this.haloKernelTex),this.haloKernelTex=this.res.texture(r.count,1,t.RGBA32F,t.RGBA,t.FLOAT,r.packed),this.haloPacked=r.packed),r.outer){let i=Math.ceil(this.size/r.outer.factor);if(!this.outerHalo||this.outerHalo.a.size!==i){let s=this.outerHalo;s&&(this.res.deleteTarget(s.a),this.res.deleteTarget(s.b)),this.outerHalo={a:this.res.target(i,t.R32F,t.RED),b:this.res.target(i,t.R32F,t.RED),kernel:s?.kernel??this.res.texture(r.outer.count,1,t.RGBA32F,t.RGBA,t.FLOAT,r.outer.packed),packed:s?.packed??r.outer.packed}}this.outerHalo.packed!==r.outer.packed&&(this.res.deleteTexture(this.outerHalo.kernel),this.outerHalo.kernel=this.res.texture(r.outer.count,1,t.RGBA32F,t.RGBA,t.FLOAT,r.outer.packed),this.outerHalo.packed=r.outer.packed)}}setMechanism(e,t=!0){(t||Object.keys(e).some(r=>e[r]!==this.mech[r]))&&(this.exposureReset=!0),this.mech={...e}}setDisplay(e){this.display={...e,xyzPerIntensity:[...e.xyzPerIntensity]},e.nakedEye||this.releaseEye()}setEyeSourceGain(e){this.eyeSourceGain=e>0&&Number.isFinite(e)?e:1}get starCores(){return this.starProf!==null&&It(this.starProf)<=B.synthSigma}setStarShape(e){let t=Number.isFinite(e)?Math.min(1,Math.max(0,e)):0;t>0&&!(this.starShape>0)&&(this.starMapDirty=!0),this.starShape=t}setEyePerception(e){Object.keys(e).some(t=>e[t]!==this.eyeSettings[t])&&(this.eyeDirty=!0),this.eyeSettings={...e}}setEyeAdaptation(e,t,r){this.eyeAdaptation=e,this.eyeWhite=[t[0],t[1]],this.eyeBackground=r}setSeeing(e){let t=this.dynamicStars;this.seeing={...e},this.exposureReset=!0,this.exposureBlur=null,t!==this.dynamicStars&&(this.ratesDirty=!0)}setEye(e){this.setObserver({...this.observer,mode:e>0?1:0,sigmaMm:e})}setObserver(e){let t=this.needsExpectation;this.observer=e,this.eyeSigmaMm=e.sigmaMm,this.expectationChanged(t)}setNoise(e){if(e===this.lastNoiseInput)return;this.lastNoiseInput=e;let t=this.needsExpectation;this.noise={noiseAppearanceVersion:e.noiseAppearanceVersion??1,noiseStyle:e.noiseStyle,noiseGrainUm:e.noiseGrainUm,noiseStrength:e.noiseStrength,noiseTail:e.noiseTail,noisePattern:e.noisePattern,noiseSeed:e.noiseSeed},this.expectationChanged(t)}expectationChanged(e){e!==this.needsExpectation&&(this.exposureReset=!0,this.geometry&&this.kernels&&this.setGeometry(this.geometry,this.kernels))}eyeKernels(){let e=this.geometry,t=this.observer,r=[e.pitchMm,t.mediumSigmaMm,t.coarseSigmaMm].join("|");return this.contrastKernels?.key!==r&&(this.contrastKernels={key:r,medium:D(t.mediumSigmaMm,e.pitchMm),coarse:D(t.coarseSigmaMm,e.pitchMm)}),this.contrastKernels}grainKernel(){let e=this.geometry,t=this.kernels,r=[e.pitchMm,this.noise.noiseGrainUm,t.psf.output.components.map(n=>[n.sigma.value,n.weight.value])].join("|");if(this.noiseKernel?.key!==r){let n=D(this.noise.noiseGrainUm/1e3,e.pitchMm);this.noiseKernel={key:r,taps:n,normalization:qt(t,n)}}return this.noiseKernel}setHighlight(e,t,r=t){this.highlight={on:e,whiteIntensity:t,sourceIntensity:r}}get dynamicStars(){return this.starCount>0&&(this.seeing.tiltMm>0||this.seeing.scint>0)}get gridSize(){return this.size}get gridMargin(){return this.margin}get skySupportMm(){if(!this.geometry||!this.kernels)return 1.5;let[e]=this.frameRegion();return Math.max(this.kernels.margin,this.margin-e)*this.geometry.pitchMm}resetObservation(){this.exposureReset=!0}healthy(){return!this.gl.isContextLost()&&this.gl.getError()===this.gl.NO_ERROR}frame(e,t,r){if(!this.t||!this.geometry||!this.kernels||!(this.atlasTex||this.sky)||!(e>0))return!1;let n=r.integrationSeconds??0,i=r.timeS??(t+1)*e,s=r.mean||!!r.noiseless;this.ratesDirty&&(this.buildRates(),this.exposureReset=!0);let a=this.exposureReset||n!==this.exposureWindowS||r.mean!==this.exposureWasMean||s!==this.lastMean;this.exposureWindowS=n,this.exposureWasMean=r.mean,this.exposureReset=!1;let l=r.mean?1:r.snapshot&&n>0?n:e,c=t;this.starFrameInput=r.mean?this.kernels.input:r.snapshot?this.finiteStarBlur(l):this.kernels.inputShort;let p=this.gl,[h,u,g]=this.frameRegion();if(this.dynamicStars){let m=2*Math.max(...this.starFrameInput.taps.map((v,w)=>this.starFrameInput.weights[w]>0?v.radius:0))+2,b=Math.max(0,h-m),y=Math.max(0,u-m);p.enable(p.SCISSOR_TEST),p.scissor(b,y,Math.min(this.size,h+g+m)-b,Math.min(this.size,u+g+m)-y);let x=this.seeing.scintillationStrength??Math.expm1(this.seeing.scint**2)/60;this.depositStars(this.t.starDyn,r.mean?0:this.seeing.tiltMm,r.mean?0:r.snapshot?ge(x,l):this.seeing.scint,c,i,0,this.dynStars,r.snapshot?l:0)}return p.enable(p.SCISSOR_TEST),p.scissor(h,u,g,g),this.dynamicStars&&this.mixturePass(this.t.starDyn,this.t.tmp,this.t.starBlur,this.starFrameInput),this.sample(l,c,{...r,mean:s}),this.spot(!1,!0),this.needsExpectation&&!s&&this.spot(!0,!0),this.lastMean=s,this.accumulate(l,Yt(e,n,a||r.mean||!!r.snapshot)),p.disable(p.SCISSOR_TEST),this.hasFrame=!0,this.eyeTimeS=i,this.present(),!0}finiteStarBlur(e){let t=this.geometry,r=this.kernels,n=e+"|"+t.pitchMm+"|"+r.inputShortSigmas.join(",")+"|"+this.seeing.tiltMm;if(this.exposureBlur?.key!==n){let i=this.seeing.tiltMm**2*(1-Ht(e));this.exposureBlur={key:n,mixture:{taps:r.inputShortSigmas.map(s=>D(Math.sqrt(s*s+i),t.pitchMm)),weights:r.inputShort.weights}}}return this.exposureBlur.mixture}frameRegion(){let e=this.kernels,t=this.geometry,r=this.snowSpot(),n=this.starFrameInput??e.inputShort,i=this.dynamicStars?Math.max(...n.taps.map((h,u)=>n.weights[u]>0?h.radius:0)):0,s=Math.max(e.spot[0].radius,e.spotWeights[1]>0?e.spot[1].radius:0,r?r.radius:0),a=this.eyeSigmaMm/t.pitchMm>.3?D(this.eyeSigmaMm,t.pitchMm).radius:0,l=this.noise.noiseStyle!=="legacy"?this.grainKernel().taps.radius:0,c=this.observer.mode===2?this.eyeKernels().coarse.radius:0,p=Math.min(this.margin,i+s+Math.max(2*a,l+c)+2);return[this.margin-p,this.margin-p,t.n+2*p]}accumulate(e,t){let r=this.gl,n=this.geometry,i=this.t,s=this.accFront==="acc0"?"acc1":"acc0",a=this.use("accum");this.res.bindTarget(i[s]),this.res.bindTex(0,i.out.tex,a,"u_frame"),this.res.bindTex(1,i[this.accFront].tex,a,"u_prev"),this.res.bindTex(2,(this.needsExpectation&&!this.lastMean?i.eye:i.out).tex,a,"u_expected"),r.uniform1f(a.loc.get("u_invAreaTime"),1/(n.pitchMm*n.pitchMm*e)),r.uniform1f(a.loc.get("u_alpha"),t),this.draw(),this.accFront=s}present(){let e=this.gl,t=this.geometry;if(!this.t||!t||!this.hasFrame)return;let r=this.starProf&&!(this.display.nakedEye&&this.eyeColor)?this.starShape:0;r>0&&this.starMapDirty&&this.drawStarMap();let n=this.t[this.accFront];if(!this.lastMean&&this.noise.noiseStyle!=="legacy"){let{taps:u,normalization:g}=this.grainKernel(),[m,b,y]=this.frameRegion();e.enable(e.SCISSOR_TEST),e.scissor(m,b,y,y);let x=n;this.noise.noiseGrainUm/1e3/t.pitchMm>.3&&(this.pairBlurPass(n,this.t.eyeTmp,u,[1,0]),this.pairBlurPass(this.t.eyeTmp,this.t.eye,u,[0,1]),x=this.t.eye);let v=this.use("appearance");this.res.bindTarget(this.t.noise),this.res.bindTex(0,n.tex,v,"u_original"),this.res.bindTex(1,x.tex,v,"u_grain"),e.uniform3f(v.loc.get("u_style"),this.noise.noiseStrength*(x===n?1:g),this.noise.noiseTail,this.noise.noisePattern),e.uniform1i(v.loc.get("u_preservePointResidual"),this.noise.noiseAppearanceVersion===2?1:0),e.uniform1f(v.loc.get("u_rawStrength"),this.noise.noiseStrength),e.uniform1ui(v.loc.get("u_patternSeed"),this.noise.noiseSeed>>>0),e.uniform2f(v.loc.get("u_centerMm"),...t.centerMm),e.uniform1f(v.loc.get("u_pitchMm"),t.pitchMm),e.uniform1f(v.loc.get("u_gridCenter"),this.margin+t.n/2),e.uniform1i(v.loc.get("u_meanOnly"),this.lastMean?1:0),this.draw(),e.disable(e.SCISSOR_TEST),n=this.t.noise}if(this.eyeSigmaMm/t.pitchMm>.3){let u=D(this.eyeSigmaMm,t.pitchMm),[g,m,b]=this.frameRegion();e.enable(e.SCISSOR_TEST),e.scissor(g,m,b,b),this.blurPass(n,this.t.eyeTmp,u,[1,0]),this.blurPass(this.t.eyeTmp,this.t.eye,u,[0,1]),e.disable(e.SCISSOR_TEST),n=this.t.eye}if(this.observer.mode===2&&this.observer.threshold>0){let[u,g,m]=this.frameRegion();e.enable(e.SCISSOR_TEST),e.scissor(u,g,m,m),this.pairBlurPass(n,this.t.eyeTmp,this.eyeKernels().medium,[1,0]),this.pairBlurPass(this.t.eyeTmp,this.t.medium,this.eyeKernels().medium,[0,1]),this.pairBlurPass(n,this.t.eyeTmp,this.eyeKernels().coarse,[1,0]),this.pairBlurPass(this.t.eyeTmp,this.t.eye,this.eyeKernels().coarse,[0,1]),e.disable(e.SCISSOR_TEST)}this.display.nakedEye&&this.eyeColor&&this.prepareEye();let i=this.use("display"),s=Math.max(1,this.canvas.width);e.uniform1f(i.loc.get("u_gridCentre"),this.margin+t.n/2),this.res.bindTex(0,n.tex,i,"u_intensity"),this.res.bindTex(1,this.t.medium.tex,i,"u_medium"),this.res.bindTex(2,this.t.eye.tex,i,"u_coarse"),e.uniform1i(i.loc.get("u_nakedEye"),this.display.nakedEye&&this.eyeColor?1:0),this.res.bindTex(3,this.eye?.diffuse.tex??n.tex,i,"u_eyeDiffuse"),this.res.bindTex(4,this.eye?.stars.tex??n.tex,i,"u_eyeStars"),this.res.bindTex(5,this.eye?.wide.tex??n.tex,i,"u_eyeWide"),this.res.bindTex(6,this.eye?.starsFaint.tex??n.tex,i,"u_eyeStarsFaint"),e.uniform1i(i.loc.get("u_eyeTube"),this.display.eyeTube?1:0),this.lutUniforms(i,7),this.res.bindTex(8,this.t.starMap.tex,i,"u_starMap"),this.display.eyeTube&&(e.uniform1f(i.loc.get("u_focalMm"),t.focalMm),e.uniform2f(i.loc.get("u_eyeTubeMechanism"),this.mech.gain,this.mech.darkRate)),e.uniform1f(i.loc.get("u_eyeGain"),this.eyeSettings.gain),e.uniform1f(i.loc.get("u_eyeScale"),this.eyeAdaptation*2**(this.display.exposureEv-1)/kr),e.uniform1f(i.loc.get("u_eyeToneMax"),Dr),e.uniform3f(i.loc.get("u_eyeColour"),Nr,Gr,Or),e.uniform2f(i.loc.get("u_eyeWhite"),this.eyeWhite[0],this.eyeWhite[1]),e.uniform3f(i.loc.get("u_eyeNebula"),Ir,Cr,this.eyeBackground),e.uniform1f(i.loc.get("u_eyeSP"),Fr),e.uniform1i(i.loc.get("u_eyeMode"),this.observer.mode),e.uniform1i(i.loc.get("u_eyeLocal"),this.observer.local?1:0),e.uniform2f(i.loc.get("u_eyeContrast"),this.observer.threshold,this.observer.luminance/Math.max(683*this.display.xyzPerIntensity[1],1e-30)),e.uniform1i(i.loc.get("u_margin"),this.margin),e.uniform3f(i.loc.get("u_xyz"),...this.display.xyzPerIntensity),e.uniform1f(i.loc.get("u_scale"),683/10*2**this.display.exposureEv),e.uniform1f(i.loc.get("u_gammaInv"),1/this.display.gamma);let a=683/10*2**this.display.exposureEv,l=this.highlight.on?Ve(this.display.xyzPerIntensity[1]*this.highlight.whiteIntensity*a):null;if(e.uniform4f(i.loc.get("u_shoulder"),l?.knee??0,l?.k??0,l?.norm??1,l?.top??1),this.display.eyeTube){e.uniform1f(i.loc.get("u_eyeReferenceY"),.03),e.uniform1f(i.loc.get("u_eyeSourceGain"),this.eyeSourceGain);let u=this.highlight.on?Ve(.03+Math.SQRT2*this.display.xyzPerIntensity[1]*this.highlight.sourceIntensity*a):null;e.uniform4f(i.loc.get("u_eyeSourceShoulder"),u?.knee??0,u?.k??0,u?.norm??1,u?.top??1)}e.uniform2f(i.loc.get("u_centerMm"),t.centerMm[0],t.centerMm[1]),e.uniform1f(i.loc.get("u_cathodeR"),t.cathodeRadiusMm);let c=Ct(r,this.starProf);e.uniform4f(i.loc.get("u_starShape"),...c);let p=!1;if(c[0]<1){let u=this.starProf;e.uniform4fv(i.loc.get("u_starProfA"),u.a),e.uniform4fv(i.loc.get("u_starProfV"),u.v),e.uniform4fv(i.loc.get("u_starProfW"),u.w),e.uniform4fv(i.loc.get("u_starProfP"),u.p),e.uniform1f(i.loc.get("u_starRing"),u.radius+1),e.uniform1f(i.loc.get("u_starNoise"),B.noiseSigmas),e.uniform1f(i.loc.get("u_starWhite"),B.white),p=this.starCores}let h=(u,g,m,b)=>{e.bindFramebuffer(e.FRAMEBUFFER,u?u.fbo:null),e.viewport(0,0,g,g),e.clearColor(0,0,0,0),e.clear(e.COLOR_BUFFER_BIT);let y=t.n/g;e.uniform1f(i.loc.get("u_viewScale"),y),e.uniform1f(i.loc.get("u_half"),g/2),e.uniform1f(i.loc.get("u_pitchMm"),t.pitchMm*y),e.uniform1f(i.loc.get("u_starSynth"),m?1:0),e.uniform1i(i.loc.get("u_compose"),b?1:0),this.draw()};if(p&&s>t.n*1.01){let u=this.gridDisplayTarget(t.n);this.res.bindTex(9,this.lutTex,i,"u_gridDisplay"),this.res.bindTex(10,this.lutTex,i,"u_gridBright"),h(u,t.n,!1,!1),this.res.bindTex(9,u.colour,i,"u_gridDisplay"),this.res.bindTex(10,u.bright,i,"u_gridBright"),h(null,s,!0,!0)}else this.res.bindTex(9,this.lutTex,i,"u_gridDisplay"),this.res.bindTex(10,this.lutTex,i,"u_gridBright"),h(null,s,p&&s>t.n*1.01,!1)}gridDisplayTarget(e){let t=this.gl,r=this.gridDisplay;if(r?.size===e)return r;r&&(t.deleteFramebuffer(r.fbo),this.res.framebuffers.delete(r.fbo),this.res.deleteTexture(r.colour),this.res.deleteTexture(r.bright)),t.activeTexture(t.TEXTURE15);let n=this.res.texture(e,e,t.RGBA8,t.RGBA,t.UNSIGNED_BYTE,null),i=this.res.texture(e,e,t.R8,t.RED,t.UNSIGNED_BYTE,null);t.bindTexture(t.TEXTURE_2D,n),t.texParameteri(t.TEXTURE_2D,t.TEXTURE_MIN_FILTER,t.LINEAR),t.texParameteri(t.TEXTURE_2D,t.TEXTURE_MAG_FILTER,t.LINEAR);let s=t.createFramebuffer();if(this.res.framebuffers.add(s),t.bindFramebuffer(t.FRAMEBUFFER,s),t.framebufferTexture2D(t.FRAMEBUFFER,t.COLOR_ATTACHMENT0,t.TEXTURE_2D,n,0),t.framebufferTexture2D(t.FRAMEBUFFER,t.COLOR_ATTACHMENT1,t.TEXTURE_2D,i,0),t.drawBuffers([t.COLOR_ATTACHMENT0,t.COLOR_ATTACHMENT1]),t.checkFramebufferStatus(t.FRAMEBUFFER)!==t.FRAMEBUFFER_COMPLETE)throw new O(f("\u6D6E\u70B9\u6E32\u67D3\u76EE\u6807\u4E0D\u53EF\u7528\uFF080x{0}\uFF09\u3002",[t.checkFramebufferStatus(t.FRAMEBUFFER).toString(16)]));return t.bindTexture(t.TEXTURE_2D,null),this.gridDisplay={fbo:s,colour:n,bright:i,size:e},this.gridDisplay}releaseEye(){if(this.eye)for(let e of Object.values(this.eye))this.res.deleteTarget(e);this.eye=null,this.eyeDirty=!0}ensureEye(){if(this.eye)return;let e=this.gl,t=this.starFormat===e.R32F?e.RGBA32F:e.RGBA16F;this.eye={raw:this.res.target(this.size,e.RGBA32F,e.RGBA),tmp:this.res.target(this.size,e.RGBA32F,e.RGBA),diffuse:this.res.target(this.size,e.RGBA32F,e.RGBA),wide:this.res.target(this.size,e.RGBA32F,e.RGBA),stars:this.res.target(this.size,t,e.RGBA),starsFaint:this.res.target(this.size,t,e.RGBA)},this.eyeDirty=!0}get eyeTwinkles(){return this.seeing.tiltMm>0||(this.seeing.scintillationStrength??0)>0}prepareEye(){this.ensureEye();let e=this.eyeTwinkles;if(!this.eyeDirty&&!e)return;let t=this.gl,r=this.geometry,n=this.eye,i=s=>2*s.half.reduce((a,l,c)=>a+l*c*c,0)*r.pitchMm*r.pitchMm;if(this.eyeDirty){let s=this.kernels.input,a=s.taps.reduce((p,h,u)=>p+s.weights[u]*i(h),0),l=D(Math.sqrt(a),r.pitchMm),c=D(Lr/Pr*r.n*r.pitchMm,r.pitchMm);for(let[p,h,u,g]of[[n.raw,n.tmp,[1,0],l],[n.tmp,n.diffuse,[0,1],l],[n.diffuse,n.tmp,[1,0],c],[n.tmp,n.wide,[0,1],c]]){let m=this.use("eyeBlur");this.res.bindTarget(h),this.res.bindTex(0,p.tex,m,"u_src"),t.uniform4fv(m.loc.get("u_taps"),g.half),t.uniform1i(m.loc.get("u_radius"),g.radius),t.uniform2i(m.loc.get("u_dir"),u[0],u[1]),this.draw()}this.drawEyeStars(n.starsFaint,this.dynStars,this.starCount-this.dynStars,!1,i)}this.drawEyeStars(n.stars,0,this.dynStars,e,i),this.eyeDirty=!1}drawEyeStars(e,t,r,n,i){let s=this.gl,a=this.geometry,l=this.eye,c=this.originMm();if(this.res.bindTarget(e),s.clearColor(0,0,0,0),s.clear(s.COLOR_BUFFER_BIT),r<=0||this.sky&&t>0)return;let p=n&&this.seeing.tiltMm>0?this.kernels.inputShort:this.kernels.input,h=this.use(this.sky?"eyeStarSky":"eyeStar");this.sky&&this.skyFrameUniforms(h),this.lutUniforms(h,0),this.res.bindTex(1,l.diffuse.tex,h,"u_diffuse"),s.uniform2f(h.loc.get("u_originMm"),...c),s.uniform2f(h.loc.get("u_size"),this.size,this.size),s.uniform1f(h.loc.get("u_pitchMm"),a.pitchMm),s.uniform1f(h.loc.get("u_focalMm"),a.focalMm),s.uniform1f(h.loc.get("u_cathodeR"),a.cathodeRadiusMm),s.uniformMatrix3fv(h.loc.get("u_point"),!1,this.point),s.uniform1f(h.loc.get("u_eyeGain"),this.eyeSettings.gain),s.uniform1f(h.loc.get("u_pointGain"),this.eyeSettings.pointGain),s.uniform1f(h.loc.get("u_fieldFactor"),this.eyeSettings.fieldFactor),s.uniform2f(h.loc.get("u_starLight"),Ze[0],Ze[1]),s.uniform3f(h.loc.get("u_starColour"),Se[0],Se[1],Se[2]),s.uniform1f(h.loc.get("u_tiltMm"),n?this.seeing.tiltMm:0),s.uniform1f(h.loc.get("u_scint"),n?zr(this.seeing.scintillationStrength??0):0),s.uniform1f(h.loc.get("u_time"),this.eyeTimeS),s.uniform1f(h.loc.get("u_starSigma"),Math.hypot(Ur*Math.max(1,a.n/768),Math.sqrt(i(p.taps[0]))/a.pitchMm)),s.enable(s.BLEND),s.blendFunc(s.ONE,s.ONE),this.sky?this.drawSkyStars():(s.bindVertexArray(this.starVao),s.drawArrays(s.POINTS,t,r),s.bindVertexArray(null)),s.disable(s.BLEND)}originMm(){let e=this.geometry,t=.5-e.n/2-this.margin;return[e.centerMm[0]+t*e.pitchMm,e.centerMm[1]+t*e.pitchMm]}lutUniforms(e,t){this.res.bindTex(t,this.lutTex,e,"u_lut"),this.gl.uniform1i(e.loc.get("u_nodes"),this.lutNodes),this.gl.uniform1f(e.loc.get("u_maxAngle"),this.lutMaxAngle),this.gl.uniform1i(e.loc.get("u_tNodes"),this.starT.count),this.gl.uniform2f(e.loc.get("u_logT"),Math.log(this.starT.min),Math.log(this.starT.max))}depositStars(e,t,r,n,i,s=0,a=this.starCount,l=0){let c=this.gl,p=this.geometry,h=this.originMm();if(this.res.bindTarget(e),c.clearColor(0,0,0,0),c.clear(c.COLOR_BUFFER_BIT),a<=0||this.sky&&s>0)return;let u=this.use(this.sky?"starSky":"star");this.lutUniforms(u,0),this.sky&&this.skyFrameUniforms(u),c.uniform2f(u.loc.get("u_originMm"),h[0],h[1]),c.uniform1f(u.loc.get("u_pitchMm"),p.pitchMm),c.uniform1f(u.loc.get("u_focalMm"),p.focalMm),c.uniform1f(u.loc.get("u_cathodeR"),p.cathodeRadiusMm),c.uniform1f(u.loc.get("u_sceneScale"),this.sceneScale),c.uniform2f(u.loc.get("u_size"),this.size,this.size),c.uniformMatrix3fv(u.loc.get("u_point"),!1,this.point),c.uniform1f(u.loc.get("u_tiltMm"),t),c.uniform1f(u.loc.get("u_scint"),r),c.uniform1f(u.loc.get("u_time"),i-l/2),c.uniform1f(u.loc.get("u_exposureS"),l),c.uniform1ui(u.loc.get("u_frame"),n>>>0),c.enable(c.BLEND),c.blendFunc(c.ONE,c.ONE),this.sky?this.drawSkyStars():(c.bindVertexArray(this.starVao),this.drawStarRange(s,a),c.bindVertexArray(null)),c.disable(c.BLEND)}drawStarRange(e,t){let r=this.gl,n=this.refreshSelection();if(!n)r.drawArrays(r.POINTS,e,t);else{let i=Ke(n,e),s=Ke(n,e+t);s>i&&r.drawElements(r.POINTS,s-i,r.UNSIGNED_INT,i*Uint32Array.BYTES_PER_ELEMENT)}}refreshSelection(){if(this.sky||!this.starIndex)return null;if(this.starSelectionDirty){let e=this.geometry,t=this.starIndex.query(e.focalMm,e.cathodeRadiusMm,this.point);t&&t.length&&t!==this.starSelection&&this.gl.bufferData(this.gl.ELEMENT_ARRAY_BUFFER,t,this.gl.DYNAMIC_DRAW),this.starSelection=t,this.starSelectionDirty=!1}return this.starSelection}drawStarMap(){let e=this.gl,t=this.geometry,r=this.t,n=this.starProf;if(this.res.bindTarget(r.starMap),e.clearColor(0,0,0,0),e.clearDepth(1),e.depthMask(!0),e.clear(e.COLOR_BUFFER_BIT|e.DEPTH_BUFFER_BIT),this.starMapDirty=!1,this.starCount<=0)return;let i=this.use(this.sky?"starMapSky":"starMap"),s=this.originMm();this.sky&&this.skyFrameUniforms(i),e.uniform2f(i.loc.get("u_originMm"),s[0],s[1]),e.uniform1f(i.loc.get("u_pitchMm"),t.pitchMm),e.uniform1f(i.loc.get("u_focalMm"),t.focalMm),e.uniform1f(i.loc.get("u_cathodeR"),t.cathodeRadiusMm),e.uniform2f(i.loc.get("u_size"),this.size,this.size),e.uniformMatrix3fv(i.loc.get("u_point"),!1,this.point),e.uniform1f(i.loc.get("u_radius"),n.radius),e.uniform1f(i.loc.get("u_variance"),Math.max(...n.v.filter((l,c)=>n.a[c]>0))),e.enable(e.DEPTH_TEST),e.depthFunc(e.LESS);let a=B.stars;if(this.sky)this.drawSkyStars(!0);else{e.bindVertexArray(this.starVao);let l=this.refreshSelection(),c=l?l.length?l[Math.min(a,l.length)-1]+1:0:Math.min(a,this.starCount);c>0&&this.drawStarRange(0,c),e.bindVertexArray(null)}e.disable(e.DEPTH_TEST)}buildRates(){let e=this.gl,t=this.t,r=this.maxSub<8;this.eyeColor&&this.display.nakedEye&&this.ensureEye(),this.dynamicStars&&r||this.depositStars(t.stars,0,0,0,0,0,this.dynStars),this.depositStars(t.starsFaint,0,0,0,0,this.dynStars,this.starCount-this.dynStars);let n=this.useRate();this.res.bindTarget(t.raw),this.rateUniforms(n),e.uniform1i(n.loc.get("u_eyeDiffuse"),0);let i=this.diffuseTaps();e.uniform1i(n.loc.get("u_part"),i?1:0),this.res.bindTex(6,this.lutTex,n,"u_base"),this.eyeColor&&this.display.nakedEye&&(this.res.bindTarget(this.eye.raw),e.uniform1i(n.loc.get("u_eyeDiffuse"),1),this.draw(),this.res.bindTarget(t.raw),e.uniform1i(n.loc.get("u_eyeDiffuse"),0),this.eyeDirty=!0);let s=this.kernels,a=Math.max(...s.input.taps.map((x,v)=>s.input.weights[v]>0?x.radius:0)),l=!r&&s.halo&&this.coarse&&this.haloKernelTex?s.haloMargin:0,[c,p,h]=this.frameRegion(),u=l+2*a+2+2*(i?.radius??0),g=Math.max(0,c-u),m=Math.max(0,p-u),b=Math.min(this.size-g,h+2*u),y=Math.min(this.size-m,h+2*u);if(this.rebuildScissor=[g,m,b,y],e.enable(e.SCISSOR_TEST),e.scissor(g,m,b,y),this.draw(),i){this.blurPass(t.raw,t.tmp,i,[1,0]),this.blurPass(t.tmp,t.eyeTmp,i,[0,1]);let x=this.useRate();this.res.bindTarget(t.raw),this.rateUniforms(x),this.res.bindTex(6,t.eyeTmp.tex,x,"u_base"),e.uniform1i(x.loc.get("u_part"),2),this.draw(),this.res.bindTex(6,this.lutTex,x,"u_base"),e.uniform1i(x.loc.get("u_part"),0)}this.inputStage(),e.disable(e.SCISSOR_TEST),this.rebuildScissor=null,this.sky&&this.skyStore.unbind(et),this.ratesDirty=!1,this.starMapDirty=!0}useRate(){return this.sky?this.useSkyRate(this.maxSub===1):this.use(this.maxSub===1?"rateDrag":"rate")}rateUniforms(e){let t=this.gl,r=this.geometry,n=this.t,i=this.originMm();if(this.sky)this.skyStore.bind(e,this.sky.orders,et),this.skyFrameUniforms(e),t.uniform1f(e.loc.get("u_pixelTan"),this.sky.pixelTan);else{this.bindAtlasUnits(e),t.uniform1i(e.loc.get("u_atlasSize"),this.atlasSize),t.uniform1f(e.loc.get("u_atlasStep"),this.atlasStep),t.uniform2f(e.loc.get("u_atlasRef"),this.atlasRef[0],this.atlasRef[1]),t.uniform1i(e.loc.get("u_levels"),Wt(this.levels,r.pitchMm/r.focalMm));let s=[0,1,2,3,4].map(l=>this.levels[l]??{size:[1,1],step:1,origin:[0,0]});t.uniform2iv(e.loc.get("u_levelSize"),s.flatMap(l=>[l.size[0],l.size[1]])),t.uniform1fv(e.loc.get("u_levelStep"),s.map(l=>l.step)),t.uniform2fv(e.loc.get("u_levelOrigin"),s.flatMap(l=>[l.origin[0],l.origin[1]]));let a=this.profile;this.res.bindTex(10,this.profileTex??this.lutTex,e,"u_profile"),t.uniform2i(e.loc.get("u_profileSize"),a?a.radii:0,a?a.rows:1),a&&(t.uniform4f(e.loc.get("u_profileGeom"),a.centre[0],a.centre[1],a.logR0,1/a.dLogR),t.uniform1f(e.loc.get("u_profileLogSigma0"),a.logSigma0))}this.res.bindTex(1,n.stars.tex,e,"u_stars"),this.res.bindTex(5,n.starsFaint.tex,e,"u_starsFaint"),this.lutUniforms(e,2),t.uniform1f(e.loc.get("u_cellTan"),r.pitchMm/r.focalMm),t.uniformMatrix3fv(e.loc.get("u_point"),!1,this.point),t.uniform2f(e.loc.get("u_originMm"),i[0],i[1]),t.uniform1f(e.loc.get("u_pitchMm"),r.pitchMm),t.uniform1f(e.loc.get("u_focalMm"),r.focalMm),t.uniform1f(e.loc.get("u_cathodeR"),r.cathodeRadiusMm),t.uniform1f(e.loc.get("u_sceneScale"),this.sceneScale),t.uniform1f(e.loc.get("u_starsInRate"),this.dynamicStars?0:1),t.uniform1f(e.loc.get("u_maxSub"),this.maxSub)}bindAtlasUnits(e){Te.ATLAS_UNITS.forEach((t,r)=>this.res.bindTex(t,r===0?this.atlasTex:this.levelTex[r-1]??this.lutTex,e,r===0?"u_atlas":`u_level${r-1}`))}mixturePass(e,t,r,n){let i=this.gl,s=n.weights[1]>0?n.taps[1].radius:0,a=this.use("inputH");this.res.bindTarget(t),this.res.bindTex(0,e.tex,a,"u_src"),i.uniform4fv(a.loc.get("u_t1"),n.taps[0].half),i.uniform4fv(a.loc.get("u_t2"),n.taps[1].half),i.uniform1i(a.loc.get("u_r1"),n.taps[0].radius),i.uniform1i(a.loc.get("u_r2"),s),this.draw();let l=this.use("inputV");this.res.bindTarget(r),this.res.bindTex(0,t.tex,l,"u_src"),i.uniform4fv(l.loc.get("u_t1"),n.taps[0].half),i.uniform4fv(l.loc.get("u_t2"),n.taps[1].half),i.uniform1i(l.loc.get("u_r1"),n.taps[0].radius),i.uniform1i(l.loc.get("u_r2"),s),i.uniform2f(l.loc.get("u_weights"),n.weights[0],n.weights[1]),this.draw()}inputStage(){let e=this.gl,t=this.t,r=this.kernels;if(!r.halo||!this.coarse||!this.haloKernelTex||this.maxSub<8){this.mixturePass(t.raw,t.tmp,t.rate,r.input);return}this.mixturePass(t.raw,t.tmp,t.core,r.input);let n=this.coarse,i=r.halo,s=this.geometry;e.disable(e.SCISSOR_TEST);let a=this.use("haloDown");if(this.res.bindTarget(n.a),this.res.bindTex(0,t.core.tex,a,"u_src"),this.res.bindTex(1,t.stars.tex,a,"u_extra"),e.uniform1f(a.loc.get("u_extraScale"),this.dynamicStars?1e3/(s.pitchMm*s.pitchMm):0),e.uniform1i(a.loc.get("u_k"),i.factor),this.draw(),a=this.use("haloConv"),this.res.bindTarget(n.b),this.res.bindTex(0,n.a.tex,a,"u_src"),this.res.bindTex(1,this.haloKernelTex,a,"u_kernel"),e.uniform1i(a.loc.get("u_count"),i.count),this.draw(),i.outer&&this.outerHalo){let c=this.outerHalo;a=this.use("haloReduce"),this.res.bindTarget(c.a),this.res.bindTex(0,n.a.tex,a,"u_src"),this.draw(),a=this.use("haloConv"),this.res.bindTarget(c.b),this.res.bindTex(0,c.a.tex,a,"u_src"),this.res.bindTex(1,c.kernel,a,"u_kernel"),e.uniform1i(a.loc.get("u_count"),i.outer.count),this.draw()}let l=this.rebuildScissor;l&&(e.enable(e.SCISSOR_TEST),e.scissor(l[0],l[1],l[2],l[3])),a=this.use("haloCombine"),this.res.bindTarget(t.rate),this.res.bindTex(0,t.core.tex,a,"u_core"),this.res.bindTex(1,n.b.tex,a,"u_halo"),this.res.bindTex(2,this.outerHalo?.b.tex??n.b.tex,a,"u_outer"),e.uniform1f(a.loc.get("u_w"),i.weight),e.uniform1i(a.loc.get("u_k"),i.factor),e.uniform1i(a.loc.get("u_outerK"),i.outer?.factor??i.factor),e.uniform1f(a.loc.get("u_outerW"),i.outer?.fraction??0),this.draw()}blurPass(e,t,r,n){let i=this.gl,s=this.use("blur");this.res.bindTarget(t),this.res.bindTex(0,e.tex,s,"u_src"),i.uniform4fv(s.loc.get("u_taps"),r.half),i.uniform1i(s.loc.get("u_radius"),r.radius),i.uniform2i(s.loc.get("u_dir"),n[0],n[1]),this.draw()}pairBlurPass(e,t,r,n){let i=this.gl,s=this.use("pairBlur");this.res.bindTarget(t),this.res.bindTex(0,e.tex,s,"u_src"),i.uniform4fv(s.loc.get("u_taps"),r.half),i.uniform1i(s.loc.get("u_radius"),r.radius),i.uniform2i(s.loc.get("u_dir"),...n),this.draw()}sample(e,t,r){let n=this.gl,i=this.geometry,s=this.t,a=this.use("sample");n.bindFramebuffer(n.FRAMEBUFFER,this.sampleFbo),n.viewport(0,0,this.size,this.size),this.res.bindTex(0,s.rate.tex,a,"u_rate"),n.uniform1f(a.loc.get("u_areaTime"),i.pitchMm*i.pitchMm*e),n.uniform1f(a.loc.get("u_dark"),this.mech.darkRate),n.uniform1f(a.loc.get("u_gain"),this.mech.gain),n.uniform1f(a.loc.get("u_f2"),this.mech.f2),n.uniform1ui(a.loc.get("u_frame"),t>>>0),n.uniform1ui(a.loc.get("u_seed"),r.seed>>>0),n.uniform1i(a.loc.get("u_mean"),r.mean?1:0),n.uniform1f(a.loc.get("u_ramp"),r.ramp),this.res.bindTex(1,s.starBlur.tex,a,"u_starsDyn");let l=this.maxSub>=8&&this.coarse?this.kernels.halo?.weight??0:0;n.uniform1f(a.loc.get("u_starsScale"),this.dynamicStars?1e3/(i.pitchMm*i.pitchMm)*(1-l):0),n.uniform1f(a.loc.get("u_snowRate"),this.mech.snowRate??0),n.uniform1f(a.loc.get("u_snowCharge"),this.mech.snowCharge??0),this.draw()}snowSpot(){let e=this.kernels,t=this.geometry,r=this.mech.snowSpreadMm??0;if(!((this.mech.snowRate??0)>0))return null;let n=Math.hypot(e.psf.output.components[0].sigma.value,r),i=`${n}|${t.pitchMm}`;return this.snowTaps?.key!==i&&(this.snowTaps={key:i,taps:D(n,t.pitchMm)}),this.snowTaps.taps}spot(e=!1,t=!1){let r=this.gl,n=this.t,i=this.kernels,s=this.snowSpot(),a=t?this.frameRegion():null;a&&(r.enable(r.SCISSOR_TEST),r.scissor(a[0],a[1],a[2],a[2]));let l=this.use("spotH");this.res.bindTarget(e?n.tmp:n.spotTmp),this.res.bindTex(0,(e?n.expected:n.charge).tex,l,"u_src"),r.uniform4fv(l.loc.get("u_t1"),i.spot[0].half),r.uniform4fv(l.loc.get("u_t2"),i.spot[1].half),r.uniform4fv(l.loc.get("u_t3"),(s??i.spot[0]).half),r.uniform1i(l.loc.get("u_r1"),i.spot[0].radius),r.uniform1i(l.loc.get("u_r2"),i.spotWeights[1]>0?i.spot[1].radius:0),r.uniform1i(l.loc.get("u_r3"),s?s.radius:0),this.draw();let c=this.use("spotV");if(this.res.bindTarget(e?n.eye:n.out),a){let p=this.geometry,h=this.noise.noiseStyle!=="legacy"?this.grainKernel().taps.radius:0,u=this.eyeSigmaMm/p.pitchMm>.3?D(this.eyeSigmaMm,p.pitchMm).radius:0,g=this.observer.mode===2?this.eyeKernels().coarse.radius:0,m=Math.min((a[2]-p.n)/2,h+u+g+2);r.scissor(this.margin-m,this.margin-m,p.n+2*m,p.n+2*m)}this.res.bindTex(0,(e?n.tmp:n.spotTmp).tex,c,"u_src"),r.uniform4fv(c.loc.get("u_t1"),i.spot[0].half),r.uniform4fv(c.loc.get("u_t2"),i.spot[1].half),r.uniform4fv(c.loc.get("u_t3"),(s??i.spot[0]).half),r.uniform1i(c.loc.get("u_r1"),i.spot[0].radius),r.uniform1i(c.loc.get("u_r2"),i.spotWeights[1]>0?i.spot[1].radius:0),r.uniform1i(c.loc.get("u_r3"),s?s.radius:0),r.uniform2f(c.loc.get("u_weights"),i.spotWeights[0],i.spotWeights[1]),this.draw(),a&&r.scissor(a[0],a[1],a[2],a[2])}debugUniformRate(e){let t=this.gl,r=this.t;this.res.bindTarget(r.rate),t.clearBufferfv(t.COLOR,0,[e,1,0,0]),this.ratesDirty=!1}debugInputImpulse(e,t,r){let n=this.gl,i=this.t;return this.res.bindTarget(i.raw),n.clearBufferfv(n.COLOR,0,[0,1,0,0]),n.enable(n.SCISSOR_TEST),n.scissor(e,t,1,1),n.clearBufferfv(n.COLOR,0,[r,1,0,0]),n.disable(n.SCISSOR_TEST),this.inputStage(),this.ratesDirty=!1,this.read("rate")}debugSample(e,t,r,n){this.sample(e,t,{mean:!1,ramp:1,seed:r}),n&&this.spot(),this.hasFrame=!0}diagnoseRoi(e,t=.1,r){if(!this.scienceAvailable)throw new Error(f("\u6570\u636E\u5206\u8FA8\u7387\u964D\u7EA7\uFF1A\u79D1\u5B66\u8BFB\u6570\u4E0D\u53EF\u7528"));if(!this.hasFrame||!this.geometry||!this.kernels)throw new Error("No physical frame");let n=r??this.geometry.centerMm;if(!(e>0&&Number.isFinite(e)&&t>0&&Number.isFinite(t))||n.some(m=>!Number.isFinite(m)))throw new RangeError("Invalid ROI");let i=this.geometry,s=this.size,a=this.originMm(),l=this.snowSpot(),c=i.n*i.pitchMm/2;if(n.some((m,b)=>Math.abs(m-i.centerMm[b])+t>c))throw new RangeError("ROI outside rendered view");let p=`${t}|${n.join("|")}|${l?this.snowTaps.key:"none"}`,h=this.roiDiagnostics.get(p);if(!h){let m=new Float64Array(s*s);for(let b=0;b<s;b++)for(let y=0;y<s;y++){let x=a[0]+y*i.pitchMm-n[0],v=a[1]+b*i.pitchMm-n[1];if(Math.hypot(x,v)>t+i.pitchMm)continue;let w=0;for(let R=0;R<8;R++)for(let P=0;P<8;P++)Math.hypot(x+((P+.5)/8-.5)*i.pitchMm,v+((R+.5)/8-.5)*i.pitchMm)<=t&&w++;m[b*s+y]=w/64}h=new ve(m,s,s,this.kernels.spot,this.kernels.spotWeights,l),this.roiDiagnostics.set(p,h)}let u=this.read("rate"),g=this.read("rate",1);if(this.dynamicStars){let m=this.read("starBlur"),b=this.maxSub>=8&&this.coarse?this.kernels.halo?.weight??0:0,y=1e3/(i.pitchMm*i.pitchMm)*(1-b);for(let x=0;x<u.length;x++)u[x]+=y*m[x]}return h.moments({photo:u,dark:g.map(m=>m*this.mech.darkRate),snow:g.map(m=>m*(this.mech.snowRate??0)),gain:this.mech.gain,f2:this.mech.f2,snowCharge:this.mech.snowCharge??0,areaTime:i.pitchMm*i.pitchMm*e})}readAtlasTexels(e){let t=this.gl,r=t.createFramebuffer(),n=new Float32Array(4*e.length),i=new Float32Array(4);try{t.bindFramebuffer(t.FRAMEBUFFER,r),t.framebufferTexture2D(t.FRAMEBUFFER,t.COLOR_ATTACHMENT0,t.TEXTURE_2D,this.atlasTex,0),e.forEach(([s,a],l)=>{t.readPixels(s,a,1,1,t.RGBA,t.FLOAT,i),n.set(i,4*l)})}finally{t.bindFramebuffer(t.FRAMEBUFFER,null),t.deleteFramebuffer(r)}return n}read(e,t=0){let r=this.gl,n=this.t[e==="acc"?this.accFront:e],i=this.size,s=this.res.target(i,r.RGBA32F,r.RGBA),a=this.use("copy");this.res.bindTarget(s),this.res.bindTex(0,n.tex,a,"u_src"),this.draw();let l=new Float32Array(i*i*4);r.readPixels(0,0,i,i,r.RGBA,r.FLOAT,l),this.res.deleteTarget(s);let c=new Float32Array(i*i);for(let p=0;p<c.length;p++)c[p]=l[4*p+t];return c}dispose(e=!1){if(this.disposed)return;this.disposed=!0;let t=this.gl;this.res.deleteAll(),this.gridDisplay=null,this.starMapDepth&&(t.deleteRenderbuffer(this.starMapDepth),this.starMapDepth=null),this.t=null,this.sampleFbo=null,this.eye=null,this.coarse=null,this.outerHalo=null,this.atlasTex=null,this.atlasPixels=null,this.starPixels=null,this.levelTex=[],this.levels=[],this.haloKernelTex=null,this.haloPacked=null,this.profile=null,this.profileTex=null,this.sky=null,this.skyStore=null,this.skyProgs=null,this.skyStars.clear(),this.skyStarBytes=0,this.skyDescribed.clear(),this.skyMerged=null,this.hasFrame=!1,e&&t.getExtension("WEBGL_lose_context")?.loseContext()}get haloFactor(){return this.coarse?.factor??0}allocate(e,t){let r=this.gl;if(this.releaseEye(),this.t)for(let s of Object.values(this.t))this.res.deleteTarget(s);if(this.sampleFbo&&(r.deleteFramebuffer(this.sampleFbo),this.res.framebuffers.delete(this.sampleFbo),this.sampleFbo=null),this.size=e,this.margin=t,this.t={stars:this.res.target(e,this.starFormat,r.RED),starsFaint:this.res.target(e,this.starFormat,r.RED),raw:this.res.target(e,r.RG32F,r.RG),tmp:this.res.target(e,r.RGBA32F,r.RGBA),core:this.res.target(e,r.RG32F,r.RG),starDyn:this.res.target(e,this.starFormat,r.RED),starBlur:this.res.target(e,r.RG32F,r.RG),eyeTmp:this.res.target(e,r.RG32F,r.RG),eye:this.res.target(e,r.RG32F,r.RG),rate:this.res.target(e,r.RG32F,r.RG),charge:this.res.target(e,r.RG32F,r.RG),expected:this.res.target(e,r.RG32F,r.RG),spotTmp:this.res.target(e,r.RGBA32F,r.RGBA),out:this.res.target(e,r.R32F,r.RED),acc0:this.res.target(e,r.RG32F,r.RG),acc1:this.res.target(e,r.RG32F,r.RG),noise:this.res.target(e,r.RG32F,r.RG),medium:this.res.target(e,r.RG32F,r.RG),starMap:this.res.target(e,r.RGBA16F,r.RGBA)},this.starMapDepth&&r.deleteRenderbuffer(this.starMapDepth),this.starMapDepth=r.createRenderbuffer(),r.bindRenderbuffer(r.RENDERBUFFER,this.starMapDepth),r.renderbufferStorage(r.RENDERBUFFER,r.DEPTH_COMPONENT24,e,e),r.bindFramebuffer(r.FRAMEBUFFER,this.t.starMap.fbo),r.framebufferRenderbuffer(r.FRAMEBUFFER,r.DEPTH_ATTACHMENT,r.RENDERBUFFER,this.starMapDepth),r.checkFramebufferStatus(r.FRAMEBUFFER)!==r.FRAMEBUFFER_COMPLETE)throw new O(f("\u6D6E\u70B9\u6E32\u67D3\u76EE\u6807\u4E0D\u53EF\u7528\uFF080x{0}\uFF09\u3002",[r.checkFramebufferStatus(r.FRAMEBUFFER).toString(16)]));this.starMapDirty=!0;let n=r.createFramebuffer();this.res.framebuffers.add(n),r.bindFramebuffer(r.FRAMEBUFFER,n),r.framebufferTexture2D(r.FRAMEBUFFER,r.COLOR_ATTACHMENT0,r.TEXTURE_2D,this.t.charge.tex,0),r.framebufferTexture2D(r.FRAMEBUFFER,r.COLOR_ATTACHMENT1,r.TEXTURE_2D,this.t.expected.tex,0),r.drawBuffers([r.COLOR_ATTACHMENT0,r.COLOR_ATTACHMENT1]);let i=r.checkFramebufferStatus(r.FRAMEBUFFER);if(this.sampleFbo=n,i!==r.FRAMEBUFFER_COMPLETE)throw new O(f("\u6D6E\u70B9\u6E32\u67D3\u76EE\u6807\u4E0D\u53EF\u7528\uFF080x{0}\uFF09\u3002",[i.toString(16)]));this.hasFrame=!1}use(e){let t=this.progs[e];return this.gl.useProgram(t.prog),t}draw(){this.gl.bindVertexArray(this.vao),this.gl.drawArrays(this.gl.TRIANGLES,0,3)}};d(Te,"ATLAS_UNITS",[0,3,4,7,8,9]);var Me=Te,jr=(o,e)=>Math.ceil(o/e)*e;var Yr=256;var Hr=o=>Math.round(o/2)*2,Ae=(o,e,t)=>Math.max(e,Math.min(t,o));function Xr(o,e,t,r){let n=Math.max(256,Math.floor(18/r/.005/32)*32),i=Ae(Hr(o*Math.min(e,1)),256,Math.min(1400,n)),s=Ae(Math.floor(o*Math.min(e,t?1.6:2)/32)*32,i,Math.min(1400,n)),a=t?Ae(Math.floor(o*Math.min(e,1.2)/32)*32,i,s):s;return{min:i,max:s,initial:a}}var tt=.7;function Kr(o,e,t){return!t||e==="high"?o:Ae(Hr(o*tt),256,o)}return rn(ni);})();
+</script>
+<script>
+'use strict';
+const D = window.Diag;
+const $ = id => document.getElementById(id);
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const frame = () => new Promise(r => requestAnimationFrame(() => r()));
+const GRIDS = [288, 416, 544];
+const ATLAS = 1024, ATLAS_HALF = 0.6, STARS = 120000;
+let result;
+
+function addStep(name) {
+  const li = document.createElement('li');
+  li.innerHTML = '<span class="tag run">…</span><div><div class="step-name"></div><div class="step-msg"></div></div>';
+  li.querySelector('.step-name').textContent = name;
+  $('steps').appendChild(li);
+  const set = (cls, text, msg) => { const t = li.querySelector('.tag'); t.className = 'tag ' + cls; t.textContent = text; li.querySelector('.step-msg').textContent = msg ?? ''; };
+  const rec = { name, status: 'run', msg: '' }; result.steps.push(rec);
+  return {
+    ok(msg) { set('ok', '完成', msg); rec.status = 'ok'; rec.msg = msg ?? ''; },
+    bad(msg) { set('bad', '失败', msg); rec.status = 'bad'; rec.msg = msg ?? ''; },
+    note(msg) { set('', '信息', msg); rec.status = 'info'; rec.msg = msg ?? ''; },
+    progress(msg) { li.querySelector('.step-msg').textContent = msg; },
+  };
+}
+function verdict(cls, text) { const p = $('verdictPill'); p.className = 'pill ' + cls; p.textContent = cls === 'ok' ? '完成' : cls === 'bad' ? '无法运行' : '注意'; $('verdictText').textContent = text; result.verdict = text; }
+function showInfo(info) {
+  const dl = $('info'); dl.innerHTML = '';
+  for (const [k, v] of Object.entries(info)) { const dt = document.createElement('dt'), dd = document.createElement('dd'); dt.textContent = k; dd.textContent = typeof v === 'object' ? JSON.stringify(v) : String(v); dl.append(dt, dd); }
+}
+const f1 = v => v == null || !Number.isFinite(v) ? '—' : v.toFixed(1);
+function stats(v) { const s = [...v].sort((a, b) => a - b); return { p50: s[s.length >> 1], max: s[s.length - 1], mean: s.reduce((a, b) => a + b, 0) / s.length, n: s.length }; }
+function publish() { $('out').value = JSON.stringify(result, null, 1); }
+
+// ---------- capabilities ----------
+function probe() {
+  const c = document.createElement('canvas'), gl = c.getContext('webgl2', { antialias: false });
+  const info = { webgl2: !!gl };
+  if (gl) {
+    const dbg = gl.getExtension('WEBGL_debug_renderer_info'), ext = n => !!gl.getExtension(n);
+    Object.assign(info, {
+      renderer: dbg ? gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER),
+      vendor: dbg ? gl.getParameter(dbg.UNMASKED_VENDOR_WEBGL) : gl.getParameter(gl.VENDOR),
+      version: gl.getParameter(gl.VERSION), glsl: gl.getParameter(gl.SHADING_LANGUAGE_VERSION),
+      maxTexture: gl.getParameter(gl.MAX_TEXTURE_SIZE), maxRenderbuffer: gl.getParameter(gl.MAX_RENDERBUFFER_SIZE), maxArrayLayers: gl.getParameter(gl.MAX_ARRAY_TEXTURE_LAYERS),
+      colorBufferFloat: ext('EXT_color_buffer_float'), floatBlend: ext('EXT_float_blend'), floatLinear: ext('OES_texture_float_linear'),
+      timerQuery: ext('EXT_disjoint_timer_query_webgl2'), multiDraw: ext('WEBGL_multi_draw'), parallelCompile: ext('KHR_parallel_shader_compile'), drawBuffersIndexed: ext('OES_draw_buffers_indexed'),
+    });
+    gl.getExtension('WEBGL_lose_context')?.loseContext();
+  }
+  Object.assign(info, {
+    webgpu: 'gpu' in navigator, dpr: devicePixelRatio, screen: `${screen.width}×${screen.height}`, viewport: `${innerWidth}×${innerHeight}`,
+    coarsePointer: matchMedia('(pointer: coarse)').matches, deviceMemoryGB: navigator.deviceMemory ?? null, cores: navigator.hardwareConcurrency ?? null,
+    standalone: matchMedia('(display-mode: standalone)').matches, language: navigator.language, ua: navigator.userAgent,
+  });
+  return info;
+}
+
+// ---------- synthetic inputs (a nebula with a bright knot, a dense star field, a dark-sky LUT) ----------
+let seed = 20261011;
+const rnd = () => (seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0) / 2 ** 32;
+function makeAtlas(size) {
+  const rgba = new Float32Array(4 * size * size);
+  for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) {
+    const u = x / size - 0.5, v = y / size - 0.5, r2 = u * u + v * v, i = 4 * (y * size + x);
+    const neb = Math.max(0, 1 - 4 * r2) * (0.6 + 0.4 * Math.sin(23 * u + 7 * v) * Math.cos(17 * v - 5 * u)) + 0.3 * Math.exp(-((u - 0.1) ** 2 + (v + 0.15) ** 2) / 0.004);
+    rgba[i] = 5e-6 * neb; rgba[i + 1] = 1.5e-6 * neb; rgba[i + 2] = 0.8e-6 * neb; rgba[i + 3] = 2e-8;
+  }
+  return rgba;
+}
+function makeStars(count, half) {
+  const X = new Float32Array(count), Y = new Float32Array(count), F = new Float32Array(count), T = new Float32Array(count);
+  for (let i = 0; i < count; i++) {
+    const mag = 11 - 9 * Math.pow(rnd(), 2.5);
+    X[i] = (rnd() * 2 - 1) * half; Y[i] = (rnd() * 2 - 1) * half; F[i] = 3.6e-11 * 10 ** (-0.4 * mag); T[i] = 3000 * 10 ** (0.52 * rnd());
+  }
+  const order = Uint32Array.from({ length: count }, (_, i) => i).sort((a, b) => F[b] - F[a]);
+  const stars = new Float32Array(4 * count), seeds = new Uint32Array(count);
+  order.forEach((i, k) => { stars[4 * k] = X[i]; stars[4 * k + 1] = Y[i]; stars[4 * k + 2] = F[i]; stars[4 * k + 3] = T[i]; seeds[k] = i; });
+  return { stars, seeds };
+}
+function makeLut() {
+  const nodes = 8, rows = 4, data = new Float32Array(4 * nodes * rows);
+  for (let k = 0; k < nodes; k++) {
+    const fall = 1 - 0.3 * k / (nodes - 1), at = (row, v) => data.set(v, 4 * (row * nodes + k));
+    at(0, [2e9 * fall, 2e9 * fall, 2e9 * fall, 5e10 * fall]);
+    at(1, [2000 * fall, 1500 * fall, 400 * fall, 100 * fall]);
+    at(2, [1.2e14 * fall, 0, 0, 0]); at(3, [1.0e14 * fall, 0, 0, 0]);
+  }
+  return { nodes, rows, maxAngleRad: 0.4, data, starT: { min: 2500, max: 40000, count: 2 } };
+}
+const rot = a => { const c = Math.cos(a), s = Math.sin(a); return [c, 0, -s, 0, 1, 0, s, 0, c]; };
+const compact = v => { v &= 0x55555555; v = (v | (v >>> 1)) & 0x33333333; v = (v | (v >>> 2)) & 0x0F0F0F0F; v = (v | (v >>> 4)) & 0x00FF00FF; return (v | (v >>> 8)) & 0x0000FFFF; };
+function makeTile(order, tile) {
+  const codes = new Uint16Array(4 * 65536), Tt = tile + 17 * order;
+  for (let L = 0; L < 65536; L++) {
+    const x = compact(L), y = compact(L >>> 1);
+    for (let b = 0; b < 4; b++) codes[4 * L + b] = Math.round(30000 + 18000 * Math.sin(0.07 * x + 0.11 * y + 0.9 * b + 0.37 * Tt) * Math.cos(0.05 * x - 0.03 * y + 0.5 * b + 0.21 * Tt));
+  }
+  return { key: D.tileKey(order, tile), order, tile, codes, soft: Float64Array.from([1, 0.5, 0.25, 0.1]), amax: Float64Array.from([6, 5, 5, 7]) };
+}
+// Star tiles of the free sky (D117): `count` stars spread over the view's TAN square, split over the footprint's star
+// tiles (which tile a star sits in does not matter to the renderer), each tile brightest first as the data worker packs them.
+function makeStarTiles(g, count, ids) {
+  const per = Math.ceil(count / ids.length), [ax, ay, az] = g.frame.axis, [wx, wy, wz] = g.frame.west, [nx, ny, nz] = g.frame.north, h = g.halfTan, out = [];
+  for (let k = 0; k < ids.length; k++) {
+    const n = Math.min(per, count - k * per); if (n <= 0) break;
+    const F = new Float32Array(n), X = new Float32Array(n), Y = new Float32Array(n), T = new Float32Array(n);
+    for (let i = 0; i < n; i++) { const mag = 11 - 9 * Math.pow(rnd(), 2.5); F[i] = 3.6e-11 * 10 ** (-0.4 * mag); X[i] = (rnd() * 2 - 1) * h; Y[i] = (rnd() * 2 - 1) * h; T[i] = 3000 * 10 ** (0.52 * rnd()); }
+    const order = Uint32Array.from({ length: n }, (_, i) => i).sort((a, b) => F[b] - F[a]);
+    const data = new Float32Array(6 * n), ids32 = new Uint32Array(data.buffer);
+    order.forEach((i, j) => {
+      const x = ax + X[i] * wx + Y[i] * nx, y = ay + X[i] * wy + Y[i] * ny, z = az + X[i] * wz + Y[i] * nz, l = Math.hypot(x, y, z), o = 6 * j;
+      data[o] = x / l; data[o + 1] = y / l; data[o + 2] = z / l; data[o + 3] = F[i]; data[o + 4] = T[i]; ids32[o + 5] = k * per + i + 1;
+    });
+    out.push({ key: 'stars-v1/' + ids[k], dir: 'stars-v1', tile: ids[k], count: n, data, ids: ids32, bytes: data.byteLength });
+  }
+  return out;
+}
+// A 25 mm view at the Galactic centre: its map tiles (order 10, 256² each) and star tiles, and the view object the
+// renderer takes (setSkyView), exactly as the free-sky session builds it from the pyramid.
+function makeSkyInputs() {
+  const centre = [266.405, -28.936], g = D.viewGeometry(centre, 25, 1.5), order = D.STEP_ORDER[25];
+  const tiles = D.footprintTiles(g, order - 8).map(t => makeTile(order, t)), starTiles = makeStarTiles(g, STARS, D.footprintTiles(g, 3));
+  const view = { serial: 1, step: 25, order, orders: [order], geometry: g, meta: { size: g.size, planeStep: g.planeStep, refPixel: g.refPixel }, tiles, starTiles, starCount: STARS, stars: new Float32Array(0), starSeeds: new Uint32Array(0), hold: 0, sample: () => null };
+  return { centre, order, tiles, starTiles, view, frameAt: i => D.viewGeometry([centre[0] + 2e-3 * i, centre[1]], 25, 1.5).frame };
+}
+
+// ---------- the pipeline at one grid ----------
+async function runGrid(n, inputs, step) {
+  const canvas = document.createElement('canvas'); canvas.width = canvas.height = n;
+  const R = new D.EyepieceRenderer(canvas), gl = R.gl;
+  try {
+    R.setLut(inputs.lut);
+    // forceDynamicStars as the free sky does: every catalogue star inside the field is drawn each frame with the seeing.
+    R.setAtlas({ size: ATLAS, stepTan: 2 * ATLAS_HALF / (ATLAS - 1), refPixel: [(ATLAS - 1) / 2, (ATLAS - 1) / 2], rgba: inputs.atlas, stars: inputs.stars, starSeeds: inputs.seeds, levels: [], forceDynamicStars: true });
+    const pitch = 18 / n;
+    const kernels = D.tubeKernels(64, 0.25, pitch, { sigmas: [0.0008, 0.0024], weights: [0.8, 0.2] }, { diameterMm: 0.6, weight: 0.05, profile: 'two-disc' }, { sigmas: [0.0006, 0.002], weights: [0.8, 0.2] }, false);
+    R.setGeometry({ n, focalMm: 25, centerMm: [0, 0], pitchMm: pitch, cathodeRadiusMm: 9 }, kernels, false);
+    R.setPointing(rot(0)); R.setSeeing({ tiltMm: 0.002, scint: 0.1 });
+    R.setMechanism({ gain: 800, f2: 1.2, darkRate: 616, snowRate: 200, snowCharge: 50 });
+    R.setDisplay({ xyzPerIntensity: [2e-7, 2e-7, 2e-7], exposureEv: 1, gamma: 1 });
+    R.setNoise({ noiseAppearanceVersion: 2, noiseStyle: 'fine', noiseGrainUm: 5, noiseStrength: 0.7, noiseTail: 0.6, noisePattern: 0.008, noiseSeed: 417 });
+    R.setHighlight(true, 2e4, 2e4); R.setStarShape(0.7);
+    const px = new Uint8Array(4), sync = () => { gl.bindFramebuffer(gl.FRAMEBUFFER, null); gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px); };
+    let fi = 1; const opts = () => ({ mean: false, ramp: 1, seed: 1, integrationSeconds: 0.05, timeS: fi / 60 });
+    const time = async (fn, k, label) => { const v = []; for (let i = 0; i < k; i++) { sync(); const t0 = performance.now(); fn(i); sync(); v.push(performance.now() - t0); step.progress(`${n}² ${label} ${i + 1}/${k}`); await frame(); } return stats(v); };
+    // Warm-up: the first frame compiles the frame programs, the first drag rebuild the single-sample rate program
+    // (shader compilation is not what is being measured).
+    for (let i = 0; i < 3; i++) { if (!R.frame(1 / 60, fi++, opts())) throw Error('frame() drew nothing'); sync(); await frame(); }
+    R.setRateSubsamples(1); R.setPointing(rot(1e-5)); R.frame(1 / 60, fi++, opts()); sync(); R.setRateSubsamples(8); R.setPointing(rot(0)); R.frame(1 / 60, fi++, opts()); sync(); await frame();
+    const idle = await time(() => R.frame(1 / 60, fi++, opts()), 8, '静止帧');
+    R.setRateSubsamples(1);
+    const drag = await time(i => { R.setPointing(rot(1e-4 * (i + 1))); R.frame(1 / 60, fi++, opts()); }, 8, '拖动帧');
+    const rates = await time(i => { R.setPointing(rot(1e-4 * (i + 9))); R.buildRates(); }, 6, '速率图');
+    R.setRateSubsamples(8);
+    const settle = await time(i => { R.setPointing(rot(1e-4 * (i + 20))); R.buildRates(); }, 3, '停手重建');
+    const starPass = await time(i => R.depositStars(R.t.starDyn, 0.002, 0.1, 100 + i, i / 60, 0, R.dynStars), 6, '星点');
+    const fence = [];
+    for (let i = 0; i < 8; i++) {
+      R.frame(1 / 60, fi++, opts()); const s = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0); gl.flush(); const t0 = performance.now();
+      while (gl.getSyncParameter(s, gl.SYNC_STATUS) !== gl.SIGNALED) { await frame(); if (performance.now() - t0 > 5000) break; }
+      fence.push(performance.now() - t0); gl.deleteSync(s); step.progress(`${n}² 栅栏 ${i + 1}/8`);
+    }
+    // Sustained drag: one frame per display refresh, but never more than one frame queued on the GPU (its fence must
+    // be signalled before the next frame goes out), as the compositor paces a real page. Without this a detached canvas
+    // would just queue frames at the refresh rate and report 60 frames a second on any GPU.
+    R.setRateSubsamples(1);
+    const t0 = performance.now(); let frames = 0;
+    while (performance.now() - t0 < 1500) {
+      R.setPointing(rot(1e-4 * (frames + 40))); R.frame(1 / 60, fi++, opts()); frames++;
+      const s = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0); gl.flush();
+      do { await frame(); } while (gl.getSyncParameter(s, gl.SYNC_STATUS) !== gl.SIGNALED && performance.now() - t0 < 6000);
+      gl.deleteSync(s);
+    }
+    const sustainedMs = (performance.now() - t0) / frames;
+    const r = { grid: n, texture: R.gridSize, margin: R.gridMargin, starFormat: R.starFormat === gl.R32F ? 'R32F' : 'R16F', stars: { catalogue: R.starCount, dynamic: R.dynStars, candidates: R.starSelection ? R.starSelection.length : null },
+      idle, drag, rates, settle, starPass, fence: stats(fence), sustainedMs, sustainedFrames: frames, healthy: R.healthy() };
+    // The free sky (D117) on the same grid and kernels: the rate map samples the synthetic HEALPix tiles directly
+    // (one sample a cell while dragging, k² at rest), the catalogue is the resident star tiles' buffers.
+    const sky = inputs.sky;
+    R.setSkyView(sky.view);
+    for (let i = 0; i < 1200 && !R.skyCompiled; i++) await sleep(16);
+    R.checkSkyPrograms();
+    const need = { tiles: sky.tiles.map(t => ({ key: t.key, order: t.order, tile: t.tile })), stars: sky.starTiles.map(t => ({ key: t.key })), orders: [sky.order] };
+    const cover = R.syncSky(need, sky.tiles, sky.starTiles, () => sky.tiles.map(t => t.tile), 1000);
+    if (!cover.covered) throw Error('sky footprint not resident: ' + cover.missing + ' missing');
+    R.setSkyFrame(sky.frameAt(0)); R.setPointing(rot(0));
+    for (let i = 0; i < 2; i++) { if (!R.frame(1 / 60, fi++, opts())) throw Error('sky frame() drew nothing'); sync(); await frame(); }
+    R.setRateSubsamples(1); R.setSkyFrame(sky.frameAt(1)); R.frame(1 / 60, fi++, opts()); sync(); R.setRateSubsamples(8); R.setSkyFrame(sky.frameAt(0)); R.frame(1 / 60, fi++, opts()); sync(); await frame();
+    R.setRateSubsamples(1);
+    const skyDrag = await time(i => { R.setSkyFrame(sky.frameAt(i + 1)); R.frame(1 / 60, fi++, opts()); }, 8, '天空拖动帧');
+    const skyRates = await time(i => { R.setSkyFrame(sky.frameAt(i + 9)); R.buildRates(); }, 6, '天空速率图');
+    R.setRateSubsamples(8);
+    const skySettle = await time(i => { R.setSkyFrame(sky.frameAt(i + 20)); R.buildRates(); }, 3, '天空停手重建');
+    const skyStars = await time(i => R.depositStars(R.t.starDyn, 0.002, 0.1, 100 + i, i / 60, 0, R.starCount), 6, '天空星点');
+    const skyStarMap = await time(() => R.drawStarMap(), 4, '天空星点图');
+    R.setRateSubsamples(1);
+    const t1 = performance.now(); let skyFrames = 0;
+    while (performance.now() - t1 < 1500) {
+      R.setSkyFrame(sky.frameAt(skyFrames + 40)); R.frame(1 / 60, fi++, opts()); skyFrames++;
+      const s = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0); gl.flush();
+      do { await frame(); } while (gl.getSyncParameter(s, gl.SYNC_STATUS) !== gl.SIGNALED && performance.now() - t1 < 6000);
+      gl.deleteSync(s);
+    }
+    r.sky = { tiles: sky.tiles.length, starTiles: sky.starTiles.length, stars: R.starCount, multiDraw: !!R.multiDraw, drag: skyDrag, rates: skyRates, settle: skySettle, starPass: skyStars, starMap: skyStarMap, sustainedMs: (performance.now() - t1) / skyFrames, sustainedFrames: skyFrames, healthy: R.healthy() };
+    return r;
+  } finally { R.dispose(true); }
+}
+
+async function run() {
+  $('steps').innerHTML = ''; $('grids').tBodies[0].innerHTML = ''; $('sky').tBodies[0].innerHTML = ''; $('copyNote').textContent = '';
+  result = { page: 'devicetest 2 (NvAstraSimulator 0.9.57)', at: new Date().toISOString(), steps: [], caps: null, grids: [], errors: [] };
+  verdict('', '正在检测…');
+  const s1 = addStep('显卡能力');
+  try { result.caps = probe(); showInfo(result.caps); s1.ok(`${result.caps.renderer ?? '无 WebGL2'}`); } catch (e) { s1.bad(String(e)); result.errors.push(String(e)); }
+  if (!result.caps?.webgl2 || !result.caps.colorBufferFloat) { verdict('bad', '这台设备的浏览器没有 WebGL2 浮点渲染（EXT_color_buffer_float），模拟器无法运行。'); publish(); return; }
+  const s2 = addStep('合成数据');
+  const inputs = {};
+  try { const t0 = performance.now(); inputs.atlas = makeAtlas(ATLAS); Object.assign(inputs, makeStars(STARS, ATLAS_HALF)); inputs.lut = makeLut(); inputs.sky = makeSkyInputs(); s2.ok(`${ATLAS}² 星云图、${STARS} 颗星；天空 ${inputs.sky.tiles.length} 张瓦片、${inputs.sky.starTiles.length} 张星表瓦片，${(performance.now() - t0).toFixed(0)} ms`); } catch (e) { s2.bad(String(e)); result.errors.push(String(e)); publish(); return; }
+  await frame();
+  for (const n of GRIDS) {
+    const st = addStep(`网格 ${n}²（${(18 / n * 1000).toFixed(0)} µm/格）`);
+    try {
+      const r = await runGrid(n, inputs, st); result.grids.push(r);
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${n}²</td><td>${f1(r.idle.p50)}</td><td>${f1(r.drag.p50)}</td><td>${f1(r.rates.p50)}</td><td>${f1(r.settle.p50)}</td><td>${f1(r.starPass.p50)}</td><td>${f1(r.fence.p50)}</td><td>${f1(r.sustainedMs)}</td>`;
+      $('grids').tBodies[0].appendChild(tr);
+      const ts = document.createElement('tr'), k = r.sky;
+      ts.innerHTML = `<td>${n}²</td><td>${f1(k.drag.p50)}</td><td>${f1(k.rates.p50)}</td><td>${f1(k.settle.p50)}</td><td>${f1(k.starPass.p50)}</td><td>${f1(k.starMap.p50)}</td><td>${f1(k.sustainedMs)}</td>`;
+      $('sky').tBodies[0].appendChild(ts);
+      st.ok(`静止 ${f1(r.idle.p50)} ms，拖动 ${f1(r.drag.p50)} ms，连续拖动 ${f1(r.sustainedMs)} ms/帧，星点 ${r.stars.dynamic}/${r.stars.catalogue}，${r.starFormat}；天空拖动 ${f1(k.drag.p50)} ms，连续 ${f1(k.sustainedMs)} ms/帧，${k.stars} 颗星`);
+    } catch (e) { st.bad(String(e)); result.errors.push(`grid ${n}: ${e}`); if (/GpuUnsupported|context/i.test(String(e))) break; }
+    publish(); await frame();
+  }
+  const g416 = result.grids.find(g => g.grid === 416) ?? result.grids.at(-1);
+  const caps = result.caps, notes = [];
+  if (!caps.floatBlend) notes.push('没有 32 位浮点混合（苹果设备常见），星点走 R16F 路径');
+  if (!caps.floatLinear) notes.push('没有 32 位浮点线性滤波');
+  if (!caps.timerQuery) notes.push('没有 GPU 计时查询（手机常见）');
+  if (g416) {
+    const ms = g416.sky?.sustainedMs ?? g416.sustainedMs, fps = 1000 / ms;
+    const grade = ms <= 18 ? '流畅' : ms <= 34 ? '可用（约 30 帧/秒）' : '偏慢';
+    verdict(result.errors.length ? 'warn' : 'ok', `416² 网格自由天空连续拖动约 ${f1(ms)} ms/帧（约 ${fps.toFixed(0)} 帧/秒）：${grade}。${notes.length ? notes.join('；') + '。' : ''}请复制下方结果发给开发者。`);
+  } else verdict('bad', '没有完成任何网格的测量：' + result.errors.join('；'));
+  publish();
+  window.__deviceCheck = result;
+}
+$('copy').addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText($('out').value); $('copyNote').textContent = '已复制'; }
+  catch { $('out').select(); try { document.execCommand('copy'); $('copyNote').textContent = '已复制'; } catch { $('copyNote').textContent = '请长按文本框手动复制'; } }
+});
+$('rerun').addEventListener('click', () => { window.__deviceCheck = undefined; run().catch(e => { verdict('bad', String(e)); result.errors.push(String(e)); publish(); window.__deviceCheck = result; }); });
+run().catch(e => { verdict('bad', String(e)); result.errors.push(String(e)); publish(); window.__deviceCheck = result; });
+</script>
+
+</body>
+</html>

@@ -668,11 +668,28 @@ new application dataset is conveyed here. Full processing algorithms,
 source links, diagnostic-image notices and failed science gates:
 scripts/preprocess/iphas/README.md and docs/reviews/2026-10-09/SKY_STEP10.md.
 
+Globular clusters, atlas9 (D119, 2026-10-12)
+--------------------------------------------
+Eight globular clusters (Omega Centauri / NGC 5139, 47 Tucanae / NGC 104, M22, M13, M4, M5,
+NGC 6752, NGC 6397). Stars: ESA/Gaia/DPAC Gaia DR3 (Gaia Collaboration 2023, A&A 674, A1;
+CC BY-NC 3.0 IGO, non-commercial) and ESA Hipparcos (ESA 1997), queried through the CDS
+VizieR TAP service (I/355/gaiadr3, I/239/hip_main). This research has made use of the VizieR
+catalogue access tool, CDS, Strasbourg, France.
+Model of the unresolved cluster light: parameters from the catalogue of Milky Way globular
+clusters, Harris, W. E. 1996, AJ 112, 1487 (2010 edition), https://physwww.mcmaster.ca/~harris/mwgc.dat.
+The compiler supplies the catalogue free of charge; anyone who supplies it in turn must refer to
+the original source and charge no fee. Only the numerical parameters of eight clusters are used
+(position, integrated V and B-V, King concentration and radii) in a King (1962) profile computed
+by this project (data/scenes/atlas9/*.json "profile", labelled as a model). Background maps are
+resampled from data/sky/pyramid-v1, whose NSNS DR0.2, SHASSA and Finkbeiner (2003) credits and
+restrictions above apply unchanged.
+
 Sky atlas card photos (D108, 2026-10-10)
 ---------------------------------------
-Thirty-two photos from Wikimedia Commons, registered to the star catalogue, rotated
+Forty photos from Wikimedia Commons (the eight globular clusters added 2026-10-12), registered to the star catalogue, rotated
 north up / east left, cropped and scaled to 360x240 by this project (data/sky/catalog-v1/photos/).
 Crops of CC BY-SA photos are shared under the same licence. Source, author and licence of each:
+47-tuc: Wide-field view of the sky around the globular cluster 47 Tucanae (eso1302c).tiff — ESO/Digitized Sky Survey 2 Acknowledgment: Davide De Martin., CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:Wide-field_view_of_the_sky_around_the_globular_cluster_47_Tucanae_(eso1302c).tiff
 auriga: IC 410 - IC 417 - NGC 1912 in Auriga.jpg — gjdonatiello, CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en), https://commons.wikimedia.org/wiki/File:IC_410_-_IC_417_-_NGC_1912_in_Auriga.jpg
 barnard: Orion Head to Toe.jpg — Rogelio Bernal Andreo, CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0), https://commons.wikimedia.org/wiki/File:Orion_Head_to_Toe.jpg
 bubble: The Bubble Nebula (NGC 7635) (noao0702a).jpg — T.A. Rector/University of Alaska Anchorage, H. Schweiker/WIYN and NOIRLab/NSF/AURA, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:The_Bubble_Nebula_(NGC_7635)_(noao0702a).jpg
@@ -694,12 +711,19 @@ helix: NGC 7293 (noao-helixblock3).jpg — KPNO/NOIRLab/NSF/AURA/Adam Block, CC 
 horsehead: Horsehead Nebula and Flame Nebula.jpg — Gianni.lacroce, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:Horsehead_Nebula_and_Flame_Nebula.jpg
 jellyfish: IC 443 region (new version) - Flickr - gjdonatiello.jpg — Giuseppe Donatiello from Oria (Brindisi), Italy, CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en), https://commons.wikimedia.org/wiki/File:IC_443_region_(new_version)_-_Flickr_-_gjdonatiello.jpg
 lmc: Deepest, widest view of the Large Magellanic Cloud from SMASH.jpg — CTIO/NOIRLab/NSF/AURA/SMASH/D. Nidever (Montana State University) Acknowledgment: Image processing: Travis Rector (University of Alaska Anchorage), Mahdi Zamani &amp; Davide de Martin, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:Deepest,_widest_view_of_the_Large_Magellanic_Cloud_from_SMASH.jpg
+m13: M13 cluster Tõrva.jpg — Taavi Niittee, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:M13_cluster_T%C3%B5rva.jpg
 m16: Eagle Nebula from ESO.jpg — ESO, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:Eagle_Nebula_from_ESO.jpg
+m22: M22 Combine7 cp Vs (18670836859).jpg — Giuseppe Donatiello, CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en), https://commons.wikimedia.org/wiki/File:M22_Combine7_cp_Vs_(18670836859).jpg
 m27: M27 Dumbbell.png — Juan Lacruz, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:M27_Dumbbell.png
 m31: Andromeda Galaxy 560mm FL.jpg — David (Deddy) Dayag, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:Andromeda_Galaxy_560mm_FL.jpg
+m4: The globular star cluster Messier 4.jpg — ESO. Acknowledgement: ESO Imaging Survey, CC BY 3.0 (https://creativecommons.org/licenses/by/3.0), https://commons.wikimedia.org/wiki/File:The_globular_star_cluster_Messier_4.jpg
 m42: M42 Orion Nebula and Running Man (Dust and Gas).jpg — Dylan O'Donnell, deography.com, CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en), https://commons.wikimedia.org/wiki/File:M42_Orion_Nebula_and_Running_Man_(Dust_and_Gas).jpg
+m5: Messier 5.jpg — Starhopper, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:Messier_5.jpg
 m8: Lagoon Nebula (ESO).jpg — ESO/S. Guisard, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:Lagoon_Nebula_(ESO).jpg
+ngc6397: Euclid’s view of globular cluster NGC 6397 ESA25170813.jpg — ESA/Euclid/Euclid Consortium/NASA image processing by J.-C. Cuillandre (CEA Paris-Saclay) G. Anselmi, CC BY-SA 3.0 igo (https://creativecommons.org/licenses/by-sa/3.0/igo/deed.en), https://commons.wikimedia.org/wiki/File:Euclid%E2%80%99s_view_of_globular_cluster_NGC_6397_ESA25170813.jpg
+ngc6752: Star cluster NGC 6752.jpg — ESO, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:Star_cluster_NGC_6752.jpg
 north-america: NGC 7000- The North America Nebula and the Pelican Nebula (noao-n7000mosblock).tiff — KPNO/NOIRLab/NSF/AURA/Adam Block, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:NGC_7000-_The_North_America_Nebula_and_the_Pelican_Nebula_(noao-n7000mosblock).tiff
+omega-cen: NGC 5139- Omega Centauri Widefield (noao-n5139guvenen).jpg — KPNO/NOIRLab/NSF/AURA/Blythe Guvenen, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:NGC_5139-_Omega_Centauri_Widefield_(noao-n5139guvenen).jpg
 pacman: Pacman nebula.jpg — Ram samudrala, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), https://commons.wikimedia.org/wiki/File:Pacman_nebula.jpg
 palette: Milky Way from Simeon, Virginia.png — Brandon Ghany / Horizon Productions SFL, CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en), https://commons.wikimedia.org/wiki/File:Milky_Way_from_Simeon,_Virginia.png
 rosette: Rosett2.jpg — Taavi Niittee, CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en), https://commons.wikimedia.org/wiki/File:Rosett2.jpg

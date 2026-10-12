@@ -98,7 +98,7 @@ textarea { width: 100%; box-sizing: border-box; min-height: 160px; font: 12px/1.
   </section>
 </main>
 
-<script>"use strict";var Diag=(()=>{var I=Object.defineProperty;var Oe=Object.getOwnPropertyDescriptor;var qe=Object.getOwnPropertyNames;var Ne=Object.prototype.hasOwnProperty;var Ve=(r,e,t)=>e in r?I(r,e,{enumerable:!0,configurable:!0,writable:!0,value:t}):r[e]=t;var je=(r,e)=>{for(var t in e)I(r,t,{get:e[t],enumerable:!0})},Be=(r,e,t,i)=>{if(e&&typeof e=="object"||typeof e=="function")for(let n of qe(e))!Ne.call(r,n)&&n!==t&&I(r,n,{get:()=>e[n],enumerable:!(i=Oe(e,n))||i.enumerable});return r};var Xe=r=>Be(I({},"__esModule",{value:!0}),r);var p=(r,e,t)=>Ve(r,typeof e!="symbol"?e+"":e,t);var ht={};je(ht,{FULLSCREEN_VS:()=>F,GlResources:()=>O,MASKED_CODE:()=>Z,SKY_PROJECT_FS:()=>G,SKY_PROJECT_VARIANTS:()=>B,STEP_ORDER:()=>J,SkyProjector:()=>C,TILE_PIXELS:()=>K,footprintTiles:()=>Re,planeGeometry:()=>Fe,planePixel:()=>ze,ringNested:()=>$,tileIndex:()=>Pe,tileKey:()=>Ee});var j=`
+<script>"use strict";var Diag=(()=>{var G=Object.defineProperty;var Xe=Object.getOwnPropertyDescriptor;var Ke=Object.getOwnPropertyNames;var He=Object.prototype.hasOwnProperty;var Je=(a,e,t)=>e in a?G(a,e,{enumerable:!0,configurable:!0,writable:!0,value:t}):a[e]=t;var $e=(a,e)=>{for(var t in e)G(a,t,{get:e[t],enumerable:!0})},Ze=(a,e,t,i)=>{if(e&&typeof e=="object"||typeof e=="function")for(let r of Ke(e))!He.call(a,r)&&r!==t&&G(a,r,{get:()=>e[r],enumerable:!(i=Xe(e,r))||i.enumerable});return a};var Qe=a=>Ze(G({},"__esModule",{value:!0}),a);var d=(a,e,t)=>Je(a,typeof e!="symbol"?e+"":e,t);var St={};$e(St,{FULLSCREEN_VS:()=>M,GlResources:()=>q,MASKED_CODE:()=>V,SKY_PROJECT_FS:()=>U,SKY_PROJECT_VARIANTS:()=>J,STEP_ORDER:()=>re,SkyProjector:()=>N,TILE_PIXELS:()=>O,footprintTiles:()=>Ue,planeGeometry:()=>Ce,planePixel:()=>qe,ringNested:()=>ie,tileIndex:()=>Ne,tileKey:()=>Ge});var Y=`
 // Jarzynski & Olano 2020, "Hash Functions for GPU Rendering", pcg4d.
 uvec4 pcg4d(uvec4 v) {
   v = v * 1664525u + 1013904223u;
@@ -194,10 +194,11 @@ float mcpCharge(float n, float gain, float f2) {
 precision highp float;
 precision highp int;
 precision highp sampler2D;
-`,F=h+`
+`,C=a=>h.replace("#version 300 es",`#version 300 es
+#define ${a}`);var M=h+`
 const vec2 P[3] = vec2[3](vec2(-1.0, -1.0), vec2(3.0, -1.0), vec2(-1.0, 3.0));
 void main() { gl_Position = vec4(P[gl_VertexID], 0.0, 1.0); }
-`,U=`
+`,T=`
 uniform sampler2D u_lut;
 uniform int u_nodes;
 uniform float u_maxAngle;
@@ -215,13 +216,23 @@ float starWeight(float temperature, float angle) {
   int k1 = min(k0 + 1, u_tNodes - 1);
   return mix(lutAt(2 + k0, angle).x, lutAt(2 + k1, angle).x, x - float(k0));
 }
-`,se=`
+`,X=`
 const vec2 D65_UV = vec2(0.19784, 0.46832);
 vec2 uvOf(vec3 c) { float q = c.x + 15.0 * c.y + 3.0 * c.z; return q > 0.0 ? vec2(4.0 * c.x, 9.0 * c.y) / q : D65_UV; }
 vec3 xyzOfUv(vec2 uv) { vec2 xy = vec2(9.0 * uv.x, 4.0 * uv.y) / (6.0 * uv.x - 16.0 * uv.y + 12.0); return vec3(xy.x, xy.y, 1.0 - xy.x - xy.y) / xy.y; }
-`,vt=h+U+`
+`,K=`
+#ifdef STAR_SKY
+layout(location=0) in vec4 a_dir;             // ICRS unit vector, F_lambda(550 nm) W/m^2/nm
+layout(location=1) in uint a_seed;            // stable global sky ID
+layout(location=2) in float a_T;              // colour temperature K
+uniform vec3 u_axis, u_west, u_north;         // the virtual plane's TAN frame (tangent point = the view axis)
+vec4 starAttr() { float dz = dot(a_dir.xyz, u_axis); return vec4(dz > 1e-6 ? vec2(dot(a_dir.xyz, u_west), dot(a_dir.xyz, u_north)) / dz : vec2(1e9), a_dir.w, a_T); }
+#else
 layout(location=0) in vec4 a_star;            // TAN-plane X (west+), Y (north+), F_lambda(550 nm) W/m^2/nm, colour temperature K
 layout(location=1) in uint a_seed;            // original catalogue ordinal or stable global sky ID
+vec4 starAttr() { return a_star; }
+#endif
+`,me=K+`
 uniform vec2 u_originMm;   // mm position of texel (0,0) centre
 uniform float u_pitchMm;
 uniform float u_focalMm;
@@ -240,11 +251,12 @@ out float v_rate;
 uint hashU(uint x) { x ^= x >> 16; x *= 0x7feb352du; x ^= x >> 15; x *= 0x846ca68bu; x ^= x >> 16; return x; }
 float hashF(uint x) { return float(hashU(x) >> 8) * (1.0 / 16777216.0); }
 void main() {
-  vec3 cam = transpose(u_point) * vec3(a_star.xy, 1.0);
+  vec4 star = starAttr();
+  vec3 cam = transpose(u_point) * vec3(star.xy, 1.0);
   vec2 mm = cam.z > 1e-6 ? cam.xy / cam.z * u_focalMm : vec2(1e9);
   float r = length(mm);
   // Point source: total rate = F550 * w(T, angle) * f^2 (w already includes the band width).
-  float rate = a_star.z * starWeight(a_star.w, atan(r / u_focalMm)) * u_sceneScale * u_focalMm * u_focalMm * 1.0e-3;
+  float rate = star.z * starWeight(star.w, atan(r / u_focalMm)) * u_sceneScale * u_focalMm * u_focalMm * 1.0e-3;
   uint id = a_seed * 7919u + 17u;
   if (u_tiltMm > 0.0) {
     // Exact rectangular average of three sinusoids per star/axis (0.7-14 Hz).
@@ -277,7 +289,7 @@ void main() {
   gl_PointSize = 3.0;
   gl_Position = r > u_cathodeR ? vec4(2.0, 2.0, 2.0, 1.0) : vec4((cell + 0.5) / u_size * 2.0 - 1.0, 0.0, 1.0);
 }
-`,_t=h+`
+`,At=h+T+me,Rt=C("STAR_SKY")+T+me,Et=h+`
 in vec2 v_cell;
 in float v_rate;
 out vec4 o;
@@ -286,8 +298,54 @@ void main() {
   vec2 w = max(vec2(0.0), 1.0 - d);
   o = vec4(v_rate * w.x * w.y, 0.0, 0.0, 0.0);
 }
-`,We=h+U+`
+`,he=K+`
+uniform vec2 u_originMm;
+uniform float u_pitchMm;
+uniform float u_focalMm;
+uniform float u_cathodeR;
+uniform vec2 u_size;
+uniform mat3 u_point;
+uniform float u_radius;
+out vec2 v_cell;
+out float v_logFlux;
+void main() {
+  vec4 star = starAttr();
+  vec3 cam = transpose(u_point) * vec3(star.xy, 1.0);
+  vec2 mm = cam.z > 1e-6 ? cam.xy / cam.z * u_focalMm : vec2(1e9);
+  vec2 cell = (mm - u_originMm) / u_pitchMm;
+  v_cell = cell;
+  v_logFlux = log(max(star.z, 1e-30));
+  gl_PointSize = 2.0 * u_radius + 2.0;
+  gl_Position = length(mm) > u_cathodeR ? vec4(2.0, 2.0, 2.0, 1.0) : vec4((cell + 0.5) / u_size * 2.0 - 1.0, 0.0, 1.0);
+}
+`,Ft=h+he,Mt=C("STAR_SKY")+he,Pt=h+`
+uniform float u_radius;
+uniform float u_variance;
+in vec2 v_cell;
+in float v_logFlux;
+out vec4 o;
+void main() {
+  vec2 d = v_cell - (gl_FragCoord.xy - 0.5);
+  float r2 = dot(d, d);
+  if (r2 > u_radius * u_radius) discard;
+  // ln F550 spans about -40..-10 here; the score only orders stars, so any monotone map into [0, 1] will do.
+  gl_FragDepth = clamp((0.5 * r2 / u_variance - v_logFlux) / 160.0, 0.0, 1.0);
+  o = vec4(d, 0.0, 1.0);
+}
+`,de=`
+#ifdef SKY_DIRECT
+uniform vec3 u_axis, u_west, u_north;  // the virtual plane's TAN frame in ICRS (tangent point = the view axis)
+uniform float u_pixelTan;              // HEALPix pixel spacing of the primary order (TAN units): sub-samples per cell
+#else
 uniform sampler2D u_atlas;   // RGBA32F: H\u03B1, [O III] 5007, [S II] (W/m^2/sr), continuum (W/m^2/sr/nm @550); H\u03B1 < 0 = invalid
+// D119 (sim/cluster-profile.ts): a globular cluster's modelled unresolved light, added to the continuum. R32F table:
+// column i at ln r = u_profileGeom.z + i / u_profileGeom.w around u_profileGeom.xy (TAN), row j smoothed by a Gaussian
+// of sigma0 2^j; samples that lie a distance s apart read sigma = s (between two rows). u_profileSize.x = 0: none.
+uniform sampler2D u_profile;
+uniform ivec2 u_profileSize;
+uniform vec4 u_profileGeom;
+uniform float u_profileLogSigma0;
+#endif
 uniform int u_atlasSize;
 uniform float u_atlasStep;   // TAN-plane units per atlas pixel
 uniform vec2 u_atlasRef;     // pixel-centre coordinate of the tangent point
@@ -317,6 +375,7 @@ uniform int u_part;
 uniform sampler2D u_base;
 out vec4 o;
 
+#ifndef SKY_DIRECT
 vec4 atlasTexel(ivec2 q) {
   if (q.x < 0 || q.y < 0 || q.x >= u_atlasSize || q.y >= u_atlasSize) return vec4(-1.0);
   return texelFetch(u_atlas, q, 0);
@@ -329,6 +388,19 @@ vec4 atlasBilinear(vec2 tan, out bool ok) {
   ok = min(min(a.x, b.x), min(c.x, d.x)) >= 0.0;
   return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
 }
+float profileRow(int j, int i, float fx) {
+  return mix(texelFetch(u_profile, ivec2(i, j), 0).r, texelFetch(u_profile, ivec2(i + 1, j), 0).r, fx);
+}
+float profileAt(vec2 t, float spacing) {
+  if (u_profileSize.x == 0) return 0.0;
+  float x = max(0.0, (log(max(length(t - u_profileGeom.xy), 1e-12)) - u_profileGeom.z) * u_profileGeom.w);
+  if (x >= float(u_profileSize.x - 1)) return 0.0;
+  float y = clamp((log(max(spacing, 1e-30)) - u_profileLogSigma0) * 1.44269504, 0.0, float(u_profileSize.y - 1));
+  int i = int(x), j0 = int(y), j1 = min(j0 + 1, u_profileSize.y - 1);
+  float fx = x - float(i);
+  return mix(profileRow(j0, i, fx), profileRow(j1, i, fx), y - float(j0));
+}
+#endif
 vec4 levelTexel(int k, ivec2 q) {
   if (q.x < 0 || q.y < 0 || q.x >= u_levelSize[k].x || q.y >= u_levelSize[k].y) return vec4(0.0);
   return k == 0 ? texelFetch(u_level0, q, 0) : k == 1 ? texelFetch(u_level1, q, 0) : k == 2 ? texelFetch(u_level2, q, 0) : k == 3 ? texelFetch(u_level3, q, 0) : texelFetch(u_level4, q, 0);
@@ -368,8 +440,12 @@ void main() {
 #ifdef RATE_SINGLE_SAMPLE
   const int n = 1;
 #else
+#ifdef SKY_DIRECT
+  float k = ceil(u_cellTan / u_pixelTan);
+#else
   float k = ceil(u_cellTan / u_atlasStep);
   for (int l = 0; l < 5; l++) if (l < u_levels && inLevel(l, tan, u_cellTan)) k = max(k, ceil(u_cellTan / u_levelStep[l]));
+#endif
   int n = int(clamp(k, 1.0, min(8.0, max(1.0, u_maxSub))));
 #endif
   vec4 bands = vec4(0.0);
@@ -379,19 +455,29 @@ void main() {
     for (int i = 0; i < 8; i++) {
       if (i >= n) break;
       vec2 t = tan + ((vec2(float(i), float(j)) + 0.5) / float(n) - 0.5) * u_cellTan;
+#ifdef SKY_DIRECT
+      vec4 b = skyValue(normalize(u_axis + t.x * u_west + t.y * u_north));
+      bool ok = b.x >= 0.0;
+#else
       bool ok;
       vec4 b = atlasBilinear(t, ok);
-      valid = valid && ok;
       for (int l = 0; l < 5; l++) {
         if (l >= u_levels) break;
         float wl;
         vec4 h = levelSample(l, t, wl);
         if (wl > 0.0) b.xyz = vec3(mix(b.x, h.x, wl), h.y >= 0.0 ? mix(b.y, h.y, wl) : b.y, h.z >= 0.0 ? mix(b.z, h.z, wl) : b.z);
       }
+      b.w += profileAt(t, u_cellTan / float(n));
+#endif
+      valid = valid && ok;
       bands += b;
     }
   }
   bands /= float(n * n);
+#ifdef SKY_DIRECT
+  // The runtime check reads the sampled bands themselves (u_part 3, one sample per cell, RGBA target).
+  if (u_part == 3) { o = valid ? bands : vec4(-1.0, 0.0, 0.0, 0.0); return; }
+#endif
   float target = valid ? u_sceneScale * (dot(bands.xyz, w.xyz) + bands.w * w.w) : 0.0;
   o = vec4(target + sky.x + (u_part == 1 ? 0.0 : star), 1.0, 0.0, 0.0);
   if (u_eyeDiffuse == 1) {
@@ -401,11 +487,11 @@ void main() {
     o = vec4(xyz + lutAt(row + 3, angle).xyz, target + sky.x);
   }
 }
-`,yt=We.replace("#version 300 es",`#version 300 es
-#define RATE_SINGLE_SAMPLE`),T=`
+`,et=h+T+de,Dt=et.replace("#version 300 es",`#version 300 es
+#define RATE_SINGLE_SAMPLE`),S=`
 #define TAP(t, i) t[(i) >> 2][(i) & 3]
 bool inBounds(ivec2 q, ivec2 size) { return q.x >= 0 && q.y >= 0 && q.x < size.x && q.y < size.y; }
-`,gt=h+T+`
+`,zt=h+S+`
 uniform sampler2D u_src;
 uniform vec4 u_taps[32];
 uniform int u_radius;
@@ -425,7 +511,7 @@ void main() {
   }
   o = vec4(s, c.g, 0.0, 0.0);
 }
-`,bt=h+`
+`,Lt=h+`
 uniform sampler2D u_src;
 uniform sampler2D u_extra;    // star deposits when stars are rendered per frame (their halo stays static)
 uniform float u_extraScale;
@@ -440,7 +526,7 @@ void main() {
   }
   o = vec4(s / float(u_k * u_k), 0.0, 0.0, 0.0);
 }
-`,Tt=h+T+`
+`,It=h+S+`
 uniform sampler2D u_src;
 uniform sampler2D u_kernel;
 uniform int u_count;
@@ -455,7 +541,7 @@ void main() {
   }
   o = vec4(s, 0.0, 0.0, 0.0);
 }
-`,St=h+`
+`,Gt=h+`
 uniform sampler2D u_core;
 uniform sampler2D u_halo;
 uniform sampler2D u_outer;
@@ -485,7 +571,7 @@ void main() {
   }
   o = vec4((1.0 - u_w) * rg.r + u_w * h, rg.g, 0.0, 0.0);
 }
-`,wt=h+`
+`,Ct=h+`
 uniform sampler2D u_src;
 out vec4 o;
 void main() {
@@ -497,7 +583,7 @@ void main() {
   }
   o=vec4(s*0.25,0.0,0.0,0.0);
 }
-`,kt=h+T+`
+`,Ut=h+S+`
 uniform sampler2D u_src;
 uniform vec4 u_t1[32];
 uniform vec4 u_t2[32];
@@ -520,7 +606,7 @@ void main() {
   }
   o = vec4(s1, s2, c.y, 0.0);
 }
-`,At=h+T+`
+`,Nt=h+S+`
 uniform sampler2D u_src;
 uniform vec4 u_t1[32];
 uniform vec4 u_t2[32];
@@ -544,7 +630,7 @@ void main() {
   }
   o = vec4(u_weights.x * s1 + u_weights.y * s2, c.z, 0.0, 0.0);
 }
-`,Mt=h+T+`
+`,qt=h+S+`
 uniform sampler2D u_src;      // RG32F: the charge or its conditional expectation (SAMPLE_FS writes both)
 uniform vec4 u_t1[32];
 uniform vec4 u_t2[32];
@@ -571,7 +657,7 @@ void main() {
   }
   o = vec4(s1, s2, s3, 0.0);
 }
-`,Et=h+T+`
+`,Bt=h+S+`
 uniform sampler2D u_src;
 uniform vec4 u_t1[32];
 uniform vec4 u_t2[32];
@@ -598,7 +684,7 @@ void main() {
   }
   o = vec4(u_weights.x * s1 + u_weights.y * s2 + s3, 0.0, 0.0, 0.0);
 }
-`,Ft=h+j+`
+`,Ot=h+Y+`
 uniform sampler2D u_rate;   // R: electron/s/mm^2 after input diffusion, G: cathode mask
 uniform float u_areaTime;   // texel area (mm^2) x frame time (s)
 uniform float u_dark;       // event/s/mm^2
@@ -632,7 +718,7 @@ void main() {
   }
   oCharge = vec2(q, qs); oExpected = expected;
 }
-`,Rt=h+`
+`,Vt=h+`
 uniform sampler2D u_frame;
 uniform sampler2D u_prev;
 uniform sampler2D u_expected;
@@ -645,12 +731,13 @@ void main() {
   vec2 prev = texelFetch(u_prev, p, 0).rg;
   o = vec4(u_alpha >= 1.0 ? cur : prev + u_alpha * (cur - prev), 0.0, 0.0);
 }
-`,Pt=h+se+U+`
+`,jt=h+X+T+`
 uniform int u_nakedEye;
 uniform int u_eyeTube;
 uniform float u_focalMm;
 uniform vec2 u_eyeTubeMechanism; // working gain, dark rate (MCP input); display-only sky reference
 uniform float u_eyeReferenceY; // fixed display scale; independent of all sky components
+uniform float u_eyeSourceGain; // D114: 2^EV from the total sky SQM, on the source increment only
 uniform vec4 u_eyeSourceShoulder;
 uniform sampler2D u_eyeDiffuse;
 uniform sampler2D u_eyeWide;   // the same XYZ + rod scene over ~0.5\xB0 apparent field: drives colour strength
@@ -671,6 +758,10 @@ uniform vec2 u_eyeContrast; // contrast threshold and field adapting intensity, 
 uniform int u_eyeLocal;     // 1 (naked eye, D68): each band's contrast is taken against the next coarser band, not the pixel itself
 uniform int u_margin;
 uniform float u_half;          // canvas half-size, px
+// D116: grid texels per canvas pixel (1 at rest; below 1 while a dragged free sky runs on a reduced grid) and the
+// texel coordinate of the view centre (margin + n / 2). Texel positions are scaled about the view centre.
+uniform float u_viewScale;
+uniform float u_gridCentre;
 uniform vec3 u_xyz;            // XYZ per (electron/s/mm^2) at the screen
 uniform float u_scale;         // 683 / 10 cd/m^2 * 2^EV
 uniform float u_gammaInv;
@@ -679,7 +770,24 @@ uniform float u_pitchMm;
 uniform float u_cathodeR;
 // Highlight shoulder (display only): knee (display luminance), log slope k, log normalizer, level of the peak; k <= 0 = off.
 uniform vec4 u_shoulder;
-out vec4 o;
+// D115 star reshaping (display only; renderer.setStarShape): thinner bright catalogue stars, same light.
+uniform sampler2D u_starMap;  // RG = offset to the star covering this texel (texels), A = 1; see STAR_MAP_FS
+uniform vec4 u_starShape;     // c0 (1 = off), knee (x white), physical PSF variance (texel^2), SHARP_REF (D118)
+uniform vec4 u_starProfA;     // peak-normalised amplitudes of the grid's star profile, four Gaussian components (sum 1)
+uniform vec4 u_starProfV;     // their variances (texel^2)
+uniform vec4 u_starProfW;     // D118: the components' light shares (sum 1)
+uniform vec4 u_starProfP;     // D118: their physical variances (texel^2; no deposit or tap discretisation)
+uniform float u_starSynth;    // D118: 1 = draw sharp stars' cores from the PSF at this finer canvas's pixels
+uniform int u_compose;        // D118: 1 = finer canvas; outside bright stars' discs copy u_gridDisplay (the grid-sized picture)
+uniform sampler2D u_gridDisplay;
+uniform float u_starRing;     // radius of the background ring around a star (texels)
+uniform float u_starNoise;    // D118: the star's own light is reshaped above this many noise sigmas of its background ring
+uniform float u_starWhite;    // "white" for the star reshaping: this display-linear level (the shoulder's top is the scene's brightest)
+uniform sampler2D u_gridBright; // D118: texels a star was reshaped in, written by the grid-sized pass (R8)
+layout(location = 0) out vec4 o;
+// D118: second target of the grid-sized pass, 1 where a star was reshaped (discarded when drawing to the canvas).
+layout(location = 1) out vec4 oBright;
+float starReshaped = 0.0;
 const mat3 XYZ_TO_SRGB = mat3(3.2406255, -0.9689307, 0.0557101,
                               -1.537208, 1.8757561, -0.2040211,
                               -0.4986286, 0.0415175, 1.0569959);
@@ -721,15 +829,138 @@ float mesopicWeight(float p, float s) {
 }
 float lightnessOf(float y) { return y > 0.008856 ? 116.0 * pow(y, 1.0 / 3.0) - 16.0 : 903.3 * y; }
 float lightnessInv(float l) { return l > 8.0 ? pow((l + 16.0) / 116.0, 3.0) : l / 903.3; }
+// Luminance before the highlight shoulder that it shows as y (inverse of the log shoulder; identity when off or below the knee).
+float unshoulder(vec4 sh, float y) {
+  if (sh.y <= 0.0 || y <= sh.x) return y;
+  y = min(y, sh.x + 0.999 * (sh.w - sh.x));
+  return sh.x + (exp((y - sh.x) * sh.z / (sh.w - sh.x)) - 1.0) / sh.y;
+}
+// D115: screen intensity above b that this pixel shows as white (tube; or the virtual eye's source path).
+float whiteExcess(float b, vec2 mm) {
+  float perIntensity = max(u_xyz.y * u_scale, 1e-30);
+  if (u_eyeTube == 1) {
+    float total = max(0.0, lutAt(1, atan(length(mm) / u_focalMm)).x + u_eyeTubeMechanism.y) * u_eyeTubeMechanism.x;
+    float sensitivity = u_eyeSourceGain * sqrt(2.0 * u_eyeReferenceY / (u_eyeReferenceY + total * perIntensity));
+    float source = unshoulder(u_eyeSourceShoulder, u_starWhite) / perIntensity - u_eyeReferenceY / perIntensity;
+    return min(b, total) + source / sensitivity - b;
+  }
+  return unshoulder(u_shoulder, u_starWhite) / perIntensity - b;
+}
+ivec2 starTexel(vec2 p) { return clamp(ivec2(floor(p + 0.5)), ivec2(0), textureSize(u_intensity, 0) - 1); }
+#define CE(a, b) { float lo = min(a, b); b = max(a, b); a = lo; }
+// D115/D118: the star's own light in texel q (index units, centres at integers): its excess over the background b
+// above the noise allowance, at most a generous (wider) model of its profile scaled to the measured peak.
+float starOwnAt(vec2 q, vec2 c, float b, float allowance, float peak) {
+  vec2 d = q - c;
+  float excess = texelFetch(u_intensity, starTexel(q), 0).r - b;
+  return min(max(excess - allowance, 0.0), peak * dot(u_starProfA, exp(-0.5 * dot(d, d) / (1.6 * u_starProfV))));
+}
+// D115: the star at texel position c seen from texel p. Background = median of eight texels on a ring just outside the
+// star's disc, peak = brightest of the 3x3 around its centre (both from the picture itself, so moving and twinkling
+// stars and the tube's noise are taken as they are). A peak above the knee K is lowered to K (P/K)^c (c < 1) by scaling
+// the star's whole profile, which stays smooth and round: the white core and the visible disc shrink, brighter stars
+// still grow (more slowly), and stars that only just reached white turn a little grey, so the brightest stand out.
+// (Sharpening the profile instead made blocky cores: a steep edge aliases on the grid.) Only the star's own light is
+// scaled: not a neighbour inside its disc, nor the noise in its faint wings.
+float reshapeStar(vec2 p, vec2 c, float intensity, vec2 mm) {
+  float peak = 0.0, sum = 0.0; vec2 peakAt = c;
+  for (int dy = -1; dy <= 1; dy++) for (int dx = -1; dx <= 1; dx++) {
+    vec2 q = vec2(starTexel(c + vec2(dx, dy)));
+    float t = texelFetch(u_intensity, ivec2(q), 0).r; sum += t;
+    if (t > peak) { peak = t; peakAt = q; }
+  }
+  float s0 = texelFetch(u_intensity, starTexel(c + vec2(u_starRing, 0.0)), 0).r, s1 = texelFetch(u_intensity, starTexel(c - vec2(u_starRing, 0.0)), 0).r;
+  float s2 = texelFetch(u_intensity, starTexel(c + vec2(0.0, u_starRing)), 0).r, s3 = texelFetch(u_intensity, starTexel(c - vec2(0.0, u_starRing)), 0).r;
+  float e = u_starRing * 0.7071068;
+  float s4 = texelFetch(u_intensity, starTexel(c + vec2(e, e)), 0).r, s5 = texelFetch(u_intensity, starTexel(c - vec2(e, e)), 0).r;
+  float s6 = texelFetch(u_intensity, starTexel(c + vec2(e, -e)), 0).r, s7 = texelFetch(u_intensity, starTexel(c + vec2(-e, e)), 0).r;
+  CE(s0, s2) CE(s1, s3) CE(s4, s6) CE(s5, s7) CE(s0, s4) CE(s1, s5) CE(s2, s6) CE(s3, s7)
+  CE(s0, s1) CE(s2, s3) CE(s4, s5) CE(s6, s7) CE(s2, s4) CE(s3, s5) CE(s1, s4) CE(s3, s6) CE(s1, s2) CE(s3, s4) CE(s5, s6)
+  float b = 0.5 * (s3 + s4), x = intensity - b, w = whiteExcess(b, mm), knee = u_starShape.y * w;
+  peak -= b;
+  // The model's amplitude at the star's true centre: the brightest texel may sit up to half a texel off it (a star on a
+  // texel edge puts half its light in each neighbour), so it is divided by the profile there (D118).
+  vec2 dp = peakAt - c;
+  float top = peak / max(dot(u_starProfA, exp(-0.5 * dot(dp, dp) / u_starProfV)), 0.05);
+  if (x <= 0.0 || knee <= 0.0 || top <= knee) return intensity;
+  starReshaped = 1.0;
+  vec2 d = p - c;
+  // D118: the allowance is the local noise (the ring's interquartile spread / 1.35, times u_starNoise sigmas), not a
+  // fixed share of white: a fixed 4 % was never scaled and stayed as a faint glow ring around the shrunken core. In a
+  // noiseless view (naked eye, mean frame) it is ~0 and the whole wing shrinks with the core.
+  float r2 = dot(d, d), allowance = u_starNoise * (s5 - s2) / 1.349;
+  // The star's own light here is at most this generous (wider) model of its profile; above the allowance (which keeps
+  // the background's noise as it is) that part is scaled, the rest (a neighbour, noise) is left. No weight depends on
+  // the pixel's own value, so the mapping stays monotone: no dark rings. Taken at the four texel centres around this
+  // pixel and interpolated exactly as the picture is (bilinear on a finer canvas; the texel itself at rest), so between
+  // texels nothing of the star is left behind (D118).
+  vec2 i0 = floor(p), f = p - i0;
+  float own = min(x, mix(mix(starOwnAt(i0, c, b, allowance, top), starOwnAt(i0 + vec2(1.0, 0.0), c, b, allowance, top), f.x),
+    mix(starOwnAt(i0 + vec2(0.0, 1.0), c, b, allowance, top), starOwnAt(i0 + vec2(1.0, 1.0), c, b, allowance, top), f.x), f.y));
+  // Unscaled only at the very edge of the disc (radius u_starRing - 1 = 8 sigma of the broadest component), so a
+  // very wide star can never show a seam there.
+  float edge = 1.0 - smoothstep(0.85 * (u_starRing - 1.0), u_starRing - 1.0, sqrt(r2));
+  // D118: the exponent follows the pixel actually drawn (u_viewScale texels a side; 1 at rest on a full grid).
+  float pixel = u_viewScale * u_viewScale / 6.0, c0 = u_starShape.x;
+  float cExp = c0 * clamp(u_starShape.z / (u_starShape.z + pixel) / u_starShape.w, 0.1, 1.0);
+  float shaped = own * (peak > knee ? pow(knee * pow(peak / knee, cExp) / peak, edge) : 1.0);
+  if (u_starSynth > 0.0) {
+    // D118: on a canvas finer than the grid, draw the core of the star's own light from its flux (the 3x3 sum; a sharp
+    // star keeps nearly all of it there) and the physical PSF at these pixels, centred on its catalogue position, so a
+    // star on a texel corner is no longer a 2x2 block. Its peak is compressed like the D115 one; blended in above the
+    // knee so the stars just reaching it change smoothly.
+    vec4 vt = u_starProfP + pixel, at = u_starProfW / vt;
+    float norm = dot(at, vec4(1.0)), coreTop = max(sum - 9.0 * b, 0.0) * norm / 6.2831853;
+    float topShown = coreTop > knee ? knee * pow(coreTop / knee, cExp) : coreTop;
+    float core = topShown * dot(at / norm, exp(-0.5 * r2 / vt));
+    shaped = mix(shaped, core, u_starSynth * smoothstep(knee, 2.0 * knee, coreTop) * edge);
+  }
+  return intensity - own + shaped;
+}
+// Catmull-Rom (Keys, a = -0.5) of a picture at p in texel units (centres at half-integers), 4x4 texels, clamped at the
+// edges and to the display range (the kernel overshoots a little at sharp edges).
+vec4 catmullRom(sampler2D s, vec2 p) {
+  vec2 q = p - 0.5, i0 = floor(q), f = q - i0;
+  vec2 f2 = f * f, f3 = f2 * f;
+  vec2 w0 = 0.5 * (-f3 + 2.0 * f2 - f), w1 = 0.5 * (3.0 * f3 - 5.0 * f2 + 2.0), w2 = 0.5 * (-3.0 * f3 + 4.0 * f2 + f), w3 = 0.5 * (f3 - f2);
+  ivec2 lim = textureSize(s, 0) - 1, b = ivec2(i0) - 1;
+  vec4 row[4];
+  for (int j = 0; j < 4; j++) {
+    int y = clamp(b.y + j, 0, lim.y);
+    row[j] = w0.x * texelFetch(s, ivec2(clamp(b.x, 0, lim.x), y), 0) + w1.x * texelFetch(s, ivec2(clamp(b.x + 1, 0, lim.x), y), 0)
+      + w2.x * texelFetch(s, ivec2(clamp(b.x + 2, 0, lim.x), y), 0) + w3.x * texelFetch(s, ivec2(clamp(b.x + 3, 0, lim.x), y), 0);
+  }
+  return clamp(w0.y * row[0] + w1.y * row[1] + w2.y * row[2] + w3.y * row[3], 0.0, 1.0);
+}
 void main() {
   vec2 frag = gl_FragCoord.xy;
   vec2 rel = frag - u_half;
   float view = clamp(u_half - length(rel) + 0.5, 0.0, 1.0);
+  oBright = vec4(0.0);
   if (view <= 0.0) { o = vec4(0.0); return; }
   vec2 mm = u_centerMm + rel * u_pitchMm;
   float cath = clamp((u_cathodeR - length(mm)) / u_pitchMm + 0.5, 0.0, 1.0);
-  ivec2 pixel = ivec2(frag) + ivec2(u_margin);
-  vec2 screen = texelFetch(u_intensity, pixel, 0).rg;
+  // At rest u_viewScale is 1 and this is exactly ivec2(frag) + u_margin (frag sits at a half-integer).
+  vec2 tex = rel * u_viewScale + u_gridCentre;
+  ivec2 pixel = ivec2(floor(tex));
+  if (u_compose == 1) {
+    // D118: only texels where the grid-sized pass reshaped a star are drawn again at these pixels; elsewhere that
+    // pass's picture is copied. 0.9.59: Catmull-Rom, not bilinear: the browser's own scaling of a grid-sized canvas is
+    // sharper than bilinear, and the bilinear copy softened the Milky Way's fine structure by about 14 % on phones.
+    ivec2 g = clamp(pixel - ivec2(u_margin), ivec2(0), textureSize(u_gridBright, 0) - 1);
+    if (texelFetch(u_gridBright, g, 0).r < 0.5) {
+      o = catmullRom(u_gridDisplay, tex - float(u_margin));
+      return;
+    }
+  }
+  vec2 screen;
+  if (u_viewScale < 1.0) {
+    // D116: a coarser drag grid is drawn bilinearly between texel centres (the grain softens; no new statistics).
+    vec2 q = tex - 0.5; ivec2 i0 = ivec2(floor(q)), lim = textureSize(u_intensity, 0) - 1; vec2 f = q - vec2(i0);
+    vec2 a = texelFetch(u_intensity, clamp(i0, ivec2(0), lim), 0).rg, b = texelFetch(u_intensity, clamp(i0 + ivec2(1, 0), ivec2(0), lim), 0).rg;
+    vec2 c = texelFetch(u_intensity, clamp(i0 + ivec2(0, 1), ivec2(0), lim), 0).rg, d = texelFetch(u_intensity, clamp(i0 + ivec2(1, 1), ivec2(0), lim), 0).rg;
+    screen = mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+  } else screen = texelFetch(u_intensity, pixel, 0).rg;
   float intensity = max(screen.r, 0.0);
   if (u_eyeMode == 2 && u_eyeContrast.x > 0.0) {
     float medium = texelFetch(u_medium, pixel, 0).r, coarse = texelFetch(u_coarse, pixel, 0).r;
@@ -740,6 +971,11 @@ void main() {
       + contrastBand(medium - coarse, baseMedium, threshold * 1.3)
       + contrastBand(screen.r - medium, baseFine, threshold * 2.0));
   }
+  if (u_starShape.x < 1.0) {
+    vec4 star = texelFetch(u_starMap, pixel, 0);
+    // Positions in texel-index units (texel centres at integers): this pixel's own, sub-texel on a finer canvas (D118).
+    if (star.a > 0.0) intensity = reshapeStar(tex - 0.5, vec2(pixel) + star.xy, intensity, mm);
+  }
   if (u_eyeTube == 1) {
     vec4 sky = lutAt(1, atan(length(mm) / u_focalMm));
     // D84: every sky component is background. D83's moving natural-sky reference boosted detail with airglow.
@@ -748,12 +984,13 @@ void main() {
     // Preserve dark blurred edges: the analytic background cannot exceed what the pixel actually received.
     float background = min(intensity, total), perIntensity = max(u_xyz.y * u_scale, 1e-30);
     float reference = u_eyeReferenceY / perIntensity;
-    float sensitivity = sqrt(2.0 * u_eyeReferenceY / (u_eyeReferenceY + total * perIntensity));
+    // D114: times the sky-linked gain, which keeps rising where this bounded sqrt flattens (darker than the default sky).
+    float sensitivity = u_eyeSourceGain * sqrt(2.0 * u_eyeReferenceY / (u_eyeReferenceY + total * perIntensity));
     float source = (intensity - background) * sensitivity;
     vec3 increment = max(vec3(0.0), eyeTubeTone(reference + source, u_eyeSourceShoulder) - eyeTubeTone(reference, u_eyeSourceShoulder));
     vec3 lin = clamp(eyeTubeTone(background, u_shoulder) + increment, 0.0, 1.0);
     vec3 srgb = vec3(encodeSrgb(lin.r), encodeSrgb(lin.g), encodeSrgb(lin.b));
-    o = vec4(srgb * cath * view, view);
+    o = vec4(srgb * cath * view, view); oBright = vec4(starReshaped);
     return;
   }
   vec3 xyz = u_xyz * (intensity * u_scale);
@@ -797,13 +1034,13 @@ void main() {
   vec3 lin = clamp(grey + t * (rgb - grey), 0.0, 1.0);
   lin = pow(lin, vec3(u_gammaInv));
   vec3 srgb = vec3(encodeSrgb(lin.r), encodeSrgb(lin.g), encodeSrgb(lin.b));
-  o = vec4(srgb * cath * view, view);
+  o = vec4(srgb * cath * view, view); oBright = vec4(starReshaped);
 }
-`,zt=h+`
+`,Wt=h+`
 uniform sampler2D u_src;
 out vec4 o;
 void main() { o = texelFetch(u_src, ivec2(gl_FragCoord.xy), 0); }
-`,Dt=h+T+`
+`,Yt=h+S+`
 uniform sampler2D u_src;
 uniform vec4 u_taps[32];
 uniform int u_radius;
@@ -822,7 +1059,7 @@ void main() {
   }
   o = vec4(s, 0.0, 0.0);
 }
-`,Lt=h+j+`
+`,Xt=h+Y+`
 uniform sampler2D u_original;
 uniform sampler2D u_grain;
 uniform vec3 u_style; // strength (incl correlation normalization), tail prominence, fixed pattern amplitude
@@ -865,7 +1102,7 @@ void main() {
   float pattern = 0.65 * patternAt(mm / 0.065) + 0.35 * patternAt(mm / 0.8 + 13.7);
   o = vec4(max(0.0, mean * (1.0 + u_style.z * pattern) + residual), mean, 0.0, 0.0);
 }
-`,It=h+T+`
+`,Kt=h+S+`
 uniform sampler2D u_src;
 uniform vec4 u_taps[32];
 uniform int u_radius;
@@ -882,7 +1119,7 @@ void main() {
   }
   o=v;
 }
-`,le=`
+`,H=`
 float eyeFootprint(vec2 d, float sigma) {
   float v=0.0;
   for(int j=0;j<2;j++) for(int i=0;i<2;i++) {
@@ -892,9 +1129,7 @@ float eyeFootprint(vec2 d, float sigma) {
   }
   return v;
 }
-`,Ut=h+U+le+se+`
-layout(location=0) in vec4 a_star;
-layout(location=1) in uint a_seed;
+`,pe=K+`
 uniform sampler2D u_diffuse;
 uniform vec2 u_originMm;
 uniform vec2 u_size;
@@ -918,6 +1153,7 @@ out vec4 v_star;
 uint hashU(uint x) { x ^= x >> 16; x *= 0x7feb352du; x ^= x >> 15; x *= 0x846ca68bu; x ^= x >> 16; return x; }
 float hashF(uint x) { return float(hashU(x) >> 8) * (1.0 / 16777216.0); }
 void main() {
+  vec4 a_star=starAttr();
   vec3 cam=transpose(u_point)*vec3(a_star.xy,1.0);
   vec2 mm=cam.z>1e-6 ? cam.xy/cam.z*u_focalMm : vec2(1e9);
   float r=length(mm), angle=atan(r/u_focalMm);
@@ -972,17 +1208,14 @@ void main() {
   gl_PointSize=2.0*ceil(3.0*u_starSigma+.5)+1.0;
   gl_Position=r>u_cathodeR || visible<=0.0 ? vec4(2.0,2.0,2.0,1.0) : vec4((cell+.5)/u_size*2.0-1.0,0.0,1.0);
 }
-`,Gt=h+le+`
+`,Ht=h+T+H+X+pe,Jt=C("STAR_SKY")+T+H+X+pe,$t=h+H+`
 uniform float u_starSigma;
 in vec2 v_center;
 in vec4 v_star;
 out vec4 o;
 void main() { o=v_star*eyeFootprint(gl_FragCoord.xy-v_center,u_starSigma); }
-`;var Ye="      for (int b = 0; b < 4; b++) if (code[b] != 65535u) { sum[b] += w * (soft[b] * sinhStable(float(code[b]) / 65534.0 * amax[b])); ws[b] += w; }",He="      { vec4 c = vec4(code), mk = vec4(lessThan(c, vec4(65534.5))), xv = c / 65534.0 * amax; sum += mk * w * soft * vec4(sinhStable(xv.x), sinhStable(xv.y), sinhStable(xv.z), sinhStable(xv.w)); ws += mk * w; }",ue="vec4 sum = vec4(0.0), ws = vec4(0.0), soft = vec4(0.0), amax = vec4(0.0);",ce="  value = vec4(ws.x > 0.0 ? sum.x / ws.x : -1.0,",Je="int irt = i - JRLL[face] * n + 1, k = JPLL[face] * nr + kshift + 1,",Ke="int jr = 2 + (face >> 2), jp = 2 * (face & 3) + ((face >> 2) == 1 ? 0 : 1); int irt = i - jr * n + 1, k = jp * nr + kshift + 1,",me=[[Ye,He]],fe=[["if (layer < 0) return false;","if (layer < 0) { missing = true; layer = 0; }"],[ue,ue+" bool missing = false;"],[ce,`  if (missing) return false;
-`+ce]],he=[[Je,Ke]],B=[{id:"vector",label:"\u6CE2\u6BB5\u6D6E\u70B9\u5411\u91CF\u8FD0\u7B97",edits:me},{id:"no-return",label:"\u5FAA\u73AF\u5185\u4E0D\u63D0\u524D\u8FD4\u56DE",edits:fe},{id:"arithmetic",label:"\u5E38\u91CF\u6570\u7EC4\u6539\u7B97\u5F0F",edits:he},{id:"all",label:"\u4EE5\u4E0A\u4E09\u9879\u4E00\u8D77",edits:[...me,...fe,...he]}];function de(r,e){if(e===null)return r;let t=B.find(n=>n.id===e);if(!t)throw new Error(`Unknown sky projection variant ${e}`);let i=r;for(let[n,a]of t.edits){if(!i.includes(n))throw new Error(`Sky projection variant ${e}: source changed near "${n.trim().slice(0,40)}"`);i=i.replace(n,a)}return i}var G=`#version 300 es
-precision highp float;
-precision highp int;
-precision highp sampler2D;
+`;var tt="      for (int b = 0; b < 4; b++) if (code[b] != 65535u) { sum[b] += w * (soft[b] * sinhStable(float(code[b]) / 65534.0 * amax[b])); ws[b] += w; }",rt="      { vec4 c = vec4(code), mk = vec4(lessThan(c, vec4(65534.5))), xv = c / 65534.0 * amax; sum += mk * w * soft * vec4(sinhStable(xv.x), sinhStable(xv.y), sinhStable(xv.z), sinhStable(xv.w)); ws += mk * w; }",ve="vec4 sum = vec4(0.0), ws = vec4(0.0), soft = vec4(0.0), amax = vec4(0.0);",_e="  value = vec4(ws.x > 0.0 ? sum.x / ws.x : -1.0,",it="int irt = i - JRLL[face] * n + 1, k = JPLL[face] * nr + kshift + 1,",at="int jr = 2 + (face >> 2), jp = 2 * (face & 3) + ((face >> 2) == 1 ? 0 : 1); int irt = i - jr * n + 1, k = jp * nr + kshift + 1,",xe=[[tt,rt]],ge=[["if (layer < 0) return false;","if (layer < 0) { missing = true; layer = 0; }"],[ve,ve+" bool missing = false;"],[_e,`  if (missing) return false;
+`+_e]],ye=[[it,at]],J=[{id:"vector",label:"\u6CE2\u6BB5\u6D6E\u70B9\u5411\u91CF\u8FD0\u7B97",edits:xe},{id:"no-return",label:"\u5FAA\u73AF\u5185\u4E0D\u63D0\u524D\u8FD4\u56DE",edits:ge},{id:"arithmetic",label:"\u5E38\u91CF\u6570\u7EC4\u6539\u7B97\u5F0F",edits:ye},{id:"all",label:"\u4EE5\u4E0A\u4E09\u9879\u4E00\u8D77",edits:[...xe,...ge,...ye]}];function be(a,e){if(e===null)return a;let t=J.find(r=>r.id===e);if(!t)throw new Error(`Unknown sky projection variant ${e}`);let i=a;for(let[r,n]of t.edits){if(!i.includes(r))throw new Error(`Sky projection variant ${e}: source changed near "${r.trim().slice(0,40)}"`);i=i.replace(r,n)}return i}var nt=`
 precision highp usampler2DArray;
 precision highp isampler2D;
 uniform usampler2DArray u_tiles;
@@ -990,10 +1223,6 @@ uniform sampler2D u_params;
 uniform isampler2D u_map0;
 uniform isampler2D u_map1;
 uniform int u_order0, u_order1, u_orders;
-uniform vec3 u_axis, u_west, u_north;
-uniform float u_step;
-uniform vec2 u_ref;
-out vec4 o;
 const float PI = 3.141592653589793, TAU = 6.283185307179586;
 const int JRLL[12] = int[12](2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4);
 const int JPLL[12] = int[12](1, 3, 5, 7, 0, 2, 4, 6, 1, 3, 5, 7);
@@ -1082,20 +1311,35 @@ bool interpolate(int k, int order, vec3 v, float s2, out vec4 value) {
   value = vec4(ws.x > 0.0 ? sum.x / ws.x : -1.0, ws.y > 0.0 ? sum.y / ws.y : 0.0, ws.z > 0.0 ? sum.z / ws.z : 0.0, ws.w > 0.0 ? sum.w / ws.w : 0.0);
   return true;
 }
-void main() {
-  vec2 X = (gl_FragCoord.xy - 0.5 - u_ref) * u_step;
-  vec3 v = normalize(u_axis + X.x * u_west + X.y * u_north);
+// The map value at unit vector v: the primary order, else the fallback order (u_orders == 2); H\u03B1 = -1 where neither
+// covers (a tile absent from both pyramids) or where every neighbour is unmeasured (a present tile not yet resident is
+// a blank layer, see SkyTileStore, so a missing fine tile never shows the coarse order instead, D107).
+// Plain calls, not inside a short-circuit condition (2026-10-11): the Adreno 810 (Redmi Note 14 Pro+, Chrome 154)
+// returned "unmeasured" for every pixel from the former if (!interpolate(0, ..) && (u_orders < 2 || !interpolate(1, ..)))
+// although each interpolation, read alone, was right. Same logic.
+vec4 skyValue(vec3 v) {
   float s2 = v.x * v.x + v.y * v.y;
   vec4 value;
-  // Plain calls, not inside a short-circuit condition (2026-10-11): the Adreno 810 (Redmi Note 14 Pro+, Chrome 154)
-  // returned "unmeasured" for every pixel from the former if (!interpolate(0, ..) && (u_orders < 2 || !interpolate(1, ..)))
-  // although each interpolation, read alone, was right. Same logic.
   bool ok = interpolate(0, u_order0, v, s2, value);
   if (!ok && u_orders >= 2) ok = interpolate(1, u_order1, v, s2, value);
   if (!ok) value = vec4(-1.0, 0.0, 0.0, 0.0);
-  o = value;
+  return value;
 }
-`,C=class{constructor(e,t){this.gl=e;this.res=t;p(this,"prog");p(this,"variant",null);p(this,"array",null);p(this,"params",null);p(this,"capacity",0);p(this,"slots",new Map);p(this,"maps",new Map);p(this,"clock",0);p(this,"uploads",0);this.prog=t.programDeferred("skyProject",F,G)}get compiled(){return this.prog.done()}setVariant(e){if(e===this.variant)return;let t=this.prog;if(this.prog=this.res.programDeferred("skyProject"+(e?"-"+e:""),F,de(G,e)),this.variant=e,t.done()){try{t.check()}catch{}this.gl.deleteProgram(t.prog),this.res.programs.delete(t.prog)}}get layerBytes(){return this.capacity*256*256*8}allocate(e){let t=this.gl;this.array&&this.res.deleteTexture(this.array),this.params&&this.res.deleteTexture(this.params),this.array=t.createTexture(),this.res.textures.add(this.array),t.bindTexture(t.TEXTURE_2D_ARRAY,this.array),t.texImage3D(t.TEXTURE_2D_ARRAY,0,t.RGBA16UI,256,256,e,0,t.RGBA_INTEGER,t.UNSIGNED_SHORT,null);for(let[i,n]of[[t.TEXTURE_MIN_FILTER,t.NEAREST],[t.TEXTURE_MAG_FILTER,t.NEAREST],[t.TEXTURE_WRAP_S,t.CLAMP_TO_EDGE],[t.TEXTURE_WRAP_T,t.CLAMP_TO_EDGE]])t.texParameteri(t.TEXTURE_2D_ARRAY,i,n);this.params=this.res.texture(2,e,t.RGBA32F,t.RGBA,t.FLOAT,null),this.capacity=e,this.slots.clear();for(let i of this.maps.values())i.data.fill(-1),i.dirty=!0}map(e){let t=this.maps.get(e);if(!t){let i=Math.ceil(12*4**(e-8)/64),n=new Int32Array(64*i).fill(-1);t={tex:this.res.texture(64,i,this.gl.R32I,this.gl.RED_INTEGER,this.gl.INT,n),data:n,dirty:!1},this.maps.set(e,t)}return t}ensure(e,t=1/0){let i=this.gl,n=++this.clock;e.length>this.capacity&&this.allocate(Math.max(64,Math.ceil(e.length*1.25)));let a=new Set(e.map(l=>l.key)),o=0,s=0;for(let l of e){let u=this.slots.get(l.key);if(u){u.used=n;continue}if(o>=t){s++;continue}let m=this.slots.size;if(m>=this.capacity){let d=null;for(let g of this.slots)!a.has(g[0])&&(!d||g[1].used<d[1].used)&&(d=g);let[x,f]=d;this.slots.delete(x),m=f.layer;let b=this.map(f.order);b.data[f.tile]=-1,b.dirty=!0}i.bindTexture(i.TEXTURE_2D_ARRAY,this.array),i.pixelStorei(i.UNPACK_ALIGNMENT,1),i.texSubImage3D(i.TEXTURE_2D_ARRAY,0,0,0,m,256,256,1,i.RGBA_INTEGER,i.UNSIGNED_SHORT,l.codes),i.bindTexture(i.TEXTURE_2D,this.params),i.texSubImage2D(i.TEXTURE_2D,0,0,m,2,1,i.RGBA,i.FLOAT,Float32Array.from([...Array.from(l.soft),...Array.from(l.amax)])),this.slots.set(l.key,{layer:m,order:l.order,tile:l.tile,used:n});let c=this.map(l.order);c.data[l.tile]=m,c.dirty=!0,o++,this.uploads++}for(let l of this.maps.values())l.dirty&&(i.bindTexture(i.TEXTURE_2D,l.tex),i.texSubImage2D(i.TEXTURE_2D,0,0,0,64,l.data.length/64,i.RED_INTEGER,i.INT,l.data),l.dirty=!1);return s}project(e,t,i,n,a){let o=this.gl,s=this.prog,l=x=>s.loc.get(x),[u,m]=[t.orders[0],t.orders[1]??t.orders[0]],c=this.map(u),d=this.map(m);s.check(),o.useProgram(s.prog),o.bindVertexArray(a),o.bindFramebuffer(o.FRAMEBUFFER,e.fbo),o.viewport(0,0,t.size,t.size),o.enable(o.SCISSOR_TEST),o.scissor(0,i,t.size,n-i),o.activeTexture(o.TEXTURE0),o.bindTexture(o.TEXTURE_2D_ARRAY,this.array),o.uniform1i(l("u_tiles"),0),this.res.bindTex(1,this.params,s,"u_params"),this.res.bindTex(2,c.tex,s,"u_map0"),this.res.bindTex(3,d.tex,s,"u_map1"),o.uniform1i(l("u_order0"),u),o.uniform1i(l("u_order1"),m),o.uniform1i(l("u_orders"),t.orders.length),o.uniform3fv(l("u_axis"),[...t.frame.axis]),o.uniform3fv(l("u_west"),[...t.frame.west]),o.uniform3fv(l("u_north"),[...t.frame.north]),o.uniform1f(l("u_step"),t.stepTan),o.uniform2f(l("u_ref"),t.refPixel[0],t.refPixel[1]),o.drawArrays(o.TRIANGLES,0,3),o.disable(o.SCISSOR_TEST),o.activeTexture(o.TEXTURE0),o.bindTexture(o.TEXTURE_2D_ARRAY,null)}};var v=(r,e)=>e?r.replace(/\{(\d+)\}/g,(t,i)=>String(e[+i])):r;var X=class extends Error{},O=class{constructor(e){this.gl=e;p(this,"textures",new Set);p(this,"framebuffers",new Set);p(this,"programs",new Set);p(this,"buffers",new Set);p(this,"vaos",new Set);p(this,"deferred",new Map)}texture(e,t,i,n,a,o){let s=this.gl,l=s.createTexture();this.textures.add(l),s.bindTexture(s.TEXTURE_2D,l),s.pixelStorei(s.UNPACK_ALIGNMENT,1),s.texImage2D(s.TEXTURE_2D,0,i,e,t,0,n,a,o);for(let[u,m]of[[s.TEXTURE_MIN_FILTER,s.NEAREST],[s.TEXTURE_MAG_FILTER,s.NEAREST],[s.TEXTURE_WRAP_S,s.CLAMP_TO_EDGE],[s.TEXTURE_WRAP_T,s.CLAMP_TO_EDGE]])s.texParameteri(s.TEXTURE_2D,u,m);return l}target(e,t,i){let n=this.gl,a=t===n.R16F?n.HALF_FLOAT:n.FLOAT,o=this.texture(e,e,t,i,a,null),s=n.createFramebuffer();this.framebuffers.add(s),n.bindFramebuffer(n.FRAMEBUFFER,s),n.framebufferTexture2D(n.FRAMEBUFFER,n.COLOR_ATTACHMENT0,n.TEXTURE_2D,o,0);let l=n.checkFramebufferStatus(n.FRAMEBUFFER);if(l!==n.FRAMEBUFFER_COMPLETE)throw this.deleteTarget({tex:o,fbo:s,internal:t,format:i,size:e}),new X(v("\u6D6E\u70B9\u6E32\u67D3\u76EE\u6807\u4E0D\u53EF\u7528\uFF080x{0}\uFF09\u3002",[l.toString(16)]));return{tex:o,fbo:s,internal:t,format:i,size:e}}deleteTexture(e){this.gl.deleteTexture(e),this.textures.delete(e)}deleteTarget(e){this.gl.deleteFramebuffer(e.fbo),this.framebuffers.delete(e.fbo),this.deleteTexture(e.tex)}bindTarget(e){this.gl.bindFramebuffer(this.gl.FRAMEBUFFER,e.fbo),this.gl.viewport(0,0,e.size,e.size)}bindTex(e,t,i,n){let a=this.gl;a.activeTexture(a.TEXTURE0+e),a.bindTexture(a.TEXTURE_2D,t),a.uniform1i(i.loc.get(n),e)}program(e,t,i){let n=this.gl,a=n.createProgram();this.programs.add(a);let o=[];try{for(let[u,m]of[[n.VERTEX_SHADER,t],[n.FRAGMENT_SHADER,i]]){let c=n.createShader(u);if(o.push(c),n.shaderSource(c,m),n.compileShader(c),!n.getShaderParameter(c,n.COMPILE_STATUS))throw new Error(v("\u7740\u8272\u5668\u7F16\u8BD1\u5931\u8D25\uFF08{0} / {1}\uFF09\uFF1A{2}",[e,u===n.VERTEX_SHADER?v("\u9876\u70B9"):v("\u7247\u5143"),n.getShaderInfoLog(c)||v("\u9A71\u52A8\u672A\u8FD4\u56DE\u8BE6\u60C5")]));n.attachShader(a,c)}if(n.linkProgram(a),!n.getProgramParameter(a,n.LINK_STATUS))throw new Error(v("\u7740\u8272\u5668\u94FE\u63A5\u5931\u8D25\uFF08{0}\uFF09\uFF1A{1}",[e,n.getProgramInfoLog(a)||v("\u9A71\u52A8\u672A\u8FD4\u56DE\u8BE6\u60C5")]))}catch(u){throw n.deleteProgram(a),this.programs.delete(a),u}finally{for(let u of o)n.isProgram(a)&&n.getAttachedShaders(a)?.includes(u)&&n.detachShader(a,u),n.deleteShader(u)}let s=new Map;return{prog:a,loc:{get:u=>(s.has(u)||s.set(u,n.getUniformLocation(a,u)),s.get(u))}}}programDeferred(e,t,i){let n=this.gl,a=n.createProgram(),o=!!n.getExtension("KHR_parallel_shader_compile");this.programs.add(a);let s=[[n.VERTEX_SHADER,t],[n.FRAGMENT_SHADER,i]].map(([f,b])=>{let g=n.createShader(f);return n.shaderSource(g,b),n.compileShader(g),n.attachShader(a,g),{s:g,type:f}});n.linkProgram(a);let l=!1,u=null,m=()=>{if(!(l||u||!s.length))try{for(let{s:f,type:b}of s)if(!n.getShaderParameter(f,n.COMPILE_STATUS))throw new Error(v("\u7740\u8272\u5668\u7F16\u8BD1\u5931\u8D25\uFF08{0} / {1}\uFF09\uFF1A{2}",[e,b===n.VERTEX_SHADER?v("\u9876\u70B9"):v("\u7247\u5143"),n.getShaderInfoLog(f)||v("\u9A71\u52A8\u672A\u8FD4\u56DE\u8BE6\u60C5")]));if(!n.getProgramParameter(a,n.LINK_STATUS))throw new Error(v("\u7740\u8272\u5668\u94FE\u63A5\u5931\u8D25\uFF08{0}\uFF09\uFF1A{1}",[e,n.getProgramInfoLog(a)||v("\u9A71\u52A8\u672A\u8FD4\u56DE\u8BE6\u60C5")]));l=!0}catch(f){u=f instanceof Error?f:new Error(String(f))}finally{for(let{s:f}of s)n.getAttachedShaders(a)?.includes(f)&&n.detachShader(a,f),n.deleteShader(f);s.length=0,this.deferred.delete(a)}},c=()=>!o||n.getProgramParameter(a,37297)===!0;this.deferred.set(a,{shaders:s,ready:c});let d=()=>{l||u||!this.deferred.has(a)||n.isContextLost()||(c()?m():setTimeout(d,50))};setTimeout(d,50);let x=new Map;return{prog:a,loc:{get:f=>(x.has(f)||x.set(f,n.getUniformLocation(a,f)),x.get(f))},done:()=>l||u!==null||c(),check:()=>{if(m(),u)throw u}}}deleteAll(){let e=this.gl;e.bindFramebuffer(e.FRAMEBUFFER,null),e.bindVertexArray(null),e.bindBuffer(e.ARRAY_BUFFER,null),e.useProgram(null);for(let t of this.framebuffers)e.deleteFramebuffer(t);for(let t of this.textures)e.deleteTexture(t);for(let t of this.buffers)e.deleteBuffer(t);for(let t of this.vaos)e.deleteVertexArray(t);for(let[t,i]of this.deferred){this.programs.delete(t);let n=()=>{if(!e.isContextLost()){if(!i.ready()){setTimeout(n,50);return}for(let{s:a}of i.shaders)e.detachShader(t,a),e.deleteShader(a);i.shaders.length=0,e.deleteProgram(t)}};n()}this.deferred.clear();for(let t of this.programs)e.deleteProgram(t);this.framebuffers.clear(),this.textures.clear(),this.buffers.clear(),this.vaos.clear(),this.programs.clear()}};var R=Math.PI/180;var Ze=(r,e)=>[r[1]*e[2]-r[2]*e[1],r[2]*e[0]-r[0]*e[2],r[0]*e[1]-r[1]*e[0]];function pe(r){if(!Number.isFinite(r))throw new RangeError("RA must be finite");let e=r%360;return e<0?e+360:e===0?0:e}function $e(r,e){if(!Number.isFinite(e)||Math.abs(e)>90)throw new RangeError("Latitude must be in [-90, 90] degrees");let t=pe(r)*R,i=e*R;if(Math.abs(e)===90)return[0,0,Math.sign(e)];let n=Math.cos(i);return[n*Math.cos(t),n*Math.sin(t),Math.sin(i)]}var W=(r,e)=>$e(r,e);function xe(r){let e=W(...r),t=pe(r[0])*R,i=r[1]*R;return{axis:e,west:[Math.sin(t),-Math.cos(t),0],north:[-Math.sin(i)*Math.cos(t),-Math.sin(i)*Math.sin(t),Math.cos(i)]}}var Qe=W(192.85948,27.12825),Y=W(192.85948+90,0),ve=Ze(Qe,Y),q=32.93192*R,_e=(r,e,t,i)=>[t*r[0]+i*e[0],t*r[1]+i*e[1],t*r[2]+i*e[2]],Ht=_e(Y,ve,Math.cos(q),-Math.sin(q)),Jt=_e(Y,ve,Math.sin(q),Math.cos(q));var Zt=2*Math.PI;function ye(r){let e=0;for(let t=0;r;t++,r>>>=2)e|=(r&1)<<t;return e}var et=[2,2,2,2,3,3,3,3,4,4,4,4],tt=[1,3,5,7,0,2,4,6,1,3,5,7];function ge(r,e){let t=2**r,i=Math.floor(e/(t*t)),n=e%(t*t),a=ye(n),o=ye(n>>>1),s=et[i]*t-a-o-1,l=s<t?s:s>3*t?4*t-s:t,u=s<t?1-l*l/(3*t*t):s>3*t?-1+l*l/(3*t*t):(2*t-s)*2/(3*t),m=s>=t&&s<=3*t?s-t&1:0,d=((tt[i]*l+a-o+1+m)/2-(m+1)*.5)*Math.PI/(2*l),x=Math.sqrt(1-u*u);return[x*Math.cos(d),x*Math.sin(d),u]}var rr=new Uint32Array;var J={25:10,50:11,85:12};var rt={25:7,50:5,85:3},it=2048,K=65536,Z=65535,Me=Math.PI/180,nt={2:14.78,3:7.68,4:3.99},Ee=(r,e)=>`${r}/${e}`;function Fe(r,e,t,i=it){let n=Math.tan(Math.atan((9+t)/e)+rt[e]*Me);return{centre:[r[0],r[1]],frame:xe(r),step:e,order:J[e],supportMm:t,size:i,planeStep:2*n/(i-1),refPixel:[(i-1)/2,(i-1)/2],halfTan:n}}var be=(r,e)=>r[0]*e[0]+r[1]*e[1]+r[2]*e[2],at=r=>{let e=Math.hypot(r[0],r[1],r[2]);return[r[0]/e,r[1]/e,r[2]/e]},Te=new Map,ot=r=>{let e=Te.get(r);return e||(e=Array.from({length:12*4**r},(t,i)=>ge(r,i)),Te.set(r,e)),e};function Re(r,e){let t=Math.sin(nt[e]*Me),{axis:i,west:n,north:a}=r.frame,o=r.halfTan,s=[[-1,0],[1,0],[0,-1],[0,1]].map(([u,m])=>at([0,1,2].map(c=>o*i[c]+u*n[c]+m*a[c]))),l=[];return ot(e).forEach((u,m)=>{be(u,i)>-t&&s.every(c=>be(u,c)>=-t)&&l.push(m)}),l}var Pe=r=>new Map([...r].map(e=>[e.order*4096+e.tile,e])),st=[2,2,2,2,3,3,3,3,4,4,4,4],lt=[1,3,5,7,0,2,4,6,1,3,5,7],Se=2*Math.PI,we=r=>(r=(r|r<<8)&16711935,r=(r|r<<4)&252645135,r=(r|r<<2)&858993459,(r|r<<1)&1431655765);function $(r,e,t){let i=1<<r,n,a,o=0;if(e<i)a=e,n=(t-1)/a|0;else if(e<=3*i){a=i,o=e-i&1;let u=e-i,m=t-(u+1>>1)+i-1>>r,c=t-(2*i+1-u>>1)+i-1>>r;n=c===m?c|4:c<m?c:m+8}else a=4*i-e,n=((t-1)/a|0)+8;let s=e-st[n]*i+1,l=2*t-lt[n]*a-o-1;return l>=2*i&&(l-=8*i),n*i*i+we(l-s>>1)+2*we(-l-s>>1)}var w=0,z=0;function ke(r,e){if(r<e){let t=r*r/(3*e*e);w=1-t,z=Math.sqrt(t*(2-t))}else if(r>3*e){let t=4*e-r,i=t*t/(3*e*e);w=i-1,z=Math.sqrt(i*(2-i))}else w=(2*e-r)*2/(3*e),z=Math.sqrt(1-w*w)}var Ae=r=>{let e=r*r;return r*(1+e*(1/6+e*.075))},P=new Float64Array(4),S=new Float64Array(4),ut=16,H=[];function ct(r){return r.values||(r.values=new Float32Array(4*K).fill(NaN),H.push(r),H.length>ut&&delete H.shift().values),r.values}function mt(r,e,t,i,n,a){let o=1<<r,s=e*e+t*t,l=Math.sqrt(s),u=i>2/3?o*Math.sqrt(3*s/(1+i)):i<-2/3?4*o-o*Math.sqrt(3*s/(1-i)):2*o-1.5*o*i,m=Math.floor(u),c=Math.max(1,Math.min(4*o-1,m)),d=Math.max(1,Math.min(4*o-1,m+1));ke(c,o);let x=w,f=z;ke(d,o);let b=w,g=z,Q=c===d?0:Math.max(0,Math.min(1,Ae(l*x-i*f)/Ae(g*x-b*f))),De=Math.atan2(t,e);P.fill(0),S.fill(0);for(let _=0;_<2;_++){let k=_===0?c:d,Le=_===0?1-Q:Q,ee=Math.min(k,o,4*o-k),Ie=k>=o&&k<=3*o?k-o&1:0,N=4*ee,te=Math.PI/(2*ee),Ue=(1-(Ie+1)*.5)*te,M=(De-Ue)%Se;M<0&&(M+=Se),M/=te;let A=Math.floor(M),re=M-A;A>=N&&(A-=N);for(let D=0;D<2;D++){let Ge=D===0?A:A+1===N?0:A+1,ie=Le*(D===0?1-re:re),ne=$(r,k,Ge+1),E=n.get(r*4096+(ne>>>16));if(!E)return!1;let V=4*(ne&65535),Ce=E.codes,ae=ct(E);for(let y=0;y<4;y++){let oe=Ce[V+y];if(oe===Z)continue;let L=ae[V+y];L!==L&&(L=ae[V+y]=E.soft[y]*Math.sinh(oe/65534*E.amax[y])),P[y]=P[y]+ie*L,S[y]=S[y]+ie}}}a[0]=S[0]>0?P[0]/S[0]:-1;for(let _=1;_<4;_++)a[_]=S[_]>0?P[_]/S[_]:0;return!0}function ft(r,e,t,i,n,a=new Float32Array(4)){let{axis:o,west:s,north:l}=r.frame,u=o[0]+i*s[0]+n*l[0],m=o[1]+i*s[1]+n*l[1],c=o[2]+i*s[2]+n*l[2],d=Math.hypot(u,m,c);u/=d,m/=d,c/=d;for(let x of e)if(mt(x,u,m,c,t,a))return a;return a[0]=-1,a[1]=a[2]=a[3]=0,a}var ze=(r,e,t,i,n,a=new Float32Array(4))=>ft(r,e,t,(i-r.refPixel[0])*r.planeStep,(n-r.refPixel[1])*r.planeStep,a);return Xe(ht);})();
+`,U=`#version 300 es
+precision highp float;
+precision highp int;
+precision highp sampler2D;
+`+nt+`
+uniform vec3 u_axis, u_west, u_north;
+uniform float u_step;
+uniform vec2 u_ref;
+out vec4 o;
+void main() {
+  vec2 X = (gl_FragCoord.xy - 0.5 - u_ref) * u_step;
+  vec3 v = normalize(u_axis + X.x * u_west + X.y * u_north);
+  o = skyValue(v);
+}
+`;var $=class{constructor(e,t){this.gl=e;this.res=t;d(this,"array",null);d(this,"params",null);d(this,"capacity",0);d(this,"slots",new Map);d(this,"maps",new Map);d(this,"present",new Map);d(this,"clock",0);d(this,"uploads",0);d(this,"pbo",null)}staged(e,t){let i=this.gl;this.pbo||(this.pbo=i.createBuffer(),this.res.buffers.add(this.pbo)),i.bindBuffer(i.PIXEL_UNPACK_BUFFER,this.pbo),i.bufferData(i.PIXEL_UNPACK_BUFFER,e,i.STREAM_DRAW),i.pixelStorei(i.UNPACK_ALIGNMENT,1),t(),i.bindBuffer(i.PIXEL_UNPACK_BUFFER,null)}get layerBytes(){return this.capacity*256*256*8}get resident(){return this.slots.size}has(e){return this.slots.has(e)}allocate(e){let t=this.gl;this.array&&this.res.deleteTexture(this.array),this.params&&this.res.deleteTexture(this.params),this.array=t.createTexture(),this.res.textures.add(this.array),t.bindTexture(t.TEXTURE_2D_ARRAY,this.array),t.texImage3D(t.TEXTURE_2D_ARRAY,0,t.RGBA16UI,256,256,e,0,t.RGBA_INTEGER,t.UNSIGNED_SHORT,null);for(let[i,r]of[[t.TEXTURE_MIN_FILTER,t.NEAREST],[t.TEXTURE_MAG_FILTER,t.NEAREST],[t.TEXTURE_WRAP_S,t.CLAMP_TO_EDGE],[t.TEXTURE_WRAP_T,t.CLAMP_TO_EDGE]])t.texParameteri(t.TEXTURE_2D_ARRAY,i,r);t.pixelStorei(t.UNPACK_ALIGNMENT,1),t.texSubImage3D(t.TEXTURE_2D_ARRAY,0,0,0,0,256,256,1,t.RGBA_INTEGER,t.UNSIGNED_SHORT,new Uint16Array(4*65536).fill(65535)),this.params=this.res.texture(2,e,t.RGBA32F,t.RGBA,t.FLOAT,null),this.capacity=e,this.slots.clear();for(let[i,r]of this.maps)this.reset(i,r.data),r.dirty=!0}reset(e,t){let i=this.present.get(e);if(!i){t.fill(-1);return}for(let r=0;r<t.length;r++)t[r]=r<i.length&&i[r]?0:-1}map(e){let t=this.maps.get(e);if(!t){let i=Math.ceil(12*4**(e-8)/64),r=new Int32Array(64*i);this.reset(e,r),t={tex:this.res.texture(64,i,this.gl.R32I,this.gl.RED_INTEGER,this.gl.INT,r),data:r,dirty:!1},this.maps.set(e,t)}return t}presence(e,t){let i=12*4**(e-8),r=new Uint8Array(i);for(let o of t)o>=0&&o<i&&(r[o]=1);this.present.set(e,r);let n=this.map(e);for(let o=0;o<n.data.length;o++)n.data[o]<=0&&(n.data[o]=o<i&&r[o]?0:-1);n.dirty=!0}ensure(e,t=1/0){let i=this.gl,r=++this.clock;e.length+1>this.capacity&&this.allocate(Math.max(64,Math.ceil(e.length*1.25)+1));let n=new Set(e.map(l=>l.key)),o=0,s=0;for(let l of e){let u=this.slots.get(l.key);if(u){u.used=r;continue}if(o>=t){s++;continue}let c=this.slots.size+1;if(c>=this.capacity){let p=null;for(let y of this.slots)!n.has(y[0])&&(!p||y[1].used<p[1].used)&&(p=y);let[_,m]=p;this.slots.delete(_),c=m.layer;let b=this.map(m.order);b.data[m.tile]=this.present.get(m.order)?.[m.tile]?0:-1,b.dirty=!0}i.bindTexture(i.TEXTURE_2D_ARRAY,this.array),this.staged(l.codes,()=>i.texSubImage3D(i.TEXTURE_2D_ARRAY,0,0,0,c,256,256,1,i.RGBA_INTEGER,i.UNSIGNED_SHORT,0)),i.bindTexture(i.TEXTURE_2D,this.params),this.staged(Float32Array.from([...Array.from(l.soft),...Array.from(l.amax)]),()=>i.texSubImage2D(i.TEXTURE_2D,0,0,c,2,1,i.RGBA,i.FLOAT,0)),this.slots.set(l.key,{layer:c,order:l.order,tile:l.tile,used:r});let f=this.map(l.order);f.data[l.tile]=c,f.dirty=!0,o++,this.uploads++}return this.flushMaps(),s}flushMaps(){let e=this.gl;for(let t of this.maps.values())t.dirty&&(e.bindTexture(e.TEXTURE_2D,t.tex),this.staged(t.data,()=>e.texSubImage2D(e.TEXTURE_2D,0,0,0,64,t.data.length/64,e.RED_INTEGER,e.INT,0)),t.dirty=!1)}bind(e,t,i){let r=this.gl,n=c=>e.loc.get(c);this.array||this.allocate(64);let[o,s]=[t[0],t[1]??t[0]],l=this.map(o),u=this.map(s);this.flushMaps(),r.activeTexture(r.TEXTURE0+i.tiles),r.bindTexture(r.TEXTURE_2D_ARRAY,this.array),r.uniform1i(n("u_tiles"),i.tiles),this.res.bindTex(i.params,this.params,e,"u_params"),this.res.bindTex(i.map0,l.tex,e,"u_map0"),this.res.bindTex(i.map1,u.tex,e,"u_map1"),r.uniform1i(n("u_order0"),o),r.uniform1i(n("u_order1"),s),r.uniform1i(n("u_orders"),Math.min(2,t.length))}unbind(e){let t=this.gl;t.activeTexture(t.TEXTURE0+e.tiles),t.bindTexture(t.TEXTURE_2D_ARRAY,null)}},N=class{constructor(e,t){this.gl=e;this.res=t;d(this,"store");d(this,"prog");d(this,"variant",null);this.store=new $(e,t),this.prog=t.programDeferred("skyProject",M,U)}get compiled(){return this.prog.done()}setVariant(e){if(e===this.variant)return;let t=this.prog;if(this.prog=this.res.programDeferred("skyProject"+(e?"-"+e:""),M,be(U,e)),this.variant=e,t.done()){try{t.check()}catch{}this.gl.deleteProgram(t.prog),this.res.programs.delete(t.prog)}}get layerBytes(){return this.store.layerBytes}get uploads(){return this.store.uploads}ensure(e,t=1/0){return this.store.ensure(e,t)}project(e,t,i,r,n){let o=this.gl,s=this.prog,l=u=>s.loc.get(u);s.check(),o.useProgram(s.prog),o.bindVertexArray(n),o.bindFramebuffer(o.FRAMEBUFFER,e.fbo),o.viewport(0,0,t.size,t.size),o.enable(o.SCISSOR_TEST),o.scissor(0,i,t.size,r-i),this.store.bind(s,t.orders,Se),o.uniform3fv(l("u_axis"),[...t.frame.axis]),o.uniform3fv(l("u_west"),[...t.frame.west]),o.uniform3fv(l("u_north"),[...t.frame.north]),o.uniform1f(l("u_step"),t.stepTan),o.uniform2f(l("u_ref"),t.refPixel[0],t.refPixel[1]),o.drawArrays(o.TRIANGLES,0,3),o.disable(o.SCISSOR_TEST),this.store.unbind(Se)}},Se={tiles:0,params:1,map0:2,map1:3};var v=(a,e)=>e?a.replace(/\{(\d+)\}/g,(t,i)=>String(e[+i])):a;var Z=class extends Error{},q=class{constructor(e){this.gl=e;d(this,"textures",new Set);d(this,"framebuffers",new Set);d(this,"programs",new Set);d(this,"buffers",new Set);d(this,"vaos",new Set);d(this,"deferred",new Map)}texture(e,t,i,r,n,o){let s=this.gl,l=s.createTexture();this.textures.add(l),s.bindTexture(s.TEXTURE_2D,l),s.pixelStorei(s.UNPACK_ALIGNMENT,1),s.texImage2D(s.TEXTURE_2D,0,i,e,t,0,r,n,o);for(let[u,c]of[[s.TEXTURE_MIN_FILTER,s.NEAREST],[s.TEXTURE_MAG_FILTER,s.NEAREST],[s.TEXTURE_WRAP_S,s.CLAMP_TO_EDGE],[s.TEXTURE_WRAP_T,s.CLAMP_TO_EDGE]])s.texParameteri(s.TEXTURE_2D,u,c);return l}target(e,t,i){let r=this.gl,n=t===r.R16F?r.HALF_FLOAT:t===r.RGBA8?r.UNSIGNED_BYTE:r.FLOAT,o=this.texture(e,e,t,i,n,null),s=r.createFramebuffer();this.framebuffers.add(s),r.bindFramebuffer(r.FRAMEBUFFER,s),r.framebufferTexture2D(r.FRAMEBUFFER,r.COLOR_ATTACHMENT0,r.TEXTURE_2D,o,0);let l=r.checkFramebufferStatus(r.FRAMEBUFFER);if(l!==r.FRAMEBUFFER_COMPLETE)throw this.deleteTarget({tex:o,fbo:s,internal:t,format:i,size:e}),new Z(v("\u6D6E\u70B9\u6E32\u67D3\u76EE\u6807\u4E0D\u53EF\u7528\uFF080x{0}\uFF09\u3002",[l.toString(16)]));return{tex:o,fbo:s,internal:t,format:i,size:e}}deleteTexture(e){this.gl.deleteTexture(e),this.textures.delete(e)}deleteTarget(e){this.gl.deleteFramebuffer(e.fbo),this.framebuffers.delete(e.fbo),this.deleteTexture(e.tex)}bindTarget(e){this.gl.bindFramebuffer(this.gl.FRAMEBUFFER,e.fbo),this.gl.viewport(0,0,e.size,e.size)}bindTex(e,t,i,r){let n=this.gl;n.activeTexture(n.TEXTURE0+e),n.bindTexture(n.TEXTURE_2D,t),n.uniform1i(i.loc.get(r),e)}program(e,t,i){let r=this.gl,n=r.createProgram();this.programs.add(n);let o=[];try{for(let[u,c]of[[r.VERTEX_SHADER,t],[r.FRAGMENT_SHADER,i]]){let f=r.createShader(u);if(o.push(f),r.shaderSource(f,c),r.compileShader(f),!r.getShaderParameter(f,r.COMPILE_STATUS))throw new Error(v("\u7740\u8272\u5668\u7F16\u8BD1\u5931\u8D25\uFF08{0} / {1}\uFF09\uFF1A{2}",[e,u===r.VERTEX_SHADER?v("\u9876\u70B9"):v("\u7247\u5143"),r.getShaderInfoLog(f)||v("\u9A71\u52A8\u672A\u8FD4\u56DE\u8BE6\u60C5")]));r.attachShader(n,f)}if(r.linkProgram(n),!r.getProgramParameter(n,r.LINK_STATUS))throw new Error(v("\u7740\u8272\u5668\u94FE\u63A5\u5931\u8D25\uFF08{0}\uFF09\uFF1A{1}",[e,r.getProgramInfoLog(n)||v("\u9A71\u52A8\u672A\u8FD4\u56DE\u8BE6\u60C5")]))}catch(u){throw r.deleteProgram(n),this.programs.delete(n),u}finally{for(let u of o)r.isProgram(n)&&r.getAttachedShaders(n)?.includes(u)&&r.detachShader(n,u),r.deleteShader(u)}let s=new Map;return{prog:n,loc:{get:u=>(s.has(u)||s.set(u,r.getUniformLocation(n,u)),s.get(u))}}}programDeferred(e,t,i){let r=this.gl,n=r.createProgram(),o=!!r.getExtension("KHR_parallel_shader_compile");this.programs.add(n);let s=[[r.VERTEX_SHADER,t],[r.FRAGMENT_SHADER,i]].map(([m,b])=>{let y=r.createShader(m);return r.shaderSource(y,b),r.compileShader(y),r.attachShader(n,y),{s:y,type:m}});r.linkProgram(n);let l=!1,u=null,c=()=>{if(!(l||u||!s.length))try{for(let{s:m,type:b}of s)if(!r.getShaderParameter(m,r.COMPILE_STATUS))throw new Error(v("\u7740\u8272\u5668\u7F16\u8BD1\u5931\u8D25\uFF08{0} / {1}\uFF09\uFF1A{2}",[e,b===r.VERTEX_SHADER?v("\u9876\u70B9"):v("\u7247\u5143"),r.getShaderInfoLog(m)||v("\u9A71\u52A8\u672A\u8FD4\u56DE\u8BE6\u60C5")]));if(!r.getProgramParameter(n,r.LINK_STATUS))throw new Error(v("\u7740\u8272\u5668\u94FE\u63A5\u5931\u8D25\uFF08{0}\uFF09\uFF1A{1}",[e,r.getProgramInfoLog(n)||v("\u9A71\u52A8\u672A\u8FD4\u56DE\u8BE6\u60C5")]));l=!0}catch(m){u=m instanceof Error?m:new Error(String(m))}finally{for(let{s:m}of s)r.getAttachedShaders(n)?.includes(m)&&r.detachShader(n,m),r.deleteShader(m);s.length=0,this.deferred.delete(n)}},f=()=>!o||r.getProgramParameter(n,37297)===!0;this.deferred.set(n,{shaders:s,ready:f});let p=()=>{l||u||!this.deferred.has(n)||r.isContextLost()||(f()?c():setTimeout(p,50))};setTimeout(p,50);let _=new Map;return{prog:n,loc:{get:m=>(_.has(m)||_.set(m,r.getUniformLocation(n,m)),_.get(m))},done:()=>l||u!==null||f(),check:()=>{if(c(),u)throw u}}}deleteAll(){let e=this.gl;e.bindFramebuffer(e.FRAMEBUFFER,null),e.bindVertexArray(null),e.bindBuffer(e.ARRAY_BUFFER,null),e.useProgram(null);for(let t of this.framebuffers)e.deleteFramebuffer(t);for(let t of this.textures)e.deleteTexture(t);for(let t of this.buffers)e.deleteBuffer(t);for(let t of this.vaos)e.deleteVertexArray(t);for(let[t,i]of this.deferred){this.programs.delete(t);let r=()=>{if(!e.isContextLost()){if(!i.ready()){setTimeout(r,50);return}for(let{s:n}of i.shaders)e.detachShader(t,n),e.deleteShader(n);i.shaders.length=0,e.deleteProgram(t)}};r()}this.deferred.clear();for(let t of this.programs)e.deleteProgram(t);this.framebuffers.clear(),this.textures.clear(),this.buffers.clear(),this.vaos.clear(),this.programs.clear()}};var P=Math.PI/180;var ot=(a,e)=>[a[1]*e[2]-a[2]*e[1],a[2]*e[0]-a[0]*e[2],a[0]*e[1]-a[1]*e[0]];function Te(a){if(!Number.isFinite(a))throw new RangeError("RA must be finite");let e=a%360;return e<0?e+360:e===0?0:e}function st(a,e){if(!Number.isFinite(e)||Math.abs(e)>90)throw new RangeError("Latitude must be in [-90, 90] degrees");let t=Te(a)*P,i=e*P;if(Math.abs(e)===90)return[0,0,Math.sign(e)];let r=Math.cos(i);return[r*Math.cos(t),r*Math.sin(t),Math.sin(i)]}var Q=(a,e)=>st(a,e);function we(a){let e=Q(...a),t=Te(a[0])*P,i=a[1]*P;return{axis:e,west:[Math.sin(t),-Math.cos(t),0],north:[-Math.sin(i)*Math.cos(t),-Math.sin(i)*Math.sin(t),Math.cos(i)]}}var lt=Q(192.85948,27.12825),ee=Q(192.85948+90,0),ke=ot(lt,ee),B=32.93192*P,Ae=(a,e,t,i)=>[t*a[0]+i*e[0],t*a[1]+i*e[1],t*a[2]+i*e[2]],lr=Ae(ee,ke,Math.cos(B),-Math.sin(B)),ur=Ae(ee,ke,Math.sin(B),Math.cos(B));var fr=2*Math.PI;function Re(a){let e=0;for(let t=0;a;t++,a>>>=2)e|=(a&1)<<t;return e}var ut=[2,2,2,2,3,3,3,3,4,4,4,4],ct=[1,3,5,7,0,2,4,6,1,3,5,7];function Ee(a,e){let t=2**a,i=Math.floor(e/(t*t)),r=e%(t*t),n=Re(r),o=Re(r>>>1),s=ut[i]*t-n-o-1,l=s<t?s:s>3*t?4*t-s:t,u=s<t?1-l*l/(3*t*t):s>3*t?-1+l*l/(3*t*t):(2*t-s)*2/(3*t),c=s>=t&&s<=3*t?s-t&1:0,p=((ct[i]*l+n-o+1+c)/2-(c+1)*.5)*Math.PI/(2*l),_=Math.sqrt(1-u*u);return[_*Math.cos(p),_*Math.sin(p),u]}var re={25:10,50:11,85:12};var ft={25:7,50:5,85:3};var mt=2048,O=65536,V=65535,Ie=Math.PI/180,ht={2:14.78,3:7.68,4:3.99},Ge=(a,e)=>`${a}/${e}`;function Ce(a,e,t,i=mt){let r=Math.tan(Math.atan((9+t)/e)+ft[e]*Ie);return{centre:[a[0],a[1]],frame:we(a),step:e,order:re[e],supportMm:t,size:i,planeStep:2*r/(i-1),refPixel:[(i-1)/2,(i-1)/2],halfTan:r}}var Fe=(a,e)=>a[0]*e[0]+a[1]*e[1]+a[2]*e[2],dt=a=>{let e=Math.hypot(a[0],a[1],a[2]);return[a[0]/e,a[1]/e,a[2]/e]},Me=new Map,pt=a=>{let e=Me.get(a);return e||(e=Array.from({length:12*4**a},(t,i)=>Ee(a,i)),Me.set(a,e)),e};function Ue(a,e){let t=Math.sin(ht[e]*Ie),{axis:i,west:r,north:n}=a.frame,o=a.halfTan,s=[[-1,0],[1,0],[0,-1],[0,1]].map(([u,c])=>dt([0,1,2].map(f=>o*i[f]+u*r[f]+c*n[f]))),l=[];return pt(e).forEach((u,c)=>{Fe(u,i)>-t&&s.every(f=>Fe(u,f)>=-t)&&l.push(c)}),l}var Ne=a=>new Map([...a].map(e=>[e.order*4096+e.tile,e])),vt=[2,2,2,2,3,3,3,3,4,4,4,4],_t=[1,3,5,7,0,2,4,6,1,3,5,7],Pe=2*Math.PI,De=a=>(a=(a|a<<8)&16711935,a=(a|a<<4)&252645135,a=(a|a<<2)&858993459,(a|a<<1)&1431655765);function ie(a,e,t){let i=1<<a,r,n,o=0;if(e<i)n=e,r=(t-1)/n|0;else if(e<=3*i){n=i,o=e-i&1;let u=e-i,c=t-(u+1>>1)+i-1>>a,f=t-(2*i+1-u>>1)+i-1>>a;r=f===c?f|4:f<c?f:c+8}else n=4*i-e,r=((t-1)/n|0)+8;let s=e-vt[r]*i+1,l=2*t-_t[r]*n-o-1;return l>=2*i&&(l-=8*i),r*i*i+De(l-s>>1)+2*De(-l-s>>1)}var k=0,z=0;function ze(a,e){if(a<e){let t=a*a/(3*e*e);k=1-t,z=Math.sqrt(t*(2-t))}else if(a>3*e){let t=4*e-a,i=t*t/(3*e*e);k=i-1,z=Math.sqrt(i*(2-i))}else k=(2*e-a)*2/(3*e),z=Math.sqrt(1-k*k)}var Le=a=>{let e=a*a;return a*(1+e*(1/6+e*.075))},D=new Float64Array(4),w=new Float64Array(4),xt=16,te=[];function gt(a){return a.values||(a.values=new Float32Array(4*O).fill(NaN),te.push(a),te.length>xt&&delete te.shift().values),a.values}function yt(a,e,t,i,r,n){let o=1<<a,s=e*e+t*t,l=Math.sqrt(s),u=i>2/3?o*Math.sqrt(3*s/(1+i)):i<-2/3?4*o-o*Math.sqrt(3*s/(1-i)):2*o-1.5*o*i,c=Math.floor(u),f=Math.max(1,Math.min(4*o-1,c)),p=Math.max(1,Math.min(4*o-1,c+1));ze(f,o);let _=k,m=z;ze(p,o);let b=k,y=z,ae=f===p?0:Math.max(0,Math.min(1,Le(l*_-i*m)/Le(y*_-b*m))),Be=Math.atan2(t,e);D.fill(0),w.fill(0);for(let x=0;x<2;x++){let A=x===0?f:p,Oe=x===0?1-ae:ae,ne=Math.min(A,o,4*o-A),Ve=A>=o&&A<=3*o?A-o&1:0,j=4*ne,oe=Math.PI/(2*ne),je=(1-(Ve+1)*.5)*oe,E=(Be-je)%Pe;E<0&&(E+=Pe),E/=oe;let R=Math.floor(E),se=E-R;R>=j&&(R-=j);for(let L=0;L<2;L++){let We=L===0?R:R+1===j?0:R+1,le=Oe*(L===0?1-se:se),ue=ie(a,A,We+1),F=r.get(a*4096+(ue>>>16));if(!F)return!1;let W=4*(ue&65535),Ye=F.codes,ce=gt(F);for(let g=0;g<4;g++){let fe=Ye[W+g];if(fe===V)continue;let I=ce[W+g];I!==I&&(I=ce[W+g]=F.soft[g]*Math.sinh(fe/65534*F.amax[g])),D[g]=D[g]+le*I,w[g]=w[g]+le}}}n[0]=w[0]>0?D[0]/w[0]:-1;for(let x=1;x<4;x++)n[x]=w[x]>0?D[x]/w[x]:0;return!0}function bt(a,e,t,i,r,n=new Float32Array(4)){let{axis:o,west:s,north:l}=a.frame,u=o[0]+i*s[0]+r*l[0],c=o[1]+i*s[1]+r*l[1],f=o[2]+i*s[2]+r*l[2],p=Math.hypot(u,c,f);u/=p,c/=p,f/=p;for(let _ of e)if(yt(_,u,c,f,t,n))return n;return n[0]=-1,n[1]=n[2]=n[3]=0,n}var qe=(a,e,t,i,r,n=new Float32Array(4))=>bt(a,e,t,(i-a.refPixel[0])*a.planeStep,(r-a.refPixel[1])*a.planeStep,n);var vr={key:"blank",order:-1,tile:-1,codes:new Uint16Array(4*O).fill(V),soft:new Float64Array(4),amax:new Float64Array(4)};return Qe(St);})();
 </script>
 <script>
 'use strict';
@@ -1176,14 +1420,14 @@ function readTarget(target, size) {
   gl.bindFramebuffer(gl.FRAMEBUFFER, target.fbo);
   const buf = new Float32Array(size * size * 4); gl.readPixels(0, 0, size, size, gl.RGBA, gl.FLOAT, buf); return buf;
 }
-// Same as SkyProjector.project, with another program (variants and probes use the projector's own textures).
+// Same as SkyProjector.project, with another program (variants and probes use the projector's tile store, D117).
 function projectWith(prog, target, p, y0, y1) {
-  const loc = n => prog.loc.get(n), o0 = p.orders[0], o1 = p.orders[1] ?? p.orders[0], m0 = projector.map(o0), m1 = projector.map(o1);
+  const loc = n => prog.loc.get(n), o0 = p.orders[0], o1 = p.orders[1] ?? p.orders[0], m0 = projector.store.map(o0), m1 = projector.store.map(o1);
   gl.useProgram(prog.prog); gl.bindVertexArray(vao);
   gl.bindFramebuffer(gl.FRAMEBUFFER, target.fbo); gl.viewport(0, 0, p.size, p.size);
   gl.enable(gl.SCISSOR_TEST); gl.scissor(0, y0, p.size, y1 - y0);
-  gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D_ARRAY, projector.array); gl.uniform1i(loc('u_tiles'), 0);
-  res.bindTex(1, projector.params, prog, 'u_params'); res.bindTex(2, m0.tex, prog, 'u_map0'); res.bindTex(3, m1.tex, prog, 'u_map1');
+  gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D_ARRAY, projector.store.array); gl.uniform1i(loc('u_tiles'), 0);
+  res.bindTex(1, projector.store.params, prog, 'u_params'); res.bindTex(2, m0.tex, prog, 'u_map0'); res.bindTex(3, m1.tex, prog, 'u_map1');
   gl.uniform1i(loc('u_order0'), o0); gl.uniform1i(loc('u_order1'), o1); gl.uniform1i(loc('u_orders'), p.orders.length);
   gl.uniform3fv(loc('u_axis'), [...p.frame.axis]); gl.uniform3fv(loc('u_west'), [...p.frame.west]); gl.uniform3fv(loc('u_north'), [...p.frame.north]);
   gl.uniform1f(loc('u_step'), p.stepTan); gl.uniform2f(loc('u_ref'), p.refPixel[0], p.refPixel[1]);
@@ -1449,7 +1693,7 @@ async function run() {
     if (allPass) verdict('ok', oldFails ? '这台设备的显卡把广域天图算对了。0.9.49 的旧写法在这里会算错（对照一行），更新后即可正常显示。请把结果复制给开发者，用来记录这款设备。' : '这台设备的显卡把广域天图算对了，旧写法在这里也正确。请把结果复制给开发者，用来记录这款设备。');
     else {
       // Isolate the failing stage on a small 25 mm plane: geometry (A), tile/texel fetch (B), parameters (P).
-      const S = 256, slots = projector.slots;
+      const S = 256, slots = projector.store.slots;
       const runProbe = async id => { const prog = probe(id), target = res.target(S, gl.RGBA32F, gl.RGBA); projectWith(prog, target, c.p, 0, S); await frame(); const b = readTarget(target, S); res.deleteTarget(target); return b; };
       const a = await runProbe('A'), b = await runProbe('B'), pr = await runProbe('P');
       let geoBad = 0, fetchBad = 0, paramBad = 0; const ex = [];
