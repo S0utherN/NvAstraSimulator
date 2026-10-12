@@ -5,10 +5,10 @@
   "logicalFiles": {
     "atlas2-versions.json": {
       "bundle": "app",
-      "path": "data/atlas2-versions.32294b3984aa1915.json.gz",
-      "bytes": 1941,
-      "sha256": "a0bbe70d27fc1f8f8dea09c1b1f57da3aa3f693c75829d388614493d75cdb97e",
-      "originalSha256": "32294b3984aa19151009a3f11dcc74e8f8f75cc45e8c95247352e6dc7e992702"
+      "path": "data/atlas2-versions.749fbbf639fce171.json.gz",
+      "bytes": 2266,
+      "sha256": "3feca760f04a53d9cb5f80e1609f9d0520bec41ecd8fa3a6ef7163b4495a7b11",
+      "originalSha256": "749fbbf639fce171ed159428f2399882e3c56e351b08b47d088a13f9d6cf9bc2"
     },
     "atlas2/barnard-stars.bin": {
       "bundle": "app",
@@ -1004,12 +1004,180 @@
       "sha256": "e1b1cca033203f68ac9af6dc7c934f7e5b7e4100c616503493ac2db74be83e41",
       "originalSha256": "db663cf9620305ce1cd48db765ab3fc784c9a0192674a471057368927e83fddf"
     },
+    "atlas9/47-tuc-stars.bin": {
+      "bundle": "app",
+      "path": "data/atlas9/47-tuc-stars.e4e46c22467a1e28.bin.gz",
+      "bytes": 872175,
+      "sha256": "9e4929751ac0cbc87502892712d59d654f31f631c02332f04f6bb98468ce3f5a",
+      "originalSha256": "e4e46c22467a1e2837dc4657426c4dbaa1fdde47e8be0c27b8abda0d9832ac3d"
+    },
+    "atlas9/47-tuc.json": {
+      "bundle": "app",
+      "path": "data/atlas9/47-tuc.59a81d89538ffd65.json.gz",
+      "bytes": 8160,
+      "sha256": "94dfb55a2452de345740b3f22014f23ad5b42e78b0697ef8ff9856fd1fbcade1",
+      "originalSha256": "59a81d89538ffd6590daca10852f9a8a2239aeafed606cbc591c891c27d1d50b"
+    },
+    "atlas9/47-tuc.bin": {
+      "bundle": "app",
+      "path": "data/atlas9/47-tuc.72bd48efc95e0fe7.bin.gz",
+      "bytes": 253465,
+      "sha256": "415185acda2200ef76884087fbd11e6a6eda35e0390596e9b13012bb10ba88b7",
+      "originalSha256": "72bd48efc95e0fe7ef38c003d75fb4a2823710f2cc87aa5b2887d207e76b7387"
+    },
+    "atlas9/m13-stars.bin": {
+      "bundle": "app",
+      "path": "data/atlas9/m13-stars.e2b6dfd5ac3f97e9.bin.gz",
+      "bytes": 308036,
+      "sha256": "3cf6359bb6e654f90ef1cdc11b157aa1c048d743f10d11c6d2c465a9e169a1b1",
+      "originalSha256": "e2b6dfd5ac3f97e9c980c2ee5feee3486467ac516c170700f50aa37eec09ac0c"
+    },
+    "atlas9/m13.bin": {
+      "bundle": "app",
+      "path": "data/atlas9/m13.9899580505b0fa74.bin.gz",
+      "bytes": 400856,
+      "sha256": "ac401e0530cf66c6a75889bdba35bc653bf410bbd031ca11f248b4d80b0e3e8a",
+      "originalSha256": "9899580505b0fa74fe12697dc1f4996ed0930080c5f8596a2c7f808f998c6eab"
+    },
+    "atlas9/m13.json": {
+      "bundle": "app",
+      "path": "data/atlas9/m13.acfccd9343c0b48b.json.gz",
+      "bytes": 8134,
+      "sha256": "8b0ef4d0f5df317c2f48505e113406860f120f88ac9c0ce7fa2b685848124702",
+      "originalSha256": "acfccd9343c0b48bc8223a2f446a29f5c9ff3c2c4dc3d5dbb8ac6f30db520d70"
+    },
+    "atlas9/m22-stars.bin": {
+      "bundle": "app",
+      "path": "data/atlas9/m22-stars.736f2cdaba31bf8c.bin.gz",
+      "bytes": 1704716,
+      "sha256": "635844b2b5ea92f7658ac93dd4c2ac026b4196da3e2ae6c5e4a859cf6df34cde",
+      "originalSha256": "736f2cdaba31bf8ce0de35839476fb608153427668e0d762cdc34ea0c6084999"
+    },
+    "atlas9/m22.bin": {
+      "bundle": "app",
+      "path": "data/atlas9/m22.36e505a652140b6d.bin.gz",
+      "bytes": 259534,
+      "sha256": "82e50bce88242eb41941d21d732ffd6121d5742f081669565bc3e59a5df13df0",
+      "originalSha256": "36e505a652140b6da0d260abc236504bc09931a177d1bbbfe51857301e1104e1"
+    },
+    "atlas9/m22.json": {
+      "bundle": "app",
+      "path": "data/atlas9/m22.b88464c24a1cf212.json.gz",
+      "bytes": 8156,
+      "sha256": "c19d78c40f3491179691030a8bd4b59e3d06657379ef5eb73dbd7bbc10b23485",
+      "originalSha256": "b88464c24a1cf2122ff88b0090efbea331124ce0866cc2cb0026f9894a8086bd"
+    },
+    "atlas9/m4-stars.bin": {
+      "bundle": "app",
+      "path": "data/atlas9/m4-stars.8fd331ec3d6934a1.bin.gz",
+      "bytes": 810156,
+      "sha256": "6571caea1469110e64e716562601f64adbea253733db6e8036e276a2d27ffd77",
+      "originalSha256": "8fd331ec3d6934a1ac852b582e66b3a7681e9f3889d053c45a682caed19f418e"
+    },
+    "atlas9/m4.json": {
+      "bundle": "app",
+      "path": "data/atlas9/m4.57c180ed7e9e65c5.json.gz",
+      "bytes": 8098,
+      "sha256": "e7fa8019cb6459828cdc065e1ef2fbd0700c110007d5cc00195a60df994ded2e",
+      "originalSha256": "57c180ed7e9e65c545c9ee617a248c376be6702d4921ce5720592cc482040a41"
+    },
+    "atlas9/m4.bin": {
+      "bundle": "app",
+      "path": "data/atlas9/m4.f6f4df26368c9f99.bin.gz",
+      "bytes": 260422,
+      "sha256": "8e58278513270f14459e80f0d092fc081087005e18f4e2e4c8cd805944c4b455",
+      "originalSha256": "f6f4df26368c9f995f20dfa72d3eef3fac4f5861c961e371b253b98c9a6feeeb"
+    },
+    "atlas9/m5-stars.bin": {
+      "bundle": "app",
+      "path": "data/atlas9/m5-stars.0979f8ae4089ce7c.bin.gz",
+      "bytes": 267780,
+      "sha256": "23db5721008378b6e6fc6004361efcd8ba8fcd04848f0c0dc2cd0732bd4b1c33",
+      "originalSha256": "0979f8ae4089ce7c3c4adfa13ba65df34aca039d03f512b74719909e8dc9c452"
+    },
+    "atlas9/m5.json": {
+      "bundle": "app",
+      "path": "data/atlas9/m5.05ca15b3336e4826.json.gz",
+      "bytes": 8140,
+      "sha256": "15509a77bdce2fa08740f0763ffbff2a43d8b4ea8278809f67e2af52ee3c25ea",
+      "originalSha256": "05ca15b3336e4826cd7a0ed6d154834f718d7e0cf5f98275d39f51c9bed91f21"
+    },
+    "atlas9/m5.bin": {
+      "bundle": "app",
+      "path": "data/atlas9/m5.2e8d5c6ae1631fc9.bin.gz",
+      "bytes": 505056,
+      "sha256": "5e15338240727392da4597599efca95669d5fc34d1502b025a34ab593e7431a5",
+      "originalSha256": "2e8d5c6ae1631fc9c497c9ffbbb4927aab0b7b7181203fa81d2d41160531c3f0"
+    },
+    "atlas9/ngc6397-stars.bin": {
+      "bundle": "app",
+      "path": "data/atlas9/ngc6397-stars.ff6f4eff74435b13.bin.gz",
+      "bytes": 1804472,
+      "sha256": "d2a656cb80dd96db8f808f77dc42c148ec60be3600857635dbefe176df17c1b9",
+      "originalSha256": "ff6f4eff74435b13b78c8ebc9c417ff2697190991b482e7fc7429275b1f00775"
+    },
+    "atlas9/ngc6397.json": {
+      "bundle": "app",
+      "path": "data/atlas9/ngc6397.09942426982c613e.json.gz",
+      "bytes": 8198,
+      "sha256": "056c0983164e8c14eb6a0ffe617e8fe5c5b3bd278e58c4d51bdfeca5787ad6fc",
+      "originalSha256": "09942426982c613e3021451bbeae874de0f3739fee0f40e10d3737a0be209d8a"
+    },
+    "atlas9/ngc6397.bin": {
+      "bundle": "app",
+      "path": "data/atlas9/ngc6397.a1fb5812f2d2b5bc.bin.gz",
+      "bytes": 263549,
+      "sha256": "8224acf122252116350483db98506ba953403ce0dba2b461f0fb80033f878936",
+      "originalSha256": "a1fb5812f2d2b5bc0abd1ef1d56d70df751eda4673df260df15728028846b259"
+    },
+    "atlas9/ngc6752-stars.bin": {
+      "bundle": "app",
+      "path": "data/atlas9/ngc6752-stars.77c5dbc116e318b3.bin.gz",
+      "bytes": 782052,
+      "sha256": "cde94c34ff5f5678de943a51029bbc9110913b8759c224279a7de937ff8e47fe",
+      "originalSha256": "77c5dbc116e318b309bf6146007abd8ddfc895758729151ac6409d1f536c8be5"
+    },
+    "atlas9/ngc6752.json": {
+      "bundle": "app",
+      "path": "data/atlas9/ngc6752.1c92dfc69125a5fc.json.gz",
+      "bytes": 8319,
+      "sha256": "93dfcd9bc60787f3785b59f34bda9f82551bfd3c63b0800734c55a05dbb6cdcb",
+      "originalSha256": "1c92dfc69125a5fcdc9b3ef94a4dc7116b6cc56ed6d9da63354d92868ef47c8a"
+    },
+    "atlas9/ngc6752.bin": {
+      "bundle": "app",
+      "path": "data/atlas9/ngc6752.39d5248256ac61c4.bin.gz",
+      "bytes": 260210,
+      "sha256": "6c69a6b60d198e71eace9450b2d1ec3799a9689e4e2e5af60990407becece06c",
+      "originalSha256": "39d5248256ac61c49e9ca84adb0735a61b2882c6da265aed8ebb572af1b13c1e"
+    },
+    "atlas9/omega-cen-stars.bin": {
+      "bundle": "app",
+      "path": "data/atlas9/omega-cen-stars.fea675924ea223ac.bin.gz",
+      "bytes": 1662299,
+      "sha256": "96e56914ff60163c05aaa89ae24c535568c658016272e7531bdc9560af0704f2",
+      "originalSha256": "fea675924ea223ace7925236842c44e2afca4d2c3ade587eefd18fdb2090c0f6"
+    },
+    "atlas9/omega-cen.bin": {
+      "bundle": "app",
+      "path": "data/atlas9/omega-cen.3799f2fed796bda0.bin.gz",
+      "bytes": 264646,
+      "sha256": "e7eb6e568c6ab9e0b269e17be51036ecdff1b852899110f208fc4f46742431bd",
+      "originalSha256": "3799f2fed796bda030f52dd61317615840694746defc257f7d28d188ea08cbfe"
+    },
+    "atlas9/omega-cen.json": {
+      "bundle": "app",
+      "path": "data/atlas9/omega-cen.902290444e6f0cfe.json.gz",
+      "bytes": 8032,
+      "sha256": "c84bc255e21b93791e8ee3220d4e9f18a4b4529226851e7cf468155694d91940",
+      "originalSha256": "902290444e6f0cfe347dd597c212c9ecdbbd87bf8f3b87fa20fd78dd5d37f90a"
+    },
     "cathode-presets.json": {
       "bundle": "app",
-      "path": "data/cathode-presets.23634be2becf9942.json.gz",
-      "bytes": 4136,
-      "sha256": "c91f58ac400a34c40af12544bdf11cce47cf47b4e5575b69e4834c81a3bdc60e",
-      "originalSha256": "23634be2becf9942e04cd075d305f904274b229fe63aa2e7e315ec3cf3d551f1"
+      "path": "data/cathode-presets.ef2b29c51c40a6ff.json.gz",
+      "bytes": 4487,
+      "sha256": "5bc66264f49025e4944080c0c34e27906ad9341c9efb4d9606d10927ccfcb2d8",
+      "originalSha256": "ef2b29c51c40a6ff9738dfdbae829d89eacbd7a992b361b3b54cc1d739720875"
     },
     "environment.json": {
       "bundle": "app",
@@ -1202,10 +1370,10 @@
     },
     "offline-index.json": {
       "bundle": "app",
-      "path": "data/offline-index.bb93849760ed1323.json.gz",
-      "bytes": 202520,
-      "sha256": "adce46155c3928ecc1e60ef0ac78d4b32283d913dad32152154b03de17a717df",
-      "originalSha256": "bb93849760ed1323f63c1d29e51f2123dca3a78bee4cadc6b139430f392f821b"
+      "path": "data/offline-index.861069e2f43d524a.json.gz",
+      "bytes": 203593,
+      "sha256": "1c7b835d1eeb963a840771c1dd7b23cfcad59041365a69ade2871c2e46434cf9",
+      "originalSha256": "861069e2f43d524a5c465664ada1db6c4e98521ecd8ce3e8ec97004db4917c7e"
     },
     "simulator-versions.json": {
       "bundle": "app",
