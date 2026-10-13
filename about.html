@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="dark" />
   <meta name="theme-color" content="#04070a" />
-  <title>关于 · 隐私与声明 · 增像管天文模拟器</title>
-  <meta name="description" content="增像管天文模拟器的隐私说明（不收集任何数据）、免责声明（模拟结果不代表实物）和数据来源许可。" />
+  <title>关于 · 隐私与声明 · 光子雨 · 夜视天文模拟器</title>
+  <meta name="description" content="光子雨（夜视天文模拟器）的隐私说明（不收集任何数据）、免责声明（模拟结果不代表实物）和数据来源许可。" />
   <link rel="icon" href="./icons/icon-192.png" type="image/png" />
   <style>
     :root { --bg: #04070a; --panel: rgba(12, 19, 24, 0.78); --line: rgba(150, 220, 210, 0.12); --text: #d6e3e1; --muted: #8fa5a2; --faint: #5b6f6d; --accent: #6fe3d1; }
@@ -43,7 +43,7 @@
 <main>
   <header>
     <img src="./icons/icon-192.png" alt="" width="48" height="48" />
-    <div><h1>增像管天文模拟器</h1><p>关于 · 隐私说明 · 免责声明 · 数据许可</p></div>
+    <div><h1>光子雨 · 夜视天文模拟器</h1><p>关于 · 隐私说明 · 免责声明 · 数据许可</p></div>
   </header>
   <nav aria-label="本页目录">
     <a href="./app.html">打开模拟器</a><a href="#privacy">隐私</a><a href="#disclaimer">免责声明</a><a href="#data">数据与许可</a><a href="#contact">联系</a><a href="./about-en.html" lang="en">English</a>
@@ -51,8 +51,8 @@
 
   <section id="about">
     <h2>这是什么</h2>
-    <p class="lead">一个在浏览器里运行的夜视天文目镜模拟器：用公开巡天数据描述星云和恒星，用增像管（阴极、微通道板、荧光屏）的物理模型，在显卡上实时模拟每一个光子事件，展示不同增像管、滤镜和夜空条件下“目镜里大概会看到什么”。</p>
-    <p>本站<strong>免费、非商业</strong>，用于科普与研究，没有广告和付费内容。</p>
+    <p class="lead">光子雨（Phosphor Sky）是一台赛博夜视仪，透过增像管看星空——一个在浏览器里运行的夜视天文目镜模拟器：用公开巡天数据描述星云和恒星，用增像管（阴极、微通道板、荧光屏）的物理模型，在显卡上实时模拟每一个光子事件，展示不同增像管、滤镜和夜空条件下“目镜里大概会看到什么”。</p>
+    <p>本站<strong>免费、非商业</strong>，用于科普与研究，没有广告和付费内容。设置里有自愿打赏的入口（微信赞赏码、Ko-fi），打赏完全自愿，不解锁任何功能或内容。</p>
   </section>
 
   <section id="privacy">
@@ -60,7 +60,7 @@
     <ul>
       <li><strong>没有统计、广告、账号或 Cookie。</strong>页面里没有任何分析或追踪代码，不会把你的操作、参数、设备信息发送到任何服务器。</li>
       <li><strong>参数只在链接里。</strong>分享链接 <code>#s=…</code> 后面编码了模拟参数；按网页规范，<code>#</code> 之后的内容不会发送给服务器，只有你把链接发给别人时对方才能看到。</li>
-      <li><strong>本机存储。</strong>浏览器本地存储（localStorage）里只保存界面偏好：是否看过引导、画质选择、面板折叠状态，以及程序出错时的错误记录（错误信息、版本号和页面路径）。为了下次打开更快，看过的星图等数据文件和网页本身也会缓存在这台设备上（Cache API 与 Service Worker），内容和服务器上公开的文件完全一样。这些都不会上传；可以在模拟器的“设置 → 本机”里清除，或清除浏览器的网站数据。</li>
+      <li><strong>本机存储。</strong>浏览器本地存储（localStorage）里只保存界面偏好：是否看过引导、画质选择、面板折叠状态、“我的增像管”的参数，以及程序出错时的错误记录（错误信息、版本号和页面路径）。为了下次打开更快，看过的星图等数据文件和网页本身也会缓存在这台设备上（Cache API 与 Service Worker），内容和服务器上公开的文件完全一样。这些都不会上传；可以在模拟器的“设置 → 本机”里清除，或清除浏览器的网站数据。</li>
       <li><strong>位置只在本机使用。</strong>手机的“实景模式”会请求定位和方向传感器，用来算出你此刻头顶的星空；计算全部在这台设备上进行，不发送到任何地方。为了下次直接开始，上次的大致位置（保留到 0.01°）存在本机，可在“设置 → 本机 → 清除本机界面记忆”清除；也可以拒绝定位，这时按时区估计经度。</li>
       <li><strong>错误记录只在本机。</strong>出错时你可以在“设置 → 本机 → 错误记录”里复制它，自己决定是否发给作者。复制的文字包含浏览器版本和屏幕尺寸，发送前可以看到全部内容。</li>
       <li><strong>托管服务。</strong>网页和数据文件由静态托管服务（目前是 GitHub Pages，可能经过 Cloudflare 等 CDN）提供，这些服务商可能按其自身政策记录常规访问日志（如 IP 地址）；本站不读取、不使用这些日志。</li>
@@ -84,6 +84,7 @@
     <div class="table-wrap">
       <p>0.9.43 新增天鹅座局部三线精细层、心脏／灵魂和英仙座双星团，分别使用 NSNS 巡天及 Gaia／Hipparcos 星表；沿用下列署名与非商业使用条款。</p>
       <p>0.9.45 新增 10 个深空目标（NSNS）、仙王—仙后与英仙—御夫广域（NSNS＋Finkbeiner）、大麦哲伦云（SHASSA）及蝴蝶 IC 1318 精细层，来源与条款同下。</p>
+      <p>0.9.67 的银心周边连续谱由 111 张 SHASSA 原始重叠分场统一背景后拼接；采用实际观测，不使用生成图。M81／M82 沿用 NSNS 亮度与受限 PS1 形态。</p>
       <p>0.9.58 新增 8 个大球状星团：恒星来自 Gaia DR3／依巴谷，背景沿用全天图（NSNS、SHASSA、Finkbeiner），星团中心未分辨的光是按 Harris 目录参数计算的模型；条款同下。</p>
       <p>加州星云新增 MDW DR1 的 Hα 高频细层，整体定标保留 NSNS；OIII／SII 与连续谱槽沿用原数据。<a href="https://doi.org/10.5281/zenodo.17307324">MDW 发布记录</a>标注 CC BY 4.0，同时保留全部商业权利，本项目仅按非商业用途使用。MDW 巡天获 Michele and David Mittelman Family Foundation 资助；创始人与采集／处理人员为 David R. Mittelman、Dennis di Cicco、Sean Walker；最终处理、定标与发布由 Columbia University Astronomy Department 负责。引用 Aftab、Zhang、Walker、di Cicco、Mittelman、Gupta、Saydjari、Putman 与 Schiminovich（2025），<a href="https://arxiv.org/abs/2510.22900">MDW DR1 论文</a>。去星填补区与亮星周围保守回退到 NSNS，细层并非独立的纯 Hα 光谱测量。</p>
         <table>
@@ -94,7 +95,10 @@
           <tr><td>SHASSA（Gaustad et al. 2001）</td><td>南天 Hα 与连续谱</td><td><span class="nc">图像版权属 Las Cumbres Observatory, Inc.</span>，科研和教育用途免费，商用须许可。致谢：the Southern H-Alpha Sky Survey Atlas (SHASSA), which is supported by the National Science Foundation（Gaustad, McCullough, Rosing &amp; Van Buren 2001, PASP 113, 1326）</td></tr>
           <tr><td>VPHAS+ DR4（ESO 177.D-3023）</td><td>船底座、M8、M16 细节层</td><td>ESO 科学档案，CC BY 4.0（Drew et al. 2014）</td></tr>
           <tr><td>SDSS-V LVM</td><td>上帝之眼谱线亮度</td><td>SDSS 公开数据（Sánchez et al. 2026），按 SDSS 要求致谢；<span class="nc">商业用途须 ARC 批准</span></td></tr>
-          <tr><td>Pan-STARRS1 DR1（g 波段）</td><td>M33、M51、M81／M82、M101、狮子座三重奏、昴星团，以及 M42 外围和上帝之眼的细节层（只取形态，亮度按 NSNS 等巡天定标）</td><td>图像 © PS1 Science Consortium，经 CDS HiPS 获取，ODbL-1.0（Chambers et al. 2016；Flewelling et al. 2020）。致谢：The Pan-STARRS1 Surveys (PS1) and the PS1 public science archive have been made possible through contributions by the Institute for Astronomy, the University of Hawaii, the Pan-STARRS Project Office, the Max-Planck Society and its participating institutes, the Max Planck Institute for Astronomy, Heidelberg and the Max Planck Institute for Extraterrestrial Physics, Garching, The Johns Hopkins University, Durham University, the University of Edinburgh, the Queen's University Belfast, the Harvard-Smithsonian Center for Astrophysics, the Las Cumbres Observatory Global Telescope Network Incorporated, the National Central University of Taiwan, the Space Telescope Science Institute, the National Aeronautics and Space Administration under Grant No. NNX08AR22G issued through the Planetary Science Division of the NASA Science Mission Directorate, the National Science Foundation Grant No. AST-1238877, the University of Maryland, Eotvos Lorand University (ELTE), the Los Alamos National Laboratory, and the Gordon and Betty Moore Foundation.</td></tr>
+          <tr><td>Carina Treasury / HST ACS</td><td>船底星云锁孔核心的真实 F658N 形态</td><td>NASA/ESA、Nathan Smith 团队、STScI/MAST，提案 10241/10475；<a href="https://archive.stsci.edu/prepds/carina/">Carina Treasury 科学拼图</a>。重采样、恒星与缺口掩码，按 VPHAS+/SHASSA 匹配；含 [N II] 和连续谱，仅有覆盖处采用。</td></tr>
+          <tr><td>Orion Treasury / ESO WFI</td><td>M42 核心周围的 Hα 波段形态；两晚短曝光，按 NSNS 定标，MUSE 核心保留</td><td>Da Rio et al. 2009, ApJS 183, 261；ESO/MPIA 2.2 m WFI；<a href="https://archive.stsci.edu/prepds/orion/">MAST/STScI Orion Treasury 公共科学数据</a>。进行了面积平均、去星掩码和 NSNS 低频匹配；含 [N II] 和连续谱，不是独立纯 Hα 测光。</td></tr>
+          <tr><td>IPHAS DR2 / CDS</td><td>眉月／新月 NGC 6888 的局部 Hα 波段细节；低信噪和伪影处回退 NSNS</td><td>IPHAS 团队；INT/Isaac Newton Group（La Palma，IAC）；Cambridge Astronomical Survey Unit；University of Hertfordshire，STFC ST/J001333/1；Barentsen et al. 2014。<a href="https://alasky.cds.unistra.fr/MocServer/query?ID=CDS/P/IPHAS/DR2/halpha&amp;fmt=html&amp;get=record">CDS HiPS</a>：CNRS/Unistra，Buga M.，ODbL-1.0。仅形态近似，非独立纯 Hα 定标；组合数据保留 NSNS 非商业与相同方式共享要求。</td></tr>
+          <tr><td>Pan-STARRS1 DR1（g 波段）</td><td>上帝之眼及历史 atlas11 形态；M51、M101、狮子座三重奏仅采用受置信度与幅度限制的加法细节，亮度仍由 NSNS 决定</td><td>图像 © PS1 Science Consortium，经 CDS HiPS 获取，ODbL-1.0（Chambers et al. 2016；Flewelling et al. 2020）。致谢：The Pan-STARRS1 Surveys (PS1) and the PS1 public science archive have been made possible through contributions by the Institute for Astronomy, the University of Hawaii, the Pan-STARRS Project Office, the Max-Planck Society and its participating institutes, the Max Planck Institute for Astronomy, Heidelberg and the Max Planck Institute for Extraterrestrial Physics, Garching, The Johns Hopkins University, Durham University, the University of Edinburgh, the Queen's University Belfast, the Harvard-Smithsonian Center for Astrophysics, the Las Cumbres Observatory Global Telescope Network Incorporated, the National Central University of Taiwan, the Space Telescope Science Institute, the National Aeronautics and Space Administration under Grant No. NNX08AR22G issued through the Planetary Science Division of the NASA Science Mission Directorate, the National Science Foundation Grant No. AST-1238877, the University of Maryland, Eotvos Lorand University (ELTE), the Los Alamos National Laboratory, and the Gordon and Betty Moore Foundation.</td></tr>
           <tr><td>Finkbeiner (2003) Hα 全天图</td><td>广域背景</td><td>NASA LAMBDA 发布（含 WHAM、VTSS、SHASSA），署名</td></tr>
           <tr><td>Gaia DR3</td><td>恒星位置与亮度</td><td><span class="nc">ESA/Gaia/DPAC，CC BY-NC 3.0 IGO（非商业）</span>，经 CDS VizieR 获取</td></tr>
           <tr><td>依巴谷与第谷星表（ESA 1997）</td><td>亮于 7 等的恒星</td><td>ESA，经 CDS VizieR 获取，署名</td></tr>

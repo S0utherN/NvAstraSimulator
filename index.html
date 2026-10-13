@@ -5,26 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="dark" />
   <meta name="theme-color" content="#04070a" />
-  <title>增像管天文模拟器</title>
-  <meta name="description" content="在浏览器里体验夜视天文目镜：用真实巡天星云数据和增像管物理模型，实时模拟二代、三代增像管配合窄带滤镜看到的画面。免费使用，不收集任何数据。" />
+  <title>光子雨 · 夜视天文模拟器</title>
+  <meta name="description" content="光子雨（Phosphor Sky）：赛博夜视仪，透过增像管看星空。在浏览器里体验夜视天文目镜：用真实巡天星云数据和增像管物理模型，实时模拟二代、三代增像管配合窄带滤镜看到的画面。免费使用，不收集任何数据。" />
   <!-- Share cards. og:* for most apps; itemprop for QQ/WeChat-style crawlers; absolute URLs (https://phosphorsky.com/, vite.app.config.ts). -->
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="增像管天文模拟器" />
-  <meta property="og:title" content="增像管天文模拟器 · 夜视天文目镜" />
-  <meta property="og:description" content="用真实巡天数据和增像管物理模型，实时模拟夜视目镜里的星云。免费，不收集任何数据。" />
+  <meta property="og:site_name" content="光子雨" />
+  <meta property="og:title" content="光子雨 · 夜视天文模拟器" />
+  <meta property="og:description" content="赛博夜视仪，透过增像管看星空：用真实巡天数据和增像管物理模型，实时模拟夜视目镜里的星云。免费，不收集任何数据。" />
   <meta property="og:image" content="https://phosphorsky.com/share-card.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:url" content="https://phosphorsky.com/" />
   <meta property="og:locale" content="zh_CN" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta itemprop="name" content="增像管天文模拟器" />
-  <meta itemprop="description" content="用真实巡天数据和增像管物理模型，实时模拟夜视目镜里的星云。" />
+  <meta itemprop="name" content="光子雨 · 夜视天文模拟器" />
+  <meta itemprop="description" content="赛博夜视仪，透过增像管看星空：用真实巡天数据和增像管物理模型，实时模拟夜视目镜里的星云。" />
   <meta itemprop="image" content="https://phosphorsky.com/icons/share-thumb.jpg" />
-  <link rel="icon" href="./assets/favicon-Cr225KxK.svg" type="image/svg+xml" />
+  <link rel="icon" href="./assets/favicon-bV9W6-IF.svg" type="image/svg+xml" />
   <link rel="icon" href="./icons/icon-192.png" type="image/png" sizes="192x192" />
   <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="增像管模拟" />
+  <meta name="apple-mobile-web-app-title" content="光子雨" />
   <link rel="manifest" href="./app.webmanifest" />
   <style>
     /* Before the app script runs (slow network, or a browser too old for it): a plain message, no dependencies. */
@@ -36,18 +36,18 @@
     .preboot .icp { position: absolute; left: 0; right: 0; bottom: max(12px, env(safe-area-inset-bottom)); font-size: 11px; }
     .preboot .icp a { color: #4b5f5d; text-decoration: none; }
   </style>
-  <script type="module" crossorigin src="./assets/app-D0tHphq9.js"></script>
-  <link rel="modulepreload" crossorigin href="./assets/boot-CxoV5K6X.js">
+  <script type="module" crossorigin src="./assets/app-YmOdNWni.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/boot-C90f7doY.js">
   <link rel="modulepreload" crossorigin href="./assets/vendor--Do4GtAm.js">
-  <link rel="modulepreload" crossorigin href="./assets/hosting-CDTT0ZeG.js">
-  <link rel="stylesheet" crossorigin href="./assets/boot-CQVieguC.css">
+  <link rel="modulepreload" crossorigin href="./assets/hosting-BdSVGIQw.js">
+  <link rel="stylesheet" crossorigin href="./assets/boot-BcrIWF_e.css">
 </head>
 <body>
   <!-- Some in-app browsers use the first large image of the page as the share thumbnail. -->
-  <div style="display:none"><img src="./icons/share-thumb.jpg" alt="增像管天文模拟器" width="300" height="300" /></div>
+  <div style="display:none"><img src="./icons/share-thumb.jpg" alt="光子雨 · 夜视天文模拟器" width="300" height="300" /></div>
   <div id="root">
     <div class="preboot">
-      <p>正在载入增像管天文模拟器…<br />Loading the simulator…</p>
+      <p>正在载入光子雨…<br />Loading Phosphor Sky…</p>
       <p class="hint">如果一直停在这里，请换用新版 Chrome、Edge 或 Safari 打开；在微信里可点右上角“···”选择在浏览器中打开。<br />Stuck here? Please open this page in a current Chrome, Edge or Safari.</p>
       <!-- ICP filing number at the foot of the home page (the app shows it again once running: src/app/ui/site-info.ts). -->
       <p class="icp"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">琼ICP备2026014550号-1</a></p>
