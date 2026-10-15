@@ -600,6 +600,25 @@ translation files are not used.
 Provenance: data/sky/overlays-downloads.json; data/sky/overlays-v1/manifest.json.
 Processing: scripts/sky-overlays-data.mjs; docs/DATA_LICENSES.md.
 
+Sky overlay content (1.1.0, 2026-10-15): 110 Messier objects, OpenNGC, Mattia
+Verga, version 75ca7ff090e1d0081a5b08be70eb3bc45ccd9e06,
+https://github.com/mattiaverga/OpenNGC, CC BY-SA 4.0. The derived records in
+data/sky/overlays-v1/messier.json are distributed under CC BY-SA 4.0. The
+inputs are NGC.csv (refs/external/sky-step7b, not downloaded again) and
+addendum.csv (refs/external/sky-overlays-20261015). The 411 named stars with
+HIP numbers (stars.json) come from the IAU-CSN file above (IAU, CC BY 4.0);
+Chinese common names of Messier objects are a list written by this project.
+The 88 Latin constellation names are the IAU names.
+
+Greek letters of 992 bright stars without an IAU name (bayer-bsc5.json):
+Yale Bright Star Catalogue, 5th revised ed. (preliminary), Hoffleit D. and
+Warren W.H. Jr. (1991), VizieR catalogue V/50, Centre de Donnees astronomiques
+de Strasbourg (CDS); https://vizier.cds.unistra.fr/viz-bin/VizieR-3?-source=V/50;
+VizieR and CDS scientific-use terms apply (https://cds.unistra.fr/vizier-org/licences_vizier.html).
+Only names, positions (J2000), V magnitudes and constellation abbreviations are
+extracted. Input: refs/external/sky-overlays-20261015/bsc5-catalog.gz and bsc5-ReadMe.
+This is a preliminary version of the catalogue; no commercial clearance is claimed.
+
 Sky atlas display facts (2026-10-09): SIMBAD astronomical database,
 operated at CDS, Strasbourg, France. Angular dimensions/magnitudes retain
 the individual source bibcodes, wavebands and quality in
@@ -780,3 +799,12 @@ M81/M82 use the existing NSNS DR0.2 continuum (Stefan Ziegenbalg, CC BY-NC-SA 4.
 The inner-Milky-Way continuum is derived from 111 original overlapping SHASSA dual-continuum FITS fields, overlap-matched and feathered before background estimation. Images copyright Las Cumbres Observatory, Inc.; scientific/educational use is permitted with acknowledgement, commercial use requires permission. We acknowledge the Southern H-Alpha Sky Survey Atlas (SHASSA), which is supported by the National Science Foundation; Gaustad, J. E., McCullough, P. R., Rosing, W. and Van Buren, D., 2001, PASP 113, 1326. https://amundsen.swarthmore.edu/SHASSA/ack.html
 Original files are local research inputs; only numerical derivatives are packaged. Original stellar catalogues and line data are retained. No generated imagery enters the maps.
 The M81/M82 and Leo Triplet photo-card crops retain the same authors and licences recorded in data/sky/catalog-v1/photos.json.
+
+C2 research reference (D141, 2026-10-14; not distributed): Mellinger optical all-sky mosaic, copyright Axel Mellinger, PASP 121, 1180 (2009), via NASA/GSFC SkyView. Research and personal non-commercial use per the SkyView survey notice; other uses require permission. The retrieved FITS contains byte-scaled green intensity, not the original calibrated dynamic range. No reference pixels or experimental replacement are shipped.
+
+C1 / atlas15 Seagull Nebula (2026-10-14):
+Scientific maps: NSNS DR0.2, Stefan Ziegenbalg, CC BY-NC-SA 4.0, https://www.simg.de/nebulae3/dr0_2/ . Native linear Halpha/OIII/SII and continuum; resampled, negative-noise clipped, compact bright-star continuum residuals locally interpolated. 4500 K continuum colour is assumed. Non-commercial attribution/share-alike retained.
+Gaia DR3: ESA/Gaia/DPAC, CC BY-NC 3.0 IGO, via CDS VizieR I/355/gaiadr3; Hipparcos: ESA, I/239/hip_main. Full acknowledgements above apply.
+SHASSA independent calibration check only: supported by NSF; Gaustad, McCullough, Rosing & Van Buren (2001), PASP 113,1326; images copyright Las Cumbres Observatory, Inc., scientific/educational use with attribution. VPHAS+ DR4 Ha/r (ESO, Drew et al. 2014) candidates were rejected and are not distributed.
+Colour reference card only: The Rosy Glow of a Cosmic Seagull, ESO1913a. Credit ESO/VPHAS+ team/N.J. Wright (Keele University). https://www.eso.org/public/images/eso1913a/ ; CC BY 4.0 per https://www.eso.org/public/outreach/copyright/ . Adapted by catalogue-star registration, rotation to north-up/east-left, resampling and plain margins. No photo pixels enter the physical simulation.
+Angular-size comparison: Sh2-296, Sharpless (1959), VizieR VII/20, 200 arcmin maximum diameter; CDS scientific-use terms and original-author credit retained.
