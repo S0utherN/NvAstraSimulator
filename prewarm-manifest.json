@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "definition": "unique response body bytes, no Content-Encoding; headers/TLS excluded",
-  "totalBytes": 11188688,
+  "totalBytes": 11211565,
   "files": [
     {
       "bundle": "app",
@@ -29,20 +29,20 @@
     },
     {
       "bundle": "app",
-      "path": "assets/FilterBench-CEV0TJtE.js",
-      "url": "https://phosphorsky.com/assets/FilterBench-CEV0TJtE.js",
+      "path": "assets/FilterBench-B6vRw62Z.js",
+      "url": "https://phosphorsky.com/assets/FilterBench-B6vRw62Z.js",
       "bytes": 18620
     },
     {
       "bundle": "app",
-      "path": "assets/VerifyPanel-mtJmXv3Q.js",
-      "url": "https://phosphorsky.com/assets/VerifyPanel-mtJmXv3Q.js",
-      "bytes": 24955
+      "path": "assets/VerifyPanel-Ck-FAFwR.js",
+      "url": "https://phosphorsky.com/assets/VerifyPanel-Ck-FAFwR.js",
+      "bytes": 24947
     },
     {
       "bundle": "app",
-      "path": "assets/app-CTfmNSce.js",
-      "url": "https://phosphorsky.com/assets/app-CTfmNSce.js",
+      "path": "assets/app-2t1KSney.js",
+      "url": "https://phosphorsky.com/assets/app-2t1KSney.js",
       "bytes": 5488
     },
     {
@@ -53,20 +53,20 @@
     },
     {
       "bundle": "app",
-      "path": "assets/boot-BjDo1nd3.js",
-      "url": "https://phosphorsky.com/assets/boot-BjDo1nd3.js",
-      "bytes": 1036749
+      "path": "assets/boot-DWEcdSIq.css",
+      "url": "https://phosphorsky.com/assets/boot-DWEcdSIq.css",
+      "bytes": 125687
     },
     {
       "bundle": "app",
-      "path": "assets/boot-QEdBDQdC.css",
-      "url": "https://phosphorsky.com/assets/boot-QEdBDQdC.css",
-      "bytes": 124071
+      "path": "assets/boot-DwrqugR9.js",
+      "url": "https://phosphorsky.com/assets/boot-DwrqugR9.js",
+      "bytes": 1054287
     },
     {
       "bundle": "app",
-      "path": "assets/hosting-BdJOGnj9.js",
-      "url": "https://phosphorsky.com/assets/hosting-BdJOGnj9.js",
+      "path": "assets/hosting-D2zt6BWW.js",
+      "url": "https://phosphorsky.com/assets/hosting-D2zt6BWW.js",
       "bytes": 7659
     },
     {
@@ -77,9 +77,9 @@
     },
     {
       "bundle": "app",
-      "path": "assets/i18n-en-DZi8qvx8.js",
-      "url": "https://phosphorsky.com/assets/i18n-en-DZi8qvx8.js",
-      "bytes": 300300
+      "path": "assets/i18n-en-DXLUsF9C.js",
+      "url": "https://phosphorsky.com/assets/i18n-en-DXLUsF9C.js",
+      "bytes": 303986
     },
     {
       "bundle": "app",
@@ -131,8 +131,8 @@
     },
     {
       "bundle": "app",
-      "path": "assets/snapshot-sheet-CDad6i12.js",
-      "url": "https://phosphorsky.com/assets/snapshot-sheet-CDad6i12.js",
+      "path": "assets/snapshot-sheet-BeazUAuI.js",
+      "url": "https://phosphorsky.com/assets/snapshot-sheet-BeazUAuI.js",
       "bytes": 59374
     },
     {
@@ -1315,7 +1315,7 @@
       "bundle": "app",
       "path": "product.json",
       "url": "https://phosphorsky.com/product.json",
-      "bytes": 141
+      "bytes": 186
     },
     {
       "bundle": "app",
