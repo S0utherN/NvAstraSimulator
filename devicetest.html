@@ -1171,8 +1171,12 @@ float quadValidity(ivec2 s) {
 }
 void main() {
   ivec2 p = 2 * ivec2(gl_FragCoord.xy), q = min(p + 1, u_srcSize - 1);
-  ivec2 at[4] = ivec2[4](p, ivec2(q.x, p.y), ivec2(p.x, q.y), q);
-  vec4 t[4] = vec4[4](texelFetch(u_src, at[0], 0), texelFetch(u_src, at[1], 0), texelFetch(u_src, at[2], 0), texelFetch(u_src, at[3], 0));
+  // Filled element by element: a runtime array constructor (vec4[4](...)) fails to compile on Mali through ANGLE's
+  // GLES backend ("no default precision defined for variable 'vec4[4]'").
+  ivec2 at[4];
+  at[0] = p; at[1] = ivec2(q.x, p.y); at[2] = ivec2(p.x, q.y); at[3] = q;
+  vec4 t[4];
+  for (int i = 0; i < 4; i++) t[i] = texelFetch(u_src, at[i], 0);
   if (u_level == 0) {
     vec4 s = vec4(0.0); float n = 0.0;
     for (int i = 0; i < 4; i++) if (t[i].x >= 0.0) { s += t[i]; n += 1.0; }
