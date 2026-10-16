@@ -5,21 +5,21 @@
   "layout": "github",
   "product": {
     "name": "NvAstraSimulator",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "modelVersion": "eyepiece-d143",
     "dataFamily": "atlas15-v1",
-    "linkVersion": 15
+    "linkVersion": 16
   },
-  "sourceCommit": "61d5c2fdba7d2167447201970afa331b529bb475",
-  "sourceSnapshot": "01c6d2c0d7ebfc3d417dffaf8bce7276bf1720356ad40b5ae062e37dbcafbf7f",
+  "sourceCommit": "a55dcd5e8528a2e5c713d3f0e0e769df607bc794",
+  "sourceSnapshot": "60c390153a84c311017967b8e3d4ccef09f75a860ff3dda570518a6a7bdaafd4",
   "budgets": {
     "package": 900000000,
     "file": 90000000
   },
   "packages": {
     "app": {
-      "name": "package-manifest.ac600c507eee8d65.json",
-      "sha256": "ac600c507eee8d6522d951a576336bfc8c3b2db5ca5070630f0ceaf66aa69806"
+      "name": "package-manifest.b8a6ba8503f748d1.json",
+      "sha256": "b8a6ba8503f748d1b69c28d18721f43d70159bcbd3550338950a2dc41300f599"
     }
   },
   "logicalFiles": {
@@ -372,13 +372,6 @@
       "bytes": 1828322,
       "sha256": "dbf2d1cf1deb680dbd9722f685c05b0796c6bed74a152d17c9a76ba57df74720",
       "originalSha256": "fc50f6f15dad04325b4514898862c9c98ce48e4b5f9b80566a71724c21be6112"
-    },
-    "atlas12/m45-continuum.bin": {
-      "bundle": "app",
-      "path": "data/atlas12/m45-continuum.6874ab371caacdd9.bin.gz",
-      "bytes": 1833707,
-      "sha256": "9a30b57c1ee58dc8b7f21343d57697f673c0ba8625c917c095e9522952b510bb",
-      "originalSha256": "6874ab371caacdd9e98415efeffe622e2d8aceea99ef3472bb44ee2547c1b74d"
     },
     "atlas12/m45.json": {
       "bundle": "app",
@@ -1929,10 +1922,10 @@
     },
     "offline-index.json": {
       "bundle": "app",
-      "path": "data/offline-index.1bda64480b092f1a.json.gz",
-      "bytes": 207187,
-      "sha256": "95d61308c3a6e184a71681eb62395d06ac737436208d227bb58016d1e7bbd07e",
-      "originalSha256": "1bda64480b092f1abf0d27da3322105af40a9686aa18d1f24d40cab7fa367b6e"
+      "path": "data/offline-index.dc427d102361b046.json.gz",
+      "bytes": 207141,
+      "sha256": "ae9dc42b8c29fb3a38632c83595f94ba96e801a56bea89093db439c41d932a4a",
+      "originalSha256": "dc427d102361b0469200bcc2a41e7067b09b2556d8d0b52c9080b1ea714fd496"
     },
     "simulator-versions.json": {
       "bundle": "app",
@@ -33030,7 +33023,7 @@
     },
     "app.html": {
       "bytes": 5935,
-      "sha256": "31a06481464611ea54742cd35cf1edd306bb38bc94cb8a31822a92dc9ed06d27"
+      "sha256": "c9bcc9ff81ba11ee0c95e26fdeffacd4dbb397077b2e80d1b7258b6b77a235ec"
     },
     "app.webmanifest": {
       "bytes": 808,
@@ -33052,13 +33045,13 @@
       "bytes": 5488,
       "sha256": "add27af93742966a6f6131e717238f5757beebb82153dd59c42d5d70da1c154f"
     },
+    "assets/app-CTfmNSce.js": {
+      "bytes": 5488,
+      "sha256": "e517c2e068a48340d31c2fa628a55f87d3c38c7c8317b7b5f0cd6e863db6cb63"
+    },
     "assets/app-DeCWduAR.js": {
       "bytes": 5488,
       "sha256": "189f6d537ea83ced1bc432df60fee09488e5dfa05f143b0b233751bd2a0c2e90"
-    },
-    "assets/app-YmOdNWni.js": {
-      "bytes": 5488,
-      "sha256": "e4d40d0e9dcde319b6522ba5246a242c61c99413166b3c2864514653746b4aa3"
     },
     "assets/arch-DzdPvdEh.webp": {
       "bytes": 87572,
@@ -33108,21 +33101,21 @@
       "bytes": 123557,
       "sha256": "e1f92c5e0b93a59f15c1f4060b02a28363082433861e0ed86b14ef8edb4f22ce"
     },
-    "assets/boot-BcrIWF_e.css": {
-      "bytes": 98594,
-      "sha256": "3db5a2c8a177fff070985b299724a50ffeefecf40ff0d401df3bd82e65c120b0"
+    "assets/boot-BjDo1nd3.js": {
+      "bytes": 1036749,
+      "sha256": "238d27922a91b01e128ed294722fa59a3ae72eb057dbffa7d7761ba6aa4f965c"
     },
     "assets/boot-BnaTFR44.js": {
       "bytes": 1001461,
       "sha256": "7fcea3d7654e2a0fc66b0643ee114801f86f0bd9b9d76eb7e6b24d8a54ed5ede"
     },
-    "assets/boot-C90f7doY.js": {
-      "bytes": 915728,
-      "sha256": "ea888bf41e5fa54107860d1297835e7377f0247fa89855a0c038ae3d1cec25b8"
-    },
     "assets/boot-CNBkJ72W.css": {
       "bytes": 123557,
       "sha256": "e2e85503070b6f90534acbb21cae4f7ed583700a5e894b6dd49e3834eb1b1d0a"
+    },
+    "assets/boot-QEdBDQdC.css": {
+      "bytes": 124071,
+      "sha256": "da7fa12868952ee66902e4231c63026cbca9e32f20df719a00b8f2493bf78a29"
     },
     "assets/boot-Wd0PxiMV.js": {
       "bytes": 999708,
@@ -33224,21 +33217,17 @@
       "bytes": 7098,
       "sha256": "7d6067f3a1b7b6b1d4df2dd2013f6ef06b25ab0597de02300c708bf023bc59eb"
     },
-    "assets/favicon-bV9W6-IF.svg": {
-      "bytes": 891,
-      "sha256": "9c20b0994222bb21ede6893e898cd099199ce040e982dccc01293759d8791ed4"
-    },
     "assets/FilterBench-6d3lwLFt.js": {
       "bytes": 18620,
       "sha256": "bf94acc7dddd07999dae1ec97766ba6ff7df69a5baaf4b22dd5ccd958d78eea2"
     },
+    "assets/FilterBench-CEV0TJtE.js": {
+      "bytes": 18620,
+      "sha256": "87acf24ea629edba07d8b5fda8a4c3f687b485223edd486f67f7bf911bae4322"
+    },
     "assets/FilterBench-Db_qIXrz.js": {
       "bytes": 18620,
       "sha256": "6259e1686c2384b645d00ebdad21bbcb26180d71e5d94ed19f9c5f11020cc936"
-    },
-    "assets/FilterBench-VSoxvOTh.js": {
-      "bytes": 18644,
-      "sha256": "6c34500c57894d19d197e1ea7a37326203b6f920e1229143b3127e4cb05cc3ef"
     },
     "assets/flaming-star-B9BeObsA.webp": {
       "bytes": 7270,
@@ -33292,9 +33281,9 @@
       "bytes": 7219,
       "sha256": "352b7a4e825ea8f4a53b6fed3af57c38769ad63ba3a7d11e206bfebc3a93b96f"
     },
-    "assets/hosting-BdSVGIQw.js": {
-      "bytes": 7219,
-      "sha256": "beb8af4bbbfcf34141107eb413b85cbcc731046a5c2f8fb7b68699f206da45c9"
+    "assets/hosting-BdJOGnj9.js": {
+      "bytes": 7659,
+      "sha256": "448da821d42e88208e3eff413afe898346c81e5be2f46fefdae35fd921e08705"
     },
     "assets/hosting-D4FURvKM.js": {
       "bytes": 7219,
@@ -33312,10 +33301,6 @@
       "bytes": 39159,
       "sha256": "de53346cd493f2e2675a700b67400266185c32033d811228a712a6ca15c9765d"
     },
-    "assets/i18n-data-en-Dm4jRPAS.js": {
-      "bytes": 38917,
-      "sha256": "edda7cffd6d406f06a7996c665346078031df9888756a3e2d8c7edd8561cbd5a"
-    },
     "assets/i18n-en-CAkx6rLa.js": {
       "bytes": 298102,
       "sha256": "4f8c688fe8405a4f88d4a92640d82a1037d90a852559fdea1da131dff2205eb8"
@@ -33324,9 +33309,9 @@
       "bytes": 296954,
       "sha256": "10d15d91b94469ab4da059de82f7013907edabeecc90a4f619669f82d2aeeb84"
     },
-    "assets/i18n-en-HoXQ7qYa.js": {
-      "bytes": 276537,
-      "sha256": "9afc8921d65431c3c609717825408c1a04db6d46a4d8f3df5a9dc479f37265be"
+    "assets/i18n-en-DZi8qvx8.js": {
+      "bytes": 300300,
+      "sha256": "24a720cc495503cdb78101d0996f46660d7456665d47c7dd0fbfae0074ed8514"
     },
     "assets/ibm-plex-mono-latin-400-DMJ8VG8y.woff2": {
       "bytes": 14708,
@@ -33352,9 +33337,9 @@
       "bytes": 60672,
       "sha256": "95e2f8db5cad77426f4be671c920be0398943b4288831a8fdfadeea237a76b31"
     },
-    "assets/iit-engrave-D7ji-Y6q.woff2": {
-      "bytes": 58612,
-      "sha256": "f6d07739398c802f501fabaaafc50a4fa458d2bc4ca90f0bd2eeb01fb96886d3"
+    "assets/iit-engrave-DaXPM3Uq.woff2": {
+      "bytes": 62648,
+      "sha256": "8bdfff1f3d5b87b0b183feddd7d64cf980f5cae789fa76300f28dd339b530644"
     },
     "assets/iit-engrave-O8W-lDmA.woff2": {
       "bytes": 60532,
@@ -33620,21 +33605,25 @@
       "bytes": 18342,
       "sha256": "7c4ea51b20684c61f9eae8dcd44264a57ef83bd7db6195c380133c87655c9a61"
     },
+    "assets/sky-worker-DE9KtIQW.js": {
+      "bytes": 19845,
+      "sha256": "c1155671a808ab030130eefc8b94a6368c91531d97ee80886340f066904bfa81"
+    },
     "assets/snapshot-sheet-33gBaSCN.js": {
       "bytes": 59268,
       "sha256": "e71388bd0b4696ad893f69755421012c39873b36f412407637c5fa01054bc0ba"
-    },
-    "assets/snapshot-sheet-BGiBW81K.js": {
-      "bytes": 59275,
-      "sha256": "9c4029da44d025389f8dbe4ce64e098d9772c9a8909e0b3406a6aa4e11cd56c0"
     },
     "assets/snapshot-sheet-C4D5qLze.js": {
       "bytes": 59268,
       "sha256": "2ed7e3885d7a80d16464083043f81d2b1b78ed5b888b1dc439d2388b3983db1c"
     },
-    "assets/spectral-worker--OmrzUVo.js": {
-      "bytes": 54620,
-      "sha256": "a92f2c8de0295be3aa2a7487f0ce85ac1cd4424a9f45b2eb85dc9e566996deaa"
+    "assets/snapshot-sheet-CDad6i12.js": {
+      "bytes": 59374,
+      "sha256": "d7d670e6c43dc1e0ceee193e30cc3ebd0b0c5009a202bc7d2ac0cd15c0c87df7"
+    },
+    "assets/spectral-worker-BUypmwde.js": {
+      "bytes": 55324,
+      "sha256": "85970146c30cebd6167eb4fc484db3dfc12e7c57e66f42ce0516b8767ddebb6c"
     },
     "assets/spectral-worker-DaZTIGTZ.js": {
       "bytes": 54995,
@@ -33680,9 +33669,9 @@
       "bytes": 223060,
       "sha256": "4f40c71d78717c5038d981783148aa9139463091b5c52579a7d5eac39daf1d73"
     },
-    "assets/VerifyPanel-BD2bRQPE.js": {
-      "bytes": 24953,
-      "sha256": "c5abc6cae4059d0e44f152bda6dfbb52f8b6e70b92c31fcdd60415a2768348e4"
+    "assets/vendor-DHsdD_W9.js": {
+      "bytes": 221959,
+      "sha256": "d28080f7ef8d931d7984eeb491e084ed3e06936e983d3335e009f764b2dff67e"
     },
     "assets/VerifyPanel-C0Llr0Nz.js": {
       "bytes": 24955,
@@ -33692,9 +33681,17 @@
       "bytes": 24953,
       "sha256": "1d1b5b37fb8d92a78dee553ddbf238bd7b43701e85a2aad90ba51b06ff7998a4"
     },
+    "assets/VerifyPanel-mtJmXv3Q.js": {
+      "bytes": 24955,
+      "sha256": "89d49086bc2f44251b5637b27502dfece7892c44bf84d50affa3b8b3530fe044"
+    },
     "assets/wechat-reward-BwbcPbu0.png": {
       "bytes": 44372,
       "sha256": "67f6c0b8841ac862dc682f8d45af3b835d7900dbb1a2d34c5160ea1927b6bc58"
+    },
+    "build-info.json": {
+      "bytes": 934517,
+      "sha256": "bd9bbf469a333027af6ca0e78a721721940a662898bdc61d9a992a3a19dc5237"
     },
     "data/.gitattributes": {
       "bytes": 8,
@@ -34015,10 +34012,6 @@
     "data/atlas2-versions.011678fac55dcabf.json.gz": {
       "bytes": 3225,
       "sha256": "0e097494454bd0e2b7c2874cfe19c500fc4069020c0597ee0002b0bd239d4421"
-    },
-    "data/atlas2-versions.6fc8ca0533a43a1c.json.gz": {
-      "bytes": 3177,
-      "sha256": "1f65e8413c64f0ca1c0c5377c4c8b0f392b63110eb1f77b074f97ce1583b04b1"
     },
     "data/atlas2-versions.745c9defffc272a5.json.gz": {
       "bytes": 3224,
@@ -34812,29 +34805,21 @@
       "bytes": 207187,
       "sha256": "95d61308c3a6e184a71681eb62395d06ac737436208d227bb58016d1e7bbd07e"
     },
-    "data/offline-index.40d773d572f681db.json.gz": {
-      "bytes": 206608,
-      "sha256": "2ae483f9b75ddf5a0f6c0c5197ba07c89f45fb1917b38807ffa8724021892547"
-    },
     "data/offline-index.d37a57ccfd6fdcad.json.gz": {
       "bytes": 206877,
       "sha256": "38e0dda6ba1883676ffda8224baaf24f0cf198516a60080502d81912916011a6"
+    },
+    "data/offline-index.dc427d102361b046.json.gz": {
+      "bytes": 207141,
+      "sha256": "ae9dc42b8c29fb3a38632c83595f94ba96e801a56bea89093db439c41d932a4a"
     },
     "data/simulator-versions.00bf21200f9a9859.json.gz": {
       "bytes": 588,
       "sha256": "00821af281aae83a981b31c0fb55f460fa174de85c94aee2ccdd04315db911b0"
     },
-    "data/simulator-versions.52f22fcde80cd833.json.gz": {
-      "bytes": 547,
-      "sha256": "892d0eea424d5ee90327520ce34a736dce44c386a820c941e810cb182164d216"
-    },
     "data/sky/pyramid-v1/o10/manifest.7b45b434be1dc7ea.json.gz": {
       "bytes": 17877,
       "sha256": "b271ea6a6896a84e286c1b600290d3e83a8824dc5d90bc3d2f95108a32c528ca"
-    },
-    "data/sky/pyramid-v1/o10/manifest.99313762b42cf82c.json.gz": {
-      "bytes": 17829,
-      "sha256": "daf17122bd34f311ca5f2131a87665b8dadfcbac3cba34623deb0be7ffb20753"
     },
     "data/sky/pyramid-v1/o10/tile-00000.e7e197139e9c0e75.bin.gz": {
       "bytes": 144873,
@@ -35300,17 +35285,9 @@
       "bytes": 145173,
       "sha256": "812793c68b9d3ce28b1b25d0d6ac4d7218f084acc53f3d677ce553be4e26ec93"
     },
-    "data/sky/pyramid-v1/o10/tile-00115.fe0a4b3490f817b2.bin.gz": {
-      "bytes": 145185,
-      "sha256": "4e6260c60d632462d4f6c8df456819cd7dc6f9519ca15f67ea2f0297134f20a0"
-    },
     "data/sky/pyramid-v1/o10/tile-00116.205c4f87d2833af3.bin.gz": {
       "bytes": 140236,
       "sha256": "9e05d7a3e40e0e0f2002a8ac4bc1a343bdd70301e5c6127d856dc9ff03bde569"
-    },
-    "data/sky/pyramid-v1/o10/tile-00116.225e4703b0a1535c.bin.gz": {
-      "bytes": 140800,
-      "sha256": "0c294e7dc8dbdc64f1a50b6a1550adefad4e5a5a8c8fa2deecda463a5d4c7445"
     },
     "data/sky/pyramid-v1/o10/tile-00117.50ff6558a91b4f65.bin.gz": {
       "bytes": 147263,
@@ -35320,25 +35297,13 @@
       "bytes": 144370,
       "sha256": "6cea094d3ef7102f082f28039663754c6002e6fedddb5f2599d2b7ac0495b254"
     },
-    "data/sky/pyramid-v1/o10/tile-00118.f6012bd642762f99.bin.gz": {
-      "bytes": 144562,
-      "sha256": "cf6cdffbe8ca23adbf4826f61a238ffd3698934f746bb6706def2ca9ae8947ca"
-    },
     "data/sky/pyramid-v1/o10/tile-00119.a9d54ee6deb1346e.bin.gz": {
       "bytes": 151131,
       "sha256": "6dc2f2f4fee7d8f263a78ead2e0890671cead99b9d99837f86246ded6e7e992d"
     },
-    "data/sky/pyramid-v1/o10/tile-00120.2cfe5f805df41be7.bin.gz": {
-      "bytes": 137234,
-      "sha256": "a9f7e12a0fc824656961b404402eae54cee3de5a18f86f9c43d97481d256add0"
-    },
     "data/sky/pyramid-v1/o10/tile-00120.5c2b2066bf249117.bin.gz": {
       "bytes": 136793,
       "sha256": "17cb1088732140190442ebcafb4a747885b8f2f38c64ac898c3bf1561b37f9ae"
-    },
-    "data/sky/pyramid-v1/o10/tile-00121.247f1e4b4968fc13.bin.gz": {
-      "bytes": 139819,
-      "sha256": "708b4f72d4d67b426035f45faeaa347d6c667bcf263cac44005f924bda6ace3c"
     },
     "data/sky/pyramid-v1/o10/tile-00121.c540d8568faa6a7f.bin.gz": {
       "bytes": 139239,
@@ -35348,21 +35313,9 @@
       "bytes": 141972,
       "sha256": "dbe06e9f0c1fd07f60b053f251ab371401b8e15e77024e8c4efdf841a1e43bff"
     },
-    "data/sky/pyramid-v1/o10/tile-00122.907450d7af7652c1.bin.gz": {
-      "bytes": 142082,
-      "sha256": "74c6ce40d6920885765770a2c57a27a902670cd23885a24f69513edd19284411"
-    },
-    "data/sky/pyramid-v1/o10/tile-00123.413092d13fa001d1.bin.gz": {
-      "bytes": 138894,
-      "sha256": "41785900c1d2761870eb8951dba2ebbe1eab20c9f385b4f579dd483c7d8bf781"
-    },
     "data/sky/pyramid-v1/o10/tile-00123.db15157ba3f2080d.bin.gz": {
       "bytes": 138912,
       "sha256": "db31859d34867a3f024cfcf09941e44dc21df5bc2d213dfa51d2b0e2ae1ea11e"
-    },
-    "data/sky/pyramid-v1/o10/tile-00124.64188e3a922f239b.bin.gz": {
-      "bytes": 142371,
-      "sha256": "c9cdca5c96791bbe1721732bbfdc06ea5b1153ff0b1901c47ddacb424ab79021"
     },
     "data/sky/pyramid-v1/o10/tile-00124.ce45447c9d118e19.bin.gz": {
       "bytes": 142033,
@@ -35516,25 +35469,13 @@
       "bytes": 73166,
       "sha256": "563e88bd556e4677ced89588e7a408b9b3b56336c37bbae73845d0841dcdf794"
     },
-    "data/sky/pyramid-v1/o10/tile-00161.b0c438c44b547ee8.bin.gz": {
-      "bytes": 73154,
-      "sha256": "1b7e1ab4b902b956844b4d0e70b2be2cc1824dd9eed98bf8d0e7e2bcf6caf6dd"
-    },
     "data/sky/pyramid-v1/o10/tile-00162.21aad108cd3c3aa6.bin.gz": {
       "bytes": 72591,
       "sha256": "3c6acbe2fce7b09ee9a38af7d1c8830a87ff94635dd9d8d11917fc62edd89d5a"
     },
-    "data/sky/pyramid-v1/o10/tile-00163.c1c042a49b4c8823.bin.gz": {
-      "bytes": 73489,
-      "sha256": "a8bb4fd7caadef1e8fa884df94bc067785fe12480980ad8242fcd52ae2c14546"
-    },
     "data/sky/pyramid-v1/o10/tile-00163.c6f0b7ead2e9f112.bin.gz": {
       "bytes": 73194,
       "sha256": "ac9bf7acaec6b7eaf8eeff182cac9c05afc6d4b75777dbb304e8673eea3b50ac"
-    },
-    "data/sky/pyramid-v1/o10/tile-00164.e4548fa8a51c0440.bin.gz": {
-      "bytes": 72030,
-      "sha256": "a863fcd16bbeee98e9627b2dd48c1ca5bbdf9bc9ff501260a7dba59f3e99a732"
     },
     "data/sky/pyramid-v1/o10/tile-00164.efea4b39cdd1cc7b.bin.gz": {
       "bytes": 71595,
@@ -35548,10 +35489,6 @@
       "bytes": 71436,
       "sha256": "3fd47c183fbf7c8c37b4568c5b394dc7b409a2e6688c18fa90a35c86dc0438c9"
     },
-    "data/sky/pyramid-v1/o10/tile-00166.d76a96842ebf9f61.bin.gz": {
-      "bytes": 72014,
-      "sha256": "8771b978ebf518717ea4e4308406c077c6f0dd0ce9ac5fcdd17bb4cd226e7bad"
-    },
     "data/sky/pyramid-v1/o10/tile-00167.17dc8f6ff004f8a8.bin.gz": {
       "bytes": 70638,
       "sha256": "073e5b6e6fd54b6eb63ae3ae7c306b4fcbed1f03825910c73c5b5b0d02835c7d"
@@ -35563,10 +35500,6 @@
     "data/sky/pyramid-v1/o10/tile-00169.0ee1d405c4aadc22.bin.gz": {
       "bytes": 73695,
       "sha256": "b7b3c802b7307a584cd4ce8ed71ad75ce635d2ba35847a3fb34e4bcdde7d6a91"
-    },
-    "data/sky/pyramid-v1/o10/tile-00169.80782782d27f2c31.bin.gz": {
-      "bytes": 73672,
-      "sha256": "ecb9794ffdc0980ced23c05e9e7657a9d27d61f1d597e5b2db45f7dee8d90717"
     },
     "data/sky/pyramid-v1/o10/tile-00170.37d707a03cf8c2c8.bin.gz": {
       "bytes": 73800,
@@ -35580,14 +35513,6 @@
       "bytes": 72174,
       "sha256": "d5998bd173a5cd5b1bb834a24c40c4fa04cde633ccdd2066054cbd88b33e0171"
     },
-    "data/sky/pyramid-v1/o10/tile-00172.ee10b6467655035d.bin.gz": {
-      "bytes": 72879,
-      "sha256": "a0265285f2359e6a29af3fcc15a00df7c399ecd73c5d1b8bb38157ed63efda07"
-    },
-    "data/sky/pyramid-v1/o10/tile-00173.5a1c8f2684b1e4dc.bin.gz": {
-      "bytes": 91260,
-      "sha256": "edcb8c6b53643b8200c92bd302ec40f7c0f77d147b06b083fa543c178b62eb11"
-    },
     "data/sky/pyramid-v1/o10/tile-00173.823117c296ac0ff0.bin.gz": {
       "bytes": 90709,
       "sha256": "f054863c7b588584aab8bceaa5aa4b9cf27be545d8d17d2e175cd8b4980f99c1"
@@ -35595,10 +35520,6 @@
     "data/sky/pyramid-v1/o10/tile-00174.dfa6a0686fb40fd9.bin.gz": {
       "bytes": 92020,
       "sha256": "8af13586a4eadc7d5232f08f42bac2ccb7173a92267d789bb89e7454fecb7262"
-    },
-    "data/sky/pyramid-v1/o10/tile-00175.11a814c11886e2ec.bin.gz": {
-      "bytes": 140667,
-      "sha256": "051e5e305c7b7555b991f62737de0b2d688b227eb4d8741a18549661246f2792"
     },
     "data/sky/pyramid-v1/o10/tile-00175.7586afccc5e9da99.bin.gz": {
       "bytes": 140572,
@@ -35615,14 +35536,6 @@
     "data/sky/pyramid-v1/o10/tile-00178.40ad00177a767b91.bin.gz": {
       "bytes": 73145,
       "sha256": "8c14c6f2f4c2b70d9c3ea26e7b42532a8bffff9ba46ce3e6498bfbd35c1a0a9b"
-    },
-    "data/sky/pyramid-v1/o10/tile-00178.c7758385d32e85f5.bin.gz": {
-      "bytes": 73241,
-      "sha256": "fb1f3b9c781c8d46da20f9a909710d23362ede020cd07efc62758b90a368fe17"
-    },
-    "data/sky/pyramid-v1/o10/tile-00179.88a1c6956f5f1af3.bin.gz": {
-      "bytes": 71212,
-      "sha256": "fe432b4fa5d9356ca1e27bb56cf267feb0e4e4dd7617881c9acf2ffcfb3ede63"
     },
     "data/sky/pyramid-v1/o10/tile-00179.c4f1f251ffc1c739.bin.gz": {
       "bytes": 71136,
@@ -35644,10 +35557,6 @@
       "bytes": 70762,
       "sha256": "b8ed4e8a0cbf34bdb948ee718260771c1082097cc9d635835de89bb16bc63f73"
     },
-    "data/sky/pyramid-v1/o10/tile-00184.2498f7effd2cc17b.bin.gz": {
-      "bytes": 72059,
-      "sha256": "b9730b972959f7b262a842665fc525628058aa3d2287d70d4fa76afc816ba903"
-    },
     "data/sky/pyramid-v1/o10/tile-00184.b6850dd49bcd1fbe.bin.gz": {
       "bytes": 71155,
       "sha256": "38c521276f3b4ab6d4eb92cc81844b287c9ac920fd17bcca39422523de2b50ca"
@@ -35656,17 +35565,9 @@
       "bytes": 70210,
       "sha256": "f8501f0e39ee3f9d585dcac2b2442c0f79106b053d9630f17346a3d73e25c66c"
     },
-    "data/sky/pyramid-v1/o10/tile-00185.5bbcaa9d00315403.bin.gz": {
-      "bytes": 71569,
-      "sha256": "e88ecb4361f74af1936df133bcf34cca7a582963dbf44d33bbe51f4af0216210"
-    },
     "data/sky/pyramid-v1/o10/tile-00186.81c0dde65bc86e08.bin.gz": {
       "bytes": 71370,
       "sha256": "4370d8672da1e86a20acebb3ef21f8e0ee242150f810b6357443148ae8cc6b37"
-    },
-    "data/sky/pyramid-v1/o10/tile-00187.582404d200169b4c.bin.gz": {
-      "bytes": 70836,
-      "sha256": "1f41a1d0cd3ddc52b10fd7fc4f2f380f1b5d55fb3f3e34ca9343777a449cddbd"
     },
     "data/sky/pyramid-v1/o10/tile-00187.6a5750e0d59ea079.bin.gz": {
       "bytes": 70751,
@@ -35676,17 +35577,9 @@
       "bytes": 71368,
       "sha256": "bd6b385151a31a215e8da4d2f1729ce856be96153df94873c2c32e84eff384b6"
     },
-    "data/sky/pyramid-v1/o10/tile-00188.45da397d16c9dd69.bin.gz": {
-      "bytes": 71362,
-      "sha256": "018a999106a0d50cc892b985eadb803919cbb4600065c858467423a5b0744724"
-    },
     "data/sky/pyramid-v1/o10/tile-00189.9bf8f761c3521216.bin.gz": {
       "bytes": 92308,
       "sha256": "66d59aa0f43255bd7c6aa5d73b5c3d92a6ca381df97aeb32673acb2d76208834"
-    },
-    "data/sky/pyramid-v1/o10/tile-00190.18eece9e61196846.bin.gz": {
-      "bytes": 91554,
-      "sha256": "27ef9a043acb80952df5cd8dcda5f9e90303e21d1910155b9fc3cd356dc3e2e5"
     },
     "data/sky/pyramid-v1/o10/tile-00190.fc75fb3643aac43f.bin.gz": {
       "bytes": 91114,
@@ -35695,10 +35588,6 @@
     "data/sky/pyramid-v1/o10/tile-00191.d23cb6f2f0492ebd.bin.gz": {
       "bytes": 139814,
       "sha256": "3cdd30b9563009d0482b88c00390267a6ba4df93d67caa9e0f98ec0eab7818a6"
-    },
-    "data/sky/pyramid-v1/o11/manifest.77ffdaa97f1567cd.json.gz": {
-      "bytes": 64241,
-      "sha256": "6b0392fe1c044baf39ec44c8ad9f2ce2c24f56f4a392e2dd780abcd470e3471e"
     },
     "data/sky/pyramid-v1/o11/manifest.954290b3147fa4a2.json.gz": {
       "bytes": 64299,
@@ -37556,17 +37445,9 @@
       "bytes": 159360,
       "sha256": "bbb6dfc1588e119ed827ab51894214e0414a1fde4e5d336b126d05b1c7816e7b"
     },
-    "data/sky/pyramid-v1/o11/tile-00463.b7028eaea98d72bc.bin.gz": {
-      "bytes": 152527,
-      "sha256": "9ad43def255e5177c2674268131deb249b1c22b2ef9eba37e761929cf2049d2c"
-    },
     "data/sky/pyramid-v1/o11/tile-00463.fb3b3820fd7f5565.bin.gz": {
       "bytes": 152662,
       "sha256": "6c289c8c7039f12605b0fec5d7ab574b31a4a286992a790d0f34dc74d36bae1a"
-    },
-    "data/sky/pyramid-v1/o11/tile-00464.594db58e245384f8.bin.gz": {
-      "bytes": 129062,
-      "sha256": "f7cb14cf6b1dd8cab84390908edaaec5af2f29b91ea0b969642ddbc49e5fc5a6"
     },
     "data/sky/pyramid-v1/o11/tile-00464.b50f4f3c56a2e7bd.bin.gz": {
       "bytes": 129035,
@@ -37576,21 +37457,9 @@
       "bytes": 141681,
       "sha256": "faa888fa56857cc28ed0055f6be9ec156de0490241882128aa9f12c04db69411"
     },
-    "data/sky/pyramid-v1/o11/tile-00465.4e89702d1bd4eb18.bin.gz": {
-      "bytes": 141923,
-      "sha256": "a57f811806d771a1060ccb16af3ba1d79a084717df4a1d5cbb99084794c21d97"
-    },
     "data/sky/pyramid-v1/o11/tile-00466.4a2cf03fd6f74871.bin.gz": {
       "bytes": 150542,
       "sha256": "9a1ebe3ddeb8f0442384629595dadf712ba3040f4f771c43daa2a7057d803eee"
-    },
-    "data/sky/pyramid-v1/o11/tile-00466.95f895923e49e8e0.bin.gz": {
-      "bytes": 150381,
-      "sha256": "456f3fd7bc2feeae0e4ce8a7149738244de82bfc93301e450d295a991e26bb08"
-    },
-    "data/sky/pyramid-v1/o11/tile-00467.18eb9724c258a176.bin.gz": {
-      "bytes": 146753,
-      "sha256": "fca865c0b5888ed6bbb2928759311c52724121984ec181bb8a9577ec94f9f47f"
     },
     "data/sky/pyramid-v1/o11/tile-00467.5db725c384f0cbc9.bin.gz": {
       "bytes": 145782,
@@ -37612,10 +37481,6 @@
       "bytes": 148979,
       "sha256": "c4f5e76fa540183089a5d890c6c18ac634c3197b369233f7f9f34772a5cca636"
     },
-    "data/sky/pyramid-v1/o11/tile-00472.68dd38a832a5736d.bin.gz": {
-      "bytes": 149854,
-      "sha256": "f83ab82dea13cf15029ba1cc8b3c6aff5efec55536a4ca3163b4942d19e6bd71"
-    },
     "data/sky/pyramid-v1/o11/tile-00472.c661f769e33cd37b.bin.gz": {
       "bytes": 149755,
       "sha256": "039f87392a9eb2b5372ae8cd5d4f37702cecc3bc87a7c3a01b977f3dc2ae4735"
@@ -37624,25 +37489,13 @@
       "bytes": 144814,
       "sha256": "dff295c6501bd7c4a0c3fd7b7380f0058092000d6cd2f281181693440f4a5e93"
     },
-    "data/sky/pyramid-v1/o11/tile-00473.ddbd4780478075fa.bin.gz": {
-      "bytes": 145740,
-      "sha256": "042777409de1d71fd41e2fea76dbfa44bf47aad88d9f8410a103b2381142f2c2"
-    },
     "data/sky/pyramid-v1/o11/tile-00474.09081824b4af8526.bin.gz": {
       "bytes": 142736,
       "sha256": "b5b920f4f037de2514408ad40a33b42acf7d4fb1d0da0651c309f08502bded13"
     },
-    "data/sky/pyramid-v1/o11/tile-00474.6a3a7a9a7c0d387f.bin.gz": {
-      "bytes": 142506,
-      "sha256": "c11bfe3c3e3e06f4b85b1022a1c8b7579e00a82b2a134ce1faa10efadd838d22"
-    },
     "data/sky/pyramid-v1/o11/tile-00475.749d1c003b83cc3c.bin.gz": {
       "bytes": 145900,
       "sha256": "7ace5812510ecdebf80d458f060c637cbaf2638ced1bfd55451eb51277af40b4"
-    },
-    "data/sky/pyramid-v1/o11/tile-00475.f4626f757dd0439d.bin.gz": {
-      "bytes": 146084,
-      "sha256": "b89718aaabff8d3c364269c5aeb4559beab9c715c29daf534b6172f3a5a6c979"
     },
     "data/sky/pyramid-v1/o11/tile-00476.b91ac6d27feac912.bin.gz": {
       "bytes": 155199,
@@ -37660,10 +37513,6 @@
       "bytes": 141555,
       "sha256": "ed0419cd06348500565642325dda3311eb6200a69d4cadb7c041afe58370df41"
     },
-    "data/sky/pyramid-v1/o11/tile-00480.bece6dd83916c908.bin.gz": {
-      "bytes": 123111,
-      "sha256": "74191eaf41e6fd9208118a2d5a8579aeeb4a80bfe4e5bca3c85a59aa3dd4f1f7"
-    },
     "data/sky/pyramid-v1/o11/tile-00480.d119286b65be07e3.bin.gz": {
       "bytes": 123113,
       "sha256": "907f06cafec73a20ef6c972f93edba69d3649997c97c7e91dd87f17f76ed599f"
@@ -37672,37 +37521,17 @@
       "bytes": 136006,
       "sha256": "aba93308a3d4764ce264b8b7575ad42ae807ddc944d746b69ef2cfa364b06353"
     },
-    "data/sky/pyramid-v1/o11/tile-00481.e531660e1655190e.bin.gz": {
-      "bytes": 136003,
-      "sha256": "89c92cf644beeff2e5f3e124a197aea59eb1630e9ac04f9f13f6501cbb6e5eef"
-    },
     "data/sky/pyramid-v1/o11/tile-00482.a7185b3a0d1cdcd7.bin.gz": {
       "bytes": 139058,
       "sha256": "f03a071debd0591f81e744501b3517896631c4aa102b49bf047a3f99e9de1918"
-    },
-    "data/sky/pyramid-v1/o11/tile-00482.afa1ec0ce5352dda.bin.gz": {
-      "bytes": 139204,
-      "sha256": "67b559089338be61c20495cfe9d3e3ad1c2d352169ec8a0d2dd130bf2da3274d"
-    },
-    "data/sky/pyramid-v1/o11/tile-00483.8ca68b9b1e1b0e04.bin.gz": {
-      "bytes": 140323,
-      "sha256": "54b9b402271804b0b96236c0dcdca20130797a39ebccf1a7e6e874d233ac5b85"
     },
     "data/sky/pyramid-v1/o11/tile-00483.ee389a9b85620883.bin.gz": {
       "bytes": 139587,
       "sha256": "113b4e453751df68a862756d95f63f6342706f01fa900b1b704bff6d829ef734"
     },
-    "data/sky/pyramid-v1/o11/tile-00484.4db0962f768d476f.bin.gz": {
-      "bytes": 134553,
-      "sha256": "03ede94863b644962dc9969f46d149f29d34117be95907e3e08f965f5896ddd9"
-    },
     "data/sky/pyramid-v1/o11/tile-00484.f4fb15e92df69911.bin.gz": {
       "bytes": 134487,
       "sha256": "b423950bab562dcb623dd9c8a399e9672ce128ec363d73f59502886cd94c7d0d"
-    },
-    "data/sky/pyramid-v1/o11/tile-00485.2f3e154c6e96229d.bin.gz": {
-      "bytes": 137611,
-      "sha256": "1329489f3f14732705319c3afa41e24357c6c29d08acfcc9b2f5ef2f9415ccd9"
     },
     "data/sky/pyramid-v1/o11/tile-00485.50002be3a8d4ccea.bin.gz": {
       "bytes": 137301,
@@ -37712,21 +37541,9 @@
       "bytes": 140856,
       "sha256": "4a28416cbd76f96958b9f0a64840ea298a4b612f1fdbb807e2bbb1fbc781ec2c"
     },
-    "data/sky/pyramid-v1/o11/tile-00486.e665cbd21064d8da.bin.gz": {
-      "bytes": 140899,
-      "sha256": "e7fa48dc3c7592de91ab50d2ff6758318c2e07ccec53b7083ae1f8806d15e849"
-    },
-    "data/sky/pyramid-v1/o11/tile-00487.15119542df57ea0e.bin.gz": {
-      "bytes": 144439,
-      "sha256": "59989c7890f93fb8725e690de5247d7a35db55533b8813ce90084070020504cf"
-    },
     "data/sky/pyramid-v1/o11/tile-00487.e2301cc6ba459e39.bin.gz": {
       "bytes": 143517,
       "sha256": "b27d135c2277ed7dc451dac9cf61f25eec1d62da9d17d62d8c2a9d919b3bd19e"
-    },
-    "data/sky/pyramid-v1/o11/tile-00488.2ee0f004c9f9794f.bin.gz": {
-      "bytes": 139609,
-      "sha256": "11b42923a259458f8f58426da94a968629e2f9939ad719456256a81f0d47698a"
     },
     "data/sky/pyramid-v1/o11/tile-00488.3bdc1819f37dae89.bin.gz": {
       "bytes": 139125,
@@ -37736,10 +37553,6 @@
       "bytes": 143507,
       "sha256": "3799011401712bcb4d51e7fe7496c7f6ce4accd78c0a6f0414a5aabbbeda0f2a"
     },
-    "data/sky/pyramid-v1/o11/tile-00489.e9260796a43b5fa1.bin.gz": {
-      "bytes": 143539,
-      "sha256": "ce2bf4192635dfb0821c116d33ea6bfc12038339d8ef4b281baea9492c08ed62"
-    },
     "data/sky/pyramid-v1/o11/tile-00490.eaa38a3c7de8f36d.bin.gz": {
       "bytes": 147507,
       "sha256": "c7df8e01fbef97727e307808ad02f34cac05a18444d6bfd8af7069c410ac2179"
@@ -37747,10 +37560,6 @@
     "data/sky/pyramid-v1/o11/tile-00491.eb3249bdb1faa04d.bin.gz": {
       "bytes": 145624,
       "sha256": "8affad004ce777c77f165c9b5e8ca69aa5129b00ba1171f8bd0473e856cfb316"
-    },
-    "data/sky/pyramid-v1/o11/tile-00492.12c5ffb938b0e815.bin.gz": {
-      "bytes": 140668,
-      "sha256": "336dbb94ba1e97774a29220db4917216d84ecd0944c256352370daa8194cd9d3"
     },
     "data/sky/pyramid-v1/o11/tile-00492.e67d08463e2b76f9.bin.gz": {
       "bytes": 140450,
@@ -37760,10 +37569,6 @@
       "bytes": 144055,
       "sha256": "a31fc72a06993f526906abd4b164d3c0119cd175115711174169206434415f21"
     },
-    "data/sky/pyramid-v1/o11/tile-00493.62cd7ae2e063bdd5.bin.gz": {
-      "bytes": 144047,
-      "sha256": "2f83b812d85c02e61126b6762177e3f037139eaaa2c95469e0d20b5a04469f0d"
-    },
     "data/sky/pyramid-v1/o11/tile-00494.9957b1004f8693f0.bin.gz": {
       "bytes": 140364,
       "sha256": "235fc04e97faa210118649ef81a26c61491ded6b980612eb12913d9d885a6613"
@@ -37772,17 +37577,9 @@
       "bytes": 131704,
       "sha256": "bbb2e3e93aa4439584379df8afdc78119c46a2a8fc62d8c1730d25464a58b292"
     },
-    "data/sky/pyramid-v1/o11/tile-00496.8310ae723da48db9.bin.gz": {
-      "bytes": 143164,
-      "sha256": "cd2f8c8051d61a1851a1f4999e70cc44d6db682fc91d75b3ac5a2c8c81c78478"
-    },
     "data/sky/pyramid-v1/o11/tile-00496.c303b82e20db2c63.bin.gz": {
       "bytes": 142458,
       "sha256": "4deb54e39f4df4d1bd7a48ed562a36aed2b59e99fff494b9ffc8f94c8dd42798"
-    },
-    "data/sky/pyramid-v1/o11/tile-00497.5841907d819c7247.bin.gz": {
-      "bytes": 152799,
-      "sha256": "f23182e3541500c9afcfea965445c138ccdd457342a9df1d1932aef91a611d35"
     },
     "data/sky/pyramid-v1/o11/tile-00497.bc9bdd0e171acf95.bin.gz": {
       "bytes": 152755,
@@ -37791,10 +37588,6 @@
     "data/sky/pyramid-v1/o11/tile-00498.3f7b9fc068e88dfe.bin.gz": {
       "bytes": 141362,
       "sha256": "a22974210f8c7028d349bd0b1b7754d1b4ef0d6e0634469f5727dc2c4a2e9398"
-    },
-    "data/sky/pyramid-v1/o11/tile-00498.fb3a345b20a84e0a.bin.gz": {
-      "bytes": 141468,
-      "sha256": "dcdb794940551b026c3e1f8ac4be4d1faaea6d8e7d6bd252a138090b3b7f7ca5"
     },
     "data/sky/pyramid-v1/o11/tile-00499.fadd01fc61047f11.bin.gz": {
       "bytes": 141306,
@@ -38384,10 +38177,6 @@
       "bytes": 70918,
       "sha256": "74bdefc1f9727fd237fb9a278c985a507bb02f6acc7cc2bd6115baf3d75ec8e9"
     },
-    "data/sky/pyramid-v1/o11/tile-00645.eb5d5b1c75858db0.bin.gz": {
-      "bytes": 70793,
-      "sha256": "02ed1de8e2e1761ceef4385411fa7ffcfc40601c2ab45534784070152d8279f1"
-    },
     "data/sky/pyramid-v1/o11/tile-00646.cc7ea74a9d6ddb84.bin.gz": {
       "bytes": 71862,
       "sha256": "a1d643828f7c4371a30c607645e50cc0c54e9f22cf5f23416abfc8a74231fc3e"
@@ -38395,10 +38184,6 @@
     "data/sky/pyramid-v1/o11/tile-00647.131cacc0eb2905c1.bin.gz": {
       "bytes": 71750,
       "sha256": "22ed24730c2c0000c236d883294d84970953bfbc4ac63c57412fd975ba1283fb"
-    },
-    "data/sky/pyramid-v1/o11/tile-00647.351b3f6cb7b77495.bin.gz": {
-      "bytes": 71754,
-      "sha256": "2cce2195ad18b40489d32d84714584d6b84d0581fa6563542734def41ca56665"
     },
     "data/sky/pyramid-v1/o11/tile-00648.a8ca2619a0adae0a.bin.gz": {
       "bytes": 71817,
@@ -38424,10 +38209,6 @@
       "bytes": 72150,
       "sha256": "4d3f8afbb13b5e4919dfcf978d910c687734ae715148df3241cde3a070d0b9a7"
     },
-    "data/sky/pyramid-v1/o11/tile-00653.8f2f56c1b4fe19da.bin.gz": {
-      "bytes": 72374,
-      "sha256": "4741dcef0cee6a4e5fb015f6aa4d5bedd50e49ed193a6cd5a43ad848cc706273"
-    },
     "data/sky/pyramid-v1/o11/tile-00654.267e4979556fa857.bin.gz": {
       "bytes": 71570,
       "sha256": "2be1ccee78919bc284adae5ea593aa1b9f06efe272b8a21da5cc7da2c0d7a142"
@@ -38436,33 +38217,17 @@
       "bytes": 72075,
       "sha256": "e052634273dac8bdc75485afcfa2c46511e4cf8d5f6c81ce74e2674f7da1e1e0"
     },
-    "data/sky/pyramid-v1/o11/tile-00655.cce4aa17bf4e2267.bin.gz": {
-      "bytes": 71958,
-      "sha256": "a0ded3c21d321e630310ed115419a10bd96d68f601fe7a8e736535d625e9fadb"
-    },
     "data/sky/pyramid-v1/o11/tile-00656.016ef0be92f5f89e.bin.gz": {
       "bytes": 70947,
       "sha256": "a5f1b434cb26c05d3b44e9bd1ed806d5cc14c418f019e6bedffaa99810815d35"
-    },
-    "data/sky/pyramid-v1/o11/tile-00656.960d65249a9be791.bin.gz": {
-      "bytes": 71244,
-      "sha256": "03fb133c1b5d0d6f37fb508bb83ff12ba2cf01bdf0fd249311b9b74453913b82"
     },
     "data/sky/pyramid-v1/o11/tile-00657.0b3cc61428d6a59a.bin.gz": {
       "bytes": 69932,
       "sha256": "6c9100b7bfe25dcc91f8cef8bfb535fc10c1651c0f44473fafc99c0c70263a0f"
     },
-    "data/sky/pyramid-v1/o11/tile-00657.6efbe72f6c4b39da.bin.gz": {
-      "bytes": 70030,
-      "sha256": "ce001bb8d7b8bb1cf9f6b2085ab934463b724117afa41b9c9bcb16f03db0f5ad"
-    },
     "data/sky/pyramid-v1/o11/tile-00658.357f6421e83a3f00.bin.gz": {
       "bytes": 70148,
       "sha256": "455eef86a1be855264399fadcb9e3966fed3d26493f1ef7ad32aa0c2d9e16d39"
-    },
-    "data/sky/pyramid-v1/o11/tile-00658.f786597ee248c76e.bin.gz": {
-      "bytes": 70416,
-      "sha256": "a3c99a1d1e48e07e8b957e9837646d383d4f8b77189b4457969ac0bd707ce2c3"
     },
     "data/sky/pyramid-v1/o11/tile-00659.3ef0dd30619156ba.bin.gz": {
       "bytes": 68861,
@@ -38484,10 +38249,6 @@
       "bytes": 68571,
       "sha256": "7048c1aaefd294a1b5806cf097dc4e57bd2b982ac699dab63fb7d10cc7de6adf"
     },
-    "data/sky/pyramid-v1/o11/tile-00664.36f004179a66116e.bin.gz": {
-      "bytes": 70232,
-      "sha256": "ebf36915085c3d47fb2f00ec1d5a3deb928398af44718ce299c5c712da4e16ca"
-    },
     "data/sky/pyramid-v1/o11/tile-00664.3fbce98ee94cc2e8.bin.gz": {
       "bytes": 69962,
       "sha256": "cb12c12bce1cc5a2b13627cd1f906128e3bcb284f2e63cc8c705743d9a4e68ba"
@@ -38496,25 +38257,13 @@
       "bytes": 70198,
       "sha256": "ca4d6bf1336b579c41bb0cf987192d7b51002c87c1bd967be57e73dc1ffd11c9"
     },
-    "data/sky/pyramid-v1/o11/tile-00665.eaf5f4d7219e93d4.bin.gz": {
-      "bytes": 70183,
-      "sha256": "79e2e45937d060d9391252a2c668087be760b4e9498feeb45656ad8064fc95dc"
-    },
     "data/sky/pyramid-v1/o11/tile-00666.46671512cda51fe3.bin.gz": {
       "bytes": 71383,
       "sha256": "dae8bf833ea7d81e0256c46acf6fe8452d98d1078fb2037d87035f63dd9d6fc4"
     },
-    "data/sky/pyramid-v1/o11/tile-00666.a9225d5000027d66.bin.gz": {
-      "bytes": 71393,
-      "sha256": "49ce1db12d730fbb5f2423db615a8e340fc7a2f66460abfd8c6ee72a3e01d18d"
-    },
     "data/sky/pyramid-v1/o11/tile-00667.82a9f77d9dfa6b93.bin.gz": {
       "bytes": 69836,
       "sha256": "6639201450471033d810a28302e2a181cfc367f5218d3b0b92583670ed7c87db"
-    },
-    "data/sky/pyramid-v1/o11/tile-00667.a3d250628318874d.bin.gz": {
-      "bytes": 69972,
-      "sha256": "35e8e7986912206a581c293903302f77c6e02a989380693ffbd7206d671871bd"
     },
     "data/sky/pyramid-v1/o11/tile-00668.28777101addd4536.bin.gz": {
       "bytes": 70104,
@@ -38551,10 +38300,6 @@
     "data/sky/pyramid-v1/o11/tile-00676.458e6b9affab06a4.bin.gz": {
       "bytes": 72280,
       "sha256": "a5b49eda732641766a1e72f490c82d76dc5eab9b28e25490a4b37b872fabd623"
-    },
-    "data/sky/pyramid-v1/o11/tile-00677.2fa28d4d2756ae4a.bin.gz": {
-      "bytes": 72303,
-      "sha256": "7e26a05c5ada11b39a10a3464f0172a86eaf295d6e7abe482bdea171ae2a30df"
     },
     "data/sky/pyramid-v1/o11/tile-00677.73b0510662110b7a.bin.gz": {
       "bytes": 72504,
@@ -38604,17 +38349,9 @@
       "bytes": 72383,
       "sha256": "2b7d3ec1e837c655707fe8ae8ac57100fdfa0fdef540e898204a61d62fca1076"
     },
-    "data/sky/pyramid-v1/o11/tile-00688.b58a19006f759a56.bin.gz": {
-      "bytes": 72312,
-      "sha256": "ec308c106ac77406232b26f4838699248c20a09b1479109afe1e72eefe2b824c"
-    },
     "data/sky/pyramid-v1/o11/tile-00689.9ba447741e0abe36.bin.gz": {
       "bytes": 70895,
       "sha256": "4bae1d8fb5b451bb5c01a0ff10ea7b08644d6e4b9b1cb6c0b20514a936930d03"
-    },
-    "data/sky/pyramid-v1/o11/tile-00689.b4b4dfa58e2a7af2.bin.gz": {
-      "bytes": 71256,
-      "sha256": "f92d5354156fa95f0f4f482599ab1b6cf16714737266ed2adc71d24bd9cc1d10"
     },
     "data/sky/pyramid-v1/o11/tile-00690.fb14d1688ff7deb2.bin.gz": {
       "bytes": 71544,
@@ -38624,14 +38361,6 @@
       "bytes": 72146,
       "sha256": "c0b6da38292ac691a55504a74555c8d20e92266134e3cabd59d943c31cc12858"
     },
-    "data/sky/pyramid-v1/o11/tile-00691.2a3de089e0213947.bin.gz": {
-      "bytes": 72161,
-      "sha256": "e580515de5c49acdc460d252beb707e01ad78e34cb2e49819b19574bdc45cfb0"
-    },
-    "data/sky/pyramid-v1/o11/tile-00692.387519fe0c20672f.bin.gz": {
-      "bytes": 69429,
-      "sha256": "d8fab03e6839523df7abfe570b41b444fcf5766f7b70693a4ea3030e102279bd"
-    },
     "data/sky/pyramid-v1/o11/tile-00692.3a6351e3db700340.bin.gz": {
       "bytes": 69488,
       "sha256": "8957b196b173b0183b221ca22d3b0afa139089c53dc975c5e421f51ff2412daf"
@@ -38640,25 +38369,13 @@
       "bytes": 73559,
       "sha256": "8ef423faa3cec9dbcc9d6c226a625a037e3a9cacf5b7b9efecd2276618a4c2b2"
     },
-    "data/sky/pyramid-v1/o11/tile-00693.b63c9a9e2cfd300e.bin.gz": {
-      "bytes": 73542,
-      "sha256": "c20bb01cc8fb8e96c13d9f394fcd53d74822bf73227b2ff40b98c94865140301"
-    },
     "data/sky/pyramid-v1/o11/tile-00694.2c90c3beb12b495f.bin.gz": {
       "bytes": 76487,
       "sha256": "8192fa7c4b17c5198fd3bbbf9e83ad09ff62ee3afb0dcfc787f6f14ad87e7445"
     },
-    "data/sky/pyramid-v1/o11/tile-00694.ab0f908b5e64cca9.bin.gz": {
-      "bytes": 76603,
-      "sha256": "ce71dae208050b0173e3e0d889805145a39b40df0b1b443ec7ac262b9fae8dfb"
-    },
     "data/sky/pyramid-v1/o11/tile-00695.560ac045155cf96b.bin.gz": {
       "bytes": 129781,
       "sha256": "d52114d2c501e1e5df46d8a46fe22e427bfbd9addd1a4d8bb562b932eced31f8"
-    },
-    "data/sky/pyramid-v1/o11/tile-00695.e6b6ea1274452651.bin.gz": {
-      "bytes": 130188,
-      "sha256": "73b5656ecf3af2c3bbe269b7fc24bb109241bb53a59336545b4f554b0501b793"
     },
     "data/sky/pyramid-v1/o11/tile-00696.70ab004b50f92dc9.bin.gz": {
       "bytes": 70220,
@@ -38683,10 +38400,6 @@
     "data/sky/pyramid-v1/o11/tile-00701.286430bf8676a59c.bin.gz": {
       "bytes": 141708,
       "sha256": "984e3f138062551f637e9de0897e0094e46425ed25d20db9937d8f7c01fbf777"
-    },
-    "data/sky/pyramid-v1/o11/tile-00701.f9ba5ba35f934984.bin.gz": {
-      "bytes": 141864,
-      "sha256": "b7a8eeb83837174fed76996337db6e09bbd03dc9f8bebbf297dcc2f9507a6344"
     },
     "data/sky/pyramid-v1/o11/tile-00702.900bc838bb630665.bin.gz": {
       "bytes": 142562,
@@ -38740,14 +38453,6 @@
       "bytes": 71518,
       "sha256": "fa9935c7c09bbf68c05cc7bac76e68c230bf173d03a4b8fb05a91f3587bc3262"
     },
-    "data/sky/pyramid-v1/o11/tile-00714.b0f3e08420d74dd1.bin.gz": {
-      "bytes": 71488,
-      "sha256": "3773f18a79a51083c54a5eb097296e9c936752cbb5ce3549c75b5684e42a9173"
-    },
-    "data/sky/pyramid-v1/o11/tile-00715.39a30101d7725612.bin.gz": {
-      "bytes": 71139,
-      "sha256": "40b44f8b1706f57549d4ef48d90e438f22dcbf520939c52087d2f8ed5eb14529"
-    },
     "data/sky/pyramid-v1/o11/tile-00715.c1d54f1ff127ea9b.bin.gz": {
       "bytes": 70943,
       "sha256": "4b6f566249a3a7138fd17aad8624b9edddedbd8a99d4efc529fdd5695c081c9c"
@@ -38763,14 +38468,6 @@
     "data/sky/pyramid-v1/o11/tile-00718.5d995d79dc15cb09.bin.gz": {
       "bytes": 70304,
       "sha256": "4bab968c27ab60c7af14a3b168e1aa1345b82d298b03481a7a25eda7907476a0"
-    },
-    "data/sky/pyramid-v1/o11/tile-00718.bbc032f385644f79.bin.gz": {
-      "bytes": 70307,
-      "sha256": "7d0072a4bfefc10a710e5dde008da8e006e427ed182d013f2fd9536ebdfe7691"
-    },
-    "data/sky/pyramid-v1/o11/tile-00719.9bfb2f59b6e98b0b.bin.gz": {
-      "bytes": 70250,
-      "sha256": "7791a30800ae4bbe43b54a82142ed0074d779b8d83945bf0613921aab8bb8bdc"
     },
     "data/sky/pyramid-v1/o11/tile-00719.cf71db38249888fb.bin.gz": {
       "bytes": 70224,
@@ -38844,21 +38541,9 @@
       "bytes": 71746,
       "sha256": "c08365abcacaab445ee9de4176991b2e360f5e1b980ad1bec105b27626af4e99"
     },
-    "data/sky/pyramid-v1/o11/tile-00736.b8310346eaab1518.bin.gz": {
-      "bytes": 72318,
-      "sha256": "90942c6a8aa6b8a9b57132322477c26e70f93d3ba711f20e334b1e4b11a6ff46"
-    },
     "data/sky/pyramid-v1/o11/tile-00737.2235937652368477.bin.gz": {
       "bytes": 70501,
       "sha256": "7361347f87571a455843560ff66599ca04fa4866294e6c35cd4f84f0444b4a42"
-    },
-    "data/sky/pyramid-v1/o11/tile-00737.f4167459a3304b0d.bin.gz": {
-      "bytes": 70746,
-      "sha256": "b6b2862efc5c75e1d83c9e84024d184c7003905abc45bd251f03813370ca3125"
-    },
-    "data/sky/pyramid-v1/o11/tile-00738.9da887b82d09dcc9.bin.gz": {
-      "bytes": 70910,
-      "sha256": "72b1f9a2af80e7ddd22ecc8db86ce7683d3483f9d454043a7339efd9e8927150"
     },
     "data/sky/pyramid-v1/o11/tile-00738.f433ece66640b06b.bin.gz": {
       "bytes": 70654,
@@ -38868,21 +38553,9 @@
       "bytes": 70586,
       "sha256": "a7f7e1d067f85bf0d4b410b2d417001e402323fb88b6a13db66336afb46573fa"
     },
-    "data/sky/pyramid-v1/o11/tile-00739.fd97738deed6fdc4.bin.gz": {
-      "bytes": 70604,
-      "sha256": "bb121c6fe86ddc07e33bc1f2f62f1fb4f064d7b5ab3769ff2fdd6622054c8afd"
-    },
-    "data/sky/pyramid-v1/o11/tile-00740.c2f7ab107b08cd04.bin.gz": {
-      "bytes": 70718,
-      "sha256": "3a187841b85de52f25f3febac30169c33f891a199fb200780b3eaa9322c8952e"
-    },
     "data/sky/pyramid-v1/o11/tile-00740.f05e759bbac7b1be.bin.gz": {
       "bytes": 70025,
       "sha256": "711e3f9f20e18f636268f5f48a863bfd41a73b7f44df94967170ee33e91b1d77"
-    },
-    "data/sky/pyramid-v1/o11/tile-00741.ad6fb8ebf486e5dd.bin.gz": {
-      "bytes": 70352,
-      "sha256": "869ee1f2991a21378da269fadbe2dfaeafcda881e3477c0d0b1ca9b9f800b7d2"
     },
     "data/sky/pyramid-v1/o11/tile-00741.d9f6946036412178.bin.gz": {
       "bytes": 70156,
@@ -38892,17 +38565,9 @@
       "bytes": 69593,
       "sha256": "f5e9e0ad05660c92d4bd1f054349e1d1e51450a969b6fc5a95a60d28fbd2cc15"
     },
-    "data/sky/pyramid-v1/o11/tile-00742.f090dd58db5ede6c.bin.gz": {
-      "bytes": 69797,
-      "sha256": "4df45a4146600898eb0ef0f3b797889305dc6f6c9bb8bcef7d66f48b7a27ac9c"
-    },
     "data/sky/pyramid-v1/o11/tile-00743.41f91021267bdd31.bin.gz": {
       "bytes": 70150,
       "sha256": "e76f8d1e615eb0a0e2b87043cf624bba58efaaac20e91da8ab8b92405a825031"
-    },
-    "data/sky/pyramid-v1/o11/tile-00743.51b83f92c20ab51a.bin.gz": {
-      "bytes": 70887,
-      "sha256": "492ac5f7f8836502943400811c05f45736f6d7a9847c8266cb16b7faa3e3a58d"
     },
     "data/sky/pyramid-v1/o11/tile-00744.ce9c8a8aff8b8630.bin.gz": {
       "bytes": 70617,
@@ -38920,10 +38585,6 @@
       "bytes": 69454,
       "sha256": "a7ec7c4bb43e96dbbd7352bc1ac2eead4acc839b0a8b42fced4b575ff3885a87"
     },
-    "data/sky/pyramid-v1/o11/tile-00748.a399adeb7114fcb5.bin.gz": {
-      "bytes": 69065,
-      "sha256": "a9162912bba7eb6329d379cbff4370be8868a8b9b28061d7358bb2ee45403b53"
-    },
     "data/sky/pyramid-v1/o11/tile-00748.d5adbb82806ea4fe.bin.gz": {
       "bytes": 69047,
       "sha256": "a9c309f3edb17c0ffbaa407ed93cca95a558df516c265bf18caf4620b00b8036"
@@ -38932,25 +38593,13 @@
       "bytes": 69845,
       "sha256": "7586691fc0f01c10a43bdd5483d30123f6ed152dbb07fe813a11f4101f3dd8a0"
     },
-    "data/sky/pyramid-v1/o11/tile-00749.e034e835c4a85d5e.bin.gz": {
-      "bytes": 70066,
-      "sha256": "e1ca449a0adcc36342dc6d0dc29e69f18782736ca8e23b1f69318f2ae28e5260"
-    },
     "data/sky/pyramid-v1/o11/tile-00750.b957741767bd7f31.bin.gz": {
       "bytes": 69379,
       "sha256": "2e34d5ae7dccd73a1ce4b1b89a6b3785d4b2d19c336d8a2c921869f58e6d4be3"
     },
-    "data/sky/pyramid-v1/o11/tile-00751.1e822f19341018d0.bin.gz": {
-      "bytes": 70080,
-      "sha256": "398d35271aaf67e752cc04c010a5f14284da3f70c9ba3543879e98cc37ee63d0"
-    },
     "data/sky/pyramid-v1/o11/tile-00751.34165b455f46d9e4.bin.gz": {
       "bytes": 70088,
       "sha256": "97334b1e3f8b63c991beb466bc23dabb1f24c0dfdf48aa30385559173af62f4f"
-    },
-    "data/sky/pyramid-v1/o11/tile-00752.12bb3f3457f9deaf.bin.gz": {
-      "bytes": 70633,
-      "sha256": "07d269d290d81d033c79ceaf462277586c526286487d8c763c201a5422f6a4d5"
     },
     "data/sky/pyramid-v1/o11/tile-00752.4b381e1287d5da4c.bin.gz": {
       "bytes": 70556,
@@ -38959,10 +38608,6 @@
     "data/sky/pyramid-v1/o11/tile-00753.ae989a9915ffb390.bin.gz": {
       "bytes": 71476,
       "sha256": "c17350a60e276c4e92ca413db661c15764565a3e21049af87839327e3727debd"
-    },
-    "data/sky/pyramid-v1/o11/tile-00754.0808bbd4182e943e.bin.gz": {
-      "bytes": 70310,
-      "sha256": "5b7ee0cc23f0ed67050b4cf585cfe22ae0dee3c12540ad8d36e80b1456cd602f"
     },
     "data/sky/pyramid-v1/o11/tile-00754.1ca8453fb2986391.bin.gz": {
       "bytes": 70419,
@@ -38992,17 +38637,9 @@
       "bytes": 71258,
       "sha256": "10a25b252496d03ee29557883465b95803bda9113dba18b3b9bab7c44513e1dd"
     },
-    "data/sky/pyramid-v1/o11/tile-00760.78490ceaa29777d9.bin.gz": {
-      "bytes": 72146,
-      "sha256": "270c4a3a1cdeadda854da0b1d3a592d6a555f5519a31b535f014332dd60ed31e"
-    },
     "data/sky/pyramid-v1/o11/tile-00761.0f1f5fff7d280d83.bin.gz": {
       "bytes": 76100,
       "sha256": "b3803679462e4bf1196afa7edb705e8d4a2d66b6d319931a446eb4128856e525"
-    },
-    "data/sky/pyramid-v1/o11/tile-00762.4c772e6bf3cd4623.bin.gz": {
-      "bytes": 77291,
-      "sha256": "732d000b7f5f4185efa02440faa7cc76ee2a10b6f246fb4f170c7c4035c5959e"
     },
     "data/sky/pyramid-v1/o11/tile-00762.86f2841a3477bc4e.bin.gz": {
       "bytes": 77011,
@@ -39011,10 +38648,6 @@
     "data/sky/pyramid-v1/o11/tile-00763.11a22a30031b2ab4.bin.gz": {
       "bytes": 128343,
       "sha256": "c9581ec9022970440430c0c621040444c399e8541d66dbbc4e86f5f558576a55"
-    },
-    "data/sky/pyramid-v1/o11/tile-00763.e7796c93d8963c19.bin.gz": {
-      "bytes": 128427,
-      "sha256": "363b5d93fc73b4b7022cdc30e1c816ec6d421c20fa5b17a342f117a2e77f24ce"
     },
     "data/sky/pyramid-v1/o11/tile-00764.f52424416192eb05.bin.gz": {
       "bytes": 127419,
@@ -39031,10 +38664,6 @@
     "data/sky/pyramid-v1/o11/tile-00767.41ddeb3eda4659ca.bin.gz": {
       "bytes": 140481,
       "sha256": "cc758ae8f3b7836010d45806853fc077c9049df8ead6aca8cf8caabcac087a7c"
-    },
-    "data/sky/pyramid-v1/o12/manifest.21f5d239146507c9.json.gz": {
-      "bytes": 93655,
-      "sha256": "350063fc45e1e9f5a7b7e88a6c93e9c53ca04a5228ad8eed015c6b41583e8660"
     },
     "data/sky/pyramid-v1/o12/manifest.bfdbef6b200d9c73.json.gz": {
       "bytes": 93713,
@@ -41624,45 +41253,21 @@
       "bytes": 150083,
       "sha256": "0f1cb817d15d9b89d7aa18c7e8d5e4ae65106754e9b85a5a2f9c09f874da2218"
     },
-    "data/sky/pyramid-v1/o12/tile-01853.7c3f9fea97c865ca.bin.gz": {
-      "bytes": 149138,
-      "sha256": "990d52a1f1d285416c6badabb004739f699859ef0d7a0ac962577da1fdae4731"
-    },
     "data/sky/pyramid-v1/o12/tile-01854.541bb2976f5fd8fd.bin.gz": {
       "bytes": 142606,
       "sha256": "8dfa4dc1f1c790f709e65bea95c0eba41a5c57806ddbfdf5cc3380e6a7114d3c"
-    },
-    "data/sky/pyramid-v1/o12/tile-01854.a7a4f91bde0529b9.bin.gz": {
-      "bytes": 142598,
-      "sha256": "b3f747b8b5f0354dda863b6b463bc213cc1fb7c5367bc0a7b63357d097efccb5"
     },
     "data/sky/pyramid-v1/o12/tile-01855.a5d63bf49e86639d.bin.gz": {
       "bytes": 161711,
       "sha256": "d110c69368a4c8aa9eac6675c128c54d7ee75042f7c712cdd26c80d8488a3ed8"
     },
-    "data/sky/pyramid-v1/o12/tile-01855.d7e57982b60b3fb2.bin.gz": {
-      "bytes": 161926,
-      "sha256": "3d729b522ff3a9057d4a05149c50c7aed2ac89a3f4af3332ca82e233bb42194a"
-    },
-    "data/sky/pyramid-v1/o12/tile-01856.7f8126f0f137f9c5.bin.gz": {
-      "bytes": 86099,
-      "sha256": "98e58b8e544189d43b48729eecb5fe54bd292ce6a61aa781a92f75f5ffbfd425"
-    },
     "data/sky/pyramid-v1/o12/tile-01856.899bc59eccd6ad6f.bin.gz": {
       "bytes": 86091,
       "sha256": "61b5adcc9e06d08d435e384177e3a24dbd3a60de8721f81e1233f45e552396bb"
     },
-    "data/sky/pyramid-v1/o12/tile-01857.c021370743414ed5.bin.gz": {
-      "bytes": 145582,
-      "sha256": "0665dda6998473c1dd74e31c9a1d8fe2daf51c0756e0d066733ef480d46c0620"
-    },
     "data/sky/pyramid-v1/o12/tile-01857.c8315877bca1c536.bin.gz": {
       "bytes": 145438,
       "sha256": "b27b8fb2388e18b76f941723ebb929318cbc651f14bc095f5b7b8698c84accc7"
-    },
-    "data/sky/pyramid-v1/o12/tile-01858.4c8ad28356d7fb46.bin.gz": {
-      "bytes": 141256,
-      "sha256": "8d3cc9c5607d87143cd8bb8a06bef00d8ae91844431a98789a30d5b8591855fa"
     },
     "data/sky/pyramid-v1/o12/tile-01858.ba834caa15d571a6.bin.gz": {
       "bytes": 141284,
@@ -41672,45 +41277,21 @@
       "bytes": 151958,
       "sha256": "7f07bf31d02a48369183427193ae3a93cc2e473547c9c29f783e5fd17dfc902a"
     },
-    "data/sky/pyramid-v1/o12/tile-01859.c8534e873092876e.bin.gz": {
-      "bytes": 151681,
-      "sha256": "04f0fae43fc30bd76ddb37617a5bfffabfffb3789724a2aa0d8906b91178e73e"
-    },
-    "data/sky/pyramid-v1/o12/tile-01860.52f586e4c3ce9bdd.bin.gz": {
-      "bytes": 147642,
-      "sha256": "5ffa6c74d9298ca4f1fb992ee1c89ee31f4e272c5f4596ed90edc026597350a8"
-    },
     "data/sky/pyramid-v1/o12/tile-01860.a72d6b1e812be6b3.bin.gz": {
       "bytes": 146447,
       "sha256": "4d140ad11dba77fe79eafa3cf77036016124139398df9964581911c1db03a9b6"
-    },
-    "data/sky/pyramid-v1/o12/tile-01861.07d89f9010354ec9.bin.gz": {
-      "bytes": 141181,
-      "sha256": "98cc7f2751b00001d9ef5265ce961c5425639c5ee0c5550a516b33cf1443f78c"
     },
     "data/sky/pyramid-v1/o12/tile-01861.a29b0f729d307759.bin.gz": {
       "bytes": 140933,
       "sha256": "bc92bbccebc1bf3877026d0c43e7c4e89e1626010ae145062f8c7f86b1ae8982"
     },
-    "data/sky/pyramid-v1/o12/tile-01862.22b5f9d31e8039c0.bin.gz": {
-      "bytes": 144457,
-      "sha256": "8a32ef817536f5f78c1349905200ede3f17a6f549cc69d98bf25931b5d5b0387"
-    },
     "data/sky/pyramid-v1/o12/tile-01862.e62c9ad0ee565576.bin.gz": {
       "bytes": 142732,
       "sha256": "e9f2fcd7fe797459bbc19371b01fe55cd460d678d17cbd1089d2834f86a90037"
     },
-    "data/sky/pyramid-v1/o12/tile-01863.85feed2f754fdcb5.bin.gz": {
-      "bytes": 141452,
-      "sha256": "c40b82892cf49981097af343d28648be0032041f50dc9a9f47a675c82d68fb54"
-    },
     "data/sky/pyramid-v1/o12/tile-01863.f4d4b3ac0a5aa2eb.bin.gz": {
       "bytes": 140800,
       "sha256": "44e14376b6e94065fcbf98636fad9371ac8cc9d2d6fb63f3df883e973305f6b2"
-    },
-    "data/sky/pyramid-v1/o12/tile-01864.3bda72c438b69ba5.bin.gz": {
-      "bytes": 155694,
-      "sha256": "dce5e6f1408a788f16534327a64f3bff8033ccad3dee92efdb1bcf69e325985c"
     },
     "data/sky/pyramid-v1/o12/tile-01864.81d7932c578069ad.bin.gz": {
       "bytes": 155648,
@@ -41720,37 +41301,17 @@
       "bytes": 144270,
       "sha256": "62c94fa3de0f840532bd7501c247a32d6ad581ce2b77b1e9c50e8a34892bb2fd"
     },
-    "data/sky/pyramid-v1/o12/tile-01865.eec2c09fffdd7b03.bin.gz": {
-      "bytes": 143710,
-      "sha256": "9bbc7f738690b9c72797b191344d360d7d01ef48cde82229719b88b4d11e95da"
-    },
     "data/sky/pyramid-v1/o12/tile-01866.58a340dedaaeb98f.bin.gz": {
       "bytes": 149155,
       "sha256": "8e6ef6adabf36e237b2de38498e3042787c7d1603287a908fc8272972a405ae0"
-    },
-    "data/sky/pyramid-v1/o12/tile-01866.b63accf2d45ee1d1.bin.gz": {
-      "bytes": 149098,
-      "sha256": "dbf07d11a7bc370b8256f007fe9fb46f695934fa61051791a550814af798b8b2"
     },
     "data/sky/pyramid-v1/o12/tile-01867.44b99699aead2f5d.bin.gz": {
       "bytes": 165435,
       "sha256": "c5d027743c3902867ce2fbf2258b20ba1d31a6fc8da382480f289be36938462a"
     },
-    "data/sky/pyramid-v1/o12/tile-01867.b11b52caec8007fa.bin.gz": {
-      "bytes": 165023,
-      "sha256": "ec75d3ff63beb59abeef691ccf6abd7881e2808fd7e29ae8cfdcc636ec29e968"
-    },
     "data/sky/pyramid-v1/o12/tile-01868.b16cda471c19d43d.bin.gz": {
       "bytes": 140447,
       "sha256": "5945b83b1a7dc4f6a5bff846c24da412798dcf7a116d6359d8e69440eac6d8ec"
-    },
-    "data/sky/pyramid-v1/o12/tile-01868.cd437861975c5f27.bin.gz": {
-      "bytes": 141944,
-      "sha256": "607c2f7f892e50934feb9828ec8deadd36624134cb2f6236f6bf6ce472845d37"
-    },
-    "data/sky/pyramid-v1/o12/tile-01869.54760ff328e44c04.bin.gz": {
-      "bytes": 151545,
-      "sha256": "0d0120b1529f30cbb41ff62b8ecf161fa3e7e56b8064187acaf650bd93881cf7"
     },
     "data/sky/pyramid-v1/o12/tile-01869.a9486e2caa97752f.bin.gz": {
       "bytes": 150143,
@@ -41760,17 +41321,9 @@
       "bytes": 150817,
       "sha256": "ec6c6e03f5192c51d261663ea44c11acfa203261117ef1f8e2050ccfcf0cf085"
     },
-    "data/sky/pyramid-v1/o12/tile-01870.999a387b3020e89e.bin.gz": {
-      "bytes": 152916,
-      "sha256": "bae1a346eccd3d2bc95e9c181350af6b0f80bcf81e7457ca8b8ede617d0baf83"
-    },
     "data/sky/pyramid-v1/o12/tile-01871.50f1a2ec385b7858.bin.gz": {
       "bytes": 143434,
       "sha256": "a8736318c7b2c5253ebc3ab39632c27fc0f69273d81d8d61f5b2f6658686fa0e"
-    },
-    "data/sky/pyramid-v1/o12/tile-01871.b5764262019ca6fe.bin.gz": {
-      "bytes": 144691,
-      "sha256": "0bbdb28e0f87d1b468375a9eef17f8c5df99194428f9862aa232e0ffe8f7ad69"
     },
     "data/sky/pyramid-v1/o12/tile-01872.441e1a0bf7211cb7.bin.gz": {
       "bytes": 143598,
@@ -41828,21 +41381,9 @@
       "bytes": 157465,
       "sha256": "1c37225d3d124e8510fde90e15a51b0569726595c6827fa237555e9f16947676"
     },
-    "data/sky/pyramid-v1/o12/tile-01888.834fd9750fb39080.bin.gz": {
-      "bytes": 157471,
-      "sha256": "95f7ae65506b4f55bc9eebb614d32fb1993d591e0de327bc5d8d396cc578be7a"
-    },
     "data/sky/pyramid-v1/o12/tile-01889.04432e125d57386e.bin.gz": {
       "bytes": 159231,
       "sha256": "4fa61beba7e4cad51e4727c49538e482dbf55d1a4e3e45a3c3f1314ee332e795"
-    },
-    "data/sky/pyramid-v1/o12/tile-01889.927fc904cfb386d3.bin.gz": {
-      "bytes": 158557,
-      "sha256": "22e18cfb84926b4f86b6478d633ae79a5a3f8d5080c9425cccf063d405bf775a"
-    },
-    "data/sky/pyramid-v1/o12/tile-01890.3dd4b4bd33cecd44.bin.gz": {
-      "bytes": 146500,
-      "sha256": "32dd3c920bc27b9d9a6aeebf7e81bc55289d8d9eb5dc278b9da59f27f71eb6ce"
     },
     "data/sky/pyramid-v1/o12/tile-01890.58ecf46eb75f5918.bin.gz": {
       "bytes": 145786,
@@ -41852,29 +41393,13 @@
       "bytes": 138089,
       "sha256": "9587503fd65ea93967ccc84467728050e585c536f3246c104cddf8122ae4e22c"
     },
-    "data/sky/pyramid-v1/o12/tile-01891.a1f6bee3c9bc5da5.bin.gz": {
-      "bytes": 137906,
-      "sha256": "bbee73acf38283d8f07d46994e5357f84550705fd6e3552d2f7ebfaadaf1c54a"
-    },
     "data/sky/pyramid-v1/o12/tile-01892.afe13f04ac120cb6.bin.gz": {
       "bytes": 149756,
       "sha256": "72842a2c2424436d681394c582c020f5723fc354a73bed3a5337a43305a64777"
     },
-    "data/sky/pyramid-v1/o12/tile-01892.c689e437239a066e.bin.gz": {
-      "bytes": 151645,
-      "sha256": "905a2b5e97b2504bce3399c80b40b21a8b44a91b463d4724325ee29b56c79770"
-    },
     "data/sky/pyramid-v1/o12/tile-01893.89779e36f145511e.bin.gz": {
       "bytes": 149938,
       "sha256": "d6b0606dcf154f3580f924f64443771e35125de861c615b094a30d811e40c642"
-    },
-    "data/sky/pyramid-v1/o12/tile-01893.b7fb00a55828a64c.bin.gz": {
-      "bytes": 151980,
-      "sha256": "93ccd6d35b3a2ce0c6d515ec3361bcff632a775c25adb2813ee0912774f8d057"
-    },
-    "data/sky/pyramid-v1/o12/tile-01894.8dd413d8e252565a.bin.gz": {
-      "bytes": 149770,
-      "sha256": "fd795684abb4ddf6bba8256eef1c9306bdb1cbcd0300dc65b44341e7049b774d"
     },
     "data/sky/pyramid-v1/o12/tile-01894.9eb3945f2c82b2e3.bin.gz": {
       "bytes": 148398,
@@ -41884,37 +41409,17 @@
       "bytes": 146487,
       "sha256": "74db5ec339773af88e8124bd7e602b775bdde2e3116be1844ce65c5ff478ee8d"
     },
-    "data/sky/pyramid-v1/o12/tile-01895.7c4d99a2215e2a1d.bin.gz": {
-      "bytes": 147482,
-      "sha256": "9eec5f1d356b4c0c8bc1fc0905b80a20069f2620953c9b19c2a12649017fd658"
-    },
-    "data/sky/pyramid-v1/o12/tile-01896.5df85aa756806347.bin.gz": {
-      "bytes": 153605,
-      "sha256": "4f832e5b812d416c8dbc9a169924bef926ab24b8b42c57c5692d514f0d2e5cee"
-    },
     "data/sky/pyramid-v1/o12/tile-01896.ad97da83b6d951b9.bin.gz": {
       "bytes": 152062,
       "sha256": "f9b847bf25f1b354cddb51bd6d1a9a9c5d7438cb9d8d496cdcbbce848ad319be"
-    },
-    "data/sky/pyramid-v1/o12/tile-01897.c20dbf074fdc6626.bin.gz": {
-      "bytes": 142538,
-      "sha256": "1a9fe273d6b1e92dd35eb968f411dc3f748414832144abb10f348f4400e03b94"
     },
     "data/sky/pyramid-v1/o12/tile-01897.edd622e79ad7b7ad.bin.gz": {
       "bytes": 143536,
       "sha256": "e8d37e2bcbe2fba7671048f53962166537c5cc3d18c5e7e51a7a15bf66bf9df4"
     },
-    "data/sky/pyramid-v1/o12/tile-01898.1148e3216c55c253.bin.gz": {
-      "bytes": 140911,
-      "sha256": "ff2f3346af40b416e91890fe438ff440d817556fcb310d28ed9c620900b3d3c0"
-    },
     "data/sky/pyramid-v1/o12/tile-01898.6866cbc81f417ffa.bin.gz": {
       "bytes": 140759,
       "sha256": "f99e10534ac4ad161c9d0c662e5a98d1289a0c6bd51d22c6bc6cb6f8663b3a9b"
-    },
-    "data/sky/pyramid-v1/o12/tile-01899.06e12edc8c9a5861.bin.gz": {
-      "bytes": 145620,
-      "sha256": "30e4ca0842a50d1cdd40ce0ec021457973ace084ecd977b45b0f7e70a818343f"
     },
     "data/sky/pyramid-v1/o12/tile-01899.104b68455a85b19b.bin.gz": {
       "bytes": 143598,
@@ -41924,21 +41429,9 @@
       "bytes": 151147,
       "sha256": "89468404f9d03191e27c1f4e82374b73825620942c06c9b365e41024a4dada78"
     },
-    "data/sky/pyramid-v1/o12/tile-01900.f1f1d03782ff9863.bin.gz": {
-      "bytes": 152211,
-      "sha256": "e45885578f38216f4018f9f1862bae38035281387fa76f0655ae053e18ff59e3"
-    },
-    "data/sky/pyramid-v1/o12/tile-01901.22e3a9a86964af1d.bin.gz": {
-      "bytes": 153843,
-      "sha256": "3d59dfed41c4f94182da6d60b292433e5a0622645abe9618230c64efb3b4f12b"
-    },
     "data/sky/pyramid-v1/o12/tile-01901.cd38175e8617d558.bin.gz": {
       "bytes": 153498,
       "sha256": "ae975c532549acc1c79a03df5c0b60f9f822e7fd35f22decc3dae8eafb33201a"
-    },
-    "data/sky/pyramid-v1/o12/tile-01902.d1312ad1cae04a66.bin.gz": {
-      "bytes": 149439,
-      "sha256": "44581482831fc8aa13d253e32ecc37f9466f3b5757b617159033a79ec7c0581a"
     },
     "data/sky/pyramid-v1/o12/tile-01902.ec15d20bab9ecd20.bin.gz": {
       "bytes": 148198,
@@ -41947,10 +41440,6 @@
     "data/sky/pyramid-v1/o12/tile-01903.430dbe16a9673167.bin.gz": {
       "bytes": 149038,
       "sha256": "a3587eace4552a26d2e6f5f83505e24cf2a58446f558b6074899c55a250f9507"
-    },
-    "data/sky/pyramid-v1/o12/tile-01903.8699738341e52e31.bin.gz": {
-      "bytes": 149129,
-      "sha256": "b3ed0cf60f2d73e317637d90336109d4d99666b3b607e8069f575438a45fb560"
     },
     "data/sky/pyramid-v1/o12/tile-01904.98afc188e1e8b63c.bin.gz": {
       "bytes": 148096,
@@ -42036,10 +41525,6 @@
       "bytes": 149264,
       "sha256": "db552708bf060ae6dcaf43b399369bc36fd6a06d4bd5b9d9ea47c6d2b9c52b39"
     },
-    "data/sky/pyramid-v1/o12/tile-01937.0fd217ee5ba5b824.bin.gz": {
-      "bytes": 142875,
-      "sha256": "588c204197f8e64bd9d93fc3b8f78796dc9378add215fdcc2f311a3610e11296"
-    },
     "data/sky/pyramid-v1/o12/tile-01937.940a9f912598df2a.bin.gz": {
       "bytes": 142871,
       "sha256": "bf3daf45f512546cb42c95b4df0e6f45ec4d8cd4c76fba1141ef944c15df7274"
@@ -42048,29 +41533,13 @@
       "bytes": 131943,
       "sha256": "6b290816c17a9de2a0efe4ae00baf11b963efe34127f6818babb84b844fbf115"
     },
-    "data/sky/pyramid-v1/o12/tile-01938.628bb9a811021775.bin.gz": {
-      "bytes": 131965,
-      "sha256": "465d6e69328ad803b641cf17ac7cc7c81d2e90d75caf703871d24e1a0d364948"
-    },
-    "data/sky/pyramid-v1/o12/tile-01939.65eef881a24a67d7.bin.gz": {
-      "bytes": 135847,
-      "sha256": "cd924381fc8170124d2d42bba5790cd2a857547080972a93ab80a4d4c5f27131"
-    },
     "data/sky/pyramid-v1/o12/tile-01939.766e8a5fd7ca5383.bin.gz": {
       "bytes": 135755,
       "sha256": "f20410d67f55136d0c9d9deb3ca491301a6643e06f9f30b861a15555e34c864e"
     },
-    "data/sky/pyramid-v1/o12/tile-01940.8015913211f372ac.bin.gz": {
-      "bytes": 138936,
-      "sha256": "988b9da3294946c61eb153bd61de8d080ed8e4e942323bae1b03ccecb9b7f734"
-    },
     "data/sky/pyramid-v1/o12/tile-01940.9d7a41b6b50ae178.bin.gz": {
       "bytes": 138913,
       "sha256": "601197ca52cf944c5ad63381b93d63d63401eebd117178960b6adeebadb630ca"
-    },
-    "data/sky/pyramid-v1/o12/tile-01941.031cadd0ff8c3e97.bin.gz": {
-      "bytes": 138897,
-      "sha256": "044cadb304485d458aa9e12cebf52fb5e4042fdbeb0e0628fec058cc06709ae6"
     },
     "data/sky/pyramid-v1/o12/tile-01941.3ce4a6548fc01413.bin.gz": {
       "bytes": 139028,
@@ -42080,21 +41549,9 @@
       "bytes": 132751,
       "sha256": "ad2e3fa06ccb771014f2ecb79593344e4824573b271f9d53b32cf76b202a6b5e"
     },
-    "data/sky/pyramid-v1/o12/tile-01942.697d9a2eb46670b2.bin.gz": {
-      "bytes": 132537,
-      "sha256": "b77061686815c1157599c45cdfd08af3418adf543eecc8a2c0e8cb82ae594472"
-    },
-    "data/sky/pyramid-v1/o12/tile-01943.513ee068667a86d6.bin.gz": {
-      "bytes": 143588,
-      "sha256": "515c9ac6e65722ea05eca4ec5e8edcb933f25624d1a5189151e591aa05dfc9ce"
-    },
     "data/sky/pyramid-v1/o12/tile-01943.b0ed4a248b9bc2a3.bin.gz": {
       "bytes": 142938,
       "sha256": "84d9c2ff3fe846f2d32c74757843fb0bd4c8a3ba960ef430cb3a25cc4143d3b7"
-    },
-    "data/sky/pyramid-v1/o12/tile-01948.315ee118dccc0f3c.bin.gz": {
-      "bytes": 145911,
-      "sha256": "bd36e0ae13ed262e7da2c08955ec2f3f0514126b020cb5ee391a16d7a4c78098"
     },
     "data/sky/pyramid-v1/o12/tile-01948.6bf4dc411fc696b0.bin.gz": {
       "bytes": 144249,
@@ -42104,49 +41561,25 @@
       "bytes": 141851,
       "sha256": "573f0df1f63025307c479293234bcf922bb2bd9093929dff1c4a9a4906296cf4"
     },
-    "data/sky/pyramid-v1/o12/tile-01949.f04a4ce9dbc4432b.bin.gz": {
-      "bytes": 143803,
-      "sha256": "70306232f70cc79c63e5421c07de2c15beccad4d72747fa800231c77916b16f4"
-    },
     "data/sky/pyramid-v1/o12/tile-01984.d1b538f289aff121.bin.gz": {
       "bytes": 138961,
       "sha256": "fe94e796cd1458daf2fc04e1c656fa030627883966bd29003faf0e022a1c467c"
-    },
-    "data/sky/pyramid-v1/o12/tile-01984.d3eb1897665d005b.bin.gz": {
-      "bytes": 140339,
-      "sha256": "46cb82a194faa704375d990a507b8ea6cc245f8b5dfc0a99c6682888ae405927"
     },
     "data/sky/pyramid-v1/o12/tile-01985.a50366d7a5f804dc.bin.gz": {
       "bytes": 149802,
       "sha256": "d7fb77f6393f8c8e5c5354aa28a0cb7dd5f61ff338b2191825714709e3e3f398"
     },
-    "data/sky/pyramid-v1/o12/tile-01985.da71bcf9d2f2b365.bin.gz": {
-      "bytes": 151500,
-      "sha256": "c4693c9eb6c0c435f9b2758bc8e8f912fd8aa946178eec14b121de62df30ff29"
-    },
     "data/sky/pyramid-v1/o12/tile-01986.84dfd8eac213c8df.bin.gz": {
       "bytes": 146647,
       "sha256": "d1d579b695f0a38755481c1c997baa93c5155b8d0e2d78c27461d5f25efc6a83"
-    },
-    "data/sky/pyramid-v1/o12/tile-01986.d579a62f614942ec.bin.gz": {
-      "bytes": 148319,
-      "sha256": "14c9bd8d5a6b1f3902014567b6e65af1b74ba645db847f05942b7e7290c73b5a"
     },
     "data/sky/pyramid-v1/o12/tile-01987.6f6dd10d7adac06e.bin.gz": {
       "bytes": 158308,
       "sha256": "b89b81bc629a371c393878d2f9f52ae5d0476773606e7c16a6d66bd7efe6b920"
     },
-    "data/sky/pyramid-v1/o12/tile-01987.76cffc6b76ac7552.bin.gz": {
-      "bytes": 158397,
-      "sha256": "560ac571286b3ea93908cfaf229b1f18bbc261c6bfcdb954d81c4fb296819c6b"
-    },
     "data/sky/pyramid-v1/o12/tile-01988.b264265000ca2813.bin.gz": {
       "bytes": 152251,
       "sha256": "cf0f208e86f0e5dc31de8c1369e2434112041673a6079876b2ac19cb007e8542"
-    },
-    "data/sky/pyramid-v1/o12/tile-01988.c44e68cafb09092b.bin.gz": {
-      "bytes": 152412,
-      "sha256": "44441a7e999ffddf3188c338ec81c7bff8d5ae9f36fe2c81924824a4b0e56b86"
     },
     "data/sky/pyramid-v1/o12/tile-01989.5d98eb7116740631.bin.gz": {
       "bytes": 164806,
@@ -42159,10 +41592,6 @@
     "data/sky/pyramid-v1/o12/tile-01991.ffe7c64c902bf81f.bin.gz": {
       "bytes": 163321,
       "sha256": "42578e7860273b6c96d6f27a7e9678630de8783c56541a88d25391100ac37e0f"
-    },
-    "data/sky/pyramid-v1/o12/tile-01992.0113538e7bd575b1.bin.gz": {
-      "bytes": 144034,
-      "sha256": "a96d0aa4b680e982718bcb1b2b266bca4bc07f20a1add0828fd520f86ab8d49d"
     },
     "data/sky/pyramid-v1/o12/tile-01992.af66f69570dcdab0.bin.gz": {
       "bytes": 143894,
@@ -43152,17 +42581,9 @@
       "bytes": 68242,
       "sha256": "beafe1d1635403bed7e08efc883f7b8d66bdc64be910d63a108459207ca6ec24"
     },
-    "data/sky/pyramid-v1/o12/tile-02581.e62a8d6651fc3670.bin.gz": {
-      "bytes": 68222,
-      "sha256": "a065c031285397014efe3a1e36d0e88f5141e1d937c5547f565ea8d50f82eafa"
-    },
     "data/sky/pyramid-v1/o12/tile-02582.7ad2e2a719be4238.bin.gz": {
       "bytes": 70126,
       "sha256": "3927ab1073aef4789ea49b857622db56fd1af6fc4d2f7248b4ec6b1099afa5bb"
-    },
-    "data/sky/pyramid-v1/o12/tile-02583.9743bc756b2f0fe9.bin.gz": {
-      "bytes": 69467,
-      "sha256": "85395525b808f06cf94e07b98b3667cd9a4339543d80b0528f085df0ab70fbb0"
     },
     "data/sky/pyramid-v1/o12/tile-02583.b6a49cf4a17b0875.bin.gz": {
       "bytes": 69595,
@@ -43184,25 +42605,13 @@
       "bytes": 71542,
       "sha256": "9f290110d51c5b4211355964a4644a354c13b5b3cc05e8bd6997adb188d1cebb"
     },
-    "data/sky/pyramid-v1/o12/tile-02588.3e213323eefd4365.bin.gz": {
-      "bytes": 70570,
-      "sha256": "e85216b06cef732741263b9451bd0321f2f94b75e072892d64c61d09cc65b16e"
-    },
     "data/sky/pyramid-v1/o12/tile-02588.a8e9850fa8ba9ee7.bin.gz": {
       "bytes": 70513,
       "sha256": "fb2ce4df65d8f30d78bffaca36d4c3c7943c48024226b274b8b6b3f08089359c"
     },
-    "data/sky/pyramid-v1/o12/tile-02589.367e12329438d847.bin.gz": {
-      "bytes": 70788,
-      "sha256": "6e9414d8fa7d3a5d0902a0a0df39aca2c0bde627abd85742b94e1c88ff3e86fb"
-    },
     "data/sky/pyramid-v1/o12/tile-02589.f02680d46c728d5d.bin.gz": {
       "bytes": 70672,
       "sha256": "3138b49acfbc780d9cadf05c0841346bfd9fe17207a169c71c644df8f6a5a8f1"
-    },
-    "data/sky/pyramid-v1/o12/tile-02590.2990b1326dccfbd3.bin.gz": {
-      "bytes": 70914,
-      "sha256": "c5c721868fd70b73a7a21f153edd58a6d6dcbc1877dd548c7e26fd187d56550d"
     },
     "data/sky/pyramid-v1/o12/tile-02590.2c0291a20184bcd8.bin.gz": {
       "bytes": 71244,
@@ -43211,10 +42620,6 @@
     "data/sky/pyramid-v1/o12/tile-02591.2b62e34f3376987e.bin.gz": {
       "bytes": 69734,
       "sha256": "b8feea4c16286e331aa2cfb7b67abc5ce89313877cb65a06f1c9c74cd2e4d132"
-    },
-    "data/sky/pyramid-v1/o12/tile-02591.858b3d90687f4c06.bin.gz": {
-      "bytes": 69320,
-      "sha256": "46c6a11f8bc164e7260298159788bf0537e4c3fa9a8a63cf1819f1f4f7328aa1"
     },
     "data/sky/pyramid-v1/o12/tile-02592.ce59562b28423280.bin.gz": {
       "bytes": 69947,
@@ -43296,17 +42701,9 @@
       "bytes": 71256,
       "sha256": "895c8b4ddddc7f4c0faf440ad7e8272214e95a3f0878b11e9ecaf6d2dc0c8c77"
     },
-    "data/sky/pyramid-v1/o12/tile-02612.d0d1ccda131337bc.bin.gz": {
-      "bytes": 71711,
-      "sha256": "f207e6fc2e895b32a25eb1eefad3ccd7829f4b7d3b5636c947af85a8c7c67095"
-    },
     "data/sky/pyramid-v1/o12/tile-02612.d4773b4cf3e5a4fa.bin.gz": {
       "bytes": 71365,
       "sha256": "5bebd11c28c397b60dff8951e1c4270de15f1b744338a1dd4d58f19e6bffb330"
-    },
-    "data/sky/pyramid-v1/o12/tile-02613.80b1247178c83e80.bin.gz": {
-      "bytes": 70481,
-      "sha256": "36a71952446d4f76d5ad806cee92b92f8388d9fd445bdd1ef54fed6f4ab6fbf2"
     },
     "data/sky/pyramid-v1/o12/tile-02613.af24c9bb6098a8a1.bin.gz": {
       "bytes": 70425,
@@ -43315,14 +42712,6 @@
     "data/sky/pyramid-v1/o12/tile-02614.50ecf485bb9e743b.bin.gz": {
       "bytes": 71801,
       "sha256": "610f502121256ad486c3367f417c4394749024ef3793ad095dc5b4c04b96c04f"
-    },
-    "data/sky/pyramid-v1/o12/tile-02614.df87ed6c6e686f55.bin.gz": {
-      "bytes": 71821,
-      "sha256": "4fdd732eab65990549042caf3e3c301ffd568ee507d5b1f7fcf1339c70466d55"
-    },
-    "data/sky/pyramid-v1/o12/tile-02615.aa50c12fcd9da89d.bin.gz": {
-      "bytes": 71515,
-      "sha256": "52a982e5e7ec168713e0c615d21e7edad78fe3b57b33fab748985bab4142ab67"
     },
     "data/sky/pyramid-v1/o12/tile-02615.af234ecbb4deaeca.bin.gz": {
       "bytes": 71691,
@@ -43344,10 +42733,6 @@
       "bytes": 70234,
       "sha256": "91a1b8d6df8a2c7783dc882c07cfc9949e2495bce582988ea5ae0672c2eaa908"
     },
-    "data/sky/pyramid-v1/o12/tile-02620.51b15895f52092bf.bin.gz": {
-      "bytes": 71187,
-      "sha256": "d528a7f3cc63a8be952e4c1be3780ca349b5d9fd08c292632f2f2284985a245c"
-    },
     "data/sky/pyramid-v1/o12/tile-02620.b77851fc83bf3f1b.bin.gz": {
       "bytes": 71050,
       "sha256": "835592637f4f2d880385a9d941497037040f704f2749a70ebaf0f77a8a256f27"
@@ -43356,29 +42741,13 @@
       "bytes": 71114,
       "sha256": "8c07aff7ed2dc48787f817e36887f94d3f1b7d3fa88aea0a23da5590dc5ad5c2"
     },
-    "data/sky/pyramid-v1/o12/tile-02621.b833e105c14ce14d.bin.gz": {
-      "bytes": 71002,
-      "sha256": "743faaa62d47f4a4d2246dd441e42f710e97780f1095186bf6218525adb5167f"
-    },
     "data/sky/pyramid-v1/o12/tile-02622.5a2149ea03def88f.bin.gz": {
       "bytes": 71202,
       "sha256": "d3a9d7e05a30366dc5fe69ea3a048af247be141bbaef138d4a5495df7971d58d"
     },
-    "data/sky/pyramid-v1/o12/tile-02622.d89a5016ddbbe746.bin.gz": {
-      "bytes": 71166,
-      "sha256": "cc4ce0edc336585f8a3efdd8fec76b889b76db11f9c9807344d39eb68e7e34dc"
-    },
-    "data/sky/pyramid-v1/o12/tile-02623.c14c4c2711b2b949.bin.gz": {
-      "bytes": 71031,
-      "sha256": "be80964f204693b8b6028dc5d7fe915746e26106d43ce023e8abba530047410b"
-    },
     "data/sky/pyramid-v1/o12/tile-02623.e10d1e3e123ba4c1.bin.gz": {
       "bytes": 71240,
       "sha256": "a45ea368065351ddc51a30e19224b25975b2db69a98c7e427671cadd1d7004a1"
-    },
-    "data/sky/pyramid-v1/o12/tile-02624.399a4e7558b28326.bin.gz": {
-      "bytes": 69057,
-      "sha256": "74d4a6c6e52c7eb0e55f5fe86038d518d57b319614f7511f4e54e98a00c64094"
     },
     "data/sky/pyramid-v1/o12/tile-02624.3f7df5c07b3e2147.bin.gz": {
       "bytes": 68850,
@@ -43388,45 +42757,21 @@
       "bytes": 68758,
       "sha256": "cad27712d2a8831c6de477011c0be6814dee981fd44f8d35b41fb67b44285cf7"
     },
-    "data/sky/pyramid-v1/o12/tile-02625.47286a618a1ecf3d.bin.gz": {
-      "bytes": 69049,
-      "sha256": "a9c6016af7db710b7d055ffde2023be5f65288b91ea3c75f22063f00cec5cc6c"
-    },
     "data/sky/pyramid-v1/o12/tile-02626.a56ae9b855158bd8.bin.gz": {
       "bytes": 69342,
       "sha256": "23462582dbc84dd1783c072cd0a9b49f5c69173c1e72c805c4cec98c9a65badb"
-    },
-    "data/sky/pyramid-v1/o12/tile-02626.bc79da31ae7a23f2.bin.gz": {
-      "bytes": 69184,
-      "sha256": "70475d8ca5dcbaea3fb250aad7b7af51ad71ca14fd8512cdbe5160384b81cc8a"
-    },
-    "data/sky/pyramid-v1/o12/tile-02627.a63f43dd7ade6663.bin.gz": {
-      "bytes": 68207,
-      "sha256": "11858b2be235dddc6de59cece0d942b00941c059994d1583f9e39e8bd54c6039"
     },
     "data/sky/pyramid-v1/o12/tile-02627.a9a16c45f96164b2.bin.gz": {
       "bytes": 68380,
       "sha256": "55ccbbe6ff50bec8ff46e31d63c3f9f1c6cd41722246e5e5322fac0d32b97ebf"
     },
-    "data/sky/pyramid-v1/o12/tile-02628.5bdb5cf4da277594.bin.gz": {
-      "bytes": 67448,
-      "sha256": "fbe157aa60985b0f7a818126cec312b91f382141dfb98dda1a4e7376ac8f81be"
-    },
     "data/sky/pyramid-v1/o12/tile-02628.863b0af1e5cd2189.bin.gz": {
       "bytes": 67416,
       "sha256": "dee2b6cad6014866a8678cf32e17f858c3071510a0f578d5e8161aefb728281d"
     },
-    "data/sky/pyramid-v1/o12/tile-02629.a8c117d55af3c6b9.bin.gz": {
-      "bytes": 66147,
-      "sha256": "3693a5dee5c9539f8f8ca960d385e74be54ec26d22e0da1fc719d53fdb253826"
-    },
     "data/sky/pyramid-v1/o12/tile-02629.de780e280bf576f3.bin.gz": {
       "bytes": 66123,
       "sha256": "23640750fffe891b5254087f8b656f943422eae2d494b36225d89f8c3bf5bd78"
-    },
-    "data/sky/pyramid-v1/o12/tile-02630.5ae901a4750670e5.bin.gz": {
-      "bytes": 67801,
-      "sha256": "b3a6fbd1c219ede0b8fdc46ac31812a2d6e78cf440e9a637cfe1eb2b8f433cf0"
     },
     "data/sky/pyramid-v1/o12/tile-02630.dfe4c148eb3cbfda.bin.gz": {
       "bytes": 67801,
@@ -43436,10 +42781,6 @@
       "bytes": 67692,
       "sha256": "45cb93ba86385b3352dec8cabd661a9d72a315e8dc7b750f4d8167ed0604689d"
     },
-    "data/sky/pyramid-v1/o12/tile-02632.aaa1c80eda513b73.bin.gz": {
-      "bytes": 69494,
-      "sha256": "31185af44002dddf969c87ebb4324a8062d234cd8e94cdb84905a2cb364e4fc5"
-    },
     "data/sky/pyramid-v1/o12/tile-02632.f8e5ff2e95918bc4.bin.gz": {
       "bytes": 69924,
       "sha256": "758807fc2aa9187bca3f6e1cbaa6fa1ac87c844f88b3b6ec620a118a9085803a"
@@ -43448,14 +42789,6 @@
       "bytes": 67695,
       "sha256": "37aaf4244748f724855acffa9e1139c71fa137bb627809c5ac94b4499d277f2c"
     },
-    "data/sky/pyramid-v1/o12/tile-02633.5110f94758b16fc1.bin.gz": {
-      "bytes": 67578,
-      "sha256": "ad887ac838cfe41075894c4c97b4a04bf569ede734657a31582c9bb941b99d65"
-    },
-    "data/sky/pyramid-v1/o12/tile-02634.13bfbb0d68b5fda6.bin.gz": {
-      "bytes": 68531,
-      "sha256": "51e9da80d2f66413de0362df31a86ab668bee8484f998c4462e03420d402a4c2"
-    },
     "data/sky/pyramid-v1/o12/tile-02634.6319b8d7e76d9e15.bin.gz": {
       "bytes": 68717,
       "sha256": "999a4a8b3765cc88643481536175d556c7715ac03dda1f3290bbb8d9624a5db0"
@@ -43463,10 +42796,6 @@
     "data/sky/pyramid-v1/o12/tile-02635.239fb43939a48621.bin.gz": {
       "bytes": 66644,
       "sha256": "c1dcbcba92bc1a1de51b8700a4c8fb9e2f5d9b3b5a1f36840684cdbf87ae6c2b"
-    },
-    "data/sky/pyramid-v1/o12/tile-02635.7c0b11195c7f68fb.bin.gz": {
-      "bytes": 66737,
-      "sha256": "efb9134b291038ae4492ffb4c95297e8333711c8affec5d53b762bdf3e92c2c1"
     },
     "data/sky/pyramid-v1/o12/tile-02636.2cd1945f11fe98f3.bin.gz": {
       "bytes": 66852,
@@ -43548,10 +42877,6 @@
       "bytes": 67230,
       "sha256": "e7171b361fb9e6ca906009fdf451d2de1335aba2c31e6869d15ff9f081823007"
     },
-    "data/sky/pyramid-v1/o12/tile-02656.79142ee7818bcce1.bin.gz": {
-      "bytes": 69395,
-      "sha256": "0dece5f4fc0cfdd93f21e535d6b6a4c6ff8ee63a1ee5cb5cc14abed7058a070f"
-    },
     "data/sky/pyramid-v1/o12/tile-02656.ac218163e8f39cc3.bin.gz": {
       "bytes": 69857,
       "sha256": "72a47772eef7eeb90aa65031083cc5012487480b0fa8a51163d0a05a76fadf92"
@@ -43560,21 +42885,9 @@
       "bytes": 67116,
       "sha256": "f112e91e610a81389efc876307de7b35bfe7d8ecb32a7614e082922d41bc7a59"
     },
-    "data/sky/pyramid-v1/o12/tile-02657.6719d1dc12b11197.bin.gz": {
-      "bytes": 67125,
-      "sha256": "9893bd0f3c62fe3ca84ae762f1b1717b993bd2727fea388b1bff424850cf750b"
-    },
     "data/sky/pyramid-v1/o12/tile-02658.0d41dbcab76595cc.bin.gz": {
       "bytes": 69563,
       "sha256": "60e08a4cd284fda099bb812abbfcb23b04bf9ff2c909ef91a9b887398852671e"
-    },
-    "data/sky/pyramid-v1/o12/tile-02658.627821cad12139bf.bin.gz": {
-      "bytes": 69285,
-      "sha256": "54c53466d4e5ff12d5bc0d9420db003320c6d6b3054a28e1d0f31e06b97c507f"
-    },
-    "data/sky/pyramid-v1/o12/tile-02659.1f7961e00a941d2f.bin.gz": {
-      "bytes": 67414,
-      "sha256": "ac7bf0b48e2761c574e82cca007556e9f972d78baa244bda8795fcfd9f3bb610"
     },
     "data/sky/pyramid-v1/o12/tile-02659.5417f87650416a0e.bin.gz": {
       "bytes": 67494,
@@ -43588,10 +42901,6 @@
       "bytes": 68072,
       "sha256": "5d73166a2e36706ccd8389b0bfc8b485e95c7ab6327d20c6a77a9071ad624738"
     },
-    "data/sky/pyramid-v1/o12/tile-02662.3e7fed3bd18bc9b5.bin.gz": {
-      "bytes": 68760,
-      "sha256": "037193cd855cbf902819979279326c2d22933ef695e32be8988625c0f1e9a134"
-    },
     "data/sky/pyramid-v1/o12/tile-02662.420ab5bca064524c.bin.gz": {
       "bytes": 68761,
       "sha256": "31535b2e7a2d3cae3f6e1436521800811a8b9470c4080ffc870fc715ed11e08d"
@@ -43604,29 +42913,13 @@
       "bytes": 70164,
       "sha256": "670bfc1a60fe288aabd67ac5fe88da7e77a3b779828e9c385491aa83cbde7143"
     },
-    "data/sky/pyramid-v1/o12/tile-02664.9dfd1d7e374f2dd5.bin.gz": {
-      "bytes": 69659,
-      "sha256": "a0304eaa5c98b6460d360d2e2e0043b86e6ad04c1d9883d6a88a5faeb22369b8"
-    },
     "data/sky/pyramid-v1/o12/tile-02665.5d2bbf00106b212f.bin.gz": {
       "bytes": 69032,
       "sha256": "4945aab60381027d80b9d804b5e8dff5d5f148bf54c4926d0a825f158151315d"
     },
-    "data/sky/pyramid-v1/o12/tile-02665.e7781ce5862e0e2e.bin.gz": {
-      "bytes": 69060,
-      "sha256": "65642753914dda495c892a5b5a735ee20cddbedd174168f8960523c5c2a1d111"
-    },
-    "data/sky/pyramid-v1/o12/tile-02666.77684bc2df6baa99.bin.gz": {
-      "bytes": 70566,
-      "sha256": "2014b31ff9aeb08677f5412b30c3a2540dd75ed925901b38979d85cbcf086856"
-    },
     "data/sky/pyramid-v1/o12/tile-02666.dc5dd78ecbf80fa2.bin.gz": {
       "bytes": 71505,
       "sha256": "1f09d97bb894c3fd95b3a0a67b18fffd36e2be9d5430a4bcf6b5ae22418903da"
-    },
-    "data/sky/pyramid-v1/o12/tile-02667.bcab3cb4f3007d27.bin.gz": {
-      "bytes": 70752,
-      "sha256": "03c9fe9c5f99e4c1d09e4efc4cf9cef0a9f6d434554278993019fb41af62a1ce"
     },
     "data/sky/pyramid-v1/o12/tile-02667.dbf13d1695cdabb2.bin.gz": {
       "bytes": 71085,
@@ -43636,29 +42929,13 @@
       "bytes": 68117,
       "sha256": "25d46862b3673dcffac4e1bddbbddf0ec4758f75a16fa98e885da0719fdd7232"
     },
-    "data/sky/pyramid-v1/o12/tile-02668.97a9a345f24e0bcd.bin.gz": {
-      "bytes": 68075,
-      "sha256": "a4651fb7c6c4edd693ee1a536265bc89110ba86e3f46a933b84db28d69cc6c2e"
-    },
-    "data/sky/pyramid-v1/o12/tile-02669.c832ba8db9ddb0a4.bin.gz": {
-      "bytes": 68889,
-      "sha256": "989633cf48729f571679d64db27fe909d6732d87ca49cebd235f3fef73d248ad"
-    },
     "data/sky/pyramid-v1/o12/tile-02669.eb91ca15d41a27e1.bin.gz": {
       "bytes": 68891,
       "sha256": "0da8b81de744464bdea07088a5ed95bbcc5d53333327537a03e251c6dddd9713"
     },
-    "data/sky/pyramid-v1/o12/tile-02670.7816ac79b539f733.bin.gz": {
-      "bytes": 69492,
-      "sha256": "8d3ad4897b31e1f286de55d36fe29ff1464b306f0d89d16e9965ffbe64ee5492"
-    },
     "data/sky/pyramid-v1/o12/tile-02670.bbaf75a827ab5873.bin.gz": {
       "bytes": 69615,
       "sha256": "0e8a130917ac4d09d9dc8eb5fa776a7977351ca5a673597bb1afcd462be75919"
-    },
-    "data/sky/pyramid-v1/o12/tile-02671.5282921322614fe8.bin.gz": {
-      "bytes": 69460,
-      "sha256": "3387c04d3ec333428f436eaa76501bd4858c8c8eec754e8698d4120fe1fdfa48"
     },
     "data/sky/pyramid-v1/o12/tile-02671.d1e662d1ce8b0b79.bin.gz": {
       "bytes": 69407,
@@ -43703,10 +42980,6 @@
     "data/sky/pyramid-v1/o12/tile-02681.29b2732bada24059.bin.gz": {
       "bytes": 67261,
       "sha256": "5217beb7d341bb2815ef47b35a0f292ac5fe66e2f4518e2c2527ede507968358"
-    },
-    "data/sky/pyramid-v1/o12/tile-02682.c30fe6611977e29b.bin.gz": {
-      "bytes": 67840,
-      "sha256": "bc86056db3ae2a177a0b3320d85680c842921fbe7df91348f811114e22cddf92"
     },
     "data/sky/pyramid-v1/o12/tile-02682.db50e882fc987323.bin.gz": {
       "bytes": 67832,
@@ -43816,10 +43089,6 @@
       "bytes": 71381,
       "sha256": "c059b07873fc47697dddd32984a8f2aaf4db1e7417d13a81c1f2601c2e4bc174"
     },
-    "data/sky/pyramid-v1/o12/tile-02709.7fa4fea92eed2d26.bin.gz": {
-      "bytes": 70799,
-      "sha256": "075cac39c58892763a3345da922cc1b35c6f7fc3e8c8bc867085b223d5db4199"
-    },
     "data/sky/pyramid-v1/o12/tile-02709.82f7ba96539ea9dc.bin.gz": {
       "bytes": 71564,
       "sha256": "df5033c61ca734ea5200af84f59669f09cd938eaf4e904bcf923f2dab7f9b3e2"
@@ -43827,10 +43096,6 @@
     "data/sky/pyramid-v1/o12/tile-02710.87e1a123d63081fc.bin.gz": {
       "bytes": 71904,
       "sha256": "1c63b89a54b00cb134dfe53b1f53d0b7abfcf324126afaea333248cc4bfd1fd9"
-    },
-    "data/sky/pyramid-v1/o12/tile-02711.26abe0c749604594.bin.gz": {
-      "bytes": 72350,
-      "sha256": "db3caef111554f32ea5b41c9a0a9ad59aceaac5bbb24733e4f9b0c76e05acabc"
     },
     "data/sky/pyramid-v1/o12/tile-02711.75b79f0fb6579a18.bin.gz": {
       "bytes": 72335,
@@ -43900,21 +43165,9 @@
       "bytes": 72802,
       "sha256": "742214362a4cbbb694d5f639c9cf30d15bf325f4aa3fda1e79cc21ff7756a9a5"
     },
-    "data/sky/pyramid-v1/o12/tile-02752.bea6454cc5d3c9c9.bin.gz": {
-      "bytes": 71907,
-      "sha256": "cd9e10b688932b88c9be2358043f536afffa566db29e081feaef9470d249fe31"
-    },
-    "data/sky/pyramid-v1/o12/tile-02753.267057e1058e50a7.bin.gz": {
-      "bytes": 71343,
-      "sha256": "aa1bbfcf4b917a1a935a42d6e4e7bfd92a91bf56a9e13d000e18abb959fac073"
-    },
     "data/sky/pyramid-v1/o12/tile-02753.ecef315173bdda77.bin.gz": {
       "bytes": 71799,
       "sha256": "e9158c400f4640f72a834b47d2ebc3e738ebfd08fc324142f6c72409da77a71a"
-    },
-    "data/sky/pyramid-v1/o12/tile-02754.68b7b79fa3615d59.bin.gz": {
-      "bytes": 72731,
-      "sha256": "70f31f2288fa1f7b998a7d0354072e94db3ba0f66956f7c3d9095a546d69f4e3"
     },
     "data/sky/pyramid-v1/o12/tile-02754.c3d661f5eda1b91b.bin.gz": {
       "bytes": 72593,
@@ -43924,29 +43177,13 @@
       "bytes": 71135,
       "sha256": "20ab8d579bcd08fdc1e7b1625f79edaeb16c01e6cbc4c2f177ee47dff4dfa2bb"
     },
-    "data/sky/pyramid-v1/o12/tile-02756.ee6ed0e2db543f46.bin.gz": {
-      "bytes": 71282,
-      "sha256": "c076c6c93737a02a62db899ce5ffb261a113e84e297fbe244c7958bdd27fd3b2"
-    },
     "data/sky/pyramid-v1/o12/tile-02757.a35abbb13f4a7600.bin.gz": {
       "bytes": 68870,
       "sha256": "f94ff949d04f71cd8db46a2ca782768a4536d12e9ce6414cc2a78b5785655ca0"
     },
-    "data/sky/pyramid-v1/o12/tile-02757.aaa1dec70f797dc6.bin.gz": {
-      "bytes": 68444,
-      "sha256": "2dc8d902e1910846914875b93dbe8e9d57f11ed67efaa5c01921886b73a2ee17"
-    },
     "data/sky/pyramid-v1/o12/tile-02768.1e7462fbaa2303aa.bin.gz": {
       "bytes": 67392,
       "sha256": "ef1fd18117bc7e6cf3769413c03a7bb62213ebf8ee1d9a9ba5fe717a0a8cb4f7"
-    },
-    "data/sky/pyramid-v1/o12/tile-02768.d8dee001d58bfd95.bin.gz": {
-      "bytes": 67443,
-      "sha256": "9e86d9ca080bc53b4b9dfca78404a3111a6e20c314a3622ee7dedcbf0455582f"
-    },
-    "data/sky/pyramid-v1/o12/tile-02769.4f041416dea80934.bin.gz": {
-      "bytes": 67942,
-      "sha256": "77a844ff596dc3884178504efc7529dad1a17996878df7231a8b6ca55cfbc9ba"
     },
     "data/sky/pyramid-v1/o12/tile-02769.53868b43f62708ac.bin.gz": {
       "bytes": 67941,
@@ -43964,10 +43201,6 @@
       "bytes": 70803,
       "sha256": "ba3d0a4f13869c24f4d2048b054f0510b2974b7464b47edfb0b7c2174e1e8aa2"
     },
-    "data/sky/pyramid-v1/o12/tile-02944.7eea0427d7230b0c.bin.gz": {
-      "bytes": 71357,
-      "sha256": "7aa7ffc5039b86c25ed31eacb0e7507fcb969aa7628847d7d3f2745b32a0c400"
-    },
     "data/sky/pyramid-v1/o12/tile-02944.96a8b507d9304398.bin.gz": {
       "bytes": 71121,
       "sha256": "b46bf5a8be59a1335e09a8588fa97ad197fb33afa6142577f26b004855122d3c"
@@ -43975,14 +43208,6 @@
     "data/sky/pyramid-v1/o12/tile-02946.9b20a56b9df6a6a2.bin.gz": {
       "bytes": 70237,
       "sha256": "1aff8ad3f290bad49c1de96dcbeb96d37c41f5b64d98c324c0b105be9bd4901f"
-    },
-    "data/sky/pyramid-v1/o12/tile-02946.d035c63c7497311f.bin.gz": {
-      "bytes": 70003,
-      "sha256": "bf095f54ac073dbab14215bdce259c687514f80aecede15fb6b5556e974e03d5"
-    },
-    "data/sky/pyramid-v1/o12/tile-02952.adbef67ef83a919e.bin.gz": {
-      "bytes": 69316,
-      "sha256": "e52f92107cd87796f52e9c6932fc3e2e0c8c6259dbbf327fb3b7306e5891f25e"
     },
     "data/sky/pyramid-v1/o12/tile-02952.e57fe35752a062ad.bin.gz": {
       "bytes": 69036,
@@ -43992,14 +43217,6 @@
       "bytes": 70260,
       "sha256": "416fb6ccf96e7fed9bb439356b633dbc894e071c57f48aff86a6e407b102a75f"
     },
-    "data/sky/pyramid-v1/o12/tile-02953.e68126f531cd28ec.bin.gz": {
-      "bytes": 70358,
-      "sha256": "12ec27301087a1752f1d8f79c62d3381001cbcfe722c9cefa57f66554e0dce4d"
-    },
-    "data/sky/pyramid-v1/o12/tile-02954.2b743f688555ffc3.bin.gz": {
-      "bytes": 69881,
-      "sha256": "87cf27078a42f6b8cdb33b0bf2ae2745c28ff74a32e90b123359f04e9fe4880d"
-    },
     "data/sky/pyramid-v1/o12/tile-02954.ae7c05ae4931cee2.bin.gz": {
       "bytes": 69843,
       "sha256": "e1e0a5fdaa2f0fe6e1865d88c710a44487a0b0cb2266359c684f3551d2407109"
@@ -44007,14 +43224,6 @@
     "data/sky/pyramid-v1/o12/tile-02955.42eff70983a0c7b6.bin.gz": {
       "bytes": 71255,
       "sha256": "e8f727d498f2b0b495ad079d900b8a4164ad9fd4de4fda0029babf8aacfd8b91"
-    },
-    "data/sky/pyramid-v1/o12/tile-02955.73d98542f8f8f20a.bin.gz": {
-      "bytes": 71261,
-      "sha256": "1d24f67409304229ca7895da1bba34dff662c69f3d3dbc0d9394dd47e4cc491e"
-    },
-    "data/sky/pyramid-v1/o12/tile-02958.50ede0e644e7e926.bin.gz": {
-      "bytes": 70462,
-      "sha256": "bea61c92040f595f8e7b086a067eb463e8c5140a29442485786be7c110d7a757"
     },
     "data/sky/pyramid-v1/o12/tile-02958.e706225f09c1224f.bin.gz": {
       "bytes": 70480,
@@ -44108,10 +43317,6 @@
       "bytes": 69303,
       "sha256": "5d15e8f8bcc9e638687742bd6823402788acfb79660461d08abedb82e8409c12"
     },
-    "data/sky/pyramid-v1/o12/tile-03005.4a7d655a7f1187c7.bin.gz": {
-      "bytes": 70446,
-      "sha256": "7692f070c56e3ccbe240a19b18e4f07bc613ba265a08f1de6790f5a71ad59aee"
-    },
     "data/sky/pyramid-v1/o12/tile-03005.f43b4810c7ec316f.bin.gz": {
       "bytes": 70398,
       "sha256": "49f7a9f410c7d327e9d1b8f083662db4d35646f11acd5831687c6b68e27bc81f"
@@ -44124,21 +43329,9 @@
       "bytes": 70237,
       "sha256": "2dc8a5a7c2c265addf5e042b50443d45be8d886ad13dc19d455e32e615566a5d"
     },
-    "data/sky/pyramid-v1/o12/tile-03007.d350a757a5d4b355.bin.gz": {
-      "bytes": 70238,
-      "sha256": "4a73d97c40cdee16ad7e84268d414f3202f6f2e446326cf16935d5ad824dc44e"
-    },
     "data/sky/pyramid-v1/o12/tile-03050.6f52f7e6c30ca03e.bin.gz": {
       "bytes": 70489,
       "sha256": "f5ce8615929bf9d4264c91181e3de8aa7912cdb92d64608e7797a12d8b31ae9d"
-    },
-    "data/sky/pyramid-v1/o12/tile-03050.eb85a251a102ff23.bin.gz": {
-      "bytes": 70474,
-      "sha256": "993ffd81d78e0367554c181699be09a730a4ec36579fc18b5942d5d449e6d8b3"
-    },
-    "data/sky/pyramid-v1/o12/tile-03051.2f0161ef931e5a0d.bin.gz": {
-      "bytes": 93508,
-      "sha256": "aa4fa4581214e9ceb6ec955cd0815966fdc62a43aa59b9ac82a421adafab60e1"
     },
     "data/sky/pyramid-v1/o12/tile-03051.67ed2ce9e084abfc.bin.gz": {
       "bytes": 93563,
@@ -44147,10 +43340,6 @@
     "data/sky/pyramid-v1/o12/tile-03054.49f58421cbc3ae09.bin.gz": {
       "bytes": 143998,
       "sha256": "8a8299005b06abf03dca77b94d4940f89ca885751fafdecbea3e1c951c798758"
-    },
-    "data/sky/pyramid-v1/o12/tile-03054.d61ceabbe3006191.bin.gz": {
-      "bytes": 144876,
-      "sha256": "a112289b80d9eb214b025d428e70db829af11ab9a2b4b3bffebca0a1295ee7a4"
     },
     "data/sky/stars-deep-v1/g12/manifest.94f11ae9c7c948f3.json.gz": {
       "bytes": 40256,
@@ -53385,12 +52574,12 @@
       "sha256": "59175705bdfcf9426f06f834eb46fa3cfe09af4800b47d52220234053a6f9a78"
     },
     "devicetest.html": {
-      "bytes": 196561,
-      "sha256": "1f46d75dd58470d9b86a420452e4345fb1953d7165e24df7e689fed5e50557f6"
+      "bytes": 207375,
+      "sha256": "008a124388cbcd269575a2670a1e60a236cec083ee1a3e0a8f70077bbe577ecd"
     },
     "hosting.json": {
       "bytes": 304,
-      "sha256": "47f3f0a08a1ab3b172d12170a7cff18e736c3a0bf439fbc4cc7eb59c4237a2c5"
+      "sha256": "f0a257d4d87d501af769ef83cfc831ef46bb6677ae6be77a857c7bb0f9b8ae5a"
     },
     "icons/apple-touch-icon.png": {
       "bytes": 23815,
@@ -53414,51 +52603,51 @@
     },
     "index.html": {
       "bytes": 5935,
-      "sha256": "31a06481464611ea54742cd35cf1edd306bb38bc94cb8a31822a92dc9ed06d27"
+      "sha256": "c9bcc9ff81ba11ee0c95e26fdeffacd4dbb397077b2e80d1b7258b6b77a235ec"
     },
     "package-manifest.0b27006f60327de5.json": {
       "bytes": 1618341,
       "sha256": "0b27006f60327de500b7f0ee601cc33f6aa808ad231b9938648668e976a952a0"
     },
-    "package-manifest.8636af41a6b2422d.json": {
-      "bytes": 1616383,
-      "sha256": "8636af41a6b2422db1272e935e2d252a023a85b24350727e76e0e681d33f39d1"
-    },
     "package-manifest.ac600c507eee8d65.json": {
       "bytes": 1620402,
       "sha256": "ac600c507eee8d6522d951a576336bfc8c3b2db5ca5070630f0ceaf66aa69806"
     },
+    "package-manifest.b8a6ba8503f748d1.json": {
+      "bytes": 1620070,
+      "sha256": "b8a6ba8503f748d1b69c28d18721f43d70159bcbd3550338950a2dc41300f599"
+    },
     "prewarm-manifest.json": {
-      "bytes": 74701,
-      "sha256": "cd4f2a81c4ec93b361c700d8467bc41e45ec3b98ded48fdbc0aa2fbc4e823fbd"
+      "bytes": 46879,
+      "sha256": "ceb53e2b3f3e784630af9d1f08a7927892bbe57783c86a117e50325a5c475757"
     },
     "prewarm-urls.txt": {
-      "bytes": 29435,
-      "sha256": "af1f6877228e76c94010f2878e7e99791a195a220e44b63082accd7298963040"
+      "bytes": 16130,
+      "sha256": "07fb48a37118e719714af0a3ed396d75aa7cc9fe34e45d6190901a29e8b5531d"
     },
     "product.json": {
       "bytes": 141,
-      "sha256": "fc9cf0d81cff3407d83c6b336d8e3195203d87e8a7bc981984040e8863d4e528"
+      "sha256": "b3007130d819413bfe21c2e9a34340c979438dabd58b9766976d17395eac2dc9"
     },
     "refresh-urls.txt": {
-      "bytes": 388,
-      "sha256": "abc3f34f5fcb063e353fac94da17e324241b215dbfed01656c9baa4e187362bc"
+      "bytes": 248,
+      "sha256": "911e4d7d9e7428aa168b1c3a94f11e720119120436d04abc74e030ac356999f3"
     },
     "release-history.json": {
-      "bytes": 2820064,
-      "sha256": "a3934f330b6fc42776df7b5e0a16771071d539164917925a001a89129f786cf9"
+      "bytes": 2826358,
+      "sha256": "45daa3fae7c1bbbab3f69687259bab43835db129889df305d49f45d325f44825"
     },
     "selftest.html": {
-      "bytes": 131367,
-      "sha256": "0f1fb788fbd50c275f0e01b69a7e28d5b963c896c3cefebe5a76d8cae58a38d2"
+      "bytes": 134301,
+      "sha256": "c086a74f2bae223a1d0a0be333b7429144c6171d1ef33b8e806d349010f87887"
     },
     "share-card.jpg": {
       "bytes": 113298,
       "sha256": "7418257b60a66ce75032cff21f5d66fc2bc7c020c79efa3ec926fc9fa417cd84"
     },
     "sw.js": {
-      "bytes": 9098,
-      "sha256": "d56a560464f97f770e4fca2d198a306ac96e848fac0d61feb6ad40a4a869912e"
+      "bytes": 10010,
+      "sha256": "8e890d5b5ed26a7f2f07ecbddef5aeb4810c7880400d925887a542b35fc95340"
     },
     "THIRD_PARTY_NOTICES.txt": {
       "bytes": 60944,
@@ -53469,5 +52658,22 @@
     ".gitattributes": "1a1dbe176bc233b499d35a57db7513f2941c99ab9759f177830c9149be99005b",
     "CNAME": "ef6e864a5ab19d105f4509d4fc8c9b619c9891cebd3bbb5345f285cfd7fdd6da"
   },
-  "existingAnalytics": false
+  "entryPolicy": "sealed-app-only",
+  "deployment": {
+    "name": "production",
+    "siteUrl": "https://phosphorsky.com/",
+    "layout": "github",
+    "explicit": true
+  },
+  "buildId": "796245bed7ae215c37d0b0db8cb5d9975473b89bf2107271fccee2e59c6cdbbd",
+  "verification": {
+    "schemaVersion": 1,
+    "kind": "iit-release-verification",
+    "pass": true,
+    "catalogSha256": "30f46617491ee433e640d5f419c2c77b85dbfb768c7e21bd289f9d006daa43e3",
+    "publicSha256": "97468ee8b00418b015e7e747bc80492e209a18e3f312673ef01292a694ae2a3b",
+    "codec": "baac9992c20e",
+    "checkedFiles": 4614,
+    "largestCodeError": 2048
+  }
 }

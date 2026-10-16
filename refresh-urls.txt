@@ -1,7 +1,7 @@
-https://s0uthern.github.io/NvAstraSimulator/index.html
-https://s0uthern.github.io/NvAstraSimulator/app.html
-https://s0uthern.github.io/NvAstraSimulator/sw.js
-https://s0uthern.github.io/NvAstraSimulator/app.webmanifest
-https://s0uthern.github.io/NvAstraSimulator/about.html
-https://s0uthern.github.io/NvAstraSimulator/about-en.html
-https://s0uthern.github.io/NvAstraSimulator/hosting.json
+https://phosphorsky.com/index.html
+https://phosphorsky.com/app.html
+https://phosphorsky.com/sw.js
+https://phosphorsky.com/app.webmanifest
+https://phosphorsky.com/about.html
+https://phosphorsky.com/about-en.html
+https://phosphorsky.com/hosting.json
