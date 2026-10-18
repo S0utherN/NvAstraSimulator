@@ -2,13 +2,13 @@
   "schemaVersion": 1,
   "kind": "iit-app-build",
   "source": {
-    "commit": "6a9fd0db4c322e548dcd3844dd55100340ebe3e8",
-    "sha256": "37fba6c13c8339ad56cb582f471dbf8a538ced50c5c0f7e425d848ecf53ef5e1",
+    "commit": "26372b9a1e445115f7f85b316c76e9ea9e19da20",
+    "sha256": "cd55a2843e6f50e15138f7b8a841dffa0944fa93c7d7f4c71a72e3d9003627fb",
     "files": {
       "app.html": "25bbefc5e70f0393b068808443db8b741ab194ae94780a9a1214d0c8d5ffdfd5",
-      "package-lock.json": "d7151fce6c1df9943398e58c11cf677b9b5567a4087884e2960d4807e22e9f68",
-      "package.json": "152af15947af99508b71c32dc0848359f675df6950da5fd066001825c9068269",
-      "product.json": "e8ee7a34a14094bddc11e5774da8042de09260bdd42a3c7527dfe64be68d96a9",
+      "package-lock.json": "f9b265f392f4c54174741e0694af3a80201472e38b35af6f933f809746f22276",
+      "package.json": "45ccf4598ce319a9a4e0d37bd4eba3e45fcfec1ab9d765da25e526f7bee05957",
+      "product.json": "5350c2d1acda9a8796062df23b7c695b50f9de657442c1e6f50d507d10081c9d",
       "public/about-en.html": "aacd624ce4a32c04106fd25a548255243d0a2dea64ef4d181c8ba5c0ba384091",
       "public/about.html": "8037bb0ae78986584cd119c05e82331ab7ff9a0e1f1cc7eba5f325e0551ad800",
       "public/app.webmanifest": "beaf56e5ed3be4785fc1d88dccdc1e767079cea0c0492e60e56443df6c2c88e8",
@@ -20,100 +20,102 @@
       "public/icons/share-thumb.jpg": "cdd33b751a32bda8847aac8c9063a867c3deaf7515df85c1dbe0594f8a99d9bd",
       "public/share-card.jpg": "7418257b60a66ce75032cff21f5d66fc2bc7c020c79efa3ec926fc9fa417cd84",
       "scripts/app-achievements.mjs": "44e8247d3fc0fb0c2bf3696464923aa9d42287859a970ac45580540e3d2937d5",
-      "scripts/app-adaptation.mjs": "9c4fd811a5af57baff4ede26344d7dfb441416c851dca428004f2feb9605bb39",
+      "scripts/app-adaptation.mjs": "f545d900eb570fc020e102697e5871be23998cd0c2caaa195fea451353607cdc",
       "scripts/app-adaptive-noise.mjs": "fecef5a8a87c9920288384a59aa55a82267b8a2be199b6a7c406554a00758553",
-      "scripts/app-afocal.mjs": "dec6b10f24936f8cf337f492bc4f8b583ffbeeeae87eb1bc17e8729ce6f8cb3e",
+      "scripts/app-afocal.mjs": "9175456ada337bdbab2b41e9d8b4334e0305bf193b2a286b87c6f76cdc7a303e",
       "scripts/app-ar.mjs": "83d38e0460e4af5fc3147337202f1ba20aa90283cbebb36e6e4224b1939d8476",
       "scripts/app-atlas-sharing.mjs": "74a9e49f00251ba6b53214e88c204f3a1be68acd4beaeb5300253f399f04c5e7",
-      "scripts/app-atlas12.mjs": "1e87abd780e1fef468bbcaa46d4ccedbc112ec1d9a82944271a3965964b4b607",
-      "scripts/app-atlas13.mjs": "e24cc638eb73edcf8d1db415a4ae3478c0dca32b388569a4d56bc0c5d35784a4",
-      "scripts/app-atlas14.mjs": "e67e04595e91d8ab984a4f39c2e8a7cfcb7cf684edc9c783b79a18b8bab68948",
+      "scripts/app-atlas12.mjs": "90f8b16abc687ff6b36c9f30b8d2a8929af50bcf9897ee9b8ff87b7b8faded0a",
+      "scripts/app-atlas13.mjs": "45aa20af026360c8f5ca8d1bc1c57eded42558129781910a04018dee25482f19",
+      "scripts/app-atlas14.mjs": "5bf54668e49f9e2eb25847f7ce1c51bd65ce12d88e732407998da44c34c7aec6",
       "scripts/app-atlas4.mjs": "5a5992d792aa2fa0d2fc2ac234c9d89e087de6e66964a898f50d34515f4fe606",
-      "scripts/app-atlas5.mjs": "fc20d8aac292e4253123dfb2a985f3fafbb6396fc08541c8b5ad4059bb3f1ed4",
+      "scripts/app-atlas5.mjs": "49aa519f2fe6a6626e70bac9a56adc9b3fdf383907a2e3ef29d5dbc2542f59d6",
       "scripts/app-atlas6.mjs": "a82de22d6b7276baf368473c08e46ac7593bc53a30c7f8e50d27159b7035bf90",
-      "scripts/app-auto-quality.mjs": "17c1732201e88c7db07a47d2ea196965204a7a1f266ec13c539ca69a9abb57e7",
-      "scripts/app-auto-warp.mjs": "e4fb1f063a88352e5d781825a671436641572d880e934b1205dbdf14dcc91315",
+      "scripts/app-auto-quality.mjs": "6f2428b279bd06c6bde3e64a629aa12ba106c8e263189e3bb57d4c01c9c2cea9",
+      "scripts/app-auto-warp.mjs": "a05cd6e07f28f4dd03baa85c630c0c7f122d474487ec0a50e38e3081ac140c34",
       "scripts/app-backend-gpu-config.ts": "5f55ec8d52fc590973d5aa0e604cb86457513785181da887d84f3f7ff33b9829",
       "scripts/app-backend-report.mjs": "b006c599f6c74eaa24aeb31f921a6af1bdfeef6be9cd13e3d2931983190281c6",
-      "scripts/app-bench.mjs": "d2894cf30d0e0bc73e9b3b70ec00c5982d16541323e2f1075c4f563d2a4325d4",
-      "scripts/app-c1-seagull.mjs": "ba4df4140842f3a690aeb7a3d62976fab398deb31cc11b7e4ab5430e4c7888d5",
-      "scripts/app-c2-contrast.mjs": "a3d36fceb31be4b9a789e26140d2b134f968510d08e0b052a0c2124da98519f3",
-      "scripts/app-c3-seams.mjs": "c2d9082f06ba3a9c516a6949f616ae6baea6afff19eafa61e767778c43757ff0",
-      "scripts/app-cache.mjs": "0ad2a9680e53910e5ef5c744fad530c6398b9baee4c0b3eb7d18f4c5c384be07",
-      "scripts/app-cathodes.mjs": "7e0bee496d2fff039b58d88a55a709c7b7ddffb9416f5a4557c8e001f0aa8988",
+      "scripts/app-bench.mjs": "95e54122d36b0d76682105e187da9c47c4ba3a99ee93b944b534506dbb5b5674",
+      "scripts/app-c1-seagull.mjs": "f66c012557ba320c813eaf40c5cc92204676fbb9e4348dbc0c7684e9ad6bc1a2",
+      "scripts/app-c2-contrast.mjs": "91a3383a2e576c341991f3886980c83f560ed644de43a78dd99932f621552f53",
+      "scripts/app-c3-seams.mjs": "1db7bd37e8b0a5a4cc469f1e5023c823c203cd5a6bc09d8a58584650a2bbf60d",
+      "scripts/app-cache.mjs": "0cad9d2ae92ea6bf8d84f5f94ec5ec38ca5e1d2c1c64b50f14f5694a92aa7262",
+      "scripts/app-cathodes.mjs": "fbce38f228bb980dd796bd297db29e4ffd3a025124de2dc3a4025bc3808da5e1",
       "scripts/app-cost.mjs": "253bd23d0a3e26f16fa3a2e21261c69d857bb124d5d47cbce49b80411b138993",
-      "scripts/app-cygnus-targets.mjs": "fcd5b21935e16771ac1ed9bee4d3e717aa45f9b6e22d3f9a56c7b257d0f56568",
-      "scripts/app-dev-startup.mjs": "7737ec8e56e6ae08ffb9d036ae1d562fc7a792a83ad91a94f197eecb4a303390",
+      "scripts/app-cygnus-targets.mjs": "3d547a452596c4088c88c07e40f0aa9b4d368b76b0cffb9dbb59128078ad019b",
+      "scripts/app-dev-startup.mjs": "a5773cff5dc3466b0cdd945bff8bdab21eeb4b9a0a67cd2477b397b310ddba77",
       "scripts/app-drag-observation.mjs": "7ff6d034f125e1328154f364bacc4973b77759d10ea46ba42cc40d22706f5c40",
       "scripts/app-drag-perf.mjs": "554301d6d8e1a002c7c78fc736bd1a39ddf70294dbd34d642590772ede40b2a8",
-      "scripts/app-ebi-reference.mjs": "51e30455c3a18550f27dd7ffa6a485fd0317079acbd243bd79c760d727f31d0f",
+      "scripts/app-ebi-reference.mjs": "ccb04f977063c64bc5c5507e61558805797a09a7b2e1d6191bb254f6a9b4abc2",
       "scripts/app-eye-background.mjs": "9579c6efb3c3ddcf600431ef714f1fc079462fcd19c1d4fef952cf2e1c68118b",
-      "scripts/app-eye-calibration.mjs": "b8f203e4a1e7dd293408b5fe2c4fbe19a4693263da72f85cba1ff154617d9b42",
+      "scripts/app-eye-calibration.mjs": "305beb4655ed4cd2e6d7683b06fa6a9ff37e18d2ad15de8d81e4cb495f8a2ee2",
       "scripts/app-eye-sky.mjs": "2454e9efce07d972cd21e5134c89b49c18af52ade6806d99922ed50d02b34354",
       "scripts/app-eye-stars.mjs": "bae4660fb68bfd011b1df7ea60381f7dbccfca45fbfeb80910bf35d89076764c",
       "scripts/app-field-snr.mjs": "790ff3b520b23e25d0d1cec90a5ccef9cf5bd6c9f750ed27a285f065f17adff9",
-      "scripts/app-focal-perf.mjs": "514aa7e8c9fe329c3ed1b30ad9c0a7473a302d016c694e6a0dbddfa3b72a6990",
+      "scripts/app-focal-perf.mjs": "2278b881ea28669bc9bc2e3b21dca32dd17c9ada4a71ba09b7e65ceeb1368dc8",
+      "scripts/app-focal-ruler.mjs": "7de50d7c0df53eac0c8897c52d6c484042f9fefe67d4dfbb7c42a8c26f00d17d",
       "scripts/app-frame-cap.mjs": "cae2f4543c632e84b4ba4ba258d004fe13f662d7a99376bb6a687c81d33f2986",
       "scripts/app-frame-reuse.mjs": "560dd030d7238f0b910873fd6867b7769107fb14e9816aea0246e66db2034d2d",
-      "scripts/app-galactic-continuum.mjs": "be76535ee659281e4e1ad481415701c1b0307af9ee258fac03f27eebd108aad4",
-      "scripts/app-gesture-preview.mjs": "bd045009a4e97538a266cd690cd751b555389bfca4b4ee3082fccfcc969f1039",
+      "scripts/app-galactic-continuum.mjs": "929be275410a0d385eb245c17a6d3d70a75a9769a83a193c41b737c2aa72bfd9",
+      "scripts/app-gesture-preview.mjs": "6a2ba70640b0b188af9c8e4e97028a9e4dbf1e17919afb509c336887eb25f0be",
       "scripts/app-gpu-cost.mjs": "c6b902d409f05f4428975a7b93911bc73a7849c7827449150511da2e52755f0e",
-      "scripts/app-gpu-passes.mjs": "d2c7845637e420502f3b510fbd3acbf525c429cd49f1cdf78e48f01148cca53e",
+      "scripts/app-gpu-passes.mjs": "a11800e359af1b9366f1a4fe9ac897dd8eb24f1860ed92f3dc12185210deac96",
       "scripts/app-grid-support.mjs": "a22975300508e4c71e6ea63d0e4b3a9fa536eb128a5cccabe7a683f3015d91e2",
       "scripts/app-halo-stamp.mjs": "b132420c50de408ccb2f7ff1911b518c2f2a86917563d756e64fcb33876e0958",
-      "scripts/app-hosting.mjs": "032d7c625c06b1f062a8889b74932cc3c1c318e045c1eb05a3a94d7ae8391236",
+      "scripts/app-hosting.mjs": "3cb50df3773e35a1d7f268d1754da9adefc0d420284ac24a9eef424fa44c701b",
       "scripts/app-http.mjs": "56ab2f240f632ce0f54d7190c14c72bd0a5a0267909d2b03ddad5be92b28a6fb",
-      "scripts/app-i18n.mjs": "3fc44157991c1b74ac5bb655dc92135c1b63e987dfd5e9a2de7ef7cb92c2ff50",
+      "scripts/app-i18n.mjs": "9f7e1b78e372b5f54e36ff510bb1b353db4e368e6468cc2ee36e3036f477e38e",
+      "scripts/app-lessons.mjs": "421d79d908d10fb11a75ce54e1d18f5631b48d73b6433bbf56ae46e076800971",
       "scripts/app-mdw-parity.mjs": "cca69fba6660e90d5b2e906158a920304e49062a50019c431970251faafefca5",
-      "scripts/app-mdw-pilot.mjs": "403cf72d527f4874751bbf368f8e51c08fe9d9755d1950f20a6644f44bc56028",
+      "scripts/app-mdw-pilot.mjs": "ad84d9e1a93cb95c7050f95582363bb611b81e73289f5167be21622f8afdc21e",
       "scripts/app-mobile-cpu.mjs": "ab1083897e0747a5ff4f23a8f7c13b792ceab461c19f2e54f704ca8aa835e713",
       "scripts/app-mobile-gpu.mjs": "6a4d66be04eedcda5a1b0cade126da73c057017b566451a547493e77f7d15934",
-      "scripts/app-motion-integration.mjs": "823d28e7c27f5f6098e465eff4cc01c56a8f3afb6f3dae97ad484815ff98ab5c",
-      "scripts/app-my-tube.mjs": "4da618bdb2847c0886db720705d32b2701288d118e7aa494e60db491dcbf0679",
-      "scripts/app-naked-eye.mjs": "54451ed38f8aa376d884075d500d3856bb8298eacc7a1b62aa6478e69ff83fc8",
-      "scripts/app-night-ui.mjs": "99676217d7ea445abe55f5768429f4104c025878da58b8411b65011c4beb1075",
+      "scripts/app-motion-integration.mjs": "d14432b367ac06bfbf95af10cd1ccc7a75747ef4180d34099ca11f3b0ac1c6bc",
+      "scripts/app-my-tube.mjs": "768a720b4fab33989604f0d4b731179feac4f2271efdf30259ad46523a33327e",
+      "scripts/app-naked-eye.mjs": "18478045cc93feb32f8f91eb3e86bf817c9ed57f911635d37bcb99f07182bc1b",
+      "scripts/app-night-ui.mjs": "bd8ffff998486328ca16954efb3b77d79bb39bf7680ad936a86a73169e62e33f",
       "scripts/app-noise.mjs": "963e8f971cea36de8a0b21943e317e5ec2faba023fb8a07cd268cda31a1e4db6",
-      "scripts/app-notices.mjs": "7208e75d9475b236c17054fd70d705fc0c308bfbb884166a14c511d44a555a31",
+      "scripts/app-notices.mjs": "1873e41607c30b191e2da058d8f13334a2726dd82fda9ff85ee31f5306e842c1",
       "scripts/app-observation.mjs": "5747c27125845f59fca1dc48bf86ffa5cdc529c54178068fb61cfb1fd31a5888",
-      "scripts/app-offline-recovery.mjs": "9e069ae4ca241412f2bf0612fee48faa259c5844c9ac96d15005b31422df9de9",
-      "scripts/app-offline.mjs": "67aa4f7c5960b0e9e6c644a3eaf806e4b4759f6018961571dc7241d12b085271",
+      "scripts/app-offline-recovery.mjs": "827b1280654f7592263550a00c08f83ae60e60fb3fa83372d813fb39769aaa32",
+      "scripts/app-offline.mjs": "b21b41961e4680798c4de2a788a48b6c771612e4e7e56390654ce40a58dbdcf3",
       "scripts/app-overflow.mjs": "b79f160ded4310ed11a1a5baeb3a1a3f6e5e32212bc405546f5888650eb11edc",
       "scripts/app-pages-layouts.mjs": "0049f9b2d4b49548a7fcbc97f29197519f07ca901acdf3fdf6a7e309aca0e406",
-      "scripts/app-perf.mjs": "9fbebce0fde876579548c4cc76c2fa043b1147fe3954f6a28b6dc3839a66d210",
-      "scripts/app-preview-margin.mjs": "f544fa02bd87eb3079f797e0b970ad0e68d1548ef8be70a8130d9cfe6bcd2798",
+      "scripts/app-perf.mjs": "28e4495d17a7db2e63803ee039d72652fed297a185c544973f426dc4fd129506",
+      "scripts/app-preview-margin.mjs": "1932533da3c73ebf8006edf4f4292c3ae7f2818531b71ec00e09ced95dec0ed0",
       "scripts/app-prod-check.mjs": "6e29d133e9651a1b3b1bb96de3ec5990aed76a6b5267477fa622f8f6ed27c5ac",
-      "scripts/app-reducer.mjs": "bf11418c18c61d63bce46e06d243c4b9f899d65a5cc501e1829b8dcd458a6634",
+      "scripts/app-reducer.mjs": "1c467686541d824a42808d5fb6a49234ba0aeb12e4e13976a62de91a4fe97791",
       "scripts/app-reference-module.mjs": "1a3931aa823be5c727db4b084e0b3a757f707c1535feb5df792d4d58632cff9f",
       "scripts/app-runtime.mjs": "586a8879dceff2644dd80f333ae7cf5a11f7956e3b2d88a5ef9020a37df7baf5",
       "scripts/app-screens.mjs": "7b090fddc4225f6d91ef7dbe226a68debf1509e3f72ec569fa321fd19269b662",
       "scripts/app-shaders.mjs": "44257854979898a9bf86cf720ba4906290cfe6345f3a5b7a5b162ddb0e6903a7",
-      "scripts/app-shell.mjs": "db2547643cf5fbd9acf16a3f24d3de899705ca251efd2fac4277b5472769c5cd",
-      "scripts/app-sky-catalog-revision.mjs": "366820f177ae96f66439b00e32c566df0e1152c4a841fa0937925b07bf4b1ad9",
-      "scripts/app-sky-catalog.mjs": "62626a317c21c83ed7846916434deed915a4206bb76b78a55d0bf1a1e1731871",
-      "scripts/app-sky-downloads.mjs": "59963d4a408f1072d9f99d8e79882593fd7324e182a98945898f35f64de8d4f7",
-      "scripts/app-sky-human-drag.mjs": "aa9a9d8967feeb2544d9568ead992a9ea1e28bc4df9a789efceda73c55ab83d2",
-      "scripts/app-sky-mode.mjs": "85aadb50395bbd080845259481b8249a92b8faa1719a1cd9a346d1a4c50544ae",
-      "scripts/app-sky-overlays-d6.mjs": "0a03dd2d00ee1e5c62d549b75a7e9b9e805e3277fe8c04d63c7ada205f032b3f",
-      "scripts/app-sky-overlays.mjs": "a286eeb039b83e918d277a196089b55db958f5053fcb69755473a1832c62b3ad",
+      "scripts/app-shell.mjs": "eac39acfe402c30356cd3c82c76aba249fc568517fc21ed9fafe61d65cec86fa",
+      "scripts/app-sky-catalog-revision.mjs": "923a6c8f6f644f23983505ad6e093c82cda3b53a71420380545cdaa10f4af123",
+      "scripts/app-sky-catalog.mjs": "24d94f7f6056179be1b3208a607bff14f27592e9a9dbfee40712ad66f0cea53b",
+      "scripts/app-sky-downloads.mjs": "e597e22c42269710b53a9c6cdfd70df718bf8412408027a3a164b1c22534a30b",
+      "scripts/app-sky-human-drag.mjs": "413f85655643643c0597acce394dea74d6aed9eb68a9b2c25f202c693a42533f",
+      "scripts/app-sky-mode.mjs": "5b136924abe319732f4ece31f48f56fd82a275a3b13863277d457f4037490883",
+      "scripts/app-sky-overlays-d6.mjs": "2369bd1bcc32d4caf3bf5df2135756cbb03623f5e9f7bf0fef2627e9e6ce61a5",
+      "scripts/app-sky-overlays.mjs": "4c9b127b5144f2388d0000d904a8c785e1344577bb03b0b1045a7f5b5808f319",
       "scripts/app-sky-pyramid.mjs": "89a4ef447fff44131f1159861c1ddae787236b5a685b205f3c298d09ca87defa",
       "scripts/app-sky-sweep.mjs": "b395e585034754ff5d97179b1ea81990fa3a6c41e86a9d3c5686faf6c9e589ea",
-      "scripts/app-slider-perf.mjs": "0ccac68b58d028a3a667786355b4a2167651d802583e6ae154e38f8fd784a7b9",
-      "scripts/app-snapshot-settle.mjs": "661e09b159a8bcb1f026bee249dac4fa79562be503a3d1a1b7f347a68198bef9",
-      "scripts/app-snapshot.mjs": "ebc4b1c62b4bb8846fcca48caba6c07ee6c6b9fd429b28b6f220d1c90358ad59",
+      "scripts/app-slider-perf.mjs": "9a7cdd17051814cab2fa692108d7bcc22e1bcbb4049cf5ba4f2760283a7453ca",
+      "scripts/app-snapshot-settle.mjs": "5f82f3ecaaf0d8e3d9da458ef20908fda7e7af90a24ccd081a3acd08bcbe85b4",
+      "scripts/app-snapshot.mjs": "a2ceea1e990bbca7b737e52c7912570713fb63a74ffba9245bcf053f9cde2340",
       "scripts/app-star-culling.mjs": "fbd4fc7458233ee228d78407cbd9908563ba3cddd39e1eea993e4bf719cc30d0",
       "scripts/app-star-seed-state.mjs": "12fea4760910a3dc9623fe7bae1149b071481d1000d02089402021402f21be87",
       "scripts/app-star-seeds.mjs": "26b3da8dfa46e73b30898f401c9560593a515318add0ff28c17ccefad5877424",
       "scripts/app-switch.mjs": "96b36d09b03e42e9a3430b18a87e11adc7c7b4807bdbc48cd968ad3579973743",
-      "scripts/app-telescope.mjs": "69f5beb496daa2e10b7668a1242f9fb7d7ecb48cc237fc3e6997acc8f9467d3e",
-      "scripts/app-toolbar.mjs": "9ba0bcd7fd9059327112b6aa342523df04f479a4095895466592a164b4d8bf13",
-      "scripts/app-traffic.mjs": "f72a0e8b606d8dc63fca81be43c033aff3237d346216ad8f842c455d05af9902",
-      "scripts/app-ui-reorg.mjs": "3b0640ae32f44ace571b73b8210d84ff472d2ea7c0a7c6496e02a759c50e2703",
+      "scripts/app-telescope.mjs": "a9ec2a90c85710e0725c11b17a89e4c004f9956ef9f8aea3c35a4b824db70278",
+      "scripts/app-toolbar.mjs": "83d6e10b8310ad42dc0aa6ab49361cad279b46e7a40db093e740c66c5ab145b3",
+      "scripts/app-traffic.mjs": "34f71b5ca5822c48a9fb1c64e7ff1e4befdc1cbc724acc6d022eb7ac937aa1dc",
+      "scripts/app-ui-reorg.mjs": "c23c9c8663604b6e56fe8615ecbd9faac68f17cd07c8bc999e601f5bb88b999c",
       "scripts/app-ui-shots.mjs": "10edd1918bc3758019e4774d8ce6cadbb1072a4cf4732bb3a5dba74f3fd6e268",
       "scripts/app-verify.mjs": "4eab8e4bc3dd32b1d60875677a243aa3ce0bbf65445d46b9c358fb32607b7939",
       "scripts/app-view-sampling.mjs": "72e9358c178233ee1520ba1f13c7ed490368f4130003254664d2d91e41a0c905",
-      "scripts/app-warp-frames.mjs": "0abbcd612207018251f3a32d89178edbbaab488d4bdc5ee94bd12ec87ee47811",
+      "scripts/app-warp-frames.mjs": "516048664722a7df551b39a07bbd238e018e1baf91cc08b3473ea46c59ee988a",
       "scripts/app-zoom-edge.mjs": "35d22ee609772ea3a0ea875f00881adbf1a6da531b6e28988762a27b3d57bd7a",
-      "scripts/app-zoom-gesture.mjs": "676876a714094ec25802a77f20b3eb1361754e31f82d08eef43e86267c4598ef",
+      "scripts/app-zoom-gesture.mjs": "c8423aae9e239bb5ed7ecbb10cec3415ef43bf08121ff07990f4897157c283d6",
       "scripts/atlas5-report.mjs": "99208065d90014503a1e356263b28e45018337ebbf6bc829e57043b3de8db831",
       "scripts/atlas6-report.mjs": "5a2544b98039b053ea7af90619ccea385b97ab29944022198d96ec69e3abaade",
       "scripts/build-app-portable.mjs": "0b2bdddafa1ccd764b11b2a90b79452bffeb9254f7a0c409b16a6a89921f804c",
@@ -313,17 +315,18 @@
       "scripts/spatial-report.mjs": "0a17c962a339b577c9d8733ae23a584e8febddc4d76f85c3d1c0d3d4ccd50d0d",
       "scripts/spectra-report.mjs": "ddcc91dda465825c5417d74c9a010fa434fb0debcf5f5a39ae6ab96c221e71ce",
       "scripts/start-dev-messages.mjs": "ff5f91e864aef0595212e42cde586529949aee1140d90615d93f9a8f6f609bfb",
-      "scripts/theme-tokens.mjs": "5e62de32ccff7d5ae6216ab753222ecdaca92e42bf5c7a3adabb09b27b029390",
+      "scripts/theme-tokens.mjs": "b53b8172d1a337099eef1a3f567e62ad386ecfee95ce5bcd1ae7cfcf7d59189a",
       "scripts/tool-registry.json": "a5ca7142d2ecf940b47d0b4b7194b1127f3640ef31310f09514664f37413f04e",
       "scripts/vite-data-store.ts": "076b7ca4b6a2aa584d162b8c6d942c2dc5c1803300648fb65de519f7a3343663",
-      "src/app/achievements/defs.ts": "6abc4bf29be64efb1a983c7e004b123638a209347c8c0a02de82529bf8cb4b2e",
-      "src/app/achievements/engine.ts": "473202476d473febc2b4e2237a7b5c426227fcaaa6a7859780fc27d92578d0b2",
+      "src/app/achievements/defs.ts": "07513e72607c12d9cbb03e533c900c7696579b380949c7ccccf5d04fad001372",
+      "src/app/achievements/engine.ts": "0222075f61d5d96a51b1a46e277dbbc8586e135c640949fc9beeb67a2ded70a8",
       "src/app/achievements/observe.ts": "9efea13198dc1f289e36c550a32d6c19cb2ac2e6b47171200020291d4c9f1bd5",
+      "src/app/achievements/share-unlock.ts": "8802769545ea48c5341ad64d1b4da4133c4917fc72d67d14c5999bca086e520d",
       "src/app/achievements/sky.ts": "2bea6a5f28fd9d6580a61d707a12f8da11f9e7dc4332b641a8c5f5564218310d",
-      "src/app/app.css": "878a97c06f6dd769ab2cacaadf3bebe7f49c0d9650a695d0949b4b0cc06ff21b",
-      "src/app/App.tsx": "2f62a000046aa2bb794b2a5d32bd5bb400513dea94b41dde3f4d65e5d52c7653",
-      "src/app/boot.tsx": "828a4c04e5c6ebcd819e66ccc77cb765724d6bf1613c40ee21087ba6213e4c1f",
-      "src/app/changelog.ts": "6410c150b42cabde909a1d79d19104f83fff147e294e0150cce1aa1274ee667c",
+      "src/app/app.css": "c8b89a773e1df4de5c47cb1fc68cfdb6b25c29fc0c757aeb6c7a93204835dec8",
+      "src/app/App.tsx": "36f908caaf2b3a4113065df2a1f2f70e26b49c83b5a31b66974df42bb93582f1",
+      "src/app/boot.tsx": "8694ef740dac5e83617efd88a07caa2653df31376152ca990d4e495570cebae5",
+      "src/app/changelog.ts": "2247b04ada0b0ebb3a0ec4651b193616b3d4c5c2e2cd0ca966429d2d8e5f21f3",
       "src/app/device.ts": "bacd42e7d104de0fcdab3cd3357f7d82facdb096f3caa1eb514584e91a0c385b",
       "src/app/error-log.ts": "0e6f64c2e69f76fbeda9921f975eed5da5a4e0579a0b3496d5b162ca24f1cb72",
       "src/app/fonts/fonts.css": "29067cf481e8508fe9d9a89aa9cfc6a5516b54aab24afd33a4e705ccf3fbadda",
@@ -332,8 +335,8 @@
       "src/app/fonts/ibm-plex-sans-latin-400.woff2": "3b646991d30055a93a4ecc499713d4347953a74a947ecab435ab72070cbdab0e",
       "src/app/fonts/ibm-plex-sans-latin-500.woff2": "0717336fb31fcdcde4b8deb3675bb4a0f7f6d484864afcd6751ac29975962203",
       "src/app/fonts/ibm-plex-sans-latin-600.woff2": "8960851d691c054ed38e259bdcf1a6190d157b4203ed5bb32c632a863fb8ec2f",
-      "src/app/fonts/iit-engrave.txt": "6556d1749eb46f80f3695c7b76ec00c2cc680813cd490b1d5bb558d69aa4c7fd",
-      "src/app/fonts/iit-engrave.woff2": "8bdfff1f3d5b87b0b183feddd7d64cf980f5cae789fa76300f28dd339b530644",
+      "src/app/fonts/iit-engrave.txt": "5b0f6e04e1b49195e429d0cffa7b4982ba397ef91ace2347d237a3821e0de3bf",
+      "src/app/fonts/iit-engrave.woff2": "7d713ed2c010fed475b368223b941a84cc4b4c99791ec9d2af01e793ddaa8c37",
       "src/app/fonts/LICENSE-ibm-plex-mono.txt": "23b0a9d0c6d3f140a0b77e483c5cfa6bba574325ef5cb189ed9f2fec4884533f",
       "src/app/fonts/LICENSE-ibm-plex-sans.txt": "d0283623ef57e722fd0eb688a8041589670c608ab780cd3612d06ba6f153d3fd",
       "src/app/fonts/LICENSE-smiley-sans.txt": "a610016a1063fe6f87c9884471c09d4b26ed01de4e95ddd6a502ad405a240bc3",
@@ -347,7 +350,7 @@
       "src/app/gpu/sky-variants.ts": "ac8d2c3869274c7ae74560a2bde60c76f74caa98f19aa1699e032aeb9f31c3de",
       "src/app/hosting.ts": "dfc1c58df196bf48619ec49763288f16b013221bd06bb063c3f50318d477f3c8",
       "src/app/i18n-data-en.ts": "f19a6aee4e69218c968303f8aad9b3dca8037ce1d770b3fbd55cc18cd89cb157",
-      "src/app/i18n-en.ts": "79df277b1d4d7b7457e90900e17253fa34bac55c3494fe3817f9ff54c90eb823",
+      "src/app/i18n-en.ts": "4e3edb17d68e90476604c224135a65edffe6fd552c50fe009f10cfb9dd2f0613",
       "src/app/i18n.ts": "d5d6f6b247bff91a863bb39e45282bd50583d4c92c8a4634c617a592dd54ee85",
       "src/app/main.tsx": "7d773fc7df765e580abbeb819b6b5ed5bc80234e13d26e5bdd49eb4e42e0613e",
       "src/app/offline.ts": "8b0244dec529a218b285756e02b27eaad076b0aafc8855852e9888c50900d6ae",
@@ -369,13 +372,14 @@
       "src/app/sim/cathode-presets.ts": "c2d79d7de59005617b43ea5385715b160a90b46c11f582f38785a2b087465806",
       "src/app/sim/cluster-profile.ts": "22a7241bea455c1cb16033c43dc30d068b5dc649e0a47a07b68cc7c934ce0794",
       "src/app/sim/compare.ts": "d3236d361520f6208ed5f43c6f94d94e3dfe2c21511e18d382560a2512b77b22",
-      "src/app/sim/controller.ts": "de1eceba0adb1577bd8bdbb3534af235fe2d84b954758ee413b190ca9455625c",
+      "src/app/sim/controller.ts": "84677fdbe252fd4e2f8fcac551e12035833c021d18e0c56027eff0c630fc3c35",
       "src/app/sim/data-names.ts": "1570b90b2c658cd19670247e7c2e37ce235701d9479ce498b955d63974b5c357",
       "src/app/sim/data-store.ts": "1333a648dbc69d4f21f3f3e7a396e9db4970e20351c83671de3ce61c2f8009d8",
       "src/app/sim/data.ts": "737ab23d862a6a8bd9c5373eb093c4724950e5af5906b7d6be95eb0d96f3092f",
       "src/app/sim/eye-tube.ts": "20eabedcd927b30f265531a8590a50a4609cce12394cc4ce93e8746c91449780",
       "src/app/sim/eye.ts": "24c1fb319f356810d5553647f84bf6e01347a3d2cf20a0bc2f43d240e76e3642",
       "src/app/sim/field-budget.ts": "cc696287f1f66b9771ca05b25d209dca933655384266a150dd5ca8a2b64fc5a0",
+      "src/app/sim/frame-pulse.ts": "b777fbc3c5bb70d63e2921a2776736e0c1b39a140a8edb197eb02d61acdb03bd",
       "src/app/sim/frame-quality.ts": "ca1cea31d66f9350e15de2b9949a8cf3f12e69d0e344d2ac59817a65af21033e",
       "src/app/sim/geometry-gesture.ts": "8704c68e1a9643424e1dfd570fb5b9cb2ad76df3f34bd62b78e56f37753cae7e",
       "src/app/sim/grid-hysteresis.ts": "65b49b8fa3b0776a972e24db2e4c451895621e1a19dc4e476e67bb26b5395e7e",
@@ -414,7 +418,7 @@
       "src/app/sim/tone.ts": "553893d06e897e69d0edcb03c6194723c67385817ada4ca0f7b520bec82e8f3c",
       "src/app/sim/transmission-cache.ts": "cb909b4711b101d4094f90668b398c7e03cb04cf72252f671def209ef1c149fd",
       "src/app/sim/tube-meter.ts": "0e5b27ef6b9cfc31190e71188da58d01d47dfb102211f2a04b42fec8559c3b29",
-      "src/app/sim/tube.ts": "159c40696bbd145f824f8030837d925cf7583b4f5fd9dfd797320d14e00c9096",
+      "src/app/sim/tube.ts": "42663149facc5bace5928084b021b074fb397c233963240949f8307b1772bb86",
       "src/app/sim/urlstate.ts": "b5e0414810385e366cb4ed7c05f5899612b8a85d1428b9d197fd83ee0000cfce",
       "src/app/sim/verified-cache.ts": "ecd252f59f3269852f20edf4b1eef68df93e83c62938b819cdc0667e7dafc518",
       "src/app/sim/view-sampling.ts": "4c91cf9bfdb30e793524da7e7747523a31146ae240ff1514a9876391ed649c20",
@@ -448,78 +452,86 @@
       "src/app/sky/worker-client.ts": "fd04790149c07d9b95f2032cbebc84912feb18d20681db191e2ba7dfc27dce2e",
       "src/app/sky/yield.ts": "c5e699c10dc86f5a70856d6adf30b5d95a243aa64fce9f8df7ce870ba2531760",
       "src/app/sky/zones.ts": "488df464cf1f329956a844b91c03262c70201e149b54bccbbb54d4fd829bf6d4",
-      "src/app/store.ts": "d7b3be62bfce6816aeed723047d691da4d9e29ed4894c4d053dd8f03e8dffe0e",
+      "src/app/store.ts": "203e3cd983fb8de786dcd0256abfb85eb481e43af75cbd60b9d2b1bf2fda9b44",
       "src/app/sw-client.ts": "c970e552e8ea20fd195d6a59b2867eb3875c01a364149f7aae98050e669af30c",
       "src/app/ui/achievements.css": "90731d523d11c7515349d6aa968ed3f2468ce23f01a8fabf84b0c449be3a4c5c",
-      "src/app/ui/Achievements.tsx": "7e9c35cc8a1303be0f9555dbcf9d09fcdee5c0306939662e93772783ef664db3",
-      "src/app/ui/analog.tsx": "47f9a1dc22366179665a0cb3e840b1c12aa85a9c0d4f461f101213f9e4325a51",
+      "src/app/ui/Achievements.tsx": "5e173cd12def552faf9fca52c8e968fbe42e0f493b69fca69441622731a693d2",
       "src/app/ui/app-notices.css": "22f802b6074bea0f37bfb90d83a2e5905534380274813e4405f74f1d2d6a59e0",
-      "src/app/ui/AppNotices.tsx": "08ad05d304361f575bdfddfec9aab52df428e5ad375e96674f3b771f22db94cc",
+      "src/app/ui/AppNotices.tsx": "f1fdec4bad298546dcac059e2c9f5385a8eebf68aa024ecd319d8c1f58a9dfb9",
       "src/app/ui/ArMode.tsx": "97945987ffc2ace8e5979c995c965edac22e50426e71e2e1f9efa351843dafc8",
       "src/app/ui/BackGuard.tsx": "69f8848ab162318a7c9a1bf92bf8dbe47db6ac76e710bb3de560c487b3063771",
-      "src/app/ui/bench-charts.tsx": "dd8a1a1633e39fc80bc9efcd50cd9d679644210e8cca00558bffe268b3eb10b0",
-      "src/app/ui/bench-help.ts": "fcad6583653b112612c3361f813a0c4c4e4198608f17f8127c810b0da9647919",
-      "src/app/ui/controls.tsx": "1d0a0fb252930774b7968387a55c7f4a8e152dfd27288c4fbf485d5d7b8998e0",
+      "src/app/ui/bench-charts.tsx": "1cfff3e7f1973468211251fca5946866b82ba1522a20e3f85c31a025704481c8",
+      "src/app/ui/bench-help.ts": "9179e249db2906992a295fffa08f6acd790a68c5a40a0b9288809c7ecad8ff61",
+      "src/app/ui/controls.tsx": "7aafddff05fabb7f8da46cdf74451616f19e56ccadfb01cde84c7ae398441157",
       "src/app/ui/cost-labels.ts": "af7358f8413185e186a0da86d54c0e302671fa0d77a64ce94b4da24ac9194f86",
-      "src/app/ui/CostHud.tsx": "2175999601fdc5b910a3689280f1faa292a6282f1ceb59ca001e6ceae42440a7",
-      "src/app/ui/Datasheet.tsx": "01b73cf950555bbd5d47ee95f3f05a4f967d86990b8708a68f80797d0d7752b2",
+      "src/app/ui/CostHud.tsx": "6e0919d7eec7f9ab21727ebd6698d96225e529ecf24894214cfd9a3e508f5b37",
+      "src/app/ui/Datasheet.tsx": "bc3c2a249a9e39d764f7283292e165e7100f41c6a013f3cdfe23fd3cfb7f8280",
       "src/app/ui/Drawer.tsx": "1e1d8e6f4736615da98e2596395617e820698325d2af90321eedc0fe33589216",
       "src/app/ui/EyeCalibration.tsx": "b8f05b70be7ead7d37102a43b8bf1bb973d723f89e7e572ef9281e61bf4da368",
-      "src/app/ui/Eyepiece.tsx": "5bb51e7398374f04f6d8d36f6cfd9a91e874004676dd467343fe07e0a42e18ef",
+      "src/app/ui/Eyepiece.tsx": "c1ae61026b7a308ac28c5d2612f3d708cc26d3cf55ab51c1b0b23675616d0da1",
       "src/app/ui/fallback.css": "379355dc423244cfc809a815bfe0647280fb80d911eb952e0e53ca14d36ffe7d",
       "src/app/ui/Fallback.tsx": "34b9977240a90005391952aed6a2ed651cad184d0d0d52f3d8ed2d2f2c6f1332",
       "src/app/ui/filter-hooks.ts": "1bad592845dbc96790f8ce4c2630d268e98cf0d96de854066f86fdf4f3455a42",
-      "src/app/ui/filter-workbench.css": "dda0f398cfc2c1d652f3baca4dac979c14b8ef5a3ded4979a2e9447bbb16f473",
-      "src/app/ui/FilterBench.tsx": "127cec211aa7f0de45b5bcb7f26d518de89c170b3907efae9e4059137f55d36e",
-      "src/app/ui/GlobalSettings.tsx": "d47f50074a00b5d3cb5113fc54fb6ebb24b28909cce6d8724f778ad631312147",
-      "src/app/ui/help-drawer.css": "bd7cd7e4cdd0079496a5dc3e6e3bd68f85025ec1711a0ce2341583a84435e8a5",
-      "src/app/ui/HelpDrawer.tsx": "67cdede8b22015c20d3ded0bc637c71c97a1e78f08583b86b421e2eb9b8b4f67",
-      "src/app/ui/hyper.css": "e14baa98c015ef3ec2e9720af76a96ead476e704c2de2cb263d6f65555bbc542",
-      "src/app/ui/icons.tsx": "5c0b776b71c111d5bbde663960e7b487a6a68e5ddf78a38a5e88afca57107f96",
+      "src/app/ui/filter-workbench.css": "f3480c4c31ad7c9236c28246758d49bde05ff082671c8740806339cf759e1f2f",
+      "src/app/ui/FilterBench.tsx": "4a455a2f463634a37740afd55a28283a9cdb22e8dc04ddf748f677e7ee2e2e60",
+      "src/app/ui/focal-ruler.css": "bad6eaa8438b969591dd53f307d7c4c4dcef705f0a6d368352691a2af5772dfb",
+      "src/app/ui/FocalRuler.tsx": "ede4a11ab8aac4e47fe63e574ca01a52e7ff5a1c0fbbfe03c88a65705d3ff3a2",
+      "src/app/ui/GlobalSettings.tsx": "fef0a0b6460e2cb091f893c219e03134729ef7e66b2f71a35a5dbf8130fadd68",
+      "src/app/ui/help-drawer.css": "bc7d57f2b3136509cf183ceebaf13c90dcdbae4daede1e5a38c0e9306e6a00f5",
+      "src/app/ui/HelpDrawer.tsx": "b2a9ce104893b5cc945cb235a333e0b911a495b9041f640cb63b5926344b818f",
+      "src/app/ui/icons.tsx": "98f2edb09023951d1dddecc5dd8b78b29879912484c9a7e912c75619e78a1fb8",
       "src/app/ui/intro/BootIntro.tsx": "22e1e57ae4834c8570edf4515423d58d34ac950261a7f0d90eb290291074a0de",
       "src/app/ui/intro/intro.css": "e522c0a66418679d705960c21657ee91818f8416fd75cdace0d090cf67ce4fd9",
       "src/app/ui/intro/TargetSwitch.tsx": "4c3800933416b36696d2b7e7a7a7394f22f421041db49bbd26d88492f4edf07b",
       "src/app/ui/intro/tube-scene.ts": "a55d027cf5a536afe0c1a703d2c97e2b5691f4f9e81b3217d36ab6b2e1eeeaaa",
       "src/app/ui/lens-transition.ts": "45375a5549feb45ea87be8f30506e70204cc201863032e82bb3d7dec495b7a08",
       "src/app/ui/lens-visual.ts": "9253c3ce895d727aab3c97bcaa7382eef1b408a29c3d04cbec9b793e151cb177",
-      "src/app/ui/local-preferences.ts": "c31ea06409481cf753576909d707756885d83e2eee59aa5e6bf8b864e9e62187",
-      "src/app/ui/ObservePanel.tsx": "43784bcbd143fe6d0852b1007e19cf71a015bff636508d9327802caae7bf7ef4",
+      "src/app/ui/lessons.tsx": "8636ca5613e5378d80f1785e3060a9ccf8a399673ea0a16742fb7cfeb5aa116c",
+      "src/app/ui/local-preferences.ts": "eb148f4fa5269d9060c2528f9ba9f8f4d3fec32606e09a944dec5d7b84d34b76",
+      "src/app/ui/menus.css": "912ecf69e3d19fab7c2c507eb4368a6ef666732ce840f299493068997785df8b",
+      "src/app/ui/Menus.tsx": "5aca40bd467468e217db36be3f83080fcd4aa4e5a2b86a007e2b703af411193e",
+      "src/app/ui/motion-gate.ts": "c3ff4c39bb5a8c8429cee646fb84a8547ebf4d9153ae9e0260b4945d2977e0eb",
+      "src/app/ui/ObservePanel.tsx": "4e4cbe0cae86d95bb98d263513c36a2e3f7c607c13881f811646e8b0eec2f908",
+      "src/app/ui/observer.css": "ab3262a1a524e5768e061a999c0540591e8cb23efce98ecfa3ce907f339c08b8",
       "src/app/ui/OfflineData.tsx": "30e75309ffcaf4fb2bfab2220760600ae610197cef8235720ede1719dd98c4ea",
-      "src/app/ui/Onboarding.tsx": "365cfe9024861688676f25e32e2488973eaf0ced99adb99e7772c774f1665a6c",
+      "src/app/ui/Onboarding.tsx": "db7c5b086b7692e5c1cd51947eb6f6056606fa96d6c9de781ca9c69a819e0db1",
       "src/app/ui/overlay-view.ts": "fbc5dc57bbfc36c7604ae231b15792d1f7e49922b7714afd549faa7cfebdbf6d",
-      "src/app/ui/panel-common.tsx": "4d795fa93bb4c6ce209f79ce2bcfbef3ee648fbfe203ec0f14ee0eee7187c78e",
+      "src/app/ui/panel-common.tsx": "aa23e758dcd0995cd44c3989396e1b610d531332cd4728d0f7afdbe7d175ebbd",
       "src/app/ui/Plots.tsx": "6ffc9d8c18942b20fd265658d303859265911cfceddd4a874a787011d07984cc",
-      "src/app/ui/product-shell.css": "cdca1a3671c27fd333d08223e4c5a40ee53c2436bb3748ad64c6ea8b10e102f6",
+      "src/app/ui/product-shell.css": "8f5c300b37567fc1475c1a4ce4d37254a6acfb7e99e2714c9594c6d2b8bce75d",
       "src/app/ui/qr.ts": "69ff232665183fd2f6e91f9ce59e4484be5aaf59856d0212e7f68a3f111b6927",
-      "src/app/ui/quality-dials.css": "27afaedf5a11b98bbd93e923ff3fa38045d6594cc46838a31afaa07476f04bf6",
+      "src/app/ui/quality-dials.css": "c16d7afa542be54245c85ff813212993282654dacb808864057a55ef5d4af948",
       "src/app/ui/quality-labels.ts": "8274a584f9919a23e9cbdbaffa9703b0004ae621d5f3dda6147143a5e48a0c8b",
-      "src/app/ui/QualityDials.tsx": "d73307ba9bbe203fced4c837bceb6ad26c6ce0c2ee5787f63b6c8c690010d3ee",
-      "src/app/ui/readout.tsx": "d41512588c62dbd8bb8b8e0bbfe23e3056bda895f092ad367211739854fce9b2",
+      "src/app/ui/QualityDials.tsx": "80270643a014dee30d52702e38facf9aab49360cfebdc89b56b4b16a083e1220",
       "src/app/ui/rig-cost.ts": "04e8904b798498eb8b5b40898813cd7add37fb0e628e860889bb7cf35806cfe5",
+      "src/app/ui/seg.tsx": "02b60f2489c6de1162c16eb4097802046dfbe446d3a0674bf7e4c9247f0cca05",
       "src/app/ui/shader-failure.css": "6e482bf542865d578da8d19fdbf2cf210ec09227af1fe2c24fa7229c4169e507",
       "src/app/ui/ShaderFailure.tsx": "5f2a6069a594760e3ad3dcdbd0eec4ee4d06b845e1c9f498880007afe9515d84",
-      "src/app/ui/ShareButton.tsx": "cd285bc5e2d59515fd3a9003c10387060ddf044d899d117366895fa639ee49b4",
+      "src/app/ui/ShareButton.tsx": "890489c33840c02850994f362aadfd4f150a603439c0acc088b31545d9d90457",
       "src/app/ui/site-info.ts": "7c0da3c34441f2faf6e2d4fa71e915580b6de59e1299bfe73314c7952a60bb0f",
       "src/app/ui/sky-assist-paint.ts": "5e5a901d3f8a06d88efacb7be6b68306919ce841bd6b92178ede2d18cac1c131",
       "src/app/ui/sky-assist-preferences.ts": "ee6efb909818bd04e291340d704c242d7ef0d022cf37dbe8261b5bbf3b7c50f5",
       "src/app/ui/sky-assist.css": "74a5847c6a41ed51920ff674ba48a6beeb6178a0ea1ecc9a21bd5a2a1d188f5e",
       "src/app/ui/sky-atlas.css": "7471236d9812a5b22bec17e3785ead506b669b012982121b3835853acf3bf3ae",
-      "src/app/ui/sky-guides.css": "30b0ed56053dd3ecfdb5c09ccc0d0d8efe97ef09d58db2e10d3bdaf9a87488f6",
+      "src/app/ui/sky-guides.css": "b83df75fd4c3c5d2052bbf6afcd537f7dfac9d9fa140477f2fa1825406728322",
       "src/app/ui/sky-navigation.ts": "73f252faa88918d7ff6956cb195edb38c439566405faad841c169d4969bdfeb0",
       "src/app/ui/SkyAssist.tsx": "d4780e95cd258f1f5bf51b0cac2538d10e6eab5cbbabff1066298aadb36d1302",
       "src/app/ui/SkyAssistSettings.tsx": "df486a36888da360d3fa5f78c72d9b21bebf18902045fb83ebd2a4ca869ed8e3",
-      "src/app/ui/SkyAtlas.tsx": "98f109cd50a5b7b779eca827fff87edc76dfb5ee16f43bbc2fa74276a920ff0a",
+      "src/app/ui/SkyAtlas.tsx": "71f66c89ce400312b5099f2d69ce2918814dd95e46cce040e91efdaa5f0c65b0",
       "src/app/ui/SkyGuides.tsx": "0a88fff825c6534a86152c8f6e6bfdd48e7ad2f70a541960e5d72e7a822a59e0",
       "src/app/ui/SkyQuality.tsx": "7f0599ab24f149f1892be9efae1d09a9f6bb8b86827c7411c7a7cfc45b1c91c5",
-      "src/app/ui/SkyScenes.tsx": "40b2c89bba8386b26fa71cd7db0066e854836069d9edb2796e8280b31f42b6b2",
-      "src/app/ui/snapshot-sheet.ts": "ccb975803cf883883483976b65a79b2dbf31ce46914148550d88a43820064e72",
-      "src/app/ui/snapshot.ts": "fb6ff380d2b6188598c60adcd44babe972034f3166e9d5a88af4bc6c7af50d25",
-      "src/app/ui/TelescopeControls.tsx": "05a109048d257447eb9dfca77360df6b5f516c09024b6d5de9fa0836b80bf598",
+      "src/app/ui/SkyScenes.tsx": "151a6df7c339526b357576bff9a5c0a9ae8c3ef16542365c55156cbbd7554e23",
+      "src/app/ui/snapshot-sheet.ts": "abb31b1760fcff51ad4d5598b24d0620d42a9650e0c0e7bb6c19529c342f5e9b",
+      "src/app/ui/snapshot-station.ts": "21a89fcd5e7c7f39185e6feca769105f23290d3598ea82eee1553e9578e6c137",
+      "src/app/ui/snapshot.ts": "7339994af03d9c715067681f165b3370e32856bbe0028e3a6cbf165528ca7b9e",
+      "src/app/ui/station.css": "50e6328df5d45be9450c92952570d5d4007f0a4da6b323157cb9aea5d0d41dc6",
+      "src/app/ui/station.tsx": "030d3202bdd3e1f0f7745b9d08f9eddb8675276adec919987c58061f40ed57ad",
+      "src/app/ui/TelescopeControls.tsx": "d4cce2bbc382da5791089def56b73ef1e4ebeec4c3882d1da491ab4a7faa8263",
       "src/app/ui/TelescopeSwitch.tsx": "3cc7e282202ebf59d381b5a6cef45e024b5f65dc822d8a864d9c8b455b144ebd",
-      "src/app/ui/theme-fx.ts": "b6bc9543d1e7d40bcc72c3e2f0a7c5016b0d4a0ec395c82687dbbde57b69e0f5",
-      "src/app/ui/theme.tsx": "86eaa9e3b3e36825d0cdec7ac7c5e4dbc7ea74fd00fcc0757c21e3a5872c3dc4",
-      "src/app/ui/ThemePicker.tsx": "0a22dda8e3f3abe516e40318f50172291006f8f09cc76bcfda3082b3d92b462c",
-      "src/app/ui/themes.css": "b7c770b3cb27f8991ed7ca00dc6119bfe90feb14d9c5d32e02a1cfc634cfc025",
+      "src/app/ui/theme-fx.ts": "07f2eaffeedad16a1c2fd8490161bd50e2567c9880de874ea29f04e967f7a574",
+      "src/app/ui/theme.tsx": "37c7b618412bdd6ab590c10814afd868ada046ef77d744e7155a636eefe4fcc9",
+      "src/app/ui/ThemePicker.tsx": "ef1deae6b84151f4a3a1634428306e417e58d921b778c7a91c1584019a4489a9",
+      "src/app/ui/themes.css": "f0477dd6d2b7360779185f9147d94e26f8b152a978bcb79d8c2288d8e7f98a65",
       "src/app/ui/themes/arch-ha-thumb.webp": "96877e84739727ff2bc1f4fb031d1c2547672c9fb342fee9d919eaede03e86fa",
       "src/app/ui/themes/arch-ha-wide.webp": "c87cb6ce7df5d03b070c380e6b1019a4f08a90d3e19d6974cb712f541db1a84e",
       "src/app/ui/themes/arch-ha.webp": "bb287a00dae400abd2d77157981ec32f1b45c98512810718ff770078d8c4378f",
@@ -529,19 +541,12 @@
       "src/app/ui/themes/aurora-thumb.webp": "2c61c3617835107ee965aa6c02f07490185050d1613ef3486d99069c9567a211",
       "src/app/ui/themes/aurora-wide.webp": "b19c5243d19e015e590f8dae652642a15d030342e1ddea2c180eca1c3f681589",
       "src/app/ui/themes/aurora.webp": "86b14e361bce09e82e4231f5461e663485f96633040750f58ff15fecf910f4a5",
-      "src/app/ui/themes/hyper-thumb.webp": "498a849ca5bb8ddf80b2d0597c2969642afb61f33a97d74e3ca0ffe00fd0c9d9",
-      "src/app/ui/themes/hyper-wide.webp": "4e3ce8602f8f3817b61653f2e499213c37ac07bfe92e6b25a789b80a4b300b6f",
-      "src/app/ui/themes/hyper.webp": "b758417835f8a0985fe549a86364632b01d34b990df66f67ea77cc81c488c59b",
-      "src/app/ui/themes/knob-alu.webp": "838f0be3b882a736df88fb1d6068ec58c81e95faf4c3da21a3604ce853fe013f",
-      "src/app/ui/themes/magic-eye.webp": "ab4325707b6bd2620ccb70df5379919351a2235b14f845797227fd4cd1f9787a",
       "src/app/ui/themes/meteors-thumb.webp": "cdbbaaf8c27f7d945e604644ed92b0599961247a903215a2468bcd1d24ded414",
       "src/app/ui/themes/meteors-wide.webp": "1394cc6bc4dc6758d45222f84c584d03eaf400db9212060244e9132017b08289",
       "src/app/ui/themes/meteors.webp": "a2e4ed12e1d3457cd54b11a93f8e0a004d93997ec0cafaf958bb5732c7f1819b",
       "src/app/ui/themes/nebula-thumb.webp": "d3fa3e5946b40fff75a5508644eef152f84c4c258e875179453dc0f5fd8fde4b",
       "src/app/ui/themes/nebula-wide.webp": "7629f973a9e856a9e4819aaa0d3b0a2e08296c924f8e0134489f5e9ceeddc1f8",
       "src/app/ui/themes/nebula.webp": "a5d244c218a14d9a8ef0583394b8b53456994242acfe34012801d806ca9342c4",
-      "src/app/ui/themes/panel.webp": "a55ba4f477c7bcfbe059311152efa82166a574d25885e158dc0eb0d149242454",
-      "src/app/ui/themes/ring-hyper.webp": "615aa85afc9994d90ee3964befdce1cd917c80825225c73ed0181a9f47e6a0b1",
       "src/app/ui/themes/ring-rubber.webp": "b494431f1931b65fe080c950aaaf6f88f98cefc1f2642b66d1c29258be92b3ea",
       "src/app/ui/themes/sprites-thumb.webp": "4f2fa9e06ec9f6c8e3158289c0f4dea91f5c4573f19e11d649e14acbb77f0cb4",
       "src/app/ui/themes/sprites-wide.webp": "deaa91665c19dbcab45a2b6cc28f16293a7730be232f54531b31fd1646dd925b",
@@ -549,11 +554,49 @@
       "src/app/ui/themes/starfield-thumb.webp": "e233b11b5b3869058bf585bf565d95cbcb565a328fddf4d1f5bf48d63ef5f8bd",
       "src/app/ui/themes/starfield-wide.webp": "4f16468c6ed41ab24c2862f83830a1443d28ecfac308bbddd408127b8189ae62",
       "src/app/ui/themes/starfield.webp": "cfe80349a4a0fd515f14049af32f4f3f1b83a70c54294f8d033d367bab3589e2",
-      "src/app/ui/Toolbar.tsx": "2471e16b727c54d42f805f9b11e9dc8be9626f4e73d03b04b5e4d75ee33d5aae",
-      "src/app/ui/TubePanel.tsx": "3f6a5c81f5456ff78fa055fabfd375ea3d557cbb456c901f00623abea6c67030",
+      "src/app/ui/themes/station/arm.webp": "203b85a17d9f1ece0193249bffd93019704d8a2aa2651f8d8d207b96dc7121a0",
+      "src/app/ui/themes/station/clamp.webp": "1332166e1adfb234cef81ca89ec53112ace6c2171d4637ff64f971c2c2120508",
+      "src/app/ui/themes/station/coil.webp": "9b0f95054ed7e1d989978037611bee4cd4778100aa11c51047b09bd23d247bc7",
+      "src/app/ui/themes/station/fader.webp": "542e64c8f4033ba39da0a793447eea7a6af277836611117e922cc3772e4ac69b",
+      "src/app/ui/themes/station/float-binder.webp": "f2bd065e2267b4e4e188954a83704368f814e1215df4256ef83c565cd2958f79",
+      "src/app/ui/themes/station/float-camera.webp": "1d847dcbf86d43a9f7ddde2d2bb2dbefc4f5a2e542c9fd7bcfb577adfb51525f",
+      "src/app/ui/themes/station/float-drink.webp": "c479d1a8d9746894e7ee1a97382fd8345707e7301cbc72172e04dd923819740a",
+      "src/app/ui/themes/station/float-flashlight.webp": "64db84ef4b2eaddf5232f01394a7322e3197fbf92cc52184abc655b3d4bb9177",
+      "src/app/ui/themes/station/float-headset.webp": "34542dd479d26bedbea14deb0f6679369a3c4e1a5e75244bc6297ed6b76ae9a7",
+      "src/app/ui/themes/station/float-instrument.webp": "b90285ab4e746b2dc12f518330ea5cf04b97aa38540245f367b93abf1925b9b5",
+      "src/app/ui/themes/station/float-laptop.webp": "3640348cb0d6ab682c63ef45d4d9c80da7067627c2e46861febbd4a3a826f1a8",
+      "src/app/ui/themes/station/float-notebook.webp": "f1fb90a80d24a9cdac55223cb79ff0cded5114107f36a2a67d2a0bd46ed0f899",
+      "src/app/ui/themes/station/float-petri.webp": "1f6d3884fad2edd279c3b42443461c255e14168f473d432329a32afbea1c6f8f",
+      "src/app/ui/themes/station/float-pipette.webp": "19b673fbdbbd57e60a93bc4f5d3a6920e8245ff74e05913fd26a6ebc8f583867",
+      "src/app/ui/themes/station/float-sample-box.webp": "e20c668657a7cc4da54538ee0e4ef9225329944d3799b4d4886343def3201d95",
+      "src/app/ui/themes/station/float-tubes.webp": "86d7869c12395d9a61ee7380e27d13c4f3a08c371b12662f3eee176fe7c9938a",
+      "src/app/ui/themes/station/gland.webp": "f6f507b3bb748f7cfaae9542a2a45bb82dbf82e305121976dd416f038fc337dc",
+      "src/app/ui/themes/station/handle.webp": "79b3eaba65ddfc34535efddb6d9b2e48b347570196186ab324c216bd089c46b9",
+      "src/app/ui/themes/station/key-lit.webp": "8cbd14759aaeec1de58510f8f02de944e4d40dff42dafa794e349d9d0a43332c",
+      "src/app/ui/themes/station/key.webp": "fa0d6cb39118b75a974b780c3be5dc1c350f05c3cbebd180d761ee03dc215ff0",
+      "src/app/ui/themes/station/label.webp": "b5ba1f9a8e2d075772610f5f17649f53db7bc1338a302fed5fe2c491dadd9b42",
+      "src/app/ui/themes/station/lamp.webp": "3de4420a0d1f14b06c0eb3c01babd9d94a39f42d0c8c4754d43eb5fa738fdf43",
+      "src/app/ui/themes/station/lcd.webp": "b8c5e0f16aae09eabd8d21fcf2bc0605afb8ad478b19cfc73c425718faef6d03",
+      "src/app/ui/themes/station/mount.webp": "c28f045f3209408e6746546e602c05749fbc4dc27b079fbcb9e19d42895de87c",
+      "src/app/ui/themes/station/panel-bar.webp": "bf0b3f041600cfb7fd053064fbcd646ed2bc87d4fbaefdc3dbe6b90197f23931",
+      "src/app/ui/themes/station/panel-tall.webp": "8963da5bca9b050faa89c7ea74ab0acb6450da77c4d05f382baa823e14428e81",
+      "src/app/ui/themes/station/panel.webp": "8978b84e680d03b8eaedc9a7ca38bf96317d792e8941b09576900baf9c49107b",
+      "src/app/ui/themes/station/plug.webp": "f3910096e79f3ece6edd18ebd084bd8993607e1a832c440d075c5f4db5aae101",
+      "src/app/ui/themes/station/porthole.webp": "7b2013d310bd2aceb9966c6e01a2664189ced52f48068f0063348f7aac3d4e55",
+      "src/app/ui/themes/station/selector.webp": "5dc2d55235ffdde747f75fbef48a150555ebd8268dc01a1072a61c194936911f",
+      "src/app/ui/themes/station/slot.webp": "76a0b7c69d7467f16febb03a1fa4e5038c0b5c803f7e4576d789a43c609acccd",
+      "src/app/ui/themes/station/socket.webp": "59f759ef52adc730996787f2729f5f2bc9c569f79bad7b89a8f652da04dd08bc",
+      "src/app/ui/themes/station/toggle-down.webp": "05155c929028f4291a484c590488ccc0e538e0b7648e42bbeb70931e45efd52e",
+      "src/app/ui/themes/station/toggle-up.webp": "3242883684598aa5f63cddda116d6b28d26d023e26c4411fed0969296b4565f9",
+      "src/app/ui/themes/station/wall-thumb.webp": "c9bae52ecb02f211b92131c682777740b79e373851c9a825d303269a7f2f141b",
+      "src/app/ui/themes/station/wall-wide.webp": "c213d876d95232c6c01e30cd38dc95907c3100b9a9ea9137080e71ca91c2a860",
+      "src/app/ui/themes/station/wall.webp": "cf5cb87395762c89285bfd3ea72e499a0586d1bc99a8343979bbb2ae1ad5bc18",
+      "src/app/ui/Toolbar.tsx": "a27f77bc82470eb068cb680a6397ae8ae9e9b8cce26617504a6876eebe008217",
+      "src/app/ui/tour.ts": "9db98e6b25b9716f07c0a2d8941690d0f99a5b1b69c2ca2618b7eaf083ddc03c",
+      "src/app/ui/TubePanel.tsx": "91db7633b7b0d38a5d20f40f6a81fd4d1b49e124a02c600cef943d156a2db09d",
       "src/app/ui/VerifyPanel.tsx": "19be54f2cbfcd78f7f860954061ed4c3ceb893acfdd7a924a37b2204914b6d2c",
       "src/app/ui/wechat-reward.png": "67f6c0b8841ac862dc682f8d45af3b835d7900dbb1a2d34c5160ea1927b6bc58",
-      "src/app/urlsync.ts": "ed07ac78e41a5ed872bbd91641c9c3aea49de9aa9fe641c3fed2ab77eaadc7e8",
+      "src/app/urlsync.ts": "af2708418add66934f464a24faf23dc1a257c6f0853b7ed0f967711f6e55959e",
       "src/app/verify.ts": "c0e83b9246f292019322fbe17754045955deca11ce183c9ee5d22cf3ea528d31",
       "src/app/version-compare.ts": "dac1ef3bf90e33789ace4c45bf41dec198315370377a64ee64d125840107eceb",
       "src/app/version.ts": "bc58096d196d348417fe0ce0ff645539ca1e1f2de46749e328a443abe59886c7",
@@ -679,7 +722,7 @@
     },
     "app.html": {
       "bytes": 5935,
-      "sha256": "81c07aabf44790a7a483624358fa1f5da51a2c7d8e14a54bb832cb0bedfbd5cd"
+      "sha256": "c3247d0252228c5b49a341b4eaa579ef367cee314321e0483439c3ba39baf0ea"
     },
     "app.webmanifest": {
       "bytes": 808,
@@ -693,17 +736,17 @@
       "bytes": 7704,
       "sha256": "bc946b8939f3445c1a0e5310860da4e07271a715d7c02ee039c8139ac53671d3"
     },
-    "assets/FilterBench-CkEWlPMI.js": {
-      "bytes": 18620,
-      "sha256": "c9815fdc21fdfbf51cf515d67c952bf67a7d8747b4772887ba19ae92f9f6fd5f"
+    "assets/FilterBench-CMlBWFcm.js": {
+      "bytes": 18789,
+      "sha256": "9267ee6e3ebb3c79f36bb1135d8a3a70500fc947de46499d87a10495322033f0"
     },
-    "assets/VerifyPanel-BjTX_XVa.js": {
+    "assets/VerifyPanel-C9-f9obJ.js": {
       "bytes": 24947,
-      "sha256": "d0b62731c555653b692ca128aafd3347dbda98732e0ef4f792c686c1a2e9beb8"
+      "sha256": "e39eb12a97a3dde466c27e2b45cac2ae6c5da0087a5589aeb97ad3f1efe180d9"
     },
-    "assets/app-D6Kc9gAO.js": {
+    "assets/app-BMK31UF8.js": {
       "bytes": 5488,
-      "sha256": "f2818245f58dc38e542856925ccf840956fcb8f414bca89a374f70fd9732ced0"
+      "sha256": "1d982a7e4f1ec70dc32091c5011891985c18e3330d0910a0e34efdfb7c492688"
     },
     "assets/arch-DzdPvdEh.webp": {
       "bytes": 87572,
@@ -720,6 +763,10 @@
     "assets/arch-wide-BBq7A8fp.webp": {
       "bytes": 169098,
       "sha256": "85842637f5c5b9076cd081bf98bfaf6f36d7859427a924f5d5c6a3491dccccf0"
+    },
+    "assets/arm-DdsG6K76.webp": {
+      "bytes": 7422,
+      "sha256": "203b85a17d9f1ece0193249bffd93019704d8a2aa2651f8d8d207b96dc7121a0"
     },
     "assets/auriga-CXOZKU6N.webp": {
       "bytes": 36424,
@@ -749,13 +796,13 @@
       "bytes": 76684,
       "sha256": "8b4eea82a714fdf2d6ffb312aeaa3417f0a89cd76d2d77c362de20d26a3ac375"
     },
-    "assets/boot-CZDmjUnY.js": {
-      "bytes": 1054644,
-      "sha256": "c312bd98fa3ebcf7b985a5885ee294d691241a9216de036130660d382f325739"
+    "assets/boot-GD5CKsk3.css": {
+      "bytes": 179101,
+      "sha256": "7ce670d7480269d6153e94a99e83f6f09c0badd2408f6830d936504b5085bfde"
     },
-    "assets/boot-DWEcdSIq.css": {
-      "bytes": 125687,
-      "sha256": "7001839210347d7facb748536d67bd4dc469a693ff023b48c376759a2e862184"
+    "assets/boot-fAYTcoTm.js": {
+      "bytes": 1135470,
+      "sha256": "5beb78ca9f3f141d35e2f55de2924d65ddbd418a29c81d7d30e9f408e676bc04"
     },
     "assets/bubble-CdGyuMFy.webp": {
       "bytes": 7390,
@@ -813,6 +860,10 @@
       "bytes": 6950,
       "sha256": "2e5e6a81c53f99b81f417d590a49b8301b94f9f694cddd42d1eb0e00f372c3b0"
     },
+    "assets/coil-BmOxozn0.webp": {
+      "bytes": 6636,
+      "sha256": "9b0f95054ed7e1d989978037611bee4cd4778100aa11c51047b09bd23d247bc7"
+    },
     "assets/crescent-DDbD-QLr.webp": {
       "bytes": 8314,
       "sha256": "5091558bdd382d88a9d7e0ff992e4ea254888d0116d9b1c00b75474400d9fba2"
@@ -852,6 +903,54 @@
     "assets/flaming-star-DVRRlCmd.webp": {
       "bytes": 40196,
       "sha256": "f41734b9f6b980e3e0635d1d90be13d91d5e8a8175cdfd3e31cb20b8c6a9e6f0"
+    },
+    "assets/float-binder-ZorVWJS5.webp": {
+      "bytes": 7958,
+      "sha256": "f2bd065e2267b4e4e188954a83704368f814e1215df4256ef83c565cd2958f79"
+    },
+    "assets/float-camera-BnAgMJtz.webp": {
+      "bytes": 11062,
+      "sha256": "1d847dcbf86d43a9f7ddde2d2bb2dbefc4f5a2e542c9fd7bcfb577adfb51525f"
+    },
+    "assets/float-drink-BcQIe824.webp": {
+      "bytes": 7878,
+      "sha256": "c479d1a8d9746894e7ee1a97382fd8345707e7301cbc72172e04dd923819740a"
+    },
+    "assets/float-flashlight-6lVI6k3Y.webp": {
+      "bytes": 9036,
+      "sha256": "64db84ef4b2eaddf5232f01394a7322e3197fbf92cc52184abc655b3d4bb9177"
+    },
+    "assets/float-headset-C3KQ-Akl.webp": {
+      "bytes": 11886,
+      "sha256": "34542dd479d26bedbea14deb0f6679369a3c4e1a5e75244bc6297ed6b76ae9a7"
+    },
+    "assets/float-instrument-B8kyx6Qx.webp": {
+      "bytes": 7494,
+      "sha256": "b90285ab4e746b2dc12f518330ea5cf04b97aa38540245f367b93abf1925b9b5"
+    },
+    "assets/float-laptop-B7M63B3Z.webp": {
+      "bytes": 8724,
+      "sha256": "3640348cb0d6ab682c63ef45d4d9c80da7067627c2e46861febbd4a3a826f1a8"
+    },
+    "assets/float-notebook-DwakUL6p.webp": {
+      "bytes": 10044,
+      "sha256": "f1fb90a80d24a9cdac55223cb79ff0cded5114107f36a2a67d2a0bd46ed0f899"
+    },
+    "assets/float-petri-DQhyqTLr.webp": {
+      "bytes": 7136,
+      "sha256": "1f6d3884fad2edd279c3b42443461c255e14168f473d432329a32afbea1c6f8f"
+    },
+    "assets/float-pipette-Np9EQTP-.webp": {
+      "bytes": 5460,
+      "sha256": "19b673fbdbbd57e60a93bc4f5d3a6920e8245ff74e05913fd26a6ebc8f583867"
+    },
+    "assets/float-sample-box-BW_ENqYD.webp": {
+      "bytes": 7258,
+      "sha256": "e20c668657a7cc4da54538ee0e4ef9225329944d3799b4d4886343def3201d95"
+    },
+    "assets/float-tubes-C-dZ19DT.webp": {
+      "bytes": 10516,
+      "sha256": "86d7869c12395d9a61ee7380e27d13c4f3a08c371b12662f3eee176fe7c9938a"
     },
     "assets/flying-bat-BIdpdZqA.webp": {
       "bytes": 7214,
@@ -893,25 +992,17 @@
       "bytes": 7220,
       "sha256": "cfd976600f7b667a7f0f28d8b6891697cd1c3ac7ee48ebaaf7f2e0d561c22a3f"
     },
-    "assets/hosting-BbrgPMpe.js": {
+    "assets/hosting-Cl8xozns.js": {
       "bytes": 7659,
-      "sha256": "7802096670beb47274c3045550392617038a129f4609aace49968f420803ea52"
-    },
-    "assets/hyper-DQCPtK39.webp": {
-      "bytes": 155862,
-      "sha256": "b758417835f8a0985fe549a86364632b01d34b990df66f67ea77cc81c488c59b"
-    },
-    "assets/hyper-wide-CBaGeR2F.webp": {
-      "bytes": 136026,
-      "sha256": "4e3ce8602f8f3817b61653f2e499213c37ac07bfe92e6b25a789b80a4b300b6f"
+      "sha256": "32a859a05886fa15f2adaa1c410f767cbe66cc6a5517b616b999eff9b4bd67b9"
     },
     "assets/i18n-data-en-Ci1QfkLi.js": {
       "bytes": 39159,
       "sha256": "de53346cd493f2e2675a700b67400266185c32033d811228a712a6ca15c9765d"
     },
-    "assets/i18n-en-I0MRTbKx.js": {
-      "bytes": 304322,
-      "sha256": "36addd75278192aec8b36d86983275a993fb307a30cf0945d4a446019ba5a5c3"
+    "assets/i18n-en-irTQ_9yz.js": {
+      "bytes": 328844,
+      "sha256": "d2c94e299d9cdb2e00b1cbbc605ba4259ef6d341874abd65b7f67df36662163d"
     },
     "assets/ibm-plex-mono-latin-400-DMJ8VG8y.woff2": {
       "bytes": 14708,
@@ -933,9 +1024,9 @@
       "bytes": 24252,
       "sha256": "8960851d691c054ed38e259bdcf1a6190d157b4203ed5bb32c632a863fb8ec2f"
     },
-    "assets/iit-engrave-DaXPM3Uq.woff2": {
-      "bytes": 62648,
-      "sha256": "8bdfff1f3d5b87b0b183feddd7d64cf980f5cae789fa76300f28dd339b530644"
+    "assets/iit-engrave-D97cnjKE.woff2": {
+      "bytes": 63544,
+      "sha256": "7d713ed2c010fed475b368223b941a84cc4b4c99791ec9d2af01e793ddaa8c37"
     },
     "assets/jellyfish-C3jywyAt.webp": {
       "bytes": 36752,
@@ -945,9 +1036,13 @@
       "bytes": 7204,
       "sha256": "338f352d8490dc3773e0a7076277e7462720f77af9af701bb45adaad3bf1d0ab"
     },
-    "assets/knob-alu-CC_68e5X.webp": {
-      "bytes": 16318,
-      "sha256": "838f0be3b882a736df88fb1d6068ec58c81e95faf4c3da21a3604ce853fe013f"
+    "assets/key-DVtY3knf.webp": {
+      "bytes": 5886,
+      "sha256": "fa0d6cb39118b75a974b780c3be5dc1c350f05c3cbebd180d761ee03dc215ff0"
+    },
+    "assets/key-lit-f-mGDA_l.webp": {
+      "bytes": 5734,
+      "sha256": "8cbd14759aaeec1de58510f8f02de944e4d40dff42dafa794e349d9d0a43332c"
     },
     "assets/leo-triplet-0dX1A0cf.webp": {
       "bytes": 5032,
@@ -1073,10 +1168,6 @@
       "bytes": 5642,
       "sha256": "e3d71aea9b9548fc7935366828268cbed111b3fbf801a26165cbcd6c214a6fc5"
     },
-    "assets/magic-eye-mmFNplDe.webp": {
-      "bytes": 13268,
-      "sha256": "ab4325707b6bd2620ccb70df5379919351a2235b14f845797227fd4cd1f9787a"
-    },
     "assets/messier-Dx6ReYBB.js": {
       "bytes": 24261,
       "sha256": "af2de6b43cb7b84fa5cafdbaa3a25a1a9c1bbcaa5466a0d4cb8fe6e8c12f38fc"
@@ -1145,17 +1236,25 @@
       "bytes": 13562,
       "sha256": "3ac48f233de0a25cc8e7772374ad2d4b4f76f4036aa7961f4146f987c6f3be30"
     },
-    "assets/panel-DSdPTpH9.webp": {
-      "bytes": 11342,
-      "sha256": "a55ba4f477c7bcfbe059311152efa82166a574d25885e158dc0eb0d149242454"
+    "assets/panel-BFvpCbc0.webp": {
+      "bytes": 21830,
+      "sha256": "8978b84e680d03b8eaedc9a7ca38bf96317d792e8941b09576900baf9c49107b"
+    },
+    "assets/panel-bar-DkB52BwL.webp": {
+      "bytes": 17002,
+      "sha256": "bf0b3f041600cfb7fd053064fbcd646ed2bc87d4fbaefdc3dbe6b90197f23931"
+    },
+    "assets/panel-tall-GfVgDQlp.webp": {
+      "bytes": 25108,
+      "sha256": "8963da5bca9b050faa89c7ea74ab0acb6450da77c4d05f382baa823e14428e81"
+    },
+    "assets/porthole-BSlwDMwp.webp": {
+      "bytes": 81358,
+      "sha256": "7b2013d310bd2aceb9966c6e01a2664189ced52f48068f0063348f7aac3d4e55"
     },
     "assets/preview-mollweide-5oiZPH0e.webp": {
       "bytes": 46800,
       "sha256": "47fb4b15b9b7ae42c23af97051093c3db8e6a8a2469ea16beb00ca2bffeb2e29"
-    },
-    "assets/ring-hyper-CWwo4GL_.webp": {
-      "bytes": 31596,
-      "sha256": "615aa85afc9994d90ee3964befdce1cd917c80825225c73ed0181a9f47e6a0b1"
     },
     "assets/ring-rubber--Adz6e8_.webp": {
       "bytes": 29250,
@@ -1177,6 +1276,10 @@
       "bytes": 8246,
       "sha256": "95b16892d4697f23fdfc691494a4e1126954ca12f92740fd0b2f3c2d2198b8e3"
     },
+    "assets/selector-OwP-sQvI.webp": {
+      "bytes": 5272,
+      "sha256": "5dc2d55235ffdde747f75fbef48a150555ebd8268dc01a1072a61c194936911f"
+    },
     "assets/simeis-147-BHXDRyIh.webp": {
       "bytes": 7306,
       "sha256": "75a4e3d5469bf775f59fdec808fe911881fad3ada4cfd0a527e6e518cfb860c4"
@@ -1189,9 +1292,13 @@
       "bytes": 19845,
       "sha256": "c1155671a808ab030130eefc8b94a6368c91531d97ee80886340f066904bfa81"
     },
-    "assets/snapshot-sheet-D6I7TaaX.js": {
-      "bytes": 59374,
-      "sha256": "0bf31e77c2906bd2feec1857660f49bf98f9542fc84c1a18f6d54bcd0ebf8162"
+    "assets/snapshot-sheet-BYXEqDuF.js": {
+      "bytes": 61319,
+      "sha256": "018ebd84b0dd6ac1ace44da21aa0820840df101fa6c959308eca15041fbd181e"
+    },
+    "assets/snapshot-station-DBQa2kWq.js": {
+      "bytes": 21380,
+      "sha256": "ae4a52140f9e82cf85e63d573a51a03759dfb4f6a1213d08f113465ded410d31"
     },
     "assets/spectral-worker-BUypmwde.js": {
       "bytes": 55324,
@@ -1217,6 +1324,14 @@
       "bytes": 47115,
       "sha256": "30426e404b1b1afb9e8cd3d0498f67f07a5a499caf9641d3e723d192cdd9b2c1"
     },
+    "assets/toggle-down-DEgpkl-m.webp": {
+      "bytes": 7344,
+      "sha256": "05155c929028f4291a484c590488ccc0e538e0b7648e42bbeb70931e45efd52e"
+    },
+    "assets/toggle-up-CQwzgfZr.webp": {
+      "bytes": 7368,
+      "sha256": "3242883684598aa5f63cddda116d6b28d26d023e26c4411fed0969296b4565f9"
+    },
     "assets/veil-BK6U26Cl.webp": {
       "bytes": 43042,
       "sha256": "575c925c9ba9eb4685af2d27afa2a3f5755a2ce7e673c7acffa34c0e8db3a220"
@@ -1228,6 +1343,18 @@
     "assets/vendor-DHsdD_W9.js": {
       "bytes": 221959,
       "sha256": "d28080f7ef8d931d7984eeb491e084ed3e06936e983d3335e009f764b2dff67e"
+    },
+    "assets/wall-BUb_F3Du.webp": {
+      "bytes": 83646,
+      "sha256": "cf5cb87395762c89285bfd3ea72e499a0586d1bc99a8343979bbb2ae1ad5bc18"
+    },
+    "assets/wall-thumb-D4UmmFcf.webp": {
+      "bytes": 4564,
+      "sha256": "c9bae52ecb02f211b92131c682777740b79e373851c9a825d303269a7f2f141b"
+    },
+    "assets/wall-wide-DlmJ7UVZ.webp": {
+      "bytes": 104088,
+      "sha256": "c213d876d95232c6c01e30cd38dc95907c3100b9a9ea9137080e71ca91c2a860"
     },
     "assets/wechat-reward-BwbcPbu0.png": {
       "bytes": 44372,
@@ -20107,7 +20234,7 @@
     },
     "product.json": {
       "bytes": 186,
-      "sha256": "63ea5d5cf41f86788d4cf37e3eaba9004493f9121cc48be10c80cf2df8b05521"
+      "sha256": "668cd387c5332d3c3680a4f91289c85a77b4ab42f82018222c463f7f2ae07057"
     },
     "selftest.html": {
       "bytes": 137799,
@@ -20118,10 +20245,10 @@
       "sha256": "7418257b60a66ce75032cff21f5d66fc2bc7c020c79efa3ec926fc9fa417cd84"
     },
     "sw.js": {
-      "bytes": 10010,
-      "sha256": "7f6143abc91b1c4065db7378e47e79ad54adf791bedc67933c501fb1078e3ee0"
+      "bytes": 10738,
+      "sha256": "4a70dadc737f23aea22805b9c47c69b95fbab7fc999d0498eb6f25741596150a"
     }
   },
-  "artifactSha256": "4466bc250b49a39daed09e5d2612c4fee0b947787644ea25664dca3ed4cc5261",
-  "buildId": "f1fbfc357b0e8cd17d02386917b9e11f4098acf411393a48c471845e4c91b05f"
+  "artifactSha256": "c0a35d601d0957c14e475a0386c035d7d14fadfeb14b2aaf8ea4e1071c4edcda",
+  "buildId": "763d8e34f1f4f68a4f462e3d5c8b8bf3c556d582009242c40f982b1b34e02397"
 }
