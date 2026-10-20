@@ -619,6 +619,35 @@ Only names, positions (J2000), V magnitudes and constellation abbreviations are
 extracted. Input: refs/external/sky-overlays-20261015/bsc5-catalog.gz and bsc5-ReadMe.
 This is a preliminary version of the catalogue; no commercial clearance is claimed.
 
+Sky overlay content (1.3, 2026-10-19), display only:
+- Star designations (data/sky/overlays-v1/star-ids.json): Yale Bright Star
+  Catalogue (VizieR V/50, credited above), cross-matched to HIP numbers through
+  the Hipparcos Catalogue, ESA (1997), The Hipparcos and Tycho Catalogues,
+  ESA SP-1200; VizieR catalogue I/239 (CDS). Star positions of the Chinese star
+  names are Hipparcos positions moved to J2000.0 with Hipparcos proper motions.
+- Chinese asterisms and star names (data/sky/overlays-v1/chinese-sky.json):
+  Stellarium sky culture "chinese", stellarium-skycultures commit
+  014fbb5e59233d133c22f9811af96b67d05a95c9, authors Sun Shuwei et al., after
+  the Yixiang Kaocheng and the Suzhou astronomical chart;
+  https://github.com/Stellarium/stellarium-skycultures ; text and lines
+  CC BY-SA. The derived file is distributed under CC BY-SA.
+- NGC/IC objects (data/sky/overlays-v1/ngc-ic.json): OpenNGC, Mattia Verga,
+  version 75ca7ff090e1d0081a5b08be70eb3bc45ccd9e06, NGC.csv and addendum.csv,
+  https://github.com/mattiaverga/OpenNGC, CC BY-SA 4.0. The derived records are
+  distributed under CC BY-SA 4.0. Chinese common names are a list written by
+  this project.
+- Sharpless H II regions (data/sky/overlays-v1/sh2.json): Sharpless S. 1959,
+  ApJS 4, 257; VizieR catalogue VII/20 (CDS), J2000 places computed by VizieR.
+- Barnard dark nebulae (data/sky/overlays-v1/barnard.json): Barnard E.E. 1927,
+  A Photographic Atlas of Selected Regions of the Milky Way; VizieR catalogue
+  VII/220A (CDS; Takahashi J. and Ohishi M. 1999; diameters by B. Gray).
+VizieR and CDS scientific-use terms apply to the VizieR catalogues
+(https://cds.unistra.fr/vizier-org/licences_vizier.html). This work has made
+use of VizieR, CDS, Strasbourg, France, DOI 10.26093/cds/vizier. No commercial
+clearance is claimed. Provenance: data/sky/overlays-downloads.json;
+data/sky/overlays-v1/manifest.json. Processing:
+scripts/preprocess/sky/overlay-names-13.mjs; docs/DATA_LICENSES.md.
+
 Sky atlas display facts (2026-10-09): SIMBAD astronomical database,
 operated at CDS, Strasbourg, France. Angular dimensions/magnitudes retain
 the individual source bibcodes, wavebands and quality in
@@ -808,3 +837,19 @@ Gaia DR3: ESA/Gaia/DPAC, CC BY-NC 3.0 IGO, via CDS VizieR I/355/gaiadr3; Hipparc
 SHASSA independent calibration check only: supported by NSF; Gaustad, McCullough, Rosing & Van Buren (2001), PASP 113,1326; images copyright Las Cumbres Observatory, Inc., scientific/educational use with attribution. VPHAS+ DR4 Ha/r (ESO, Drew et al. 2014) candidates were rejected and are not distributed.
 Colour reference card only: The Rosy Glow of a Cosmic Seagull, ESO1913a. Credit ESO/VPHAS+ team/N.J. Wright (Keele University). https://www.eso.org/public/images/eso1913a/ ; CC BY 4.0 per https://www.eso.org/public/outreach/copyright/ . Adapted by catalogue-star registration, rotation to north-up/east-left, resampling and plain margins. No photo pixels enter the physical simulation.
 Angular-size comparison: Sh2-296, Sharpless (1959), VizieR VII/20, 200 arcmin maximum diameter; CDS scientific-use terms and original-author credit retained.
+
+1.3 / D154 all-sky continuum (2026-10-19): data/sky/continuum-gaia-v1 (published as sky/continuum-gaia-v1/o10|o11|o12)
+Source: Gaia DR3 integrated flux maps G, BP and RP (CDS HiPS ivo://CDS/P/DM/flux-G|Bp|Rp/I/355/gaiadr3, built by
+T. Boch (CDS) with Aladin/Hipsgen; hips_copyright CNRS/Universite de Strasbourg; hips_license ODbL-1.0,
+https://opendatacommons.org/licenses/odbl/1-0/). Underlying data: ESA/Gaia/DPAC, Gaia Data Release 3 (Gaia Collaboration
+2023, A&A 674, A1), https://doi.org/10.5270/esa-qa4lep3 . This work has made use of data from the European Space Agency
+(ESA) mission Gaia (https://www.cosmos.esa.int/gaia), processed by the Gaia Data Processing and Analysis Consortium
+(DPAC, https://www.cosmos.esa.int/web/gaia/dpac/consortium). Funding for the DPAC has been provided by national
+institutions, in particular the institutions participating in the Gaia Multilateral Agreement. This research has made
+use of the HiPS framework and services of CDS, Strasbourg Astronomical Observatory, France.
+Derived dataset: 550 nm continuum surface brightness (catalogue stars G<10.5/12/13 subtracted, Gaia DR3 photometric zero
+points and G-V relation, one all-sky scale to the previous calibration, D128/D140 SHASSA reconstruction kept within 27
+degrees of the Galactic centre). It is published under ODbL-1.0 as a separate file per sky tile and is only collected
+with (not merged into) the NSNS-derived line bands (CC BY-NC-SA 4.0) at display time; it is not a derivative database
+of NSNS, and the NSNS terms do not apply to it. Raw HiPS FITS tiles stay local (refs/external/sky-gaia-flux-20261019);
+provenance in data/sky/gaia-flux-downloads.json.
