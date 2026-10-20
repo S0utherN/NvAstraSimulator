@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "kind": "iit-app-build",
   "source": {
-    "commit": "6aeee8cd4c43efa392e192dc8374a159d2d52692",
-    "sha256": "55216a59ef82d1c9f7dc860320f51c737ee6b0201737703e6f630e1f923c8d7c",
+    "commit": "da3fa92f2215f2d7369ce9064b2cdfa5175fac06",
+    "sha256": "004114d507e5515ab279deb82afb853407226555d5804337e6ea5f040053a994",
     "files": {
       "app.html": "f85590a9cbe99ee681b9200b39839f12f1151c5320a8e19160aac6861ed19e48",
       "package-lock.json": "8918943d662737d10d1c46f1b098d99878617748d8ec0bc91afc612f8e197cd3",
@@ -130,7 +130,7 @@
       "scripts/check-dev.mjs": "6ab7bda968605228abf86a23c8c64c11b8cb7eb7e2f4a4bbf866c0b823783ab9",
       "scripts/check-distribution.mjs": "639ec465b62027195f2ded85134e5c6e91e96bf0176fe8d08e65a6fb8bd4237c",
       "scripts/check-eyepiece.mjs": "e020955b34695a2f38d3332475961d1fad0334d3e1378e0a4702fb048782d38b",
-      "scripts/check-i18n.mjs": "47c1ed8988ac0dfe6627a79d323ad65600a52103fb321b2bc97739b871ee4a5d",
+      "scripts/check-i18n.mjs": "a979ec9c67f79528e9690990e1c1ccd089acf9a79dc06515e590e718396ea09a",
       "scripts/check-pages-export.mjs": "a07b92319020da94e7db844558281d530298e5a4429e5d40fc621629b41f778c",
       "scripts/check-pages.mjs": "33663654f98c9a15784641fc9d634e04d3dc0a4b5d49ed9a4bc89179adf00ce2",
       "scripts/check-portable.mjs": "3c687455b2c2369bf371c737f3a6ed0a5c429b01cd79a3d66c1dce6739fbb2c0",
@@ -356,7 +356,7 @@
       "src/app/gpu/sky-variants.ts": "ac8d2c3869274c7ae74560a2bde60c76f74caa98f19aa1699e032aeb9f31c3de",
       "src/app/hosting.ts": "dfc1c58df196bf48619ec49763288f16b013221bd06bb063c3f50318d477f3c8",
       "src/app/i18n-data-en.ts": "f19a6aee4e69218c968303f8aad9b3dca8037ce1d770b3fbd55cc18cd89cb157",
-      "src/app/i18n-en.ts": "1edf4a04c616a444f64002b42169f0572866f93628aaa9f33e5be5cfac73ee21",
+      "src/app/i18n-en.ts": "bcfc02b061fdf03ad8674986838848fbc194ab540cedfa1b6f588c23f33dd353",
       "src/app/i18n.ts": "d5d6f6b247bff91a863bb39e45282bd50583d4c92c8a4634c617a592dd54ee85",
       "src/app/main.tsx": "7d773fc7df765e580abbeb819b6b5ed5bc80234e13d26e5bdd49eb4e42e0613e",
       "src/app/offline.ts": "8b0244dec529a218b285756e02b27eaad076b0aafc8855852e9888c50900d6ae",
@@ -743,7 +743,7 @@
     },
     "app.html": {
       "bytes": 8187,
-      "sha256": "58b9cf2f82e476525104773159599a75406155e5422afd87b9ba8031470a08b1"
+      "sha256": "883d83d592ccd052c058f61413c4480bb0326a816ac60b1dd1184c896d991ccc"
     },
     "app.webmanifest": {
       "bytes": 808,
@@ -757,17 +757,17 @@
       "bytes": 7704,
       "sha256": "bc946b8939f3445c1a0e5310860da4e07271a715d7c02ee039c8139ac53671d3"
     },
-    "assets/FilterBench-BUPP1SDQ.js": {
+    "assets/FilterBench-DcrrnXbo.js": {
       "bytes": 18789,
-      "sha256": "b0146c6447921083d7af03e8441d892b673216ea67857a54f527797bd775cf38"
+      "sha256": "a2127e4ca48299d44fadd83181eda2680c2af3507ec8d3e9ced93e52d07992ad"
     },
-    "assets/VerifyPanel-Dp9cP8sn.js": {
+    "assets/VerifyPanel-CRE-IdNA.js": {
       "bytes": 24947,
-      "sha256": "46129ca65f356c6334d5160d091e42d8507cd9e98635b80ccf0188b9130af017"
+      "sha256": "4e192a8c74efabc826c5a97187802f96dc0be4dadf5cc7e520252dff58db0644"
     },
-    "assets/app-COLRjlwm.js": {
+    "assets/app-B_G-K0Ae.js": {
       "bytes": 5488,
-      "sha256": "d5d12f17f097cadc9f713e5d25a54b6b8da2370ae647ec6bc9fea9186ee6f657"
+      "sha256": "f23f224d05eb8ced859326cdbcb697ec931764cea4bb26e5cda645d009cf74bd"
     },
     "assets/arch-DzdPvdEh.webp": {
       "bytes": 87572,
@@ -821,9 +821,9 @@
       "bytes": 76684,
       "sha256": "8b4eea82a714fdf2d6ffb312aeaa3417f0a89cd76d2d77c362de20d26a3ac375"
     },
-    "assets/boot-B8C91DBR.js": {
+    "assets/boot-BoaXVPG2.js": {
       "bytes": 1193828,
-      "sha256": "83b37b3b93f46b52427904c05a60d2b207d4e01dc18d14fdd0342cf02d030c09"
+      "sha256": "bb2be19a57ff14494d67bd589ced977c476e8be5a15899b7ab24d04e111086a2"
     },
     "assets/boot-CDfPfiLB.css": {
       "bytes": 182602,
@@ -1021,17 +1021,17 @@
       "bytes": 7220,
       "sha256": "cfd976600f7b667a7f0f28d8b6891697cd1c3ac7ee48ebaaf7f2e0d561c22a3f"
     },
-    "assets/hosting-Cld5_1BG.js": {
+    "assets/hosting-DARYwU3u.js": {
       "bytes": 7659,
-      "sha256": "2d20e375187e3500a752d08968318566df161e4a257d6130ac48f54891f8ddce"
+      "sha256": "a50444923e163b6dd5288e22066d4b839176e1873aeb56497d128305ad9bdad2"
     },
     "assets/i18n-data-en-Ci1QfkLi.js": {
       "bytes": 39159,
       "sha256": "de53346cd493f2e2675a700b67400266185c32033d811228a712a6ca15c9765d"
     },
-    "assets/i18n-en-DLkWzMrA.js": {
-      "bytes": 336300,
-      "sha256": "97d6e365443897983d263173f1d652a993d5117198ae7e596847cf38173aa760"
+    "assets/i18n-en-Bf8vVeQo.js": {
+      "bytes": 339381,
+      "sha256": "2d7327bb03e1459ced2adf85bc36d4fa66303714fd69f9c956ee7cdfdc0df48b"
     },
     "assets/ibm-plex-mono-latin-400-DMJ8VG8y.woff2": {
       "bytes": 14708,
@@ -1329,13 +1329,13 @@
       "bytes": 20467,
       "sha256": "bdf5c4536110ea59bb617eabe7e2f7a3d31c9fef82eaee2857f441853d368e91"
     },
-    "assets/snapshot-sheet-jj7CCX07.js": {
+    "assets/snapshot-sheet-D4z5eoNc.js": {
       "bytes": 61319,
-      "sha256": "d2458f17cfcf0f02f08b856ccaa8ea4c19c682183bd46b6139a50017b959daed"
+      "sha256": "35fccbb327778611d581b4cf1fe341e8b7d2a065a9a582783d0d023e8fd68c61"
     },
-    "assets/snapshot-station-DP05GKGS.js": {
+    "assets/snapshot-station-Cn5m0rrP.js": {
       "bytes": 21380,
-      "sha256": "c84c1838052188393c32130fc0d137bb366ec772b1e9f8f46c41de0a4d35a8b2"
+      "sha256": "43774ec68ba746c0540c137827b3ef8131a07b45a55206c5f8920b5254b5f1b6"
     },
     "assets/spectral-worker-B2yfGAp_.js": {
       "bytes": 63479,
@@ -28823,9 +28823,9 @@
     },
     "sw.js": {
       "bytes": 10924,
-      "sha256": "6fcb09139cbc0aac8f12bf988fece05c2f5a41b610c6291750568e2068e9d34d"
+      "sha256": "1f1e029eafae246e93a296a151afa605cc4c17cd1b5b0153abc118d9c89c6dfa"
     }
   },
-  "artifactSha256": "02bde4483511086b0116b4ae7633b011005940ac25a9df7923aeeabf49710fd1",
-  "buildId": "ed185d28038fefdad166200922b96ae3846b91a17dccb03630d868cccb3b014c"
+  "artifactSha256": "6edb4d711aaeedd4859720de5cee56ef4286aa6f908e8e140b2ac870b8b21a71",
+  "buildId": "21641b471675a83d3aea1dba9ba5199fbeb41e22e83dba15b1248430520eb5d9"
 }
