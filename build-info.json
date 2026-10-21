@@ -2,13 +2,13 @@
   "schemaVersion": 1,
   "kind": "iit-app-build",
   "source": {
-    "commit": "da3fa92f2215f2d7369ce9064b2cdfa5175fac06",
-    "sha256": "004114d507e5515ab279deb82afb853407226555d5804337e6ea5f040053a994",
+    "commit": "64dde5e68779c2c38f7ede2fa81a710d70cbf265",
+    "sha256": "f55bf93401396806fc732465c1f23e7c9dc4cbf712f5556643c93694573d076a",
     "files": {
       "app.html": "f85590a9cbe99ee681b9200b39839f12f1151c5320a8e19160aac6861ed19e48",
-      "package-lock.json": "8918943d662737d10d1c46f1b098d99878617748d8ec0bc91afc612f8e197cd3",
-      "package.json": "e235105bd98c94b9ad9ae27216fea0929ba8f399a8cfb70e52a4c7c703aa1742",
-      "product.json": "9a32c1916c312ac71ad460242e8eabb9224faedcf352b34ea578b532ee82bc53",
+      "package-lock.json": "503e06ee405653342d18fba6311d78fd65e5fa8f1d0b33fc118d7faf58fc4084",
+      "package.json": "fcf96b03343f3064ce5e9e07464503e976d7fa0501aef7727a458febadaa50b2",
+      "product.json": "7e77797059d1549dcf1f18d874933330d9f546ccd69b6419f4a163d7b4283cf7",
       "public/about-en.html": "f4f0f97dcac25cf26053cfd9189b706d199d3b314fbd6fbfcf3b17d98fe9202a",
       "public/about.html": "4477ef9241a1233de574ae09b9a0c51c131be56dbfa6ba761628fc0f1c0c10c2",
       "public/app.webmanifest": "beaf56e5ed3be4785fc1d88dccdc1e767079cea0c0492e60e56443df6c2c88e8",
@@ -19,7 +19,7 @@
       "public/icons/icon-maskable-512.png": "a8e307636561b74c6df9d2dffc3d7df789a0932466d857f7655bcfdbb9ebe52f",
       "public/icons/share-thumb.jpg": "cdd33b751a32bda8847aac8c9063a867c3deaf7515df85c1dbe0594f8a99d9bd",
       "public/share-card.jpg": "7418257b60a66ce75032cff21f5d66fc2bc7c020c79efa3ec926fc9fa417cd84",
-      "scripts/app-achievements.mjs": "44e8247d3fc0fb0c2bf3696464923aa9d42287859a970ac45580540e3d2937d5",
+      "scripts/app-achievements.mjs": "53612283720d0a30a38ee99252588a310bc6c5ac3b6cafa1bc511b3e81a7e5d9",
       "scripts/app-adaptation.mjs": "f545d900eb570fc020e102697e5871be23998cd0c2caaa195fea451353607cdc",
       "scripts/app-adaptive-noise.mjs": "fecef5a8a87c9920288384a59aa55a82267b8a2be199b6a7c406554a00758553",
       "scripts/app-afocal.mjs": "9175456ada337bdbab2b41e9d8b4334e0305bf193b2a286b87c6f76cdc7a303e",
@@ -53,7 +53,7 @@
       "scripts/app-eye-stars.mjs": "bae4660fb68bfd011b1df7ea60381f7dbccfca45fbfeb80910bf35d89076764c",
       "scripts/app-field-snr.mjs": "790ff3b520b23e25d0d1cec90a5ccef9cf5bd6c9f750ed27a285f065f17adff9",
       "scripts/app-focal-perf.mjs": "2278b881ea28669bc9bc2e3b21dca32dd17c9ada4a71ba09b7e65ceeb1368dc8",
-      "scripts/app-focal-ruler.mjs": "7de50d7c0df53eac0c8897c52d6c484042f9fefe67d4dfbb7c42a8c26f00d17d",
+      "scripts/app-focal-ruler.mjs": "50aac3e2010b34788217c8983dabd78f86679ebcc97fcadec4d4e3f82ebd791a",
       "scripts/app-frame-cap.mjs": "cae2f4543c632e84b4ba4ba258d004fe13f662d7a99376bb6a687c81d33f2986",
       "scripts/app-frame-reuse.mjs": "560dd030d7238f0b910873fd6867b7769107fb14e9816aea0246e66db2034d2d",
       "scripts/app-galactic-continuum.mjs": "929be275410a0d385eb245c17a6d3d70a75a9769a83a193c41b737c2aa72bfd9",
@@ -72,7 +72,7 @@
       "scripts/app-mobile-gpu.mjs": "6a4d66be04eedcda5a1b0cade126da73c057017b566451a547493e77f7d15934",
       "scripts/app-motion-integration.mjs": "d14432b367ac06bfbf95af10cd1ccc7a75747ef4180d34099ca11f3b0ac1c6bc",
       "scripts/app-my-tube.mjs": "768a720b4fab33989604f0d4b731179feac4f2271efdf30259ad46523a33327e",
-      "scripts/app-naked-eye.mjs": "18478045cc93feb32f8f91eb3e86bf817c9ed57f911635d37bcb99f07182bc1b",
+      "scripts/app-naked-eye.mjs": "f9f42cef33ad62e0ca5d336b476bd572d3fd4602abf740fe949c6644a72b04a1",
       "scripts/app-night-ui.mjs": "bd8ffff998486328ca16954efb3b77d79bb39bf7680ad936a86a73169e62e33f",
       "scripts/app-noise.mjs": "963e8f971cea36de8a0b21943e317e5ec2faba023fb8a07cd268cda31a1e4db6",
       "scripts/app-notices.mjs": "1873e41607c30b191e2da058d8f13334a2726dd82fda9ff85ee31f5306e842c1",
@@ -90,8 +90,8 @@
       "scripts/app-screens.mjs": "7b090fddc4225f6d91ef7dbe226a68debf1509e3f72ec569fa321fd19269b662",
       "scripts/app-shaders.mjs": "44257854979898a9bf86cf720ba4906290cfe6345f3a5b7a5b162ddb0e6903a7",
       "scripts/app-shell.mjs": "eac39acfe402c30356cd3c82c76aba249fc568517fc21ed9fafe61d65cec86fa",
-      "scripts/app-sky-catalog-revision.mjs": "923a6c8f6f644f23983505ad6e093c82cda3b53a71420380545cdaa10f4af123",
-      "scripts/app-sky-catalog.mjs": "24d94f7f6056179be1b3208a607bff14f27592e9a9dbfee40712ad66f0cea53b",
+      "scripts/app-sky-catalog-revision.mjs": "64b7958f4e75d777c2faf6e37480feed3e7189ec10d129b8b76a79c008d44bce",
+      "scripts/app-sky-catalog.mjs": "4d2c71f425e14d53079c02c3bbdbeb8be9d79c6f5193e3e1789fffcc13411f2c",
       "scripts/app-sky-downloads.mjs": "e597e22c42269710b53a9c6cdfd70df718bf8412408027a3a164b1c22534a30b",
       "scripts/app-sky-human-drag.mjs": "413f85655643643c0597acce394dea74d6aed9eb68a9b2c25f202c693a42533f",
       "scripts/app-sky-mode.mjs": "5b136924abe319732f4ece31f48f56fd82a275a3b13863277d457f4037490883",
@@ -101,14 +101,14 @@
       "scripts/app-sky-sweep.mjs": "b395e585034754ff5d97179b1ea81990fa3a6c41e86a9d3c5686faf6c9e589ea",
       "scripts/app-slider-perf.mjs": "9a7cdd17051814cab2fa692108d7bcc22e1bcbb4049cf5ba4f2760283a7453ca",
       "scripts/app-snapshot-settle.mjs": "5f82f3ecaaf0d8e3d9da458ef20908fda7e7af90a24ccd081a3acd08bcbe85b4",
-      "scripts/app-snapshot.mjs": "a2ceea1e990bbca7b737e52c7912570713fb63a74ffba9245bcf053f9cde2340",
+      "scripts/app-snapshot.mjs": "5aead561573283ee6dc4e6a23ffb0a460a3839af34533afb35461d096576328f",
       "scripts/app-star-culling.mjs": "fbd4fc7458233ee228d78407cbd9908563ba3cddd39e1eea993e4bf719cc30d0",
       "scripts/app-star-seed-state.mjs": "12fea4760910a3dc9623fe7bae1149b071481d1000d02089402021402f21be87",
       "scripts/app-star-seeds.mjs": "26b3da8dfa46e73b30898f401c9560593a515318add0ff28c17ccefad5877424",
       "scripts/app-switch.mjs": "96b36d09b03e42e9a3430b18a87e11adc7c7b4807bdbc48cd968ad3579973743",
       "scripts/app-telescope.mjs": "a9ec2a90c85710e0725c11b17a89e4c004f9956ef9f8aea3c35a4b824db70278",
       "scripts/app-toolbar.mjs": "83d6e10b8310ad42dc0aa6ab49361cad279b46e7a40db093e740c66c5ab145b3",
-      "scripts/app-traffic.mjs": "be3943e2768960dd29ca63032eff555ed624297d2dac559aaaf83207dc5b85e4",
+      "scripts/app-traffic.mjs": "802aa91505524c3964d07cf45d3e602b68033210f92d3b1e168079776e788a67",
       "scripts/app-ui-reorg.mjs": "c23c9c8663604b6e56fe8615ecbd9faac68f17cd07c8bc999e601f5bb88b999c",
       "scripts/app-ui-shots.mjs": "10edd1918bc3758019e4774d8ce6cadbb1072a4cf4732bb3a5dba74f3fd6e268",
       "scripts/app-verify.mjs": "4eab8e4bc3dd32b1d60875677a243aa3ce0bbf65445d46b9c358fb32607b7939",
@@ -130,7 +130,7 @@
       "scripts/check-dev.mjs": "6ab7bda968605228abf86a23c8c64c11b8cb7eb7e2f4a4bbf866c0b823783ab9",
       "scripts/check-distribution.mjs": "639ec465b62027195f2ded85134e5c6e91e96bf0176fe8d08e65a6fb8bd4237c",
       "scripts/check-eyepiece.mjs": "e020955b34695a2f38d3332475961d1fad0334d3e1378e0a4702fb048782d38b",
-      "scripts/check-i18n.mjs": "a979ec9c67f79528e9690990e1c1ccd089acf9a79dc06515e590e718396ea09a",
+      "scripts/check-i18n.mjs": "71784cdb29b5a9711c92059285c0d45f2eccef1110513e8b52a3384006bcb239",
       "scripts/check-pages-export.mjs": "a07b92319020da94e7db844558281d530298e5a4429e5d40fc621629b41f778c",
       "scripts/check-pages.mjs": "33663654f98c9a15784641fc9d634e04d3dc0a4b5d49ed9a4bc89179adf00ce2",
       "scripts/check-portable.mjs": "3c687455b2c2369bf371c737f3a6ed0a5c429b01cd79a3d66c1dce6739fbb2c0",
@@ -161,12 +161,12 @@
       "scripts/noise-report.mjs": "1de7efcb77b514a663dd23054e1b7b522a9336fd291c43fd4e1f994172396704",
       "scripts/package-delivery.mjs": "aae69a7d04eb831f09836f8e681de9f248a09fd31613b13bfb729e57662ee2f7",
       "scripts/pages-bundles-single.json": "63033ab6c04b71d461c13f4eb0d0873f853f731405b3802586941ad435eed3b7",
-      "scripts/pages-bundles.json": "40908619e1ee99c2ea9af76ca39cecbf6a78bd09a7cbaabcf63388e2318f2cb1",
+      "scripts/pages-bundles.json": "d7c976f8e06059dc9a317cc86042e1749e982103672a5524af374b6fb5c82341",
       "scripts/pages-prewarm-from-audit.mjs": "c82e5b9de9e37df90df54e820d9bc952cf08c26460ecf0ad26d31cc2addf2816",
-      "scripts/pages-prewarm.json": "b51125fe3a1aa70de5cf1112ea04aeca6760eea5d3ae9b616f3c805908978cb8",
+      "scripts/pages-prewarm.json": "813b84fd711c475a2b3586b8b0161cc6248551c08c605bf9f84c1111fccbd2dc",
       "scripts/performance-report.mjs": "c111580b6b70519ff0037f2c439be77c81c3657c703ae3b8a5e9aeb644fed9be",
       "scripts/portable-bootstrap.js": "c34d499cd61036a459eccbd4db09f1b829abb8f68bfd5031545ccf07bdfcd16b",
-      "scripts/prepare-public.mjs": "0ab8f054ee4b14521c9e7beb4fa240c1a9c8d84b54c7fb1ae0e44dae8248229d",
+      "scripts/prepare-public.mjs": "893de98c2ed7cf227139aa814c2b37686b895081a6c811a1c2edc2ce80db893f",
       "scripts/preprocess/atlas11-targets.mjs": "c22e916929ef962eb735d47d32fd902327f3e5bce68330fe05083149e160f1f1",
       "scripts/preprocess/atlas12_inspect.py": "95b5bdb122f6860bb539d3258662df4f4debaef3752f02649e46c591bdf5a512",
       "scripts/preprocess/atlas12_lib.py": "23131894851275c784c56bb536b10725a24206680957383224036c04c1421a03",
@@ -176,6 +176,9 @@
       "scripts/preprocess/atlas14_lib.py": "4a6f18cb669727b53066a5e9582bcac12c06ec78778f21c438727269da512e12",
       "scripts/preprocess/ATLAS14.md": "b65889d3e6cea88a5592bf56e68b79d7074f5357b62ab2df305fa67d3ca53177",
       "scripts/preprocess/atlas15-targets.mjs": "5d351caee825b9b93836b91dae8180959fd0f066ed0aea50b7bb18c7ea280a9d",
+      "scripts/preprocess/atlas16_lib.py": "d3e83819ca611ecd1048df29f6be8b34a5b75fb918e1e7dbb240e605fb242789",
+      "scripts/preprocess/atlas16-targets.mjs": "c0f7d1e54039676541261b9e1c1764cb88e84c344a0c282ea2b89353dfabec2d",
+      "scripts/preprocess/atlas17-targets.mjs": "985b4d9a5e6ad9a27e545e5bacb0061d3ccf5d12d44b20a293a0b47d249533aa",
       "scripts/preprocess/atlas2-lib.mjs": "5e4e36cdfd23fca25a48508b366eb49259464ede49a390a926156d00de00ab09",
       "scripts/preprocess/atlas2-targets.mjs": "02620a5ecd6c086a78f1143dc92b2c18c6b5124a3ea591320e8a95606e3c54e7",
       "scripts/preprocess/atlas2-templates.mjs": "981c40b8578269699265ede9953099a4724123131555f75ca4f5d81a9e47c768",
@@ -195,12 +198,16 @@
       "scripts/preprocess/fetch_atlas14_frames.mjs": "fe25df1508d57b4fd488ccda14235bddabbb36e212ff9ca593da6ba9efae4fab",
       "scripts/preprocess/fetch_atlas14.mjs": "9d88310b2ddf3239204184469875f97e4dc74928a031536588b1e154522eb4eb",
       "scripts/preprocess/fetch_atlas15.mjs": "a4290a369a3fd7b3c0f2bf28fdab1c530931ada5b5899a574409b2f02ce82e2a",
+      "scripts/preprocess/fetch_atlas16.mjs": "0d4a5019286334039a055550c920cd39ad6e0ba6dc69882f10450801dc485330",
+      "scripts/preprocess/fetch_atlas17.mjs": "1755fa1f147efdaae64c02e7f948ce2b0fdf845c7793b00f4245e18ef5531958",
       "scripts/preprocess/fetch_atlas2.mjs": "07746c50903e935dfb17c3b5ae33e93da0d2a51e6c1eebc072813cecdfaafe6c",
       "scripts/preprocess/fetch_atlas4.mjs": "cea0d4818ebd45daafe6c9a1a444240ec69a62c7316d1392e82ec9b09e47f3e3",
       "scripts/preprocess/fetch_atlas6.mjs": "63c9d50493bf4946ce2e0b80876125d52a38d3636e8cb87e48a73c0e0d20b71c",
       "scripts/preprocess/fetch_atlas7.mjs": "7ce3ce401c30dc42e93f805d3fe0d6dd0f0e43c4c517b31e0f261ccc918bec5b",
       "scripts/preprocess/fetch_atlas9.mjs": "93b3c6d29451b0eb9fea644c05a493adb063e8d8910b27dc8e35a7b6e604adb1",
       "scripts/preprocess/fetch_cygnus_g16.mjs": "05a06e62895de48703fdde789290fcc0cb445bb5e9ef21b81e89f2a98a73d9d6",
+      "scripts/preprocess/fetch_deep_stars_1_3_1.mjs": "36b597a8e28f0395e3d2a6b73f3c849c416c84be024f7adc1c5e195f156d5efc",
+      "scripts/preprocess/fetch_deep_stars_1_3_1b.mjs": "fd29dbc9ae9f510c4189309ededd174db73d4b7c77611bf4b846c2e3a9c82fdd",
       "scripts/preprocess/fetch_environment.py": "a5313e76a8da9dccfa212edd5ba102412398b6867ff109d3ec16f61ef6fd5298",
       "scripts/preprocess/fetch_extra_scenes.py": "3852c2c45675c84e6f88a0ed67907e3b591c3589e7b79b45cc3f81ecb7fc1c8a",
       "scripts/preprocess/fetch_eyepiece.py": "9ea1c4c085d7bb58a6d4f8ff78c8a54bf996ec30252a37cc268540d292e6978d",
@@ -211,6 +218,8 @@
       "scripts/preprocess/inspect_atlas12_crescent.py": "a9faa77b0cf6523d51422bdd4f4840b85b99fa02ba98e08825a33edcf2ba2e7e",
       "scripts/preprocess/inspect_atlas13_nebulae.py": "a7963356fddaca08450bf15adbdb42f7f35a53b3ade9c574d3a522d757657551",
       "scripts/preprocess/inspect_atlas15.py": "61f93ac8433ce957fb34164f12346f3f85a724776c8ce74f40127a1848fbb02d",
+      "scripts/preprocess/inspect_atlas16.py": "1bbbff8cd0500d8a26f20fb309421c6e635cab4956b7f9d87ef2162063555608",
+      "scripts/preprocess/inspect_atlas17.py": "d308c7f44d1574526d9cb053b55fac4adc70d5930f4aa989c707530630acf5d7",
       "scripts/preprocess/inspect_noise_video.py": "0224a047ae81790c1ab68e85a421c213d2b1297e0954ce184a9cb5e3532b9378",
       "scripts/preprocess/iphas/browser-probe.mjs": "fbe677a6f348f66fa44c64c92a987c7c29119ef4fd5488a4b50b11c7acd030b8",
       "scripts/preprocess/iphas/download.mjs": "6b7df9598bb33dee9e67663c2fc87f8474f872c430877cbd435d270cc5e9f063",
@@ -237,6 +246,10 @@
       "scripts/preprocess/prepare_atlas14_galaxies.py": "043c8d664aab9120ab86cb7fac0bfb66bbdaa6a0b5f4dfac2f0cdfbe2bf7ea63",
       "scripts/preprocess/prepare_atlas15_stars.mjs": "c6094100d5af9739adf6c12fdd3631f08f1708479dc1abc046acbaed881f4e76",
       "scripts/preprocess/prepare_atlas15.py": "41b1f9dfd7d73f5ecd64509942ade983b4798a85dd63eebef6accfc8d5bd05b4",
+      "scripts/preprocess/prepare_atlas16_stars.mjs": "08012581c341eb2f5f5aff6ed56528f9f105ddc50dd8366c398bfcf1c7a34057",
+      "scripts/preprocess/prepare_atlas16.py": "905875ce7398787cc9ec2614ae0dcfcd62b6d9fe2822d52e2d0afad5ed0d43f0",
+      "scripts/preprocess/prepare_atlas17_stars.mjs": "7c71128bdae234395a0dda31e3e945b3d85560f4ad27099d94342aa5515e1c24",
+      "scripts/preprocess/prepare_atlas17.py": "9ec85bc3c15cba81a45d95cb5fe2f9c446b5eca9e7c1b75f0099b9779f64b2c3",
       "scripts/preprocess/prepare_atlas2.mjs": "65455a7fa86a79c51b0918cb16fb5ed689fbdbbc3be49924800777aa590b94e9",
       "scripts/preprocess/prepare_atlas4.mjs": "c9625573125d0f1c4424c4f33600baef1a824d0dc28baa5fea95bf01ff69acc8",
       "scripts/preprocess/prepare_atlas5.mjs": "b6b5f0262b8d93e363b4e483d1fc0939c5b7952c978d9b2c4035af16fc31a976",
@@ -244,6 +257,8 @@
       "scripts/preprocess/prepare_atlas7.mjs": "2e17202c4f968c41195e19236d0b3637028595b08ca314d85e9325c9d0246d42",
       "scripts/preprocess/prepare_atlas9.mjs": "c42c53502402823d276804b81b81c87c1e2485f1d499cfa8c6325e6118a3bfc2",
       "scripts/preprocess/prepare_cygnus_g16.mjs": "18f5046c407fcafea3edec846b5a805e960525a48c02de27f0693acf99c9316d",
+      "scripts/preprocess/prepare_deep_stars_1_3_1.mjs": "a488b9a8d49a0466b376359e036e8a6722ab67795e47a7cb43c8293030f4be8a",
+      "scripts/preprocess/prepare_deep_stars_1_3_1b.mjs": "8ce361615d43f51ad429970c0254036140172eec3d19eed449616261d28a52e0",
       "scripts/preprocess/prepare_environment.py": "5d367390c9307774f404574c0ff7fb3606d54055639eed980a3fea2e05da8a63",
       "scripts/preprocess/prepare_extra_scenes.py": "7f49082447b3bcf382c91722972ba304362f4f2dc71ab055a016611f0e66ce20",
       "scripts/preprocess/prepare_eyepiece.py": "5ebe21808d2927fe9d082e8ce8a4bd844f3c350f8dd048f6976ddc40e34fa6f3",
@@ -274,6 +289,8 @@
       "scripts/preprocess/sky/download_deep_stars.py": "12481f935754b75ee3291ca45289d9ef74261d3003059ff0806ed07dfb452931",
       "scripts/preprocess/sky/download.py": "c3b3a98e393c243acea687c14058409989ae539bf3296958908f8d2c36770753",
       "scripts/preprocess/sky/gaia_flux_download.mjs": "cb5f7ea141b9c6d90df01f596615b6ff5a10745ca310241753ccbacb5c44dc22",
+      "scripts/preprocess/sky/galaxy_continuum_check.py": "ac88e08c07b116a9e6952a3a43db62060582bb343a48dbf1720c486a6b0a3dee",
+      "scripts/preprocess/sky/galaxy_continuum.py": "d08595ef4d9635229fd6acacc423990d8b5ec626b7ce26a3849aa6d981dad626",
       "scripts/preprocess/sky/lowfreq_experiment.py": "58042eb5e2b7e7fbeb5fcf9a2bd64f1caa03276a802e7b5ff643513421dee18c",
       "scripts/preprocess/sky/maps.py": "8af4d7119acd0fd853e07e24448ec4a05d5de4a5c29c1c1f4b839a0fef727dbb",
       "scripts/preprocess/sky/overlay-names-13.mjs": "b65f787ff729d24a5286547070fafebbbbfee3745d254f0e0dbf0979a8304748",
@@ -285,7 +302,7 @@
       "scripts/preprocess/sky/pyramid_check.py": "e0b7548bcee9dabb312e2c8bee4568f354b72d650a07d06fe38de83300a3ca02",
       "scripts/preprocess/sky/pyramid_download.py": "9addc599d0dd82821860ae16892b97a6ed955d560bad616233a6d6e87821f3e7",
       "scripts/preprocess/sky/pyramid.py": "f01fc6f6fb91e9638f01598920b1f10d19c222f1aae9f06059926967bf1bf481",
-      "scripts/preprocess/sky/README.md": "ce42cd997c627c8f482c51f3aa260b9a747bffcea6f3ed36af759a3a3688d624",
+      "scripts/preprocess/sky/README.md": "dec7f7e136825078b5c6ddd6eb8f9fb49b9aa17a073e0c78d156258383a28eed",
       "scripts/preprocess/sky/requirements.txt": "f1a0c4c93856693a954c824d27fc7f6997dc34e3cff45f79804a26d89aaf0665",
       "scripts/preprocess/sky/spectral-check.mjs": "ec8b3cd8ec8133c880d4d8e8855e439bf4694e424ab60ae82a7d9e0e2bc35dbb",
       "scripts/preprocess/sky/stars_deep.py": "0cd036e66b358344bb411815aeb6ee54043dd72e26e90c13063ba77035767c44",
@@ -298,16 +315,16 @@
       "scripts/preprocess/verify_atlas4.mjs": "4b51f6d78ba67ff6160bfd2daef7bccdba3fa2a231c47576a5fe0374babc1375",
       "scripts/product-version.mjs": "d6959feba15e3a4087f5d935be771a86ab608043b6342fc83d0c1c5b5ca30589",
       "scripts/record-delivery-demo.mjs": "93c432e8f8362896adcad758dc2a5c2cc2ccbac5957b104dd845fc9688d35db3",
-      "scripts/release-codec-verify.mjs": "5206654da3fc6afdaf184193ca4998d89bdfb10e0b73c26846bd0be87d8801f2",
+      "scripts/release-codec-verify.mjs": "45f3f682ae77841d448733f556ff8c5dcbbcc84c2eb5833a55f819dcbe503e20",
       "scripts/release-codec-worker.mjs": "0acdf73d9bc9e9ee494e5867d06c8e9cc608e30431a288f6ace7440c2f6bc02d",
       "scripts/release-codec.mjs": "bdb36026413c8056177e49ec26b880430d13e3088a6ddb2a55e0dd759aafa766",
       "scripts/serve-pages.mjs": "fec0bbaaa826bf4ef9b63e0bf8513a4f7b13c64406932648c59a894bddb912fe",
-      "scripts/sky-atlas-photos-download.mjs": "15447302de7c210e824cdaf9274dd106c33a4e572b0af5e002dc2d449e245554",
-      "scripts/sky-atlas-photos.mjs": "4686bd5890cdb7d0ecc0f013cf677bdfc87a9eba17c53fe92caefcbd1997dee4",
+      "scripts/sky-atlas-photos-download.mjs": "f107f57670bfc67de7f75a97584093566b3e64b6a5f1c910c942065f50c296aa",
+      "scripts/sky-atlas-photos.mjs": "d0608854469f3ffbfb6ea413f681f9b92c298ae39f3596eec89ae665e050eb93",
       "scripts/sky-atlas-photos.py": "90b692e77558c8eff22af459710f8b2ce25fb7089c3f4152a4cf7e5ef9faae60",
       "scripts/sky-catalog-overview.py": "3e489a526e3a9cf7359ddf4110353938c5c108cfdb159b111bea1dde4ed6e663",
-      "scripts/sky-catalog-report.mjs": "51a7250b10dec784a6748484977b6cc24196b508a2ee14e007749bec26a75f3b",
-      "scripts/sky-catalog-sizes.mjs": "e096aa160a8ab3502f1458b6155b7afb4f50063b45abb147a331616778f5f6ca",
+      "scripts/sky-catalog-report.mjs": "cd384c4428e2008e4ba24c7f2f19f29d29605b879f8f823cfd0433891f02570f",
+      "scripts/sky-catalog-sizes.mjs": "00cc84f61eb24fbf3a402e80f44f4bee4d47004a36d90bd55c16aa678358f616",
       "scripts/sky-catalog-thumbnails.mjs": "70e5a3aa8853abe91cf10c208beb8ad8ee00cc13114bbacf361439e40730087a",
       "scripts/sky-gpu-check/build.mjs": "6836a25cf861e8d2493f605e26aa5420821a29d68a9489dfa1b258e1cc00932e",
       "scripts/sky-gpu-check/entry.mjs": "a7a6a5d12aedd7924b4b1dd8553162e9e7779e47f331ebd515e63866c547cc9a",
@@ -323,16 +340,16 @@
       "scripts/start-dev-messages.mjs": "ff5f91e864aef0595212e42cde586529949aee1140d90615d93f9a8f6f609bfb",
       "scripts/theme-tokens.mjs": "b53b8172d1a337099eef1a3f567e62ad386ecfee95ce5bcd1ae7cfcf7d59189a",
       "scripts/tool-registry.json": "a5ca7142d2ecf940b47d0b4b7194b1127f3640ef31310f09514664f37413f04e",
-      "scripts/vite-data-store.ts": "4277ac0a71f3fbf025474a222d94c955c59f93fcb954db59d934370794b91a3c",
+      "scripts/vite-data-store.ts": "659b7996cdd44a2aa8d20470212c9a2561af3a9cb86070e168a57727229104ea",
       "src/app/achievements/defs.ts": "07513e72607c12d9cbb03e533c900c7696579b380949c7ccccf5d04fad001372",
       "src/app/achievements/engine.ts": "0222075f61d5d96a51b1a46e277dbbc8586e135c640949fc9beeb67a2ded70a8",
       "src/app/achievements/observe.ts": "9efea13198dc1f289e36c550a32d6c19cb2ac2e6b47171200020291d4c9f1bd5",
       "src/app/achievements/share-unlock.ts": "8802769545ea48c5341ad64d1b4da4133c4917fc72d67d14c5999bca086e520d",
       "src/app/achievements/sky.ts": "2bea6a5f28fd9d6580a61d707a12f8da11f9e7dc4332b641a8c5f5564218310d",
-      "src/app/app.css": "c8b89a773e1df4de5c47cb1fc68cfdb6b25c29fc0c757aeb6c7a93204835dec8",
+      "src/app/app.css": "53a4bb358f8144f41b18ac4addd90f69c0beb0f244bc41c931032e209884bccf",
       "src/app/App.tsx": "26be516d219e2c2ff1e0f7094ac7d6b22b147d6799321340d41135bce83e9a04",
       "src/app/boot.tsx": "8694ef740dac5e83617efd88a07caa2653df31376152ca990d4e495570cebae5",
-      "src/app/changelog.ts": "bac352bcad6b076f7c411e15e414cf59903a46aa0032a27c2f5e6f73e0512e5f",
+      "src/app/changelog.ts": "54e080cf8f9ef8b66c42b566481b13213d24f28878ac029489e6a5f838294cc1",
       "src/app/device.ts": "bacd42e7d104de0fcdab3cd3357f7d82facdb096f3caa1eb514584e91a0c385b",
       "src/app/error-log.ts": "0e6f64c2e69f76fbeda9921f975eed5da5a4e0579a0b3496d5b162ca24f1cb72",
       "src/app/fonts/fonts.css": "29067cf481e8508fe9d9a89aa9cfc6a5516b54aab24afd33a4e705ccf3fbadda",
@@ -341,34 +358,34 @@
       "src/app/fonts/ibm-plex-sans-latin-400.woff2": "3b646991d30055a93a4ecc499713d4347953a74a947ecab435ab72070cbdab0e",
       "src/app/fonts/ibm-plex-sans-latin-500.woff2": "0717336fb31fcdcde4b8deb3675bb4a0f7f6d484864afcd6751ac29975962203",
       "src/app/fonts/ibm-plex-sans-latin-600.woff2": "8960851d691c054ed38e259bdcf1a6190d157b4203ed5bb32c632a863fb8ec2f",
-      "src/app/fonts/iit-engrave.txt": "5b0f6e04e1b49195e429d0cffa7b4982ba397ef91ace2347d237a3821e0de3bf",
-      "src/app/fonts/iit-engrave.woff2": "7d713ed2c010fed475b368223b941a84cc4b4c99791ec9d2af01e793ddaa8c37",
+      "src/app/fonts/iit-engrave.txt": "a1383ebd68a6e93c92c9362aedfaf68326b403f159838479c0de1799f91035ac",
+      "src/app/fonts/iit-engrave.woff2": "b6c7e3486feb78f17e70ce1d50ad4c93418af8b2689cbdea651254bca48f0300",
       "src/app/fonts/LICENSE-ibm-plex-mono.txt": "23b0a9d0c6d3f140a0b77e483c5cfa6bba574325ef5cb189ed9f2fec4884533f",
       "src/app/fonts/LICENSE-ibm-plex-sans.txt": "d0283623ef57e722fd0eb688a8041589670c608ab780cd3612d06ba6f153d3fd",
       "src/app/fonts/LICENSE-smiley-sans.txt": "a610016a1063fe6f87c9884471c09d4b26ed01de4e95ddd6a502ad405a240bc3",
       "src/app/gpu/gl-resources.ts": "dcdf55447f7596e6f0dd217f5459c945bc62d8769c380e134f8ac6e7058d4dd2",
       "src/app/gpu/overlay-gl.ts": "b8d12fc534d6df18b88335b4e2fc6c6d580ef634413375c99175dd19d6f3ade3",
       "src/app/gpu/overlay-glyphs.ts": "d52946ad4a32b51d8821642d042a59093e08d6227089e112398dfcd5544d9b23",
-      "src/app/gpu/renderer.ts": "d3088af427626e1fd692c02c4993214fddbf011507c83be493282a602c1775da",
+      "src/app/gpu/renderer.ts": "0b2673f63edfc9e8ab83c1fb6a9d8d6a55c68f5cd8622bf768880d905b8ca08e",
       "src/app/gpu/sampler-glsl.ts": "8677cbffe97f9137725060ce127d7c6061eb65be08d9fbaf8392cf587f04056f",
-      "src/app/gpu/shaders.ts": "24644d7b5b8b3da8a0f22ef3976d1c66a182d6ee7ea2ee8ed6ee7d100dea8428",
+      "src/app/gpu/shaders.ts": "9144869353326bafa1660207b7391521a21d40e8f0a84d2b12aa2ab1d3495e5d",
       "src/app/gpu/sky-project.ts": "6aa0d9857031fcaa4cc96ecebd3e00d11099550bfe90c96bd388bdf0eb835702",
       "src/app/gpu/sky-variants.ts": "ac8d2c3869274c7ae74560a2bde60c76f74caa98f19aa1699e032aeb9f31c3de",
       "src/app/hosting.ts": "dfc1c58df196bf48619ec49763288f16b013221bd06bb063c3f50318d477f3c8",
-      "src/app/i18n-data-en.ts": "f19a6aee4e69218c968303f8aad9b3dca8037ce1d770b3fbd55cc18cd89cb157",
-      "src/app/i18n-en.ts": "bcfc02b061fdf03ad8674986838848fbc194ab540cedfa1b6f588c23f33dd353",
+      "src/app/i18n-data-en.ts": "eb4ce1f599af3a08a64610358015f53bc2b7fddd41ee3239d242f35aba522d39",
+      "src/app/i18n-en.ts": "9e00464ec141a15c92fa35409ee70efee87d4e5b4ba3f5c245477aedfd79c4ce",
       "src/app/i18n.ts": "d5d6f6b247bff91a863bb39e45282bd50583d4c92c8a4634c617a592dd54ee85",
       "src/app/main.tsx": "7d773fc7df765e580abbeb819b6b5ed5bc80234e13d26e5bdd49eb4e42e0613e",
       "src/app/offline.ts": "8b0244dec529a218b285756e02b27eaad076b0aafc8855852e9888c50900d6ae",
       "src/app/pwa.ts": "501cdcddc21fe330cb43d1875e1a341bda4c2351ac0e12810f5818dc939f9388",
       "src/app/shader-failure.ts": "1d18e64187e2d224f371b223dff9ecf3403e6421f21df50f18509947f2686950",
       "src/app/shader-report.ts": "30230b8df191badf52351ed2c8440662b530ebffa508c83f7bab90f5fc0e8aa3",
-      "src/app/sim/adaptive-grid.ts": "8afc85341ab38acc4ac179b0be75ad495170d12c7909889884850f71016f4186",
+      "src/app/sim/adaptive-grid.ts": "7c46ed81b4d9b5d7ab19f030b7866717bf53b243d9df59ce9b69ff6cc4279c79",
       "src/app/sim/adaptive-noise.ts": "b0470aebb3f8de4c463f3e6b04fc6afc08acc4ad2574449732ded139d615646f",
       "src/app/sim/atlas-codec.ts": "cef6ca8f5cffeed88f4435c583ce6c39e0894d3980f8392a8574b9bdaea9e81d",
       "src/app/sim/atlas-sample.ts": "1b9fed84aad5444239e0c332a6ebfbcd078bb9c61f5a3daa8308e61778bb5e37",
-      "src/app/sim/atlas-source.ts": "c31a9e74517aa0ea1857858f050c555a29b80507ab060bfbe88b484d0000f8f7",
-      "src/app/sim/auto-quality.ts": "3c143ecbde28ef7af4ddda15ec721a68b867f8cc367455f78c59c93bf451a835",
+      "src/app/sim/atlas-source.ts": "a8e8492dc349458e3ae2161cad16b4b3d8682804dd64ac939c07f30a961ab588",
+      "src/app/sim/auto-quality.ts": "5f72fbfec6cf6331414582c3787df4b412d1112fa383b2b83eb7d149e0c499c1",
       "src/app/sim/automatic-gain.ts": "228d497fe25a1eb9458087aa63a3fe43d90dc44d2a29a32a9272d2e8cb23ee70",
       "src/app/sim/background-budget.ts": "8a051ad1556cfed25bb403ea7936705082b10cd330617ce4c281096f2f3d8381",
       "src/app/sim/bench.ts": "06653facf0be1742f31dc9e7cf296a26fcabc5c14d92303f1173f2edd897c99e",
@@ -378,10 +395,11 @@
       "src/app/sim/cathode-presets.ts": "c2d79d7de59005617b43ea5385715b160a90b46c11f582f38785a2b087465806",
       "src/app/sim/cluster-profile.ts": "22a7241bea455c1cb16033c43dc30d068b5dc649e0a47a07b68cc7c934ce0794",
       "src/app/sim/compare.ts": "d3236d361520f6208ed5f43c6f94d94e3dfe2c21511e18d382560a2512b77b22",
-      "src/app/sim/controller.ts": "52cda60d731151a22fff40e9a1627d6802c0d5e72daca239adf44163c547e3f7",
+      "src/app/sim/controller.ts": "91d8c0cfdc932dc56fd1cfcf2113a88ef6397565c52041cda3a3ddc8609786f6",
       "src/app/sim/data-names.ts": "1570b90b2c658cd19670247e7c2e37ce235701d9479ce498b955d63974b5c357",
       "src/app/sim/data-store.ts": "1333a648dbc69d4f21f3f3e7a396e9db4970e20351c83671de3ce61c2f8009d8",
-      "src/app/sim/data.ts": "737ab23d862a6a8bd9c5373eb093c4724950e5af5906b7d6be95eb0d96f3092f",
+      "src/app/sim/data.ts": "f039bc91f376ea016ae73cdfc3d15db318c7cd442c8effbe77adb6b4540eddff",
+      "src/app/sim/deep-star-parts.ts": "1d8394039efc019b18ac66cdd59d8b0441a2e44740dc67021512cc482855dea8",
       "src/app/sim/eye-tube.ts": "20eabedcd927b30f265531a8590a50a4609cce12394cc4ce93e8746c91449780",
       "src/app/sim/eye.ts": "24c1fb319f356810d5553647f84bf6e01347a3d2cf20a0bc2f43d240e76e3642",
       "src/app/sim/field-budget.ts": "cc696287f1f66b9771ca05b25d209dca933655384266a150dd5ca8a2b64fc5a0",
@@ -389,7 +407,7 @@
       "src/app/sim/frame-quality.ts": "ca1cea31d66f9350e15de2b9949a8cf3f12e69d0e344d2ac59817a65af21033e",
       "src/app/sim/geometry-gesture.ts": "8704c68e1a9643424e1dfd570fb5b9cb2ad76df3f34bd62b78e56f37753cae7e",
       "src/app/sim/grid-hysteresis.ts": "65b49b8fa3b0776a972e24db2e4c451895621e1a19dc4e476e67bb26b5395e7e",
-      "src/app/sim/grid-resolution.ts": "9402bc6b074720c476cd4ec3c227a46fa4b0f2e354082e69104a6ce11e808175",
+      "src/app/sim/grid-resolution.ts": "c0cb13a0d1f76c022af72f2d9540204a58eaf89c5ecf1aa7259a1d0836c8d763",
       "src/app/sim/grid-support.ts": "4cfe9175c3675381624df02f0136a82e712a0e2e6d97d14e600c1b221467cf0a",
       "src/app/sim/horizon-spectral.ts": "1cdfc829e034404a2dcab9b46676389391441ec05aea6e665217165a73d6bf73",
       "src/app/sim/horizon-table.ts": "ab3e9be9dfac53118cbb3b4008862ee9a1be503fa436104e6a9e4398e2f9d57d",
@@ -405,12 +423,12 @@
       "src/app/sim/observation.ts": "f552f9048c8b984cdbbc16d7b4fd002f9e7791f680022764bade1fb216c934bb",
       "src/app/sim/observer-reference.json": "ea584da610eae19b3f6cf434d7ba7a88ce723a65f3aa5df5fd16e9cdf1ccbdb8",
       "src/app/sim/optical-train.ts": "01d519afab31277e197aac73c846b6c360d5894dd5ace086083193309c847323",
-      "src/app/sim/params.ts": "84a37f2411173beb230bb6c01d91e516c473a8c6dc72f13c255111c92e522b24",
+      "src/app/sim/params.ts": "61bdee3baace811970642a44a5ea82bb04d2a8e4b89d7d572143e0ddd218924a",
       "src/app/sim/pointing.ts": "29768c68b5d1a870b8141da2dd72a4c53c3bda69b866e056512d2e13037e2e50",
       "src/app/sim/psf-taps.ts": "9b75bf9e49a10d86f91edcb23397295c1650fa1684a491a2453e321dac04a7c9",
       "src/app/sim/qe.ts": "58b9c5570cb18248a0a839695bac0145f1bc0a6daac7e6d3391918447e6a7f29",
       "src/app/sim/range-fetch.ts": "5b099eba5430fa1f720149b59a2f0f385da54f3488e574cea2d82b8e6ea1c123",
-      "src/app/sim/regional-stars.ts": "59494a1a6ef11c69a8d7551e963dc9fea1647f29784e6d9342a9431973b01a2a",
+      "src/app/sim/regional-stars.ts": "027d13f623b02cea410d51c878e54eb7f7c1546618cb10d6352288a73359f53b",
       "src/app/sim/release-codec.ts": "7d673e85acd1a8a6cc8eeb67c0a1136d4e4dd167d5fcf746e6b745ef0561020e",
       "src/app/sim/release-unpack.ts": "c8b3539868be4555f4372649ed9e50fe78b9313636accfbee71703639aa70388",
       "src/app/sim/retry-policy.ts": "b63c816830c55ad8a08c8d66e0cc678d7ff64aecf61e69dcffd102a5a9c51036",
@@ -427,16 +445,16 @@
       "src/app/sim/transmission-cache.ts": "cb909b4711b101d4094f90668b398c7e03cb04cf72252f671def209ef1c149fd",
       "src/app/sim/tube-meter.ts": "d669b8d98d14255ab5e7f7405f2262ff4f7da44345259a37651c3866b27aa7ef",
       "src/app/sim/tube.ts": "42663149facc5bace5928084b021b074fb397c233963240949f8307b1772bb86",
-      "src/app/sim/urlstate.ts": "a6b2f9904792ec511fd0eb3dfa303fffbb355a30d7746e70e512c9b0b7de839e",
+      "src/app/sim/urlstate.ts": "7ea4fe39c0a34e5a76438bea4ab3feaabc535fb07adf645dc865e1cf78f78e02",
       "src/app/sim/verified-cache.ts": "ecd252f59f3269852f20edf4b1eef68df93e83c62938b819cdc0667e7dafc518",
       "src/app/sim/view-sampling.ts": "4c91cf9bfdb30e793524da7e7747523a31146ae240ff1514a9876391ed649c20",
       "src/app/sim/visual-adaptation.ts": "6b980ee0496a214eb5a7222a1d431e2799a270bd2b9f3223eb3d39856cd2be7e",
-      "src/app/sim/wire-defaults-v16.json": "7db8e370c06a3d6ab5f51c791530902b9b46abf89d691e4f99d3bd5766062e85",
+      "src/app/sim/wire-defaults-v16.json": "21c5fdf22212af8cb31a199b60750fb921a3ee07cd8f58eb80d6a167c5789a98",
       "src/app/sky/ar-pose.ts": "a453ab105a055bb0bba37263dbed71d9efaba13cbf75879950a979d504f9d288",
       "src/app/sky/camera.ts": "4d18656c547335ec45bb89069800ddae7db05badb2e513c6044c48ea927eaaa7",
-      "src/app/sky/catalog.ts": "3dfcc978de6b13ca7a7d9ea6e28c31939d0082cf4cf140a2bcbd58526e31ae48",
+      "src/app/sky/catalog.ts": "3a2a5835da62f2b692bb3fa75284bee5a9f9b84399d86687493e8d0d6eebf8f8",
       "src/app/sky/coords.ts": "89f6e69ea169fb1a18983d5960cbc286623a8866bc81632dc6301a2dc2d8a67d",
-      "src/app/sky/free-session.ts": "690462f4b060593e8091c7b307ed36869c1183b5f6401f32eabf630411bb450c",
+      "src/app/sky/free-session.ts": "06665031ee062343de3c77c3fb39048c195afcddfcf20520d8896b872d81348a",
       "src/app/sky/healpix.ts": "cef7b98e231f3dfa17efc32e9c4d1b0e28ba449e50d33cbd6f74c77993059934",
       "src/app/sky/horizon-gpu.ts": "fcbd8f7b30c5f6b50428b76dbf1765e589ca0327abaaf23f03499579245e3db1",
       "src/app/sky/horizon-runtime.ts": "f1022627ef074897c325fd720c64c9afccf2833442da760bb245034438f49b37",
@@ -460,9 +478,9 @@
       "src/app/sky/prediction.ts": "add22f22a7919adfe1c8c878ac8734ae72a645f6e0e4f7cd3a3f5e0909ce0467",
       "src/app/sky/projection-check.ts": "5b5586eb96f657d119a6ebc24786dd708967922cf704e251fba8d75d8d9c61cd",
       "src/app/sky/projection-selftest.ts": "96b0a1e7cc6ecda0f0f5b61746bb73cf09bdb72860f6d73bd3dff1d17ec96eb4",
-      "src/app/sky/pyramid.ts": "c4708b7a4790de2690cc4a881b13d0220139c39b6180c597b3be842fcaa037ac",
+      "src/app/sky/pyramid.ts": "ac2a05ca84401422adb2fcf182f88c3820c94327e330b15cd1f943b4f71f0c3d",
       "src/app/sky/sky-fetch.ts": "d0e7071052cee109c56ae63c86d0221c6e6df0b92a1cb5740d120b281aae3f94",
-      "src/app/sky/sky-worker.ts": "3b3fbcb4f93e51289c1ea8c5c07f4fe5d96fe652d7c8f7e6c8074b7a439b49a5",
+      "src/app/sky/sky-worker.ts": "bfdb6063d797733d59fed73057ef86717fb8e510aedb764a854b3573f4b5f40e",
       "src/app/sky/star-identity.ts": "e6d6d9bb04dfbbdca17d4123d3883385ac0e4c541a4948caa0568025c6c1441f",
       "src/app/sky/star-plane.ts": "e4dd6a776062fbaba8849999bb0b0d81b12cad41f8cb36ee67bc5cc65624daaa",
       "src/app/sky/task-scheduler.ts": "65bf620e95a9ae80c56e29be0fbcf137a1efeb3d17f86140b7e5462918ce1e3e",
@@ -472,60 +490,66 @@
       "src/app/sky/zones.ts": "488df464cf1f329956a844b91c03262c70201e149b54bccbbb54d4fd829bf6d4",
       "src/app/store.ts": "203e3cd983fb8de786dcd0256abfb85eb481e43af75cbd60b9d2b1bf2fda9b44",
       "src/app/sw-client.ts": "c970e552e8ea20fd195d6a59b2867eb3875c01a364149f7aae98050e669af30c",
-      "src/app/ui/achievements.css": "90731d523d11c7515349d6aa968ed3f2468ce23f01a8fabf84b0c449be3a4c5c",
-      "src/app/ui/Achievements.tsx": "5e173cd12def552faf9fca52c8e968fbe42e0f493b69fca69441622731a693d2",
-      "src/app/ui/app-notices.css": "22f802b6074bea0f37bfb90d83a2e5905534380274813e4405f74f1d2d6a59e0",
+      "src/app/ui/achievements.css": "c2784a89276d70bc1c406cbb94d49382220da06a2fd574a0a804b5306edf389c",
+      "src/app/ui/Achievements.tsx": "6949b515a37201c43444310b0d0697cedce59ed9443763ca9a3d1cc217bf28d9",
+      "src/app/ui/app-notices.css": "46135dfedc32e82d996c09331bfa2cf090364c8d275893c0feee26ec369c055c",
       "src/app/ui/AppNotices.tsx": "f1fdec4bad298546dcac059e2c9f5385a8eebf68aa024ecd319d8c1f58a9dfb9",
       "src/app/ui/ArMode.tsx": "97945987ffc2ace8e5979c995c965edac22e50426e71e2e1f9efa351843dafc8",
       "src/app/ui/BackGuard.tsx": "69f8848ab162318a7c9a1bf92bf8dbe47db6ac76e710bb3de560c487b3063771",
       "src/app/ui/bench-charts.tsx": "1cfff3e7f1973468211251fca5946866b82ba1522a20e3f85c31a025704481c8",
       "src/app/ui/bench-help.ts": "9179e249db2906992a295fffa08f6acd790a68c5a40a0b9288809c7ecad8ff61",
-      "src/app/ui/controls.tsx": "7aafddff05fabb7f8da46cdf74451616f19e56ccadfb01cde84c7ae398441157",
+      "src/app/ui/controls.tsx": "804576ea8652bb87aa20a6850d457aff5761a86ff3bc2df6bbbf3dd8a73ec0fe",
       "src/app/ui/cost-labels.ts": "af7358f8413185e186a0da86d54c0e302671fa0d77a64ce94b4da24ac9194f86",
-      "src/app/ui/CostHud.tsx": "6e0919d7eec7f9ab21727ebd6698d96225e529ecf24894214cfd9a3e508f5b37",
+      "src/app/ui/CostHud.tsx": "0d83b863ac194274cebf57a9bdb301c6bca3e923d9f3b64e4ab7de7357fb58c3",
       "src/app/ui/Datasheet.tsx": "bc3c2a249a9e39d764f7283292e165e7100f41c6a013f3cdfe23fd3cfb7f8280",
       "src/app/ui/Drawer.tsx": "1e1d8e6f4736615da98e2596395617e820698325d2af90321eedc0fe33589216",
       "src/app/ui/EyeCalibration.tsx": "b8f05b70be7ead7d37102a43b8bf1bb973d723f89e7e572ef9281e61bf4da368",
-      "src/app/ui/Eyepiece.tsx": "7f5173708a0983f4877e936b929f5a6e2f49b41ea964141374b582a6ee13f35c",
+      "src/app/ui/Eyepiece.tsx": "087378a4937cd69e7c313a30bb82ce5e83dbf0f5740ab462fb5e32a06a7b8d63",
       "src/app/ui/fallback.css": "379355dc423244cfc809a815bfe0647280fb80d911eb952e0e53ca14d36ffe7d",
       "src/app/ui/Fallback.tsx": "34b9977240a90005391952aed6a2ed651cad184d0d0d52f3d8ed2d2f2c6f1332",
+      "src/app/ui/feel-react.ts": "dede0e1edb0471796faa15f101d1388b33ad3c24601f91c4aa3c124239878d45",
+      "src/app/ui/feel.css": "61c718c28d791ddde2a1b961833c614d17ca9926a75dfd7668feabf267c18af7",
+      "src/app/ui/feel.ts": "bfee028ed8d833ddd69c5bd0c0cf72a712e13315559c9885abef97a56c90bb17",
       "src/app/ui/filter-hooks.ts": "1bad592845dbc96790f8ce4c2630d268e98cf0d96de854066f86fdf4f3455a42",
       "src/app/ui/filter-workbench.css": "f3480c4c31ad7c9236c28246758d49bde05ff082671c8740806339cf759e1f2f",
       "src/app/ui/FilterBench.tsx": "4a455a2f463634a37740afd55a28283a9cdb22e8dc04ddf748f677e7ee2e2e60",
-      "src/app/ui/focal-ruler.css": "bad6eaa8438b969591dd53f307d7c4c4dcef705f0a6d368352691a2af5772dfb",
-      "src/app/ui/FocalRuler.tsx": "ede4a11ab8aac4e47fe63e574ca01a52e7ff5a1c0fbbfe03c88a65705d3ff3a2",
+      "src/app/ui/focal-ruler.css": "90279923c8c223e86172b27955f2595154307fac4f179ec188373412e1893b5e",
+      "src/app/ui/FocalRuler.tsx": "450b9f69d4605b9f3022224b86d038783153d157a1aa8ca21985d29c29d6cba0",
       "src/app/ui/GlobalSettings.tsx": "df30351e82e57686fde476c3d48eb2a6c386e4bea03dec0fd5b86c96c3ed7b03",
       "src/app/ui/help-drawer.css": "bc7d57f2b3136509cf183ceebaf13c90dcdbae4daede1e5a38c0e9306e6a00f5",
       "src/app/ui/HelpDrawer.tsx": "b2a9ce104893b5cc945cb235a333e0b911a495b9041f640cb63b5926344b818f",
-      "src/app/ui/horizon.css": "32ea50fea4303195cd1dbaa19d3a9d47641cd0683fb7b3ea29eccbd09f39beca",
+      "src/app/ui/horizon.css": "83aba1d591c9f38fe0921309c1868955f1a87b3c0c925be9d1135fd3d03874c4",
       "src/app/ui/HorizonControls.tsx": "2808567a89887d4552d328ce0e00c8adb086b9ce751ff7b45962040347ea252b",
-      "src/app/ui/HorizonHud.tsx": "ff06fef137f62a87a41008fcee60176fc6ee10fb9969b525f7f599695ad86d55",
+      "src/app/ui/HorizonHud.tsx": "4ef9f5b733c69037728de6d9d7108d2e4d879f2369121560dec741ce867717e1",
       "src/app/ui/icons.tsx": "98f2edb09023951d1dddecc5dd8b78b29879912484c9a7e912c75619e78a1fb8",
       "src/app/ui/intro/BootIntro.tsx": "22e1e57ae4834c8570edf4515423d58d34ac950261a7f0d90eb290291074a0de",
       "src/app/ui/intro/intro.css": "e522c0a66418679d705960c21657ee91818f8416fd75cdace0d090cf67ce4fd9",
       "src/app/ui/intro/TargetSwitch.tsx": "4c3800933416b36696d2b7e7a7a7394f22f421041db49bbd26d88492f4edf07b",
       "src/app/ui/intro/tube-scene.ts": "a55d027cf5a536afe0c1a703d2c97e2b5691f4f9e81b3217d36ab6b2e1eeeaaa",
       "src/app/ui/lens-transition.ts": "45375a5549feb45ea87be8f30506e70204cc201863032e82bb3d7dec495b7a08",
-      "src/app/ui/lens-visual.ts": "9253c3ce895d727aab3c97bcaa7382eef1b408a29c3d04cbec9b793e151cb177",
+      "src/app/ui/lens-visual.ts": "16601e16f23e1ec19aeece7b09b3d28a38444fee9a1f71962fb93979010e06a9",
       "src/app/ui/lessons.tsx": "8636ca5613e5378d80f1785e3060a9ccf8a399673ea0a16742fb7cfeb5aa116c",
       "src/app/ui/local-preferences.ts": "eb148f4fa5269d9060c2528f9ba9f8f4d3fec32606e09a944dec5d7b84d34b76",
-      "src/app/ui/menus.css": "7c4ebec9785d887eaf7e353d18271f4ddd7fb0f2a7547a4e47214e45c82ca829",
-      "src/app/ui/Menus.tsx": "5aca40bd467468e217db36be3f83080fcd4aa4e5a2b86a007e2b703af411193e",
+      "src/app/ui/menus.css": "f61fbc819522ed18053caffb4980ef762d38c058b4cc46f1ef8d5139b0a3faf4",
+      "src/app/ui/Menus.tsx": "47b38c287904ac45185d4f50ec397c702cdbeaa5c679675b6a66ae3f14a38300",
+      "src/app/ui/moments.css": "2052f972fcafeca066fea794ee3ff7f0e39585a37da9b4773a66a9a1cf516378",
+      "src/app/ui/moments.tsx": "24d794baac674042a51cdf8bb457d5caa74c11776cc81ab84f70d90b8c78a3f8",
       "src/app/ui/motion-gate.ts": "c3ff4c39bb5a8c8429cee646fb84a8547ebf4d9153ae9e0260b4945d2977e0eb",
-      "src/app/ui/ObservePanel.tsx": "fd5055a9802ad178a83a14b0eaffb8a34793451bdd95e782417b2c5d942a0dfd",
+      "src/app/ui/ObservePanel.tsx": "245b1aae8b4ffdb6fa0bf9f2f4d688a9cc7484db1f489801d7dba7aca9d413f9",
       "src/app/ui/observer.css": "ab3262a1a524e5768e061a999c0540591e8cb23efce98ecfa3ce907f339c08b8",
-      "src/app/ui/OfflineData.tsx": "30e75309ffcaf4fb2bfab2220760600ae610197cef8235720ede1719dd98c4ea",
+      "src/app/ui/OfflineData.tsx": "dc8be5be2214fbb18f29b920efe0537e503028d7ff8455a8c65a0f17c03395f8",
       "src/app/ui/Onboarding.tsx": "db7c5b086b7692e5c1cd51947eb6f6056606fa96d6c9de781ca9c69a819e0db1",
       "src/app/ui/overlay-view.ts": "fbc5dc57bbfc36c7604ae231b15792d1f7e49922b7714afd549faa7cfebdbf6d",
-      "src/app/ui/panel-common.tsx": "aa23e758dcd0995cd44c3989396e1b610d531332cd4728d0f7afdbe7d175ebbd",
+      "src/app/ui/panel-common.tsx": "8ae93fa44abf72d5687b92139dbde0e4ce5df889793d7e27fbf99d809a653e06",
       "src/app/ui/Plots.tsx": "6ffc9d8c18942b20fd265658d303859265911cfceddd4a874a787011d07984cc",
       "src/app/ui/product-shell.css": "91495b892ccba1bfd72af08979609acc7590b6da4d54444e3084bbf527251b94",
       "src/app/ui/qr.ts": "69ff232665183fd2f6e91f9ce59e4484be5aaf59856d0212e7f68a3f111b6927",
       "src/app/ui/quality-dials.css": "c16d7afa542be54245c85ff813212993282654dacb808864057a55ef5d4af948",
       "src/app/ui/quality-labels.ts": "8274a584f9919a23e9cbdbaffa9703b0004ae621d5f3dda6147143a5e48a0c8b",
-      "src/app/ui/QualityDials.tsx": "80270643a014dee30d52702e38facf9aab49360cfebdc89b56b4b16a083e1220",
+      "src/app/ui/QualityDials.tsx": "96efbe33dd89fc91c932b1033cbe144e5a8301258a7570de4c801ee6f4a11a61",
       "src/app/ui/rig-cost.ts": "04e8904b798498eb8b5b40898813cd7add37fb0e628e860889bb7cf35806cfe5",
-      "src/app/ui/seg.tsx": "02b60f2489c6de1162c16eb4097802046dfbe446d3a0674bf7e4c9247f0cca05",
+      "src/app/ui/roll-num.tsx": "8171ae7106974c88649156f7460969c1495aa51d647c63ee19b7bd72bccad6f9",
+      "src/app/ui/seg.tsx": "076cbc19453a2a3528e27b8ea28faa7ac7e2cd88217e9029fa7c7d9babc2c93b",
       "src/app/ui/shader-failure.css": "6e482bf542865d578da8d19fdbf2cf210ec09227af1fe2c24fa7229c4169e507",
       "src/app/ui/ShaderFailure.tsx": "5f2a6069a594760e3ad3dcdbd0eec4ee4d06b845e1c9f498880007afe9515d84",
       "src/app/ui/ShareButton.tsx": "890489c33840c02850994f362aadfd4f150a603439c0acc088b31545d9d90457",
@@ -533,12 +557,12 @@
       "src/app/ui/sky-assist-paint.ts": "ce47f9c28c15bf656717032cac34ef32b27ce8e080904cab3270cac535f55510",
       "src/app/ui/sky-assist-preferences.ts": "ee6efb909818bd04e291340d704c242d7ef0d022cf37dbe8261b5bbf3b7c50f5",
       "src/app/ui/sky-assist.css": "c75017ff97b3023632e55e7e477a3b67a1cb31dc55e24735326f2871de1bca61",
-      "src/app/ui/sky-atlas.css": "7471236d9812a5b22bec17e3785ead506b669b012982121b3835853acf3bf3ae",
+      "src/app/ui/sky-atlas.css": "7c1cced9925e460134cbc1c430636c63f1a47dbda573103d4f239834f0559d22",
       "src/app/ui/sky-guides.css": "b83df75fd4c3c5d2052bbf6afcd537f7dfac9d9fa140477f2fa1825406728322",
       "src/app/ui/sky-navigation.ts": "73f252faa88918d7ff6956cb195edb38c439566405faad841c169d4969bdfeb0",
       "src/app/ui/SkyAssist.tsx": "d4780e95cd258f1f5bf51b0cac2538d10e6eab5cbbabff1066298aadb36d1302",
       "src/app/ui/SkyAssistSettings.tsx": "d8b6a702d94e4ff6752b019be7dff7c15d9e0be7e0f3d40453350ab7c7be2963",
-      "src/app/ui/SkyAtlas.tsx": "71f66c89ce400312b5099f2d69ce2918814dd95e46cce040e91efdaa5f0c65b0",
+      "src/app/ui/SkyAtlas.tsx": "c653aebc35ebfcf8c2ccd1ae9d484efda827b387ad9777ca7ef1a16d0138f934",
       "src/app/ui/SkyGuides.tsx": "0a88fff825c6534a86152c8f6e6bfdd48e7ad2f70a541960e5d72e7a822a59e0",
       "src/app/ui/SkyQuality.tsx": "7f0599ab24f149f1892be9efae1d09a9f6bb8b86827c7411c7a7cfc45b1c91c5",
       "src/app/ui/SkyScenes.tsx": "151a6df7c339526b357576bff9a5c0a9ae8c3ef16542365c55156cbbd7554e23",
@@ -547,10 +571,10 @@
       "src/app/ui/snapshot.ts": "d84407bae6a0d3635008b80786992aea78f7c0b06358bee246efc54b7ed368bc",
       "src/app/ui/station.css": "50e6328df5d45be9450c92952570d5d4007f0a4da6b323157cb9aea5d0d41dc6",
       "src/app/ui/station.tsx": "030d3202bdd3e1f0f7745b9d08f9eddb8675276adec919987c58061f40ed57ad",
-      "src/app/ui/TelescopeControls.tsx": "d4cce2bbc382da5791089def56b73ef1e4ebeec4c3882d1da491ab4a7faa8263",
-      "src/app/ui/TelescopeSwitch.tsx": "3cc7e282202ebf59d381b5a6cef45e024b5f65dc822d8a864d9c8b455b144ebd",
+      "src/app/ui/TelescopeControls.tsx": "65defe1f1bbe413639dcd71115591d7e1fe119056477e1da3ac12415cc3bbfd0",
+      "src/app/ui/TelescopeSwitch.tsx": "95aad72c8b09687aec37026d1e1bf2512b1b20807dd0653f39da35cc2645e4dc",
       "src/app/ui/theme-fx.ts": "07f2eaffeedad16a1c2fd8490161bd50e2567c9880de874ea29f04e967f7a574",
-      "src/app/ui/theme.tsx": "37c7b618412bdd6ab590c10814afd868ada046ef77d744e7155a636eefe4fcc9",
+      "src/app/ui/theme.tsx": "47a2196facfd1d36e23a62564aaade5398b03180bc73631a112d47af0c55def2",
       "src/app/ui/ThemePicker.tsx": "ef1deae6b84151f4a3a1634428306e417e58d921b778c7a91c1584019a4489a9",
       "src/app/ui/themes.css": "d5d3e4109662024c49c86bac02b207883a37fc632c0f47f9578c806f57244cf9",
       "src/app/ui/themes/arch-ha-thumb.webp": "96877e84739727ff2bc1f4fb031d1c2547672c9fb342fee9d919eaede03e86fa",
@@ -612,13 +636,15 @@
       "src/app/ui/themes/station/wall-thumb.webp": "c9bae52ecb02f211b92131c682777740b79e373851c9a825d303269a7f2f141b",
       "src/app/ui/themes/station/wall-wide.webp": "c213d876d95232c6c01e30cd38dc95907c3100b9a9ea9137080e71ca91c2a860",
       "src/app/ui/themes/station/wall.webp": "cf5cb87395762c89285bfd3ea72e499a0586d1bc99a8343979bbb2ae1ad5bc18",
-      "src/app/ui/Toolbar.tsx": "1a173109bb85031e2e2bcb381e0a7a058f5c1ad3c545e3a80d9ec44a5f5c68b3",
+      "src/app/ui/Toolbar.tsx": "b59b89684d5ba5d9663c72ed5f08290046dc9baba5a947e696fb976b611e43f7",
       "src/app/ui/tour.ts": "9db98e6b25b9716f07c0a2d8941690d0f99a5b1b69c2ca2618b7eaf083ddc03c",
+      "src/app/ui/tray-motion.ts": "895d2b666db41c86b8d16ead8adbc1f1c1a6fa012486c288b0aba0598091464d",
       "src/app/ui/TubePanel.tsx": "91db7633b7b0d38a5d20f40f6a81fd4d1b49e124a02c600cef943d156a2db09d",
       "src/app/ui/VerifyPanel.tsx": "19be54f2cbfcd78f7f860954061ed4c3ceb893acfdd7a924a37b2204914b6d2c",
       "src/app/ui/wechat-reward.png": "67f6c0b8841ac862dc682f8d45af3b835d7900dbb1a2d34c5160ea1927b6bc58",
+      "src/app/ui/zoom-badge.tsx": "504ef7fcfef7dd596d24bf8825fed2dca718bfcb0cc5923408f6b48cf251a642",
       "src/app/urlsync.ts": "0b117e97317642efe807a7d0e7544ba086ced33142ec47154e6a55dfbc8e93a9",
-      "src/app/verify.ts": "c0e83b9246f292019322fbe17754045955deca11ce183c9ee5d22cf3ea528d31",
+      "src/app/verify.ts": "9d3cb651ee361890aa78d106a4b577e745f7acf56745614a7dfd6ceaee1424bc",
       "src/app/version-compare.ts": "dac1ef3bf90e33789ace4c45bf41dec198315370377a64ee64d125840107eceb",
       "src/app/version.ts": "bc58096d196d348417fe0ce0ff645539ca1e1f2de46749e328a443abe59886c7",
       "src/contracts/spectral-validation.ts": "03a175848bc27ae4bc72be30c932aaa300467ba37a7daeb0dd42100457908a31",
@@ -716,22 +742,22 @@
     "layout": "github",
     "explicit": true
   },
-  "catalogSha256": "0ac7027b0220b7e4f51cbe580001fe2f174852a4d683b2af6dd399b5045bd619",
-  "publicSha256": "e6ee93ec44f3963f10da0dae0d39b8c54cbc4c0e688d4b192a44387d8e7f37e3",
+  "catalogSha256": "b0a90a40d3ad5092b910f246ff62134c07e5ac4f9449ff50dedcef254c2ec7b7",
+  "publicSha256": "a88886b46fcd3ddd7a5b320eb2a27a56599a6e9baf721e7eed44323235dad674",
   "verification": {
     "schemaVersion": 1,
     "kind": "iit-release-verification",
     "pass": true,
-    "catalogSha256": "0ac7027b0220b7e4f51cbe580001fe2f174852a4d683b2af6dd399b5045bd619",
-    "publicSha256": "e6ee93ec44f3963f10da0dae0d39b8c54cbc4c0e688d4b192a44387d8e7f37e3",
+    "catalogSha256": "b0a90a40d3ad5092b910f246ff62134c07e5ac4f9449ff50dedcef254c2ec7b7",
+    "publicSha256": "a88886b46fcd3ddd7a5b320eb2a27a56599a6e9baf721e7eed44323235dad674",
     "codec": "8d83887f537a",
-    "checkedFiles": 6742,
+    "checkedFiles": 6768,
     "largestCodeError": 2048
   },
   "files": {
     "THIRD_PARTY_NOTICES.txt": {
-      "bytes": 64577,
-      "sha256": "4706c898f0a779c78548e7e1b00b4a28e9dff650ac627e9b156943ffaa2345d7"
+      "bytes": 68224,
+      "sha256": "12fbb89ab80892da153fab4e04eed1422a1e8e8eda00d32f06ff85240363b5ec"
     },
     "about-en.html": {
       "bytes": 19802,
@@ -743,7 +769,7 @@
     },
     "app.html": {
       "bytes": 8187,
-      "sha256": "883d83d592ccd052c058f61413c4480bb0326a816ac60b1dd1184c896d991ccc"
+      "sha256": "d59fa8ab0bc591093f779723b279e18602bb3a2e48e602a9343a2cf53936519b"
     },
     "app.webmanifest": {
       "bytes": 808,
@@ -757,17 +783,17 @@
       "bytes": 7704,
       "sha256": "bc946b8939f3445c1a0e5310860da4e07271a715d7c02ee039c8139ac53671d3"
     },
-    "assets/FilterBench-DcrrnXbo.js": {
+    "assets/FilterBench-CVK_OlJx.js": {
       "bytes": 18789,
-      "sha256": "a2127e4ca48299d44fadd83181eda2680c2af3507ec8d3e9ced93e52d07992ad"
+      "sha256": "48867d9642fb711798d7b12c5908f8a98c3ac92f1bde0f66a7e0fa547d99a1e3"
     },
-    "assets/VerifyPanel-CRE-IdNA.js": {
-      "bytes": 24947,
-      "sha256": "4e192a8c74efabc826c5a97187802f96dc0be4dadf5cc7e520252dff58db0644"
+    "assets/VerifyPanel-EfE2Zcp6.js": {
+      "bytes": 24951,
+      "sha256": "bb0ea9d68139e0e881e8de131847687b0417b99903e1c467c8a4c4406ca48ad4"
     },
-    "assets/app-B_G-K0Ae.js": {
+    "assets/app-C7uQ7Quk.js": {
       "bytes": 5488,
-      "sha256": "f23f224d05eb8ced859326cdbcb697ec931764cea4bb26e5cda645d009cf74bd"
+      "sha256": "25d613616e71079a27c8b39d046678bd8d544210d724811b2d3d21786d4396e2"
     },
     "assets/arch-DzdPvdEh.webp": {
       "bytes": 87572,
@@ -821,13 +847,13 @@
       "bytes": 76684,
       "sha256": "8b4eea82a714fdf2d6ffb312aeaa3417f0a89cd76d2d77c362de20d26a3ac375"
     },
-    "assets/boot-BoaXVPG2.js": {
-      "bytes": 1193828,
-      "sha256": "bb2be19a57ff14494d67bd589ced977c476e8be5a15899b7ab24d04e111086a2"
+    "assets/boot-B6IZOhSN.js": {
+      "bytes": 1250017,
+      "sha256": "1f48ba2c69a0b5fa0b3ebc0bc261b18ef935cf23790198ef31ba8b8904ae10d4"
     },
-    "assets/boot-CDfPfiLB.css": {
-      "bytes": 182602,
-      "sha256": "61f5ea49f5f81816a2a8d7df4d9654c94b21faa013b0df0e60c3ca035ae53636"
+    "assets/boot-BmldUZIr.css": {
+      "bytes": 199814,
+      "sha256": "b5aaf9d6f3a20b78c433fc5a4a275ad7aca5c6cf16b4c0f3686f7507e937488b"
     },
     "assets/bubble-CdGyuMFy.webp": {
       "bytes": 7390,
@@ -1021,17 +1047,17 @@
       "bytes": 7220,
       "sha256": "cfd976600f7b667a7f0f28d8b6891697cd1c3ac7ee48ebaaf7f2e0d561c22a3f"
     },
-    "assets/hosting-DARYwU3u.js": {
-      "bytes": 7659,
-      "sha256": "a50444923e163b6dd5288e22066d4b839176e1873aeb56497d128305ad9bdad2"
+    "assets/hosting-CAz13AZx.js": {
+      "bytes": 7666,
+      "sha256": "35c378c21c850417e083fa551998300f2a1b242ceeb3dd67da597d66c6a741c3"
     },
-    "assets/i18n-data-en-Ci1QfkLi.js": {
-      "bytes": 39159,
-      "sha256": "de53346cd493f2e2675a700b67400266185c32033d811228a712a6ca15c9765d"
+    "assets/i18n-data-en-C2oW5vhk.js": {
+      "bytes": 42872,
+      "sha256": "2bcde1249219858eb7ba8214d765b7132af6ec21a8d697aab13cad03c19315bd"
     },
-    "assets/i18n-en-Bf8vVeQo.js": {
-      "bytes": 339381,
-      "sha256": "2d7327bb03e1459ced2adf85bc36d4fa66303714fd69f9c956ee7cdfdc0df48b"
+    "assets/i18n-en-tcTDf5af.js": {
+      "bytes": 346644,
+      "sha256": "0f5428f775bcf1a5204edb7d6839a11ff28d12421177b3ee0a8bfcb264ca368f"
     },
     "assets/ibm-plex-mono-latin-400-DMJ8VG8y.woff2": {
       "bytes": 14708,
@@ -1053,9 +1079,9 @@
       "bytes": 24252,
       "sha256": "8960851d691c054ed38e259bdcf1a6190d157b4203ed5bb32c632a863fb8ec2f"
     },
-    "assets/iit-engrave-D97cnjKE.woff2": {
-      "bytes": 63544,
-      "sha256": "7d713ed2c010fed475b368223b941a84cc4b4c99791ec9d2af01e793ddaa8c37"
+    "assets/iit-engrave-h_eWh6K2.woff2": {
+      "bytes": 64564,
+      "sha256": "b6c7e3486feb78f17e70ce1d50ad4c93418af8b2689cbdea651254bca48f0300"
     },
     "assets/jellyfish-C3jywyAt.webp": {
       "bytes": 36752,
@@ -1089,6 +1115,14 @@
       "bytes": 33578,
       "sha256": "a8efa52a0e6619609c91da7b55e5ec9b2a3415d417b51eb6b219682d87eefe01"
     },
+    "assets/m1-DNzeAJYV.webp": {
+      "bytes": 13216,
+      "sha256": "585eb5ced75119aafa0b0badff0091129fdbf09927527712c3b64c54a1093581"
+    },
+    "assets/m1-NNNriV2X.webp": {
+      "bytes": 7988,
+      "sha256": "66c152fc632f8cf56a6956b4b3b7b729da05f5527c6ceaa23e083c00351fddac"
+    },
     "assets/m101-BaUUhTUf.webp": {
       "bytes": 13334,
       "sha256": "01d465d3a09ceea36e8e6ebe3fd8c6a351f374e6ab71103b5c60ac3bf0d5a957"
@@ -1096,6 +1130,14 @@
     "assets/m101-WGKX3FpS.webp": {
       "bytes": 5028,
       "sha256": "f48e60ce66e44b1a465be79c3cad698d976a9b19d3fe25a3fb21711ad1809cef"
+    },
+    "assets/m104-CW0pMDXZ.webp": {
+      "bytes": 4848,
+      "sha256": "2f772bf69882111b3d308907e0ebe507ad46164998d9d45e9c4ff859388bd69d"
+    },
+    "assets/m104-iBD-dOaF.webp": {
+      "bytes": 9126,
+      "sha256": "012068a0b16df40ab504543aa7fe0cda5215a571aba44ca6cbdf75944d28d129"
     },
     "assets/m13-CaVU_JKo.webp": {
       "bytes": 28172,
@@ -1325,21 +1367,21 @@
       "bytes": 48438,
       "sha256": "c979dfce90fc62f777c042a05fa854d1f42a15b454cc50289a238a386a8f99bf"
     },
-    "assets/sky-worker-Bi4G7PAX.js": {
-      "bytes": 20467,
-      "sha256": "bdf5c4536110ea59bb617eabe7e2f7a3d31c9fef82eaee2857f441853d368e91"
+    "assets/sky-worker-DaPn8AOO.js": {
+      "bytes": 21512,
+      "sha256": "e2217c1f897ab62809997186c8eae7748ab036728d3f51bc4860e0be7e0382d3"
     },
-    "assets/snapshot-sheet-D4z5eoNc.js": {
+    "assets/snapshot-sheet-KvR-lXR6.js": {
       "bytes": 61319,
-      "sha256": "35fccbb327778611d581b4cf1fe341e8b7d2a065a9a582783d0d023e8fd68c61"
+      "sha256": "3efa36acfd3f21defab52384c44a59ce01a66817bbb6bd80070a67bee08d4a63"
     },
-    "assets/snapshot-station-Cn5m0rrP.js": {
+    "assets/snapshot-station-BB2mu27E.js": {
       "bytes": 21380,
-      "sha256": "43774ec68ba746c0540c137827b3ef8131a07b45a55206c5f8920b5254b5f1b6"
+      "sha256": "3b50d52e9b6744f92c93e858ec60032bee57493506d0a7ce876def74b650da38"
     },
-    "assets/spectral-worker-B2yfGAp_.js": {
-      "bytes": 63479,
-      "sha256": "dfa4a6082cefff8ef22d9b7c639db7c56c79a7302a919326d9e66c203fcfa881"
+    "assets/spectral-worker-CjoO8gCz.js": {
+      "bytes": 63843,
+      "sha256": "392860bd1f00dc7e3e089c9608e706aeb89bc0c5816f0d4ee163bbe0151bc9e6"
     },
     "assets/sprites-B3ap8AWP.webp": {
       "bytes": 24994,
@@ -1697,9 +1739,49 @@
       "bytes": 556348,
       "sha256": "71d50a3fbf56bd58b26bf4a5506b3ce1380d644de3229a59fd8739da7d2a59d2"
     },
-    "data/atlas2-versions.011678fac55dcabf.json.gz": {
-      "bytes": 3225,
-      "sha256": "0e097494454bd0e2b7c2874cfe19c500fc4069020c0597ee0002b0bd239d4421"
+    "data/atlas16/m1-detail.a3a072294f0db7d3.bin.gz": {
+      "bytes": 2105117,
+      "sha256": "d5b42374fb63218bf39c914e40970c1c163c2eede83065ea05f6771564008faf"
+    },
+    "data/atlas16/m1-ps1.c8785c556da96a7c.bin.gz": {
+      "bytes": 401275,
+      "sha256": "4b1c8864cbf94271e31b6a42d461f43f317c4eb5573fe9d64fe2001df79697f3"
+    },
+    "data/atlas16/m1-stars.4d7850aab998e577.bin.gz": {
+      "bytes": 1185061,
+      "sha256": "33be9014d21244cc40e9f1cee3c5d7c71f1bbb86edabeaa41dd8b8b8cd9f5017"
+    },
+    "data/atlas16/m1.0918fcc7542d802b.bin.gz": {
+      "bytes": 591161,
+      "sha256": "19113a1b4d4ed2d158bc080bc003e65cfe57425ef29dbc941c8d6b14b6f5616c"
+    },
+    "data/atlas16/m1.df68db655fb7c2a5.json.gz": {
+      "bytes": 4532,
+      "sha256": "9b073543e0e1722110834061d6c8ff063f3a851964b2c8a597300091c69bbede"
+    },
+    "data/atlas17/m104-continuum.b2c170809a5c6914.bin.gz": {
+      "bytes": 914313,
+      "sha256": "cc2b347d62bd9810d77d9eb791f3b8ef7ea35d4a901746050554796efdb6b4b5"
+    },
+    "data/atlas17/m104-detail.199ae191c3d645f5.bin.gz": {
+      "bytes": 1910421,
+      "sha256": "79638254d2fd66249659ca9b6aa93c0613e9b022b6cdca34d0fbfe8eaa24c77f"
+    },
+    "data/atlas17/m104-stars.448d4f566c92841c.bin.gz": {
+      "bytes": 422727,
+      "sha256": "8a2e334fb02ca73ba87bc9ef14452bc5d81a991aab594bd9e258642021995b98"
+    },
+    "data/atlas17/m104.8878bdc2e35dfe06.bin.gz": {
+      "bytes": 2569761,
+      "sha256": "682080c687e92ff2d0a0e066ae6c8db4a9802dde7135b3c499a5457c0e60683c"
+    },
+    "data/atlas17/m104.d29a379333fe3661.json.gz": {
+      "bytes": 5958,
+      "sha256": "8f21c393ee4ebb28838ab79f96f6143b903183e3bf249405db61b06d90dc411e"
+    },
+    "data/atlas2-versions.659d2ef09f467298.json.gz": {
+      "bytes": 3397,
+      "sha256": "72cf27bffe2a7c06d6f400b7d3f87f4a57ea65193e80999c63e3eea250c63499"
     },
     "data/atlas2/barnard-stars.81463b666b7a4fc9.bin.gz": {
       "bytes": 471663,
@@ -2369,6 +2451,830 @@
       "bytes": 4487,
       "sha256": "5bc66264f49025e4944080c0c34e27906ad9341c9efb4d9606d10927ccfcb2d8"
     },
+    "data/deep-stars/47-tuc-ring.5c1c672605c435db.bin.gz": {
+      "bytes": 683210,
+      "sha256": "f989477e4534184fd08d3c771e11931430766f9ebfd082472e162cb0d2dd5b0f"
+    },
+    "data/deep-stars/bubble-ring.2187482357fc4af0.bin.gz": {
+      "bytes": 844291,
+      "sha256": "ac6fe5d597036575cccb6566d54d70bb89c2ab795c7524e6799a29db47cfdadc"
+    },
+    "data/deep-stars/california-cap.eab116f66a77e733.bin.gz": {
+      "bytes": 171649,
+      "sha256": "f3f76729767dfb07592c77b4e205ce82d2298007e4902788b9b90230ad8b89e0"
+    },
+    "data/deep-stars/california-ring.b0a11fbd8e240699.bin.gz": {
+      "bytes": 164230,
+      "sha256": "a77277324770f85dc22da37bbceb18026f8bbd13e9e05f91cebce9e66b7ff03b"
+    },
+    "data/deep-stars/carina-cap-s0.b76f84a85b5c7b76.bin.gz": {
+      "bytes": 535729,
+      "sha256": "81407609ac900c566019701d7c7b75bc15c9c7c279396f4dc9df60addfe327c7"
+    },
+    "data/deep-stars/carina-cap-s1.6fda61fc0f96ee8c.bin.gz": {
+      "bytes": 889719,
+      "sha256": "3ae5cbcce7c96e76303cd46ae3fc0e50d6958c5239ba22058947142f09f0f9b4"
+    },
+    "data/deep-stars/carina-ring-b0-s0.db83ffee6ef185b7.bin.gz": {
+      "bytes": 280669,
+      "sha256": "5161453f294a1ed485c8d0bcf868643bfee15d0a54fc5482edfed56788cea3b1"
+    },
+    "data/deep-stars/carina-ring-b0-s1.4bee954f1c3abdb0.bin.gz": {
+      "bytes": 271743,
+      "sha256": "5f5c5d9fb50ba812791b45e7957ceacff2c88b04aaa85f2d573af9386c923f21"
+    },
+    "data/deep-stars/carina-ring-b0-s2.ece7ee3efb3e85fc.bin.gz": {
+      "bytes": 305118,
+      "sha256": "0965029149e2a67195bc34093189398ae0a0b4bc09f07a3de452fa4047085724"
+    },
+    "data/deep-stars/carina-ring-b0-s3.4e533b82700c1b0e.bin.gz": {
+      "bytes": 392070,
+      "sha256": "e6d5008b5409447ba393bef1cbe7c699a3f2e8c12c6de35bdbccff25fbab0035"
+    },
+    "data/deep-stars/carina-ring-b0-s4.9f34deaef7bc4302.bin.gz": {
+      "bytes": 310167,
+      "sha256": "456526bdcd2834b9ed6ce78ee672ae548dbdf2f328f130f4010f6e0a56976e44"
+    },
+    "data/deep-stars/carina-ring-b0-s5.2d99dcd9f3849c97.bin.gz": {
+      "bytes": 323974,
+      "sha256": "f2a18e860c6b9949366055f35f470a21e77adf2d0ccace58dc6b7a33b0e1765a"
+    },
+    "data/deep-stars/carina-ring-b1-s0.666a6f843a9420a7.bin.gz": {
+      "bytes": 157722,
+      "sha256": "7dfe9c22de6cfc5a46f661d80682597b4e6620dbd63c48dcefa9283682e1c32c"
+    },
+    "data/deep-stars/carina-ring-b1-s1.fa84ae616a814180.bin.gz": {
+      "bytes": 91656,
+      "sha256": "13287ed46ba690faddfb350b13214ec5037f0568e53b557ae9ecba6e08615a89"
+    },
+    "data/deep-stars/carina-ring-b1-s2.a1875324415390a0.bin.gz": {
+      "bytes": 211273,
+      "sha256": "42dd9f64f670d4c12ec450c7bdd142e2ba8c03937e699b172602d8db6caae14b"
+    },
+    "data/deep-stars/carina-ring-b1-s3.41f9787268de130d.bin.gz": {
+      "bytes": 187191,
+      "sha256": "a94026bc68ddbeef49253b82bca4fb10c4a90c6cabe993045a03bce9430f251d"
+    },
+    "data/deep-stars/carina-ring-b1-s4.ac4cbbc89221ab19.bin.gz": {
+      "bytes": 97121,
+      "sha256": "491345d3cfd93243a472ca671f4b17008afe476eafcb70a80f181102097357eb"
+    },
+    "data/deep-stars/carina-ring-b1-s5.f44c45a66ebba11c.bin.gz": {
+      "bytes": 227931,
+      "sha256": "cec9c0c3ab7b5df6586a06f056c3d6083846d4908473716ac869639609f1ecad"
+    },
+    "data/deep-stars/cave-ring.c83be2877331a067.bin.gz": {
+      "bytes": 743830,
+      "sha256": "116778cae5646b70961ae94ebf3ba148b333a9c28d3809519f3405f31b9c3fd1"
+    },
+    "data/deep-stars/christmas-tree-ring-s0.51279ff458272d3f.bin.gz": {
+      "bytes": 149145,
+      "sha256": "b8e081b252aea5fa6f412d55ab85e5d47db9250124d44c4d5deb72f732f48ace"
+    },
+    "data/deep-stars/christmas-tree-ring-s1.55ca6905c5cb4329.bin.gz": {
+      "bytes": 148644,
+      "sha256": "d79904fccc3c620aa872db80a3a33337ed1c50014de3a93ccf37c60019f61081"
+    },
+    "data/deep-stars/christmas-tree-ring-s2.120406c310381c71.bin.gz": {
+      "bytes": 198906,
+      "sha256": "718dffb9858d3c71adf8d230b580865cca5e3d5f49cf7cb1808597c94024eced"
+    },
+    "data/deep-stars/christmas-tree-ring-s3.91c4eb5c8f9a57b6.bin.gz": {
+      "bytes": 221708,
+      "sha256": "1ec659e644ebac03a469581fc4f2c345248cbeab55ffbf8b3233c1b7303d456e"
+    },
+    "data/deep-stars/christmas-tree-ring-s4.2044d24d9ccfd2d8.bin.gz": {
+      "bytes": 147321,
+      "sha256": "f35caf3df898c9940073d332c80e5bba84cbd658494894cc79104672a93e1025"
+    },
+    "data/deep-stars/christmas-tree-ring-s5.c410096da94fcdfe.bin.gz": {
+      "bytes": 200252,
+      "sha256": "29cae869363fb280697575fa5e7f483ecd5c9ca798400413753c501bcb10a3a5"
+    },
+    "data/deep-stars/cygnus-corridor-m1-m1.aec7a72db7da68ff.bin.gz": {
+      "bytes": 33523,
+      "sha256": "a5de62d34df5069fdc3a41e2ebc5155e9df75f9fdf2e21828d4aa133c997a591"
+    },
+    "data/deep-stars/cygnus-corridor-m1-m2.7662e4f62ec15438.bin.gz": {
+      "bytes": 32179,
+      "sha256": "bc4337a607e7a8c8d894825aaabf4d0cc0bef7fe86719faaeb0dcfcc81311a00"
+    },
+    "data/deep-stars/cygnus-corridor-m1-m3.d409d12b9ba0e8f4.bin.gz": {
+      "bytes": 2912,
+      "sha256": "f6a5958bf66ad2e080f226d03ad2a223ea3cac2ac99373db5f054e5b46c88a62"
+    },
+    "data/deep-stars/cygnus-corridor-m1-m4.dcc3ec5a0d4504c7.bin.gz": {
+      "bytes": 48677,
+      "sha256": "8187ebae225426e662eff82c9b829e9198fa47a7039b29ad8a0cd304b42dd723"
+    },
+    "data/deep-stars/cygnus-corridor-m1-m5.90a06f49a413ef21.bin.gz": {
+      "bytes": 41321,
+      "sha256": "df4c3c7f371d5293c7f3e3144b585c0728b0c0c544ba9cd832b55544d745c837"
+    },
+    "data/deep-stars/cygnus-corridor-m1-m7.550fde3f9081605a.bin.gz": {
+      "bytes": 8237,
+      "sha256": "cf24962cf1dbe148ccdee88cc1f3414b45b0e0aa64e00fcce1b6a293c9aeeefd"
+    },
+    "data/deep-stars/cygnus-corridor-m1-m8.94e67cb14fda7103.bin.gz": {
+      "bytes": 51350,
+      "sha256": "a593c40e0002206d622d192b0f8123cd60b44fd22955966d022e414ffaf6bd73"
+    },
+    "data/deep-stars/cygnus-corridor-m1-p0.dbc9222b510b2a85.bin.gz": {
+      "bytes": 2278,
+      "sha256": "a88e028f4a013a24159e0cf375f7e30b20413f8e65e2034f44aef1409b22768c"
+    },
+    "data/deep-stars/cygnus-corridor-m1-p1.101cf3e0388ffc19.bin.gz": {
+      "bytes": 4657,
+      "sha256": "d0fcdac68e2f9df98c87090292dbd440e7dc534dec26594ecbd36f602efe507d"
+    },
+    "data/deep-stars/cygnus-corridor-m1-p2.272a8c01c2fdb210.bin.gz": {
+      "bytes": 56737,
+      "sha256": "99068c768ea8cbaaea1954c2a75fc7df1e43822150d4583583fb3f46b1e87a4d"
+    },
+    "data/deep-stars/cygnus-corridor-m1-p3.aebb5a6499c328b6.bin.gz": {
+      "bytes": 19012,
+      "sha256": "d87cd8ee5845adfa8893415f415259ee6b58acf9ed6fd0a97972ec48b93050b1"
+    },
+    "data/deep-stars/cygnus-corridor-m2-m1.876ecbaa5c8cbc2b.bin.gz": {
+      "bytes": 42606,
+      "sha256": "d5f6d7ad34c05f54741655ea0d2b3d031d878066ef6957299b3ed7624c4f9b40"
+    },
+    "data/deep-stars/cygnus-corridor-m2-m2.e52512b2a0aaf96f.bin.gz": {
+      "bytes": 2397,
+      "sha256": "40f91d8c3dc9393d629ea59fd2b60b60a1c444d69444ba46dce8923020b31556"
+    },
+    "data/deep-stars/cygnus-corridor-m2-m4.de93dea60304ddfd.bin.gz": {
+      "bytes": 53055,
+      "sha256": "fbd12674538c408d744f9bdc3d2c9fc740306c97e361362222fb446120768297"
+    },
+    "data/deep-stars/cygnus-corridor-m2-m5.4ef1e4f8707b9594.bin.gz": {
+      "bytes": 36109,
+      "sha256": "b10107c5a76762501945a1fc9ee29c248c058784a7d1533e33ffdc87ac6fc582"
+    },
+    "data/deep-stars/cygnus-corridor-m2-m7.950785d3a5304219.bin.gz": {
+      "bytes": 7072,
+      "sha256": "b9728e02ac8c52cba8e7333ae1b112c9734a6c7aeb22440f75f0b5ec2c755011"
+    },
+    "data/deep-stars/cygnus-corridor-m2-m8.67fa0ac689729fac.bin.gz": {
+      "bytes": 49261,
+      "sha256": "ce6eddac6419c52901504cbf1a1dee5952d19cd9688e6f51cf87ef13e5f36448"
+    },
+    "data/deep-stars/cygnus-corridor-m2-p2.0541b3d6eea670de.bin.gz": {
+      "bytes": 57204,
+      "sha256": "674203a0ea496079c96b46098e17fefe50ca70327a51161e7344e40e5fc05da1"
+    },
+    "data/deep-stars/cygnus-corridor-m2-p3.e2f66d708718d9c3.bin.gz": {
+      "bytes": 31589,
+      "sha256": "b263d27ffb106c951d12a84b131ab99a5b3fda9ecd2a9150bc29adf0022711d5"
+    },
+    "data/deep-stars/cygnus-corridor-m3-m1.96b0e17e902ada13.bin.gz": {
+      "bytes": 36874,
+      "sha256": "8b6915aad6939fdf49e9e500312720e5fb63bae715d7c2523151f18ce67cb1c9"
+    },
+    "data/deep-stars/cygnus-corridor-m3-m4.e89936f576b3b72c.bin.gz": {
+      "bytes": 15211,
+      "sha256": "1a8d1813891f02f4026760b7e8bf017d5e2bde54dfc1b3c46d4ca8ce810668bd"
+    },
+    "data/deep-stars/cygnus-corridor-m3-m5.8d7410925b3a847f.bin.gz": {
+      "bytes": 46927,
+      "sha256": "6e83c0ddc38c1b6ee9a733600989621a8d70770e328e07af9b8baec5afca10e9"
+    },
+    "data/deep-stars/cygnus-corridor-m3-m6.0eb44ba078aa67a9.bin.gz": {
+      "bytes": 27441,
+      "sha256": "4ef1f81e99ea3a3cb8804d0cdac24d286399899fc10d9edd894c9c4f71ef08fd"
+    },
+    "data/deep-stars/cygnus-corridor-m3-m7.df70651a1f503446.bin.gz": {
+      "bytes": 28114,
+      "sha256": "8b9b8c856204efe10a812c914558d9d62656bfcfb716dedc32b2bdc1ba833965"
+    },
+    "data/deep-stars/cygnus-corridor-m3-m8.0f5df542bea43cd7.bin.gz": {
+      "bytes": 23000,
+      "sha256": "0fecb6cfe20a3405ad52df13d95e5a49b897fffc798ebc3d34a9658b9d6de367"
+    },
+    "data/deep-stars/cygnus-corridor-m3-p0.fce44147e3458e4a.bin.gz": {
+      "bytes": 36635,
+      "sha256": "d93700445ce35976630bcc29a88d62723e77018d80f6e155b2fd29dd187b1792"
+    },
+    "data/deep-stars/cygnus-corridor-m3-p1.424bdbd8c7300eb4.bin.gz": {
+      "bytes": 56408,
+      "sha256": "049c7d46cd80a54b7651e9ca4efe23c520785d16a4b71cf207bf24ccda795d38"
+    },
+    "data/deep-stars/cygnus-corridor-m3-p2.509302af5756c772.bin.gz": {
+      "bytes": 103920,
+      "sha256": "b2d16c5d738e1424e784c13d8ea47fa29c418b72eff90f619d066e496b7eea36"
+    },
+    "data/deep-stars/cygnus-corridor-m3-p3.a99fff848f912a12.bin.gz": {
+      "bytes": 16462,
+      "sha256": "94a9c1e162c7610760e1aeef87ecc80d361d3a7ecee8b62c5e5c781549d89fc5"
+    },
+    "data/deep-stars/cygnus-corridor-m4-m1.f91d0014f69eb2f7.bin.gz": {
+      "bytes": 1981,
+      "sha256": "5b1c7f3230d4eb806e0f559a519ada0c1b10bf2ebc1cf799abbcf07177b4f593"
+    },
+    "data/deep-stars/cygnus-corridor-m4-m5.267b0dffc7d31883.bin.gz": {
+      "bytes": 11833,
+      "sha256": "60638b1422a48e8915bf9363d48cd9116d6efa538a3aef37e279c2d33207641f"
+    },
+    "data/deep-stars/cygnus-corridor-m4-m6.01e700db90577130.bin.gz": {
+      "bytes": 25354,
+      "sha256": "e64a2adda753e1adcb87468def65a0483354b836caf8de7d67027cc545f1dc80"
+    },
+    "data/deep-stars/cygnus-corridor-m4-m7.76c8920fb3ff5557.bin.gz": {
+      "bytes": 16495,
+      "sha256": "9c6ac331210296d489ac8f6a88383622341e4a9ae07518e5d6d81833601ca6ab"
+    },
+    "data/deep-stars/cygnus-corridor-m4-m8.a3d7f1355a43db3e.bin.gz": {
+      "bytes": 243,
+      "sha256": "e42bfad90bbe477fe5c7dd434027ef7d594bfc1d935ed6562458dbe83272932f"
+    },
+    "data/deep-stars/cygnus-corridor-m4-p0.750c6018d75614cd.bin.gz": {
+      "bytes": 34511,
+      "sha256": "b508b92af85ea17e4ede44c38abfa6e0618c9137c9b113e1d25ce5f02b1b78d2"
+    },
+    "data/deep-stars/cygnus-corridor-m4-p1.205b615719a3e0ac.bin.gz": {
+      "bytes": 58040,
+      "sha256": "44a29068e8adfe7fd51195176d749538f3fa3c9a1600299c648c5bcc0f641045"
+    },
+    "data/deep-stars/cygnus-corridor-m4-p2.b2288a4c88e9143f.bin.gz": {
+      "bytes": 22931,
+      "sha256": "f502e8f084536e1e40da5325169c934b1851d8e08ec000c35159053e5a53817b"
+    },
+    "data/deep-stars/cygnus-corridor-p0-m1.1b5fab81628774ad.bin.gz": {
+      "bytes": 12846,
+      "sha256": "e44fa9676410d1a44fd5000c070f2a61007176c9fa691d790261fecad10dc182"
+    },
+    "data/deep-stars/cygnus-corridor-p0-m2.9b4ba0b9563fcbe7.bin.gz": {
+      "bytes": 24007,
+      "sha256": "9931ea496091548c05fc302291fda6bca8f931c4681804061fb97c0a51846183"
+    },
+    "data/deep-stars/cygnus-corridor-p0-m3.90b7527da2d43739.bin.gz": {
+      "bytes": 31511,
+      "sha256": "adddd2966487f0ff03f51434fbfaf17be4caea4200f7665c331f5126eec1ecfb"
+    },
+    "data/deep-stars/cygnus-corridor-p0-m4.554e79d856047f6a.bin.gz": {
+      "bytes": 3836,
+      "sha256": "1455fc9dbaacc4f39430bb821ee2708323ef74071ac8fa91896bea5cd6411553"
+    },
+    "data/deep-stars/cygnus-corridor-p0-m5.49bac270de637c39.bin.gz": {
+      "bytes": 41647,
+      "sha256": "17abcb82320c7256f164153d20efdfbe44c24ebc09fc5b9a31b618bc47433a9d"
+    },
+    "data/deep-stars/cygnus-corridor-p0-m6.48306220615bec1c.bin.gz": {
+      "bytes": 62947,
+      "sha256": "fcbea91623133648d066ea5a6563b8e024a5ee8dd210a559b632524c046977c8"
+    },
+    "data/deep-stars/cygnus-corridor-p0-m7.ff330cc6a0731cae.bin.gz": {
+      "bytes": 55473,
+      "sha256": "8b56b52cc6ef76b38e469c11c08957602de7e44ccc876a2a08e675de04031443"
+    },
+    "data/deep-stars/cygnus-corridor-p0-m8.59d5eb8c3c5c1242.bin.gz": {
+      "bytes": 13517,
+      "sha256": "68e198552b819f7ac8fc71d57687bf5a7bab2e556e90ec38f5a8810d8e23f649"
+    },
+    "data/deep-stars/cygnus-corridor-p0-p0.2b63eff7f2551e5a.bin.gz": {
+      "bytes": 21602,
+      "sha256": "70dd442e4a2b43e4a860dd61b94397a2fb55f0c230ad98b412f0ad7ffae5e48f"
+    },
+    "data/deep-stars/cygnus-corridor-p0-p1.71dff963b1b69d7e.bin.gz": {
+      "bytes": 55386,
+      "sha256": "924149b823696bd188a4d4a7ecebd0d40892f7d8b28a685f3a06a645956aa171"
+    },
+    "data/deep-stars/cygnus-corridor-p0-p2.52ba25b288990e29.bin.gz": {
+      "bytes": 34441,
+      "sha256": "373398747939c23634368613157302958539f42be2e00130ff4722753e2beaea"
+    },
+    "data/deep-stars/cygnus-corridor-p1-m2.d8146a3ce2930017.bin.gz": {
+      "bytes": 27338,
+      "sha256": "3c2f07cf368a27a3516d1b2d30f5c1be95df6d50f83a5fd7e1fb68c771635d15"
+    },
+    "data/deep-stars/cygnus-corridor-p1-m3.d695224cfa228af6.bin.gz": {
+      "bytes": 51912,
+      "sha256": "7fa1a6104a87a66082c14d4333d0b5f5174202f4f075f1b7bf83057acd6e34eb"
+    },
+    "data/deep-stars/cygnus-corridor-p1-m4.0a9c6d79f108c638.bin.gz": {
+      "bytes": 30883,
+      "sha256": "076e4bdd25a5877eee04af05615dc7a6bf1c55a510d4b128665c5f5db4448544"
+    },
+    "data/deep-stars/cygnus-corridor-p1-m6.2598b32e4828aa70.bin.gz": {
+      "bytes": 4628,
+      "sha256": "24d6a0917a7b0169ee4521ed472b65dedca491652464c28ddc817b936eafb657"
+    },
+    "data/deep-stars/cygnus-corridor-p1-m7.1d049164c0b2ed75.bin.gz": {
+      "bytes": 549,
+      "sha256": "ab1625fc7d0d0dc99205e29bfcc2fad8b3bfb5e6bdf30b8ff597af9c8cf4e6c4"
+    },
+    "data/deep-stars/cygnus-corridor-p1-p0.dcf84c71d16e259a.bin.gz": {
+      "bytes": 28410,
+      "sha256": "6f2879209c2d410985a77773013cac4cf235237101a14ce2dffe1193ee313521"
+    },
+    "data/deep-stars/cygnus-corridor-p1-p1.0a095e9476531902.bin.gz": {
+      "bytes": 37706,
+      "sha256": "b7d6efb1d01b66d0db0e8f67f756b77bb81c07199f15a343fe27cc239be6a1f1"
+    },
+    "data/deep-stars/cygnus-corridor-p2-m1.6700eb3789d7a4ca.bin.gz": {
+      "bytes": 57612,
+      "sha256": "092549746b90fe8286bf7f350b0192cfd40ab7d108bbdd28833c1f407e558b0e"
+    },
+    "data/deep-stars/cygnus-corridor-p2-m2.afdaeca6c7f99987.bin.gz": {
+      "bytes": 25530,
+      "sha256": "b8b49c05a4b53617e88ae4c4caed9d7103870d6e761850d9b7b79736133a7cb1"
+    },
+    "data/deep-stars/cygnus-corridor-p2-m3.3abafe2d50d6729e.bin.gz": {
+      "bytes": 97482,
+      "sha256": "986162d891f6853bbbfdac612cf2c05ed45aba26b3e38b05856d2f6b4900cf2d"
+    },
+    "data/deep-stars/cygnus-corridor-p2-m4.2b7214e4ae76f32e.bin.gz": {
+      "bytes": 76325,
+      "sha256": "561c0af37c52cffa2e9ebe5fcb742ae4ca5111214c384cb441405ad193a5a4d5"
+    },
+    "data/deep-stars/cygnus-corridor-p2-p0.bc3f5247107c2118.bin.gz": {
+      "bytes": 50063,
+      "sha256": "2433df8c9e9cc89c1867d8628b1db2a1a535a643364bb9cba3d625d615ae5eb5"
+    },
+    "data/deep-stars/cygnus-corridor-p2-p1.58e082289ec565a2.bin.gz": {
+      "bytes": 21605,
+      "sha256": "1fc2019dfd54f19b7a7dbf182837bb5ee360e6ccc617c0e785cd448c978f4f81"
+    },
+    "data/deep-stars/cygnus-corridor-p3-m1.7d6853717620d67e.bin.gz": {
+      "bytes": 119392,
+      "sha256": "b2952fef45c1bc2d44c21a0740e79f3e1c3b499840c567a583064cdb8d2b899d"
+    },
+    "data/deep-stars/cygnus-corridor-p3-m2.f6446d4b5f76a37c.bin.gz": {
+      "bytes": 116659,
+      "sha256": "00ec7722f14ce75b060d97e392295a05030474bc22fd3a77226a646db925989a"
+    },
+    "data/deep-stars/cygnus-corridor-p3-m3.71a4dec124e2239f.bin.gz": {
+      "bytes": 134368,
+      "sha256": "3bbd78130781e718f389440df99c22b8d4a668bfe2081b5a016fe6b3368890ff"
+    },
+    "data/deep-stars/cygnus-corridor-p3-m4.0059f7891025d7ae.bin.gz": {
+      "bytes": 90982,
+      "sha256": "6d6b590cd39131c58b3b0498f34978bbae5ea66c16bdb8a679bceec105746622"
+    },
+    "data/deep-stars/cygnus-corridor-p3-p0.285d41eeb81101f4.bin.gz": {
+      "bytes": 49075,
+      "sha256": "b4ad4b152e3367010d2186e7a78a49d555adcfc9aff0112ed13292f9a2fe81b8"
+    },
+    "data/deep-stars/cygnus-corridor-p3-p1.8a206ce92d3707e9.bin.gz": {
+      "bytes": 41,
+      "sha256": "7fa0c60191dda486094dfc86e224493d65f3f95249811d03f2a1ebb73b6431d3"
+    },
+    "data/deep-stars/cygnus-corridor-p4-m1.197d6a28302a89b1.bin.gz": {
+      "bytes": 69374,
+      "sha256": "adb26b665e33294f31c6ac45bfd2e326cf4f4184b0f8482482b6b130c1812776"
+    },
+    "data/deep-stars/cygnus-corridor-p4-m2.d1867a5e2b200f87.bin.gz": {
+      "bytes": 137237,
+      "sha256": "a3fb4e172d17ab65af9c32e761b96da42ac3b3bda715fbd4b366812cc70e828b"
+    },
+    "data/deep-stars/cygnus-corridor-p4-m3.479bf0bbb928d954.bin.gz": {
+      "bytes": 136430,
+      "sha256": "0513fe90828d7f4814ed3a4d77a2fd7a4b6c6b1a81c92ed872c50fb0a7cd23d5"
+    },
+    "data/deep-stars/cygnus-corridor-p4-m4.306abd03949cd294.bin.gz": {
+      "bytes": 17011,
+      "sha256": "1a354a028c6443752a086c354524d1ac80fa1641ffb3cd2806dbd235026698b8"
+    },
+    "data/deep-stars/cygnus-corridor-p4-p0.11741a425f77d3dd.bin.gz": {
+      "bytes": 1723,
+      "sha256": "28edd05fd573fb74c943ad9904d8310014db3dcaf82e293944ee1ad676562302"
+    },
+    "data/deep-stars/double-cluster-ring.08840f48d05988f5.bin.gz": {
+      "bytes": 934393,
+      "sha256": "5b9f5f48fcb769d9681fc192c06d73fde0ca0ca69e8e6446002eaf993b4c9dbb"
+    },
+    "data/deep-stars/elephant-trunk-cap.afbf19a5beec36ad.bin.gz": {
+      "bytes": 519925,
+      "sha256": "1750145948bf49b9e5b7f413197dacc19a3845a10832ab26832ccf7365ffb1f5"
+    },
+    "data/deep-stars/elephant-trunk-ring.ecb7a0e0fae50c39.bin.gz": {
+      "bytes": 433453,
+      "sha256": "fa6816f264a7521ec99cad1603c8107c9aefec39662fe8f4208ef44e6cceb3b2"
+    },
+    "data/deep-stars/flaming-star-cap.5c38b07204e4dd3e.bin.gz": {
+      "bytes": 224258,
+      "sha256": "74325216407e30a7d08726f2c202c24d5ee75aa01d79dc2a7aabb99dbad179da"
+    },
+    "data/deep-stars/flaming-star-ring.afee16b7a5ba6ef5.bin.gz": {
+      "bytes": 282374,
+      "sha256": "d62da5ce9685b0a2372b0288959e252e30893748ab5fe04312a7cb65fef33ff5"
+    },
+    "data/deep-stars/flying-bat-cap.4a7967a244b761f6.bin.gz": {
+      "bytes": 271222,
+      "sha256": "96d86423c52333b837ebb0d06d30eafabe3947918ba226bbc033a0a69714c270"
+    },
+    "data/deep-stars/flying-bat-ring.df0c6b182fef09cc.bin.gz": {
+      "bytes": 307782,
+      "sha256": "4e999adebb369f5f0a9a0acbe0927788fb23d6a4f57c42907b146c2f0146a0ba"
+    },
+    "data/deep-stars/heart-soul-cap-s0.b64852aa6cc6887d.bin.gz": {
+      "bytes": 547671,
+      "sha256": "aff97383db442487b196f57ba0bd3ebb0c3173819609c7a983465a6eb3a93acc"
+    },
+    "data/deep-stars/heart-soul-cap-s1.f1890ee22293bb9a.bin.gz": {
+      "bytes": 536316,
+      "sha256": "38b9f81fd7afed4d450cb329a4e65fc28509ea6e75ec542595ef2327c3f58d87"
+    },
+    "data/deep-stars/heart-soul-ring.02417d5fce794fb3.bin.gz": {
+      "bytes": 333365,
+      "sha256": "c1bafd5b7568d96009f152db3bb194d078767322e1ec93c2212c74fe71849ae9"
+    },
+    "data/deep-stars/helix-cap.b9779bea6f5411cc.bin.gz": {
+      "bytes": 37206,
+      "sha256": "9b9a68ee2476e5ff5643fdbc489a08642307d8b1e8f83ee8b65d65d65b8dcb12"
+    },
+    "data/deep-stars/helix-edge.c531a42a8065e445.bin.gz": {
+      "bytes": 75613,
+      "sha256": "4c69f10e6903d4ec9ee720477503b4a9ecb2b3ee21fa6f9c7c1049dfb30133d2"
+    },
+    "data/deep-stars/helix-ring.8dc7f2cced5ef7f1.bin.gz": {
+      "bytes": 395938,
+      "sha256": "5ee52a7093d966f328622ac272deeb7a159dec9423a86faa0ed1653184ae8f71"
+    },
+    "data/deep-stars/horsehead-cap.ef8b4e059862c7d8.bin.gz": {
+      "bytes": 75877,
+      "sha256": "9bee63b6ddf4f037ad96dc562fdcb57b0be0555221421ff9a3928052831bf117"
+    },
+    "data/deep-stars/horsehead-edge.573dc4830add4993.bin.gz": {
+      "bytes": 173063,
+      "sha256": "f17aa36b249de6456ba3c20476b78881d0df6b6d0564dbd40c3c9a7ab8e53172"
+    },
+    "data/deep-stars/horsehead-ring.3c14b4416fdf42a0.bin.gz": {
+      "bytes": 305095,
+      "sha256": "fee72c7c39a526a2174bed1a41e179816a5c3e53c808ae273da7040429b0ecc5"
+    },
+    "data/deep-stars/horsehead-ring2.b6e8ab48a84dee1f.bin.gz": {
+      "bytes": 682202,
+      "sha256": "77eb720ea8cfadfd06305bee5e12ee98b6e05dbb0dd13a6cacd51a56c39e10c5"
+    },
+    "data/deep-stars/jellyfish-ring.3bce26fccafc2110.bin.gz": {
+      "bytes": 908467,
+      "sha256": "d53c33b090d317fd21ca38fddeb80aebc1620df2c5faa6015a13d84e1fea5015"
+    },
+    "data/deep-stars/leo-triplet-ring.68b5c0f4026833a7.bin.gz": {
+      "bytes": 254491,
+      "sha256": "fdeab43f1448050fe263aa793ae7b3af42f92bbdd0aa5caf32ca9cfe46f21c4c"
+    },
+    "data/deep-stars/m101-ring.ef955edd8341a2c2.bin.gz": {
+      "bytes": 286486,
+      "sha256": "8c39c4e150d65c928fd9f13edea0d3b51a41ba98d795babc7535bec3ab6d8755"
+    },
+    "data/deep-stars/m13-ring.60a9633139a4ef39.bin.gz": {
+      "bytes": 505826,
+      "sha256": "c0bfaf57e4e24416c39c72698729533882439fd5963453c43afc7109b3b39038"
+    },
+    "data/deep-stars/m16-cap.67eaa843c12a0849.bin.gz": {
+      "bytes": 519541,
+      "sha256": "3350bf29c17e2e52479cf61cff9528d173e395acf3eeb9111e4edc816ff67e56"
+    },
+    "data/deep-stars/m16-ring-b0-s0.8c262cc389e0c5c7.bin.gz": {
+      "bytes": 71066,
+      "sha256": "2dbcf9d469d8a0df5813487eb0fb3fa9eda85056628c4c4a48a071c0af79f62b"
+    },
+    "data/deep-stars/m16-ring-b0-s1.73612ddf638a37c3.bin.gz": {
+      "bytes": 98258,
+      "sha256": "057c868a0eff79b27c73601b23906fe572687bae097c93f07cd00d34153f8cc6"
+    },
+    "data/deep-stars/m16-ring-b0-s2.442c5bb57341d7d7.bin.gz": {
+      "bytes": 247269,
+      "sha256": "b30b7bf35c66ceeaf2210bb5d6fb837ceca159c0a59f0191d86a7a6a821a2a3d"
+    },
+    "data/deep-stars/m16-ring-b0-s3.10e11dd53c5cdf82.bin.gz": {
+      "bytes": 378574,
+      "sha256": "5669f49f0c6a12086282c0f0efb6242b0bcbdde4f882e55b823ade394a0ae066"
+    },
+    "data/deep-stars/m16-ring-b0-s4.5c8e4a58a83980ef.bin.gz": {
+      "bytes": 211603,
+      "sha256": "f140b29e5b019ddb26465e953c5dbf59f69844cbeef512e7303af2fe72e20ba5"
+    },
+    "data/deep-stars/m16-ring-b0-s5.e78077a9b3391c81.bin.gz": {
+      "bytes": 149032,
+      "sha256": "03f8f5f7bd3667dfd6e74304fbfe505b3d2dcd3475c883dc5fd4f12fd2b555a7"
+    },
+    "data/deep-stars/m16-ring-b1-s0.442c4d8fb28de993.bin.gz": {
+      "bytes": 73225,
+      "sha256": "a4190b00f7ec9dd597615ddd2f9d93cd41b7eaf61090e7e7fccfee5690d2bfc3"
+    },
+    "data/deep-stars/m16-ring-b1-s1.02932852a68f9b6a.bin.gz": {
+      "bytes": 42136,
+      "sha256": "a0281a64fda0b7adad7a647a0ae5a2cf4cacd72f38e3ac656d8989be0b114ae7"
+    },
+    "data/deep-stars/m16-ring-b1-s2.795bfb34c59ef57f.bin.gz": {
+      "bytes": 123269,
+      "sha256": "b6bc6622952ead3dd40aabec48da615c68b834261acabca26dcdcad56d13f565"
+    },
+    "data/deep-stars/m16-ring-b1-s3.e9523effe3b20b57.bin.gz": {
+      "bytes": 313615,
+      "sha256": "bf178e23552a24cc1a4adf0db5a0085d0a583483339b6e54223ee9b402498fb7"
+    },
+    "data/deep-stars/m16-ring-b1-s4.7c28faacfd2435c9.bin.gz": {
+      "bytes": 118768,
+      "sha256": "eb84d5fd42edd17a00071901723979463d49747842bcca3bbdb8dcdc41cdd9cd"
+    },
+    "data/deep-stars/m16-ring-b1-s5.1f717e69b86e6635.bin.gz": {
+      "bytes": 124925,
+      "sha256": "953a3840f35a4876da292ce8e21735108502982d502cd334ac27e06ded496faa"
+    },
+    "data/deep-stars/m22-ring-b0-s0.a5185e340ff9e2e7.bin.gz": {
+      "bytes": 362366,
+      "sha256": "e3e488c7a2bc5c37dfbfeda4773ad36c5f1768d93158e37aeaa741aef6da5fe5"
+    },
+    "data/deep-stars/m22-ring-b0-s1.ed9818dbc08a7614.bin.gz": {
+      "bytes": 267824,
+      "sha256": "c691a58895e0715f751eb39c81ee74210a4561123f5fea8a157236c0ac4b5da1"
+    },
+    "data/deep-stars/m22-ring-b0-s2.c2cc203cb0252696.bin.gz": {
+      "bytes": 192631,
+      "sha256": "62fc59f046fea832f1d4fb41d0a096f5b2bcd1fe006af4592ab89144341cdc78"
+    },
+    "data/deep-stars/m22-ring-b0-s3.1f998d1dbdf9dbfc.bin.gz": {
+      "bytes": 130862,
+      "sha256": "a1e8cd18652b3c7ae69e9a94815773c28936fea8197ce9904fe65fa6ad77ca08"
+    },
+    "data/deep-stars/m22-ring-b0-s4.adda0014afc123e0.bin.gz": {
+      "bytes": 113962,
+      "sha256": "85b9e91807813fc9c5a5856f3b2d002ac42675046a2db8557c62c88088ff8cb8"
+    },
+    "data/deep-stars/m22-ring-b0-s5.2323cf61e376e78c.bin.gz": {
+      "bytes": 161079,
+      "sha256": "32cf824b1a79dba7839b9657022b094a1e422e48fb6f31bf28f05c6038e5fe3b"
+    },
+    "data/deep-stars/m22-ring-b0-s6.38b4b04d771f83e4.bin.gz": {
+      "bytes": 294465,
+      "sha256": "a4b200377e8fbfcd2800e4ffb6b7c51924be4035d617bc202de060b4e745381d"
+    },
+    "data/deep-stars/m22-ring-b0-s7.32776baf5949945d.bin.gz": {
+      "bytes": 419886,
+      "sha256": "a3658df708d2d59c803081df84a932180788170226067919a49571f8c6242c29"
+    },
+    "data/deep-stars/m22-ring-b1-s0.f044542efcb392df.bin.gz": {
+      "bytes": 93366,
+      "sha256": "11db7903d3ada46878be3c57a12770696fee0d5fe59b25a2c99e5897b1f1ef7f"
+    },
+    "data/deep-stars/m22-ring-b1-s1.b9a4b398f63128c6.bin.gz": {
+      "bytes": 109520,
+      "sha256": "380b6295990240d273d5449f87c5c8fd2705b68c7b957b46f17b77a6981cd194"
+    },
+    "data/deep-stars/m22-ring-b1-s2.ff140dde151f95fd.bin.gz": {
+      "bytes": 87376,
+      "sha256": "489a419db49c4b87861ba769a44ee4ae6197210449841e58bb1f3bdd43076191"
+    },
+    "data/deep-stars/m22-ring-b1-s3.1a21e541afd0306d.bin.gz": {
+      "bytes": 74599,
+      "sha256": "1bc70375b0fa87ec604eee38f4349f82ca76ac0b1281da32fb21279119b82201"
+    },
+    "data/deep-stars/m22-ring-b1-s4.0f8313342a50520a.bin.gz": {
+      "bytes": 52586,
+      "sha256": "d1af69433b807e67eaa8838c746669b47fdd8762e1f84a9bc1057656d76eb0a8"
+    },
+    "data/deep-stars/m22-ring-b1-s5.7ec4965f15f87b05.bin.gz": {
+      "bytes": 74412,
+      "sha256": "395ac174eafba6ba866431fc21f7a849f25e370662835cd55e038bd40801991d"
+    },
+    "data/deep-stars/m22-ring-b1-s6.e7790f66cae6774f.bin.gz": {
+      "bytes": 198964,
+      "sha256": "5e5ede21d10e404dbe79865c7f2b81a34c34dbe1a742232a8750714744efa47b"
+    },
+    "data/deep-stars/m22-ring-b1-s7.0f4a256bfc3818f7.bin.gz": {
+      "bytes": 252425,
+      "sha256": "4c1b79422a2212c7f3a42801a363469262b85bb706e7b47b803989e7af9a232d"
+    },
+    "data/deep-stars/m27-cap.d0d2d1ee7741432b.bin.gz": {
+      "bytes": 895071,
+      "sha256": "8142800d38c11c7115f7348366b45dc3c2d7d85cee599ba79994805292926abb"
+    },
+    "data/deep-stars/m27-ring-s0.6f72f61f64261a75.bin.gz": {
+      "bytes": 200635,
+      "sha256": "ab7f1c8112d37737809c25904f31c48934cf9890e0a03e708f4b5cf0bb1bf2f1"
+    },
+    "data/deep-stars/m27-ring-s1.75e225f5a7de23d7.bin.gz": {
+      "bytes": 150907,
+      "sha256": "ce704b6adaca6a9fcab1128e0e80fd00317a587769ba73e8356e13ca81e5f69d"
+    },
+    "data/deep-stars/m27-ring-s2.d3e027ac5a990a88.bin.gz": {
+      "bytes": 224313,
+      "sha256": "9a53d55ddc66c293971c58aabbe5f2b291bc0cf8874a1e65b587251558868857"
+    },
+    "data/deep-stars/m27-ring-s3.d515fddc7fe8cd75.bin.gz": {
+      "bytes": 282328,
+      "sha256": "e1860bdee924e58bb4d894f39911ee47a9cbe3e889df87010b2d9292bf388406"
+    },
+    "data/deep-stars/m27-ring-s4.b2c53173057cf626.bin.gz": {
+      "bytes": 298777,
+      "sha256": "cd29e670d08045256ab9da2f25e5600d6286cc4d86aec4f6cb7b044f6dd3ef2e"
+    },
+    "data/deep-stars/m27-ring-s5.3effbf54b99c5eb1.bin.gz": {
+      "bytes": 333003,
+      "sha256": "0306925af35ad3124796e27783c7412c3ae10693b34f1b1bd39855f2e02afb19"
+    },
+    "data/deep-stars/m31-cap.f0a3093a804d1edf.bin.gz": {
+      "bytes": 109795,
+      "sha256": "79a93d0a37ae1666f0759dcd3972c31e9164079b90f1a44213d22fb5a55db2cd"
+    },
+    "data/deep-stars/m31-edge.e215e120cf322e21.bin.gz": {
+      "bytes": 214484,
+      "sha256": "75f3fb95f35b73e363e38cfac6413a1c4a722197c37d0c1c6fc368060913a395"
+    },
+    "data/deep-stars/m31-ring.debacf5e8e5ef02c.bin.gz": {
+      "bytes": 380520,
+      "sha256": "4717de8478f09db95c91f702fcc43160086821d1e4ab8169af9dd83d0270e464"
+    },
+    "data/deep-stars/m31-ring2.dad954b14e7d945c.bin.gz": {
+      "bytes": 777861,
+      "sha256": "2bbb8e31bd1e96fb184124e2eb04c45ef0693415a88d03ea778f5d526479b1f3"
+    },
+    "data/deep-stars/m33-ring.3d87ac818813295f.bin.gz": {
+      "bytes": 616828,
+      "sha256": "46da9028879680bd1b379eeab9d9af83c435098795174257e664219d6a9f1fff"
+    },
+    "data/deep-stars/m4-ring.adbda8c5e84ca3f5.bin.gz": {
+      "bytes": 549257,
+      "sha256": "2a79070dcb45ef513d9465e8d262c0af15796204b8bf091d862573f55a62d75e"
+    },
+    "data/deep-stars/m42-cap.a2864e9dbc0cecd0.bin.gz": {
+      "bytes": 68470,
+      "sha256": "e92dc52187918fad0adcce743068ecbff9d7878b16ab688c20724fcc9b0157cc"
+    },
+    "data/deep-stars/m42-edge.8d28b5fd843daa0d.bin.gz": {
+      "bytes": 152553,
+      "sha256": "df5f31adade04832abc8414aabbd3f585d6761547c7386d81772514922b998ea"
+    },
+    "data/deep-stars/m42-ring.5dceca2198bf3722.bin.gz": {
+      "bytes": 260899,
+      "sha256": "49b510a374198baa5f3b639b6a3b84068071dcdd940e2e8ea854767019d29096"
+    },
+    "data/deep-stars/m42-ring2.7a3a16395394b4f9.bin.gz": {
+      "bytes": 563107,
+      "sha256": "dc0182c94bfcb95acf9adaf03a9be4d211f9f403bfceefb5719ebb3a2d39a0dc"
+    },
+    "data/deep-stars/m45-ring.174b4e501c819743.bin.gz": {
+      "bytes": 253613,
+      "sha256": "c7257072e6ca40c6aa719b1b74acc6f5770d3494625b6564bbfc683dd2c6023e"
+    },
+    "data/deep-stars/m45-ring2.9dc6e48a60ee5eaf.bin.gz": {
+      "bytes": 524458,
+      "sha256": "01b9695a9b3225ca29878cdef7ce7f691bc132514affe898ada8b4b96943fa0c"
+    },
+    "data/deep-stars/m5-ring.303834e803a46a6e.bin.gz": {
+      "bytes": 436749,
+      "sha256": "690bb293ad7bebf43168d309bfb2dbc02e29a13d58cf29e4e4c5967b8ec20bec"
+    },
+    "data/deep-stars/m51-ring.eba6078947e9221c.bin.gz": {
+      "bytes": 248486,
+      "sha256": "d7fb6063e66c6d33c3472711c4a26e2c3122d24c50ef55d7319f044b84d4734d"
+    },
+    "data/deep-stars/m8-cap-s0.127e8d2191078337.bin.gz": {
+      "bytes": 539248,
+      "sha256": "8642e46f146f4316c0e414a41f7c03630616cbea9194fea971592ff2db14bb4a"
+    },
+    "data/deep-stars/m8-cap-s1.08ad38143ab4269f.bin.gz": {
+      "bytes": 671487,
+      "sha256": "55c2bfb496edac036d5f9eb1ebd8fdd5a4886a953e77ee1035d05f73cb3e0d53"
+    },
+    "data/deep-stars/m8-ring-b0-s0.1e89bd57802cca53.bin.gz": {
+      "bytes": 207719,
+      "sha256": "79c16fdf14ec6a563359a9eadbdea39bba5f172a8cfc13433e9cd898766ad754"
+    },
+    "data/deep-stars/m8-ring-b0-s1.c6eef8b8ed2b30be.bin.gz": {
+      "bytes": 164968,
+      "sha256": "4ca252109cdeb9b4c00a4784a8e192be18a6eb3e0a429980c48a52d84f335589"
+    },
+    "data/deep-stars/m8-ring-b0-s2.b64bce55b208a758.bin.gz": {
+      "bytes": 407520,
+      "sha256": "9b8537965930242cf170ed18f5f716cc78f0075583f3234187e9bd23a3c457e0"
+    },
+    "data/deep-stars/m8-ring-b0-s3.164c0e5554c997e4.bin.gz": {
+      "bytes": 635187,
+      "sha256": "fd2f4c53c58c1394bef10b6e697b490425ee546c674e42d81872e65815d265c4"
+    },
+    "data/deep-stars/m8-ring-b0-s4.78236eabe08f404a.bin.gz": {
+      "bytes": 696464,
+      "sha256": "42cbaff62d26f27d3188326590bf58332b8477d8e57580a286444641053e29ff"
+    },
+    "data/deep-stars/m8-ring-b0-s5.3687d9ff630193cd.bin.gz": {
+      "bytes": 190199,
+      "sha256": "61251c80acf134ed5a6a2db688ab6110c910f3764e019e4fa0993957d2602d19"
+    },
+    "data/deep-stars/m8-ring-b1-s0.5a94de29a9d9160a.bin.gz": {
+      "bytes": 179274,
+      "sha256": "793b13898a23f4267d179f1b17af30f81f124bce5e13fd5469019d7c6966433f"
+    },
+    "data/deep-stars/m8-ring-b1-s1.f017b99623689909.bin.gz": {
+      "bytes": 76433,
+      "sha256": "882512df3a998533ce163117461b47a4fe20cb633f02c1c48e0341669502110e"
+    },
+    "data/deep-stars/m8-ring-b1-s2.5905d212140863ea.bin.gz": {
+      "bytes": 261639,
+      "sha256": "6f3821acbee462ec2923fe115169c7bd2864bf7786fc7e2cace79ded5584252c"
+    },
+    "data/deep-stars/m8-ring-b1-s3.d18c38a281efc31d.bin.gz": {
+      "bytes": 597496,
+      "sha256": "4c2e10cefc1ae9e99d809540a7543844543e786fee38f5f4881eff8bf6d335c5"
+    },
+    "data/deep-stars/m8-ring-b1-s4.13857fc54476bf8e.bin.gz": {
+      "bytes": 344599,
+      "sha256": "52c053688d323aa6d0c339a7ad7d3fdb704592d1c1d0557394d7f962b27f969c"
+    },
+    "data/deep-stars/m8-ring-b1-s5.23e1f255d325fea4.bin.gz": {
+      "bytes": 169864,
+      "sha256": "78deef3fae6bb34d39e489a932d94e39774b2a90d7d84c28a4772e3ab41fd11b"
+    },
+    "data/deep-stars/m81-m82-ring.d1aeb077fc0cfe0b.bin.gz": {
+      "bytes": 401478,
+      "sha256": "63328dd7f26495891ac35b97090fe4e6f5d60a9b59023cfc99573025ccf83027"
+    },
+    "data/deep-stars/ngc6397-ring-b0-s0.2b41b714a9bd6431.bin.gz": {
+      "bytes": 209648,
+      "sha256": "34292dd37eb739c86b51a30d3d96a144974a8f1e2d8f04042bddef53fe52b191"
+    },
+    "data/deep-stars/ngc6397-ring-b0-s1.beb33b472ff50f3d.bin.gz": {
+      "bytes": 185723,
+      "sha256": "c3d088b3ee899ccb2d0706c1c2c2fdb2d737334241d8ea70385e0ebea2cc6ece"
+    },
+    "data/deep-stars/ngc6397-ring-b0-s2.098cf1225d43a3a7.bin.gz": {
+      "bytes": 120588,
+      "sha256": "869f1ca28763e929a6949e954781f5f98af8953e8bc88a64550e9664a37f30f6"
+    },
+    "data/deep-stars/ngc6397-ring-b0-s3.c83d24a87799262b.bin.gz": {
+      "bytes": 104196,
+      "sha256": "e086b070664e703ad5971fac6ba51342f9fabc80302c26f0c2d5ac1e99b5f454"
+    },
+    "data/deep-stars/ngc6397-ring-b0-s4.8cf05fb243c65bff.bin.gz": {
+      "bytes": 126505,
+      "sha256": "d1ee75ba4d194c5f706985b08c90b5fe64118c8ce6d2b4427041437304212023"
+    },
+    "data/deep-stars/ngc6397-ring-b0-s5.617ab9d017711665.bin.gz": {
+      "bytes": 165226,
+      "sha256": "c4a397fb91b683573d13eb26aa5590183f32650269123817c0ba91733606f5b2"
+    },
+    "data/deep-stars/ngc6397-ring-b1-s0.b5c9c91148c544a6.bin.gz": {
+      "bytes": 169981,
+      "sha256": "5585f63c3db003f8e8ca16776e5c54ba3ab215e9bd6f89b2add89a41f090b8e7"
+    },
+    "data/deep-stars/ngc6397-ring-b1-s1.e532ed907d0b4ff2.bin.gz": {
+      "bytes": 50308,
+      "sha256": "81d0fd9eafda70bcc681aa143416ad44ea2604a40f914c2b7cfb508ff7a8c1eb"
+    },
+    "data/deep-stars/ngc6397-ring-b1-s2.b625283c24de2a45.bin.gz": {
+      "bytes": 82351,
+      "sha256": "18559a444119267cff6abb8de63374e46631d9bb0af9f06abba3c890e49178a7"
+    },
+    "data/deep-stars/ngc6397-ring-b1-s3.116e7968aabfb04d.bin.gz": {
+      "bytes": 59549,
+      "sha256": "c8f35aead92a9e42979eee8918d2ac3a3628a83409feb1734cad5caddc9c498e"
+    },
+    "data/deep-stars/ngc6397-ring-b1-s4.ff3597ec572e889b.bin.gz": {
+      "bytes": 30450,
+      "sha256": "85edb1e621447157452e4d5867699a9eaa9ba616b4a8df6b252b6caf0d839c4d"
+    },
+    "data/deep-stars/ngc6397-ring-b1-s5.7ff228dc397c2320.bin.gz": {
+      "bytes": 101539,
+      "sha256": "725765232c3cdeccf9a83d14b322171907e857d27d5d740dc1df7b4f2841489b"
+    },
+    "data/deep-stars/ngc6752-ring.4f410507f6a7368c.bin.gz": {
+      "bytes": 419303,
+      "sha256": "e7bd79db150a8575ac3c54a3f67d88316df97eafafaa1308fc0e28ecf553b4c1"
+    },
+    "data/deep-stars/omega-cen-ring.d13be930671b8678.bin.gz": {
+      "bytes": 678588,
+      "sha256": "266795591048f62251ec9ceeb921412e310b57d83f8b368cbd1ff7ae50bd343e"
+    },
+    "data/deep-stars/pacman-ring.057b74d45d04cf11.bin.gz": {
+      "bytes": 974278,
+      "sha256": "a1a7ec6f6ea63c30bc0ad798cbb414d7ce3064bac5582e079474a39c6eba9f5b"
+    },
+    "data/deep-stars/parts-b.62b29f95de3bd7e5.json.gz": {
+      "bytes": 15988,
+      "sha256": "c958f4ab485eefbd276841b79d07257d7c59df906c69c00a28a1a759729262e7"
+    },
+    "data/deep-stars/parts.ecdf465d5dd24543.json.gz": {
+      "bytes": 3383,
+      "sha256": "da0859758ca4174dcc1244d8bb4db91e230bb10930086dc4cf21a341597c281e"
+    },
+    "data/deep-stars/rosette-cap.d139e1f2d10eea0e.bin.gz": {
+      "bytes": 210668,
+      "sha256": "8876529b2c530d320b7d946e777ffc0709d71f6c80fba6844221649884a36a10"
+    },
+    "data/deep-stars/rosette-ring.3c06af7d3c114f70.bin.gz": {
+      "bytes": 961208,
+      "sha256": "e7f9faa9d4a196169dcfb4d2216fc178702d95e10a688701561b0339778baf7b"
+    },
+    "data/deep-stars/seagull-cap.e9892eda17622a64.bin.gz": {
+      "bytes": 469151,
+      "sha256": "b09bb8c56ed7ee642762bcc31c04b117fd71c183cf1d83b917d26671e484c144"
+    },
+    "data/deep-stars/seagull-ring.a5b46a2454bab225.bin.gz": {
+      "bytes": 886970,
+      "sha256": "3fb56caa6a893e8bd5ccf107b32080518ac54f1b1487ff2a9c4b80aba814186d"
+    },
+    "data/deep-stars/simeis-147-cap.338112a7258e22ca.bin.gz": {
+      "bytes": 477125,
+      "sha256": "c6cd98e9fdff708c82d57355fc28abd29763e362aeb455f01840eb3e9890e0de"
+    },
+    "data/deep-stars/simeis-147-ring.4ad6ad69ef04de3c.bin.gz": {
+      "bytes": 325306,
+      "sha256": "9326de267abbdf6ad7876bc6c268fedca640d55bc14303df963dfe8bd9f6fc3f"
+    },
     "data/environment-app.faa551b8402cd4b5.json.gz": {
       "bytes": 12142,
       "sha256": "d17a0e00e70704c43731e0bd6ca3392b85dcb2173d4f035b1fb6bb4d4dd266af"
@@ -2485,9 +3391,9 @@
       "bytes": 141834,
       "sha256": "cd1c8db70a51ae9222c2cbf82435884e99271aa2c0c79c76cd6ce943e02a954e"
     },
-    "data/offline-index.b470b184e2676c10.json.gz": {
-      "bytes": 300193,
-      "sha256": "387d3f3ee3dca18233d2681cefa3aeb73644b79c1023ba9838d93891bc079f89"
+    "data/offline-index.1974b1afb2b47bc3.json.gz": {
+      "bytes": 311003,
+      "sha256": "1c2665bda64809f34582e4bda289bc1e503d83f9ac3c5dc68093bdf2d7218dc2"
     },
     "data/simulator-versions.00bf21200f9a9859.json.gz": {
       "bytes": 588,
@@ -11016,6 +11922,90 @@
     "data/sky/continuum-gaia-v1/o12/tile-03054.dd57725dcdaa15ef.bin.gz": {
       "bytes": 34196,
       "sha256": "df44424ffdd78ffe6cf6e54f5dd48fc53ad3241f04a41afbee640b3b82edb631"
+    },
+    "data/sky/galaxies-v1/manifest.cd522e8f32f39e8e.json.gz": {
+      "bytes": 4791,
+      "sha256": "0be24d420b3600913dffb02bef45d5f8cdd1e9c00f701bfd3d679792bbe7ad82"
+    },
+    "data/sky/galaxies-v1/o10/tile-00008.ecee3d856e4e43e4.bin.gz": {
+      "bytes": 1277,
+      "sha256": "23504a50776a3ecc8882fa82ad276ac1a73335c090812d8958e04e4625ca1dd2"
+    },
+    "data/sky/galaxies-v1/o10/tile-00010.493d7caa5cd94d79.bin.gz": {
+      "bytes": 3457,
+      "sha256": "e8213739f12f448b68d2c42843c58082f8bb5433e038c6157f335ad40e172b1f"
+    },
+    "data/sky/galaxies-v1/o10/tile-00029.11845ec25d3cea90.bin.gz": {
+      "bytes": 511,
+      "sha256": "193150b6da5bd96025a97cc8e50c9edf65fbfc97acb730a50054b848353b9a24"
+    },
+    "data/sky/galaxies-v1/o10/tile-00043.e67b2359eb653c2e.bin.gz": {
+      "bytes": 318,
+      "sha256": "bae7675c01f93a0c68a6224909a8c93defa92098a6bdf0ee770d8266d653aa18"
+    },
+    "data/sky/galaxies-v1/o10/tile-00044.8f3a3ee9f8e04f7b.bin.gz": {
+      "bytes": 425,
+      "sha256": "daf9f834d7747cffa1d82617b49c2b6df3269022e6b790b0a1f4c58f41a4c7a9"
+    },
+    "data/sky/galaxies-v1/o10/tile-00110.7493019f639ccfa7.bin.gz": {
+      "bytes": 422,
+      "sha256": "e2ef5d3739c55599bfd2cdec7aa4b44e87db73cc6485af2321df042f35333117"
+    },
+    "data/sky/galaxies-v1/o11/tile-00033.b0301f0a4c87bccc.bin.gz": {
+      "bytes": 1967,
+      "sha256": "c2b41a89117532229c5bf3b27dc863cb86e314e5d2130efca4e80433008dcf0f"
+    },
+    "data/sky/galaxies-v1/o11/tile-00035.d1ce3a7fc38bdc0e.bin.gz": {
+      "bytes": 1599,
+      "sha256": "7691cda576ac217d5a3935c4b0ff267f902ee8f267753d1e51c9e55a40b8ce4e"
+    },
+    "data/sky/galaxies-v1/o11/tile-00040.7bd98eb00255457c.bin.gz": {
+      "bytes": 3806,
+      "sha256": "e5dcabe94c097726573e4e5163f1bae9f5094aed3ebe414c38fd2bd0b6187061"
+    },
+    "data/sky/galaxies-v1/o11/tile-00041.e4decff077264f93.bin.gz": {
+      "bytes": 3378,
+      "sha256": "c849a71b6c618a7853d2c2bbc568939a3148d73db8a50dc5361fe0b03d0143ca"
+    },
+    "data/sky/galaxies-v1/o11/tile-00042.3a378ad7b0e44be4.bin.gz": {
+      "bytes": 4074,
+      "sha256": "3527fd4041cc9d4503379b7df86786573f71f24e11d047c46d95e6ea5f48b48d"
+    },
+    "data/sky/galaxies-v1/o11/tile-00043.ea8d1d58d71a7867.bin.gz": {
+      "bytes": 1249,
+      "sha256": "179df9b8034d8c48dda346ac6b45bcaace0cabf419f152fcb31a67b41c61a9d7"
+    },
+    "data/sky/galaxies-v1/o11/tile-00118.dcc1114baca2e439.bin.gz": {
+      "bytes": 971,
+      "sha256": "6125e0443147b979a37085af82ba41e4a049d0ea88f21dab329ded62ef92d6c7"
+    },
+    "data/sky/galaxies-v1/o11/tile-00167.af10115069b4bad8.bin.gz": {
+      "bytes": 361,
+      "sha256": "e198401baadfac2ebf44ff3342ecd8621f1a445a17584f7aa85976eb40c26956"
+    },
+    "data/sky/galaxies-v1/o11/tile-00172.9b35625543f9277c.bin.gz": {
+      "bytes": 417,
+      "sha256": "d8f888f42ac652c965c138452ab8d2edb946a9997144eea4e4df04a4bff63adc"
+    },
+    "data/sky/galaxies-v1/o11/tile-00178.6988aafc8b8e218f.bin.gz": {
+      "bytes": 1005,
+      "sha256": "a5627b5d609f3431cfcb525af8c2b71dbee5ba3761cbf57c247051b888a2529d"
+    },
+    "data/sky/galaxies-v1/o11/tile-00440.beac507ef5a10821.bin.gz": {
+      "bytes": 654,
+      "sha256": "a7915f7db221221307e9202c14be48577c3f327659ea30d7f91ebed876707dd9"
+    },
+    "data/sky/galaxies-v1/o12/tile-00166.e87449ed735d7071.bin.gz": {
+      "bytes": 12182,
+      "sha256": "380130e5159bda5ed746857236d6d583efd5f1e5d250babab89c2b878a4fc5b4"
+    },
+    "data/sky/galaxies-v1/o12/tile-00169.6b93e6c9c7f963e1.bin.gz": {
+      "bytes": 13299,
+      "sha256": "c77aa9aaf8a25c6e20f3d808a2fb6f296a04717be0b44fc527d5913372123514"
+    },
+    "data/sky/galaxies-v1/o12/tile-00172.881033cee564d228.bin.gz": {
+      "bytes": 3734,
+      "sha256": "07cc1abbb9e97b000f707b9f9d37183adbc69daebb32525181a80f45241ed98b"
     },
     "data/sky/pyramid-v1/o10/manifest.7b45b434be1dc7ea.json.gz": {
       "bytes": 17877,
@@ -28774,8 +29764,8 @@
       "sha256": "59175705bdfcf9426f06f834eb46fa3cfe09af4800b47d52220234053a6f9a78"
     },
     "devicetest.html": {
-      "bytes": 223547,
-      "sha256": "efe6c4e8436a797a8367ba110888c3fa621ccfd49df88dc542a9bec7c6524238"
+      "bytes": 229534,
+      "sha256": "442dc5a2be9b094c0c3bb9884d79690fd7be4e5bd8d60bdc1a94f4a67a3e624f"
     },
     "favicon.ico": {
       "bytes": 30580,
@@ -28803,15 +29793,15 @@
     },
     "product.json": {
       "bytes": 186,
-      "sha256": "759e51a117db4f58241694de67ecd470ed126bd14032dc673974d1382553436b"
+      "sha256": "d8a711e0ffe0f69109eb6b4047448467c78a6b3483575a4854a41ba44eca08e4"
     },
     "robots.txt": {
       "bytes": 69,
       "sha256": "85f901c5112eced645400c621f30ed5ce72a7fbf9559771cfa2e3bcadad4186e"
     },
     "selftest.html": {
-      "bytes": 141324,
-      "sha256": "01c963842cc52cc07286f5350bd2f5951ca9043c4e300ec5dfd6654ffe4fdf94"
+      "bytes": 143916,
+      "sha256": "0abaf16b695ac5b5c49c9e5bb4609be8a30de3fd8f3003a4e1520c6419b85bb5"
     },
     "share-card.jpg": {
       "bytes": 113298,
@@ -28822,10 +29812,10 @@
       "sha256": "a878abe8c7c14c0f617419147cd418600460a63196459646a1261bb91e6bcf17"
     },
     "sw.js": {
-      "bytes": 10924,
-      "sha256": "1f1e029eafae246e93a296a151afa605cc4c17cd1b5b0153abc118d9c89c6dfa"
+      "bytes": 11032,
+      "sha256": "5e764fe7bfa06e6672e02df8d5567263f4d25e93c8be006400fb8309c358bb38"
     }
   },
-  "artifactSha256": "6edb4d711aaeedd4859720de5cee56ef4286aa6f908e8e140b2ac870b8b21a71",
-  "buildId": "21641b471675a83d3aea1dba9ba5199fbeb41e22e83dba15b1248430520eb5d9"
+  "artifactSha256": "a3763178b944210a3d7fa3796cac221b791b382d2c5cefdad55428ba27d4d689",
+  "buildId": "e9b83ebc50d80d03efe92a7c91e8943d56234774a31b705d6a892628a1741ded"
 }

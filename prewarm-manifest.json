@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "definition": "unique response body bytes, no Content-Encoding; headers/TLS excluded",
-  "totalBytes": 15126216,
+  "totalBytes": 15299217,
   "files": [
     {
       "bundle": "app",
@@ -29,20 +29,20 @@
     },
     {
       "bundle": "app",
-      "path": "assets/FilterBench-DcrrnXbo.js",
-      "url": "https://phosphorsky.com/assets/FilterBench-DcrrnXbo.js",
+      "path": "assets/FilterBench-CVK_OlJx.js",
+      "url": "https://phosphorsky.com/assets/FilterBench-CVK_OlJx.js",
       "bytes": 18789
     },
     {
       "bundle": "app",
-      "path": "assets/VerifyPanel-CRE-IdNA.js",
-      "url": "https://phosphorsky.com/assets/VerifyPanel-CRE-IdNA.js",
-      "bytes": 24947
+      "path": "assets/VerifyPanel-EfE2Zcp6.js",
+      "url": "https://phosphorsky.com/assets/VerifyPanel-EfE2Zcp6.js",
+      "bytes": 24951
     },
     {
       "bundle": "app",
-      "path": "assets/app-B_G-K0Ae.js",
-      "url": "https://phosphorsky.com/assets/app-B_G-K0Ae.js",
+      "path": "assets/app-C7uQ7Quk.js",
+      "url": "https://phosphorsky.com/assets/app-C7uQ7Quk.js",
       "bytes": 5488
     },
     {
@@ -59,15 +59,15 @@
     },
     {
       "bundle": "app",
-      "path": "assets/boot-BoaXVPG2.js",
-      "url": "https://phosphorsky.com/assets/boot-BoaXVPG2.js",
-      "bytes": 1193828
+      "path": "assets/boot-B6IZOhSN.js",
+      "url": "https://phosphorsky.com/assets/boot-B6IZOhSN.js",
+      "bytes": 1250017
     },
     {
       "bundle": "app",
-      "path": "assets/boot-CDfPfiLB.css",
-      "url": "https://phosphorsky.com/assets/boot-CDfPfiLB.css",
-      "bytes": 182602
+      "path": "assets/boot-BmldUZIr.css",
+      "url": "https://phosphorsky.com/assets/boot-BmldUZIr.css",
+      "bytes": 199814
     },
     {
       "bundle": "app",
@@ -77,21 +77,21 @@
     },
     {
       "bundle": "app",
-      "path": "assets/hosting-DARYwU3u.js",
-      "url": "https://phosphorsky.com/assets/hosting-DARYwU3u.js",
-      "bytes": 7659
+      "path": "assets/hosting-CAz13AZx.js",
+      "url": "https://phosphorsky.com/assets/hosting-CAz13AZx.js",
+      "bytes": 7666
     },
     {
       "bundle": "app",
-      "path": "assets/i18n-data-en-Ci1QfkLi.js",
-      "url": "https://phosphorsky.com/assets/i18n-data-en-Ci1QfkLi.js",
-      "bytes": 39159
+      "path": "assets/i18n-data-en-C2oW5vhk.js",
+      "url": "https://phosphorsky.com/assets/i18n-data-en-C2oW5vhk.js",
+      "bytes": 42872
     },
     {
       "bundle": "app",
-      "path": "assets/i18n-en-Bf8vVeQo.js",
-      "url": "https://phosphorsky.com/assets/i18n-en-Bf8vVeQo.js",
-      "bytes": 339381
+      "path": "assets/i18n-en-tcTDf5af.js",
+      "url": "https://phosphorsky.com/assets/i18n-en-tcTDf5af.js",
+      "bytes": 346644
     },
     {
       "bundle": "app",
@@ -125,9 +125,9 @@
     },
     {
       "bundle": "app",
-      "path": "assets/iit-engrave-D97cnjKE.woff2",
-      "url": "https://phosphorsky.com/assets/iit-engrave-D97cnjKE.woff2",
-      "bytes": 63544
+      "path": "assets/iit-engrave-h_eWh6K2.woff2",
+      "url": "https://phosphorsky.com/assets/iit-engrave-h_eWh6K2.woff2",
+      "bytes": 64564
     },
     {
       "bundle": "app",
@@ -149,27 +149,27 @@
     },
     {
       "bundle": "app",
-      "path": "assets/sky-worker-Bi4G7PAX.js",
-      "url": "https://phosphorsky.com/assets/sky-worker-Bi4G7PAX.js",
-      "bytes": 20467
+      "path": "assets/sky-worker-DaPn8AOO.js",
+      "url": "https://phosphorsky.com/assets/sky-worker-DaPn8AOO.js",
+      "bytes": 21512
     },
     {
       "bundle": "app",
-      "path": "assets/snapshot-sheet-D4z5eoNc.js",
-      "url": "https://phosphorsky.com/assets/snapshot-sheet-D4z5eoNc.js",
+      "path": "assets/snapshot-sheet-KvR-lXR6.js",
+      "url": "https://phosphorsky.com/assets/snapshot-sheet-KvR-lXR6.js",
       "bytes": 61319
     },
     {
       "bundle": "app",
-      "path": "assets/snapshot-station-Cn5m0rrP.js",
-      "url": "https://phosphorsky.com/assets/snapshot-station-Cn5m0rrP.js",
+      "path": "assets/snapshot-station-BB2mu27E.js",
+      "url": "https://phosphorsky.com/assets/snapshot-station-BB2mu27E.js",
       "bytes": 21380
     },
     {
       "bundle": "app",
-      "path": "assets/spectral-worker-B2yfGAp_.js",
-      "url": "https://phosphorsky.com/assets/spectral-worker-B2yfGAp_.js",
-      "bytes": 63479
+      "path": "assets/spectral-worker-CjoO8gCz.js",
+      "url": "https://phosphorsky.com/assets/spectral-worker-CjoO8gCz.js",
+      "bytes": 63843
     },
     {
       "bundle": "app",
@@ -197,9 +197,9 @@
     },
     {
       "bundle": "app",
-      "path": "data/atlas2-versions.011678fac55dcabf.json.gz",
-      "url": "https://phosphorsky.com/data/atlas2-versions.011678fac55dcabf.json.gz",
-      "bytes": 3225
+      "path": "data/atlas2-versions.659d2ef09f467298.json.gz",
+      "url": "https://phosphorsky.com/data/atlas2-versions.659d2ef09f467298.json.gz",
+      "bytes": 3397
     },
     {
       "bundle": "app",
@@ -518,6 +518,12 @@
       "path": "data/sky/continuum-gaia-v1/o12/manifest.b27eb0e2269ef46c.json.gz",
       "url": "https://phosphorsky.com/data/sky/continuum-gaia-v1/o12/manifest.b27eb0e2269ef46c.json.gz",
       "bytes": 69018
+    },
+    {
+      "bundle": "app",
+      "path": "data/sky/galaxies-v1/manifest.cd522e8f32f39e8e.json.gz",
+      "url": "https://phosphorsky.com/data/sky/galaxies-v1/manifest.cd522e8f32f39e8e.json.gz",
+      "bytes": 4791
     },
     {
       "bundle": "app",
@@ -1619,9 +1625,9 @@
     },
     {
       "bundle": "app",
-      "path": "package-manifest.38cf7947e0994049.json",
-      "url": "https://phosphorsky.com/package-manifest.38cf7947e0994049.json",
-      "bytes": 2387224
+      "path": "package-manifest.bd5dc4232c441b94.json",
+      "url": "https://phosphorsky.com/package-manifest.bd5dc4232c441b94.json",
+      "bytes": 2468337
     },
     {
       "bundle": "app",
@@ -1645,7 +1651,7 @@
       "bundle": "app",
       "path": "sw.js",
       "url": "https://phosphorsky.com/sw.js",
-      "bytes": 10924
+      "bytes": 11032
     }
   ]
 }
